@@ -80,10 +80,6 @@ function edit_table(tarea){
               des = des.replace("::descrip::", descrip)
               $("#di").html(des)
 
-<<<<<<< HEAD
-
-            }
-=======
               var estime = data.tas.fields.estimated_time
               console.log(estime)
               var des2 = '<input class="form-control" name="name_task" value="::estime::" />'
@@ -111,7 +107,6 @@ function edit_table(tarea){
 
             })
           }
->>>>>>> d7c40ba4623f37a13a3c0dc86568dc0240cc22a7
     })
 
 };

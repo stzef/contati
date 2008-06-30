@@ -1,140 +1,124 @@
 <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <ul class="nav nav-tabs pull-right">
-              <li class="active">
-                <a href="#date" data-toggle="tab">Tarea</a>
-              </li>
-              <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
-            </ul>
-            <h4 class="modal-title" id="myModalLabel">Editar Tarea</h4>
-          </div>
-        <div class="modal-body">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <ul class="nav nav-tabs pull-right">
+            <li class="active">
+                <a href="#formulario" data-toggle="tab">Tarea</a>
+            </li>
+            <li><a href="#respuesta" data-toggle="tab">Respuesta</a></li>
+        </ul>
+        <h4 class="modal-title" id="myModalLabel">Editar Tarea</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="formulario">
+                    <form id="edit_tablero" name="contact-form" method="POST" >
+                    {% csrf_token %}
 
-<div class="row-fluid">
-    <div class="tab-content">
-        <div class="tab-pane active" id="date">
-            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form id="edit_tablero" name="contact-form" method="POST" >
-            {% csrf_token %}
+                        <div class="form-group has-error"  >
+                            <strong>Nombre Tarea *</strong>
+                            <br>
+                            <div id="nam"></div>
+                        </div>
 
-                <div class="form-group has-error"  >
-                    <strong>Nombre Tarea *</strong>
-                    <br>
-                    <div id="nam"></div>
-                </div>
+                        <div class="form-group has-error"  >
 
-                <div class="form-group has-error"  >
-
-                <strong>Descripción *</strong> <div style="overflow-y: auto;height:100px;width:428px;"> <textarea class="form-control" name="description" id="di" cols="40" rows="50"></textarea> </div>
-                <br/>
-                </div>
-
-                <div class="col col-md-12" id="states_kanban1">
-
-
-                </div>
-
-                <div class="col col-md-12">
-                    <div class="col col-md-12 form-group">
-                        <strong>Responsable:</strong>
+                        <strong>Descripción *</strong> <div style="overflow-y: auto;height:100px;width:428px;"> <textarea class="form-control" name="description" id="di" cols="40" rows="50"></textarea> </div>
                         <br/>
-                        <select name="responsible" type="text" class="form-control">
-                        {% for row in tas %}
-
-                      {% endfor %}
-                </select>
-                <div id="respon"></div>
-                    </div>
-                </div>
-
-                <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <label>Actividad</label>
-                      <select name="actividad" id="id_actividad" onchange="aviso_valida()" class="form-control">
-                        <option value="0">-- Seleccina una actividad --</option>
-                          {% for activi in actividad %}
-                            <option  value="{{ activi.id }}" >{{ activi.nombre }}</option>
-                          {% endfor %}
-                      </select>
-                      <p id="id_sinactivi" style="color: red"></p>
                         </div>
-                    <div class="col col-md-6 form-group">
-                      <strong>{{ form.prioritie.label }}</strong> <br/>
-                    </div>
-                </div>
 
-                <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <strong>Departamento: </strong><br>
+                        <div class="col col-md-12" id="states_kanban1">
+
 
                         </div>
-                    <div class="col col-md-6 form-group">
-                      <strong>Cliente: </strong><br/>
 
-                    </div>
+                        <div class="col col-md-12">
+                            <div class="col col-md-12 form-group">
+                                <strong>Responsable:</strong>
+                                <br/>
+                                <select name="responsible" type="text" class="form-control">
+                                {% for row in tas %}
+
+                              {% endfor %}
+                        </select>
+                        <div id="respon"></div>
+                            </div>
+                        </div>
+
+                        <div class="col col-md-12">
+                            <div class="col col-md-6 form-group">
+                                    <label>Actividad</label>
+                              <select name="actividad" id="id_actividad" onchange="aviso_valida()" class="form-control">
+                                <option value="0">-- Seleccina una actividad --</option>
+                                  {% for activi in actividad %}
+                                    <option  value="{{ activi.id }}" >{{ activi.nombre }}</option>
+                                  {% endfor %}
+                              </select>
+                              <p id="id_sinactivi" style="color: red"></p>
+                                </div>
+                            <div class="col col-md-6 form-group">
+                              <strong>{{ form.prioritie.label }}</strong> <br/>
+                            </div>
+                        </div>
+
+                        <div class="col col-md-12">
+                            <div class="col col-md-6 form-group">
+                                    <strong>Departamento: </strong><br>
+
+                                </div>
+                            <div class="col col-md-6 form-group">
+                              <strong>Cliente: </strong><br/>
+
+                            </div>
+                        </div>
+
+                        <div class="col col-md-12">
+                            <div class="col col-md-6 form-group">
+                                <strong>{{ form.states.label }}</strong><br/>
+                            </div>
+                            <div class="col col-md-3 form-group">
+                                <div class="col col-md-12"><strong>Tiempo Estimado</strong></div> <div class="col col-md-6"> <div id="estimate"></div> </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
+                            </div>
+                            <div class="col col-md-3 form-group">
+                              <div class="col col-md-12"><strong>Tiempo Total</strong></div> <div class="col col-md-6"> <div id="totaltime"></div>  </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
                 </div>
 
-                <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                        <strong>{{ form.states.label }}</strong><br/>
-                    </div>
-                    <div class="col col-md-3 form-group">
-                        <div class="col col-md-12"><strong>Tiempo Estimado</strong></div> <div class="col col-md-6"> <div id="estimate"></div> </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
-                    </div>
-                    <div class="col col-md-3 form-group">
-                      <div class="col col-md-12"><strong>Tiempo Total</strong></div> <div class="col col-md-6"> <div id="totaltime"></div>  </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
-                    </div>
-                </div>
+                <div class="tab-pane" id="respuesta">
+{% for tas in tarea %}
+                        <div class="col col-md-12">
+                                <form method="post" action="{% url 'add_comment' pk=tas.pk %}">{% csrf_token %}
+                                  <p><strong>Usuario:</strong> {{ usu }}</p> 
+                                    <br>
+                                            {{ form.as_p }}
+                                        <button type="submit" class="save btn btn-default">Enviar</button>
+                                      <a class="btn btn-default" href="{% url 'list_tasks' %}">Cancelar</a> 
+                                    
+                                </form>
+                        </div>
+{% endfor %}                        
+                        <br>
+                        {% for comment in tas.comments.all %}
 
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </form>
+                                <br />
+
+                                <p><strong>{{ comment.user }} <a class="btn btn-danger pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a></strong>: {{ comment.description|linebreaks }} </p> 
+                                <hr>
+
+                            {% empty %}
+                            <br>
+                            <div class="text-center">
+                                <p>No hay comentarios registrados.</p>
+                                <p><strong style="font-size: 20px;">¡Realiza un comentario ahora!</strong></p>
+                            </div>
+                        {% endfor %}
+                </div>
+              </div>
         </div>
-
-        <div class="tab-pane" id="relevance">
-            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
-            {% csrf_token %}
-
-                <div class="col col-md-12">
-                    <div class="form-group">
-                        <strong>Respuestas: </strong> {{ form.answer }} <br/>
-                    </div>
-                </div>
-
-                  <button type="submit" onclick="myFunction()" class="btn btn-primary">Guardar</button>
-
-            </form>
-        </div>
-      </div>
-
+    </div>
 </div>
-
-</div>
-</div>
-
-<script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-<!--<script>
-
-  $("form").submit(function(event){
-
-         console.log( "entrando ajax");
-         //console.log(pk);
-         event.preventDefault()
-         var pk = $("#pk").val();
-         console.log(pk);
-        $.ajax({
-            type: 'PUT',
-            url: '/projects/'+pk,
-
-            success: function() {
-
-
-                //alert('Object deleted!')
-            },
-            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
-        });
-
-  })
-
-</script>-->
