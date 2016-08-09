@@ -19,8 +19,7 @@ class Departments(models.Model):
 class Tasks(models.Model):
 	description = models.CharField(max_length=45)
 	answer = models.CharField(max_length=45)
-	responsable =  models.ForeignKey('people.contributors')
-	#activities =  models.ForeignKey('activities.activitie')
+	responsible =  models.ForeignKey('people.contributors')
 	department =  models.ForeignKey('departments')
 	prioritie =  models.ForeignKey('priorities')	
 	states =  models.ForeignKey('states')	
