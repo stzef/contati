@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here
 
-class contributors(models.Model):
+class Contributors(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
 	position = models.CharField(max_length=50)
@@ -14,7 +14,9 @@ class contributors(models.Model):
 	def __str__(self):
 		return u'%s' % (self.user) 
 
-class cliente(models.Model):
+class Client(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
 	
+	def __str__(self):
+		return u'%s' % (self.name) 
