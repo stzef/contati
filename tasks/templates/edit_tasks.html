@@ -1,0 +1,38 @@
+{% extends 'templates/base.html' %}
+
+{% block content %}
+    <h1>New tasks</h1>
+    <form action="add_tasks" method="post">
+		<label for="tasks_name">Nombre de la tarea</label> <br/>
+		<input type="text" id="tasks_name" name="tasks_name" value="" /><br/>
+
+		<label for="description">Descripción de la tarea</label> <br/>
+		<textarea id="tasks_description" name="tasks_description" cols="40" rows="5"></textarea><br/>
+
+	  	<label for="tasks_color">Color:</label> <br/>
+		<select id="tasks_color" name="tasks_color">
+		  <option value="" selected="selected">- seleccione -</option>
+		  <option value="verde">Verde</option>
+		  <option value="azul">Azul</option>
+		  <option value="amarillo">Amarillo</option>
+		  <option value="violeta">Violeta</option>
+		  <option value="naranja">Naranja</option>
+		</select><br/>
+
+		<label for="tasks_responsible">Responsable:</label> <br/>
+		<select id="tasks_responsible" name="tasks_responsible">
+		  <option value="" selected="selected">- seleccione -</option>
+		  <option value="">.</option>
+		</select><br/>
+
+		<label for="tasks_allocator">Organizador:</label> <br/>
+		<select id="tasks_allocator" name="tasks_allocator">
+		  <option value="" selected="selected">- seleccione -</option>
+		  <option value="">.</option>
+		</select>
+	 
+	  <br/>
+	 
+	  <input type="submit" value="Guardar" />
+	</form>
+{% endblock %}
