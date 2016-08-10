@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>hellow</h1>
+
+	
+	<h2>
+		{% if user.is_authenticated %}
+			<a href="{% url "people:logout " %}">logout</a>
+	
+			{{ user.username}}
+		{% else %}
+			<a href="{% url "people:authentication" %}">login</a>
+		{endif}
+
+	</h2>
+{% endblock %}
