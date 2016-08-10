@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'people',
-    'tasks',
+    'people.apps.PeopleConfig',
+    'tasks.apps.TasksConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -57,7 +57,9 @@ ROOT_URLCONF = 'contati.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,8 +118,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
