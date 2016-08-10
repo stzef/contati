@@ -37,8 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'people.apps.PeopleConfig',
     'tasks.apps.TasksConfig',
+=======
+    'people',
+    'tasks',
+    'activities',
+
+>>>>>>> 291829a521225903a01c86a1e3aa7cfcd952c5f2
 ]
 
 MIDDLEWARE_CLASSES = [
