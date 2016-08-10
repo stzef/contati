@@ -1,0 +1,12 @@
+{% extends 'base_tasks.html' %}
+
+{% block content %}
+<p><a href="{% url 'add_states' %}">Agregar nuevo estado</a></p><br />
+
+{% for state in state1 %}
+        <div class="post">
+            <p>{{ state.name_states }} <a href="{% url 'edit_states' pk=state.pk %}">Editar</a> <a href="#">Borrar</a></p> 
+        </div>
+    {% endfor %}
+
+{% endblock %}
