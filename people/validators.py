@@ -1,0 +1,49 @@
+# -*- encoding: utf-8 -*-
+from .models import User
+from django.contrib import auth
+from .models import Contributors
+
+class Validator(object):
+    _post = None
+    required =[]
+    _message = ''
+
+    def __init__(self,post):
+
+        self._post = post
+
+    def is_empty(self,field):
+        if field == '' or field is None:
+            return True
+        return False
+
+    def is_valid(self):
+
+        for field in self.required:
+            if self.is_empty(self._post[field]):
+
+                self._message = 'el campo %s no puede ser vacio' % field
+                return False
+
+        return True
+
+    def getMessage(self):
+        return self._message
+
+class FormRegistroValidator(Validator):
+
+    def is_valid(self):
+
+        if not super(FormRegistroValidator, self).is_valid():
+            return False
+        #validar que las contraseñas sehan iguales
+        if not self._post['password1'] == self._post['password2']:
+            self._message = 'Passwords do not match'
+
+            return False
+
+        if User.objects.filter(email = self._post[('email')]).exists():
+            self._message = 'Email is already registered'
+            return False
+        #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
+        return True

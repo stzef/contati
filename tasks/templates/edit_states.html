@@ -1,7 +1,7 @@
 {% extends 'base_tasks.html' %}
 
 {% block content %}
-<form action="{% url 'edit_states' pk=state.pk %}" method="put">{% csrf_token %}
+<form action="{% url 'edit_states' pk=state.pk %}" method="PUT">{% csrf_token %}
   	<label for="states">Editar Estado</label> <br/>
 	<input type="text" id="states_name" name="states_name" value="{{ state.name_states }}" /><br/>
  

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Contributors(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
-	position = models.CharField(max_length=50)
+	role = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
 	
 	def __str__(self):

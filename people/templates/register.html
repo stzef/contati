@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block register %}
+
+	<h1>Register</h1>
+
+    <div class="row">
+		<div class="col-lg-12 col-sm-12">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="/menu">Inicio</a>
+                </li>
+                <li>
+                    <i class="fa fa-folder-open"></i> Users
+                </li>
+                <li class="active">
+                    <i class="fa fa-file"></i> Register
+                </li>
+            </ol>
+			<h1 class="page-header">
+				<small>user registration system</small>
+			</h1>
+		</div>
+    </div>
+
+    <!-- /.row -->
+    <div class="col-lg-12">
+        <div class="row">
+        {% if indicador == 0 %}
+            <div class="alert alert-danger fade in" id="respuesta">
+                <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+        {% elif indicador == 1 %}
+            <div class="alert alert-success fade in" id="respuesta">
+                <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+        {% else %}
+            <div class="alert alert-info fade in" id="respuesta">
+                <i class="fa fa-info-circle"></i> <strong>  Please complete the following fields to store registration</strong>
+        {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+           {% if error %}
+          <div class="alert alert-danger"> {{ error }} </div>
+        {% endif %}
+        {% if success %}
+          <div class="alert alert-success"> New usuaro successfully created. You can enter now </div>
+        {% endif %}
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+    </div>
+         <form method="post" action="">
+      {% csrf_token %}
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-md-3"></div>
+          <div class="col-md-5">
+
+            <div class="form-group">
+              <h4>
+                <label>Name</label>
+                <input type= "text" name="name" class="form-control" id="name" placeholder="nombre"></h4>
+            </div>
+            <div class="form-group">
+              <h4>
+                <label>Last Name</label>
+                <input type = "text" name="last_name" class="form-control" id="last_name" placeholder="last_name"></h4>
+            </div>
+
+            <div class="form-group">
+              <h4>
+                <label>Email</label>
+                <input type="email" name = "email" class="form-control" id="email" placeholder="correo"></h4>
+            </div>
+
+            <div class="form-group">
+              <h4>
+                <label>Password</label>
+                <input type="password"  name = "password1" class="form-control" id="password1" placeholder="contraseña"></h4>
+            </div>
+
+            <div class="form-group">
+              <h4>
+                <label>Confirm Password</label>
+                <input type="password" name='password2' class="form-control" id="password2" placeholder="contraseña"></h4>
+            </div>
+             <div class="form-group">
+              <h4>
+                <label>Role</label>
+                <input type = "text" name="role" class="form-control" id="role" placeholder="Rol"></h4>
+            </div>
+
+
+
+            <div>
+              <p>
+                <button type="submit" class="btn btn-primary btn-lg pull-right">Register</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
