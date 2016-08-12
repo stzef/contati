@@ -47,3 +47,19 @@ class FormRegistroValidator(Validator):
             return False
         #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
         return True
+
+class FormLoginValidator(Validator):
+    acceso = None
+
+    def is_valid(self):
+        if not super(FormLoginValidator, self).is_valid():
+            return False
+
+        username = self._post['username']
+        password = self._post['password']
+
+        self.acceso = auth.authenticate(username = username, password = password )
+        if self.acceso is None:
+            self._message = 'Usuario o contraseña inválido'
+            return False
+        return True

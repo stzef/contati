@@ -5,4 +5,6 @@ class StatesForm(forms.ModelForm):
 
     class Meta:
         model = States
-        fields = ('name_states')
+        fields = ['name_states']
+        labels = {'name_states': 'states_name'}
+        widgets = {'name_states': forms.TextInput(attrs={'class':'forms-control'})}

@@ -7,8 +7,9 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 from validators import Validator
 from django.core.exceptions import NON_FIELD_ERRORS
-from .validators import FormRegistroValidator
-
+from .validators import FormRegistroValidator, FormLoginValidator
+from django.contrib.auth.hashers import make_password
+from .models import user
 # Create your views here.
 
 def authentication(request):
@@ -28,32 +29,29 @@ def authentication(request):
     return render(request, 'login.html',{})
 
 
-
 def profile(request):
         return render_to_response('profile.html', context_instance = RequestContext(request))
 
 def view_login(request):
      return render_to_response('login.html', context_instance = RequestContext(request))
 
-def register_user(request):
+def register(request):
     error = False
     if request.method == 'POST':
         validator = FormRegistroValidator(request.POST)
-        validator.required = ['name','last_name', 'email','password1','role']
+        validator.required = ['first_name','username','last_name', 'email','password1']
 
         if validator.is_valid():
             user = User()
-            #p = Persona.objects.get(documento = '123123123321')
-            user.name = request.POST['name']
+            
+            user.first_name = request.POST['first_name']
+            user.username = request.POST['username']
             user.last_name = request.POST['last_name']
             user.email = request.POST['email']
             user.password = request.POST['password1']
-            user.role = request.POST['role']
-        
-            
+                      
             #TODO: ENviar correo electronico para confirmar cuenta
-            user.is_active = True
-
+            # user.is_active = True
             user.save()
 
 
@@ -74,3 +72,29 @@ def view_register(request):
 
 def index(request):
 	return render_to_response('index.html', context_instance = RequestContext(request))
+
+
+def login(request):
+     return render_to_response('login.html', context_instance = RequestContext(request))
+
+from django.contrib.auth.hashers import make_password
+
+def logon(request):
+
+    if request.method == 'POST':
+        validator = FormLoginValidator(request.POST)
+
+        if validator.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            auth.login(request, validator.acceso)
+
+            return HttpResponseRedirect('/index')
+        else:
+            return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
+
+    return render_to_response('login.html', context_instance = RequestContext(request))
+("/")
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect
