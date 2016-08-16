@@ -1,0 +1,13 @@
+{% extends 'base_tasks.html' %}
+
+{% block content %}
+<form action="{% url 'add_states_kanban' %}" method="post">{% csrf_token %}
+  	<label for="states">Agregar un nuevo Estado Color</label> <br/>
+	{{ form.name_states}}
+ 
+  <br/>
+ 
+  <input type="submit" value="Guardar" />
+</form>
+
+{% endblock %}

@@ -27,7 +27,7 @@ class Tasks(models.Model):
 	start_date = models.DateTimeField(default=timezone.now)
 	finish_date = models.DateTimeField(blank=True, null=True)
 	states_kanban =  models.ForeignKey('states_kanban')
-	client =  models.ForeignKey('people.client')
+	client =  models.ForeignKey('people.Customers')
 
 	def finish(self):
 		self.finish_date = timezone.now()

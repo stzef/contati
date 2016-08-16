@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States
-from django.views.generic import View
-from .forms import StatesForm
+from .models import States, States_kanban
+from django.views.generic import UpdateView, DeleteView, ListView, CreateView
+from .forms import StatesForm, StatesKanbanForm
+from django.core.urlresolvers import reverse
 
 def view_tasks(request):
      return render_to_response('../templates/list_tasks.html')
@@ -12,6 +13,7 @@ def edit_tasks(request):
 
 def add_tasks(request):
      return render_to_response('../templates/add_tasks.html')    
+
 
 def add_states(request):
 	if request.method == "POST":
@@ -31,11 +33,57 @@ def list_states(request):
 
 def edit_states(request, pk):
 	state = get_object_or_404(States, pk=pk)
-	if request.method == "PUT":
-		form = StatesForm(instance=state)
-	else:	
-		form = StatesForm(request.PUT, instance=state)
+	if request.method == "POST":	
+		form = StatesForm(request.POST, instance=state)
 		if form.is_valid():
 			form.save()
 		return redirect('list_states', pk=state.pk) 
-	return render(request, '../templates/edit_states.html', {'form': form}, context_instance=RequestContext(request))           
+	else:
+		form = StatesForm(instance=state)	
+	return render(request, '../templates/edit_states.html', {'form': form}, context_instance=RequestContext(request))   
+
+class editStates(UpdateView):
+	model = States
+	form_class = StatesForm
+	template_name = '../templates/edit_states.html'
+
+	def get_success_url(self):
+		return reverse('list_states')
+
+class deleteStates(DeleteView):
+	model = States
+	form_class = StatesForm
+	template_name = '../templates/delete_states.html'
+
+	def get_success_url(self):
+		return reverse('list_states')		
+
+
+class listStatesKanban(ListView):
+	model = States_kanban
+	template_name = '../templates/list_kanban.html'
+
+class createStatesKanban(CreateView):
+	model = States_kanban
+	form_class = StatesKanbanForm
+	template_name = '../templates/add_kanban.html'
+
+	def get_success_url(self):
+		return reverse('list_states_kanban')
+
+class editStatesKanban(UpdateView):
+	model = States_kanban
+	form_class = StatesKanbanForm
+	template_name = '../templates/edit_kanban.html'
+
+	def get_success_url(self):
+		return reverse('list_states_kanban')
+
+class deleteStatesKanban(DeleteView):
+	model = States_kanban
+	form_class = StatesKanbanForm
+	template_name = '../templates/delete_kanban.html'
+
+	def get_success_url(self):
+		return reverse('list_states_kanban')					
+						

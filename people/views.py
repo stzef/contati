@@ -10,9 +10,11 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator
 from django.contrib.auth.hashers import make_password
 from .models import user
+
 # Create your views here.
 
-def authentication(request):
+
+def authenticate(request):
     if request.method == 'POST':
         action = request.POST.get('action', None)
         username = request.POST.get('username', None)
@@ -98,3 +100,10 @@ def logon(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect
+
+
+def view_change_password(request):
+    return render_to_response('profile.html', context_instance = RequestContext(request))
+
+def change_password(request):
+    return render_to_response('profile.html', context_instance = RequestContext(request))

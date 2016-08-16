@@ -18,7 +18,7 @@ class Contributors(models.Model):
 	def __str__(self):
 		return u'%s' % (self.user) 
 
-class Client(models.Model):
+class Customers(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
 	

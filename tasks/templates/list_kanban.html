@@ -7,15 +7,15 @@
         	<table class="table table-bordered table-hover table-striped">
                 <thead>
                 <tr>
-                  <th>Estado</th>
+                  <th>Color</th>
                   <th>Funciones</th>
                 </tr>  
                 </thead>  	
-                  {% for state in state1 %}
+                  {% for color in object_list %}
                   <tbody>
 					<tr>
-					<td>{{ state.name_states }}</td>
-					<td><a class="btn btn-primary" href="{% url 'edit_states' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states' pk=state.pk %}">Borrar</a></td> 
+					<td>{{ color.name_states }}</td>
+					<td><a class="btn btn-primary" href="{% url 'edit_states_kanban' pk=state_kanban.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states_kanban' pk=state_kanban.pk %}">Borrar</a></td> 
                     </tr>
                   </tbody>
                   {% endfor %}
@@ -24,7 +24,7 @@
             </div>	      
         </div>
 
-        <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_states' %}">Agregar nuevo estado</a></p><br />
+        <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_states_kanban' %}">Agregar nuevo estado</a></p><br />
     
 
 {% endblock %}
