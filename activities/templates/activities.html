@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>Ejemplo del uso de encabezados - aprenderaprogramar.com</title>
+	<title>list_activities</title>
 	</head>
 	<body>
-	<h1>Texto muy grande</h1>
-	<h2>Texto grande</h2>
-	<h3>Texto algo más grande de lo normal</h3>
-	<h4>Texto normal</h4>
-	<h5>Texto pequeño</h5>
-	<h6>Texto muy pequeño</h6>
-	</body>
+	<h1>lista de tareas pendientes</h1> 
+	{% for activity in activi %}
+        <div>
+            <h3>{{ activity.activity }} </h3> 
+        </div>
+    {% endfor %}
+   	</body>
 </html>
