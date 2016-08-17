@@ -21,6 +21,9 @@ class Contributors(models.Model):
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
+
+	class Meta:
+		db_table = 'Customers'
 	
 	def __str__(self):
 		return u'%s' % (self.name) 

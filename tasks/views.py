@@ -26,6 +26,8 @@ def add_states(request):
 
 	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))           
 
+
+
 def list_states(request):
 	state1 = States.objects.filter()
 	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
@@ -61,7 +63,17 @@ class deleteStates(DeleteView):
 
 class listStatesKanban(ListView):
 	model = States_kanban
+	#context_object_name = "statek"
 	template_name = '../templates/list_kanban.html'
+
+	def get_queryset(self, *args, **kwargs):
+		qs = super(listStatesKanban, self).get_queryset(*args, **kwargs)
+		return qs 
+
+
+def list_states_kanban(request):
+	state1 = States_kanban.objects.filter()
+	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))           
 
 class createStatesKanban(CreateView):
 	model = States_kanban

@@ -11,7 +11,7 @@ urlpatterns = [
 	url(r'^states/(?P<pk>\d+)/edit/$', views.editStates.as_view(), name='edit_states'),
 	url(r'^states/(?P<pk>\d+)/delete/$', views.deleteStates.as_view(), name='delete_states'),
 
-	url(r'^states-kanban$', views.listStatesKanban.as_view(), name='list_states_kanban'),
+	url(r'^states-kanban$', views.list_states_kanban, name='list_states_kanban'),
 	url(r'^states-kanban/add$', views.createStatesKanban.as_view(), name='add_states_kanban'),
 	url(r'^states-kanban/(?P<pk>\d+)/edit/$', views.editStatesKanban.as_view(), name='edit_states_kanban'),
 	url(r'^states-kanban/(?P<pk>\d+)/delete/$', views.deleteStatesKanban.as_view(), name='delete_states_kanban'),

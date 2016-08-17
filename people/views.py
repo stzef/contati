@@ -1,7 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect, RequestContext
 from django.template import loader
 from .models import Contributors
+from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
@@ -10,8 +11,21 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator
 from django.contrib.auth.hashers import make_password
 from .models import user
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+from django.core.urlresolvers import reverse_lazy
+from people.forms import Register_Form
+
 
 # Create your views here.
+
+class Register_user(CreateView):
+    model = User 
+    fields = '__all__'
+    template_name = "register.html"
+    from_class = Register_Form
+    success_url = reverse_lazy('login.html')
+
 
 
 def authenticate(request):
@@ -32,37 +46,37 @@ def authenticate(request):
 
 
 def profile(request):
-        return render_to_response('profile.html', context_instance = RequestContext(request))
+        return render_to_response('profile.html', context_instance = RequestContext(request)) 
 
 def view_login(request):
      return render_to_response('login.html', context_instance = RequestContext(request))
 
-def register(request):
-    error = False
-    if request.method == 'POST':
-        validator = FormRegistroValidator(request.POST)
-        validator.required = ['first_name','username','last_name', 'email','password1']
+# def register(request):
+#     error = False
+#     if request.method == 'POST':
+#         validator = FormRegistroValidator(request.POST)
+#         validator.required = ['first_name','username','last_name', 'email','password1']
 
-        if validator.is_valid():
-            user = User()
+#         if validator.is_valid():
+#             user = User()
             
-            user.first_name = request.POST['first_name']
-            user.username = request.POST['username']
-            user.last_name = request.POST['last_name']
-            user.email = request.POST['email']
-            user.password = request.POST['password1']
+#             user.first_name = request.POST['first_name']
+#             user.username = request.POST['username']
+#             user.last_name = request.POST['last_name']
+#             user.email = request.POST['email']
+#             user.password = request.POST['password1']
                       
-            #TODO: ENviar correo electronico para confirmar cuenta
-            # user.is_active = True
-            user.save()
+#             #TODO: ENviar correo electronico para confirmar cuenta
+#             # user.is_active = True
+#             user.save()
 
 
-            return render_to_response('register.html', {'success': True  } , context_instance = RequestContext(request))
-        else:
-            return render_to_response('register.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
-        # Agregar el usuario a la base de datos
-   #
-    return render_to_response('register.html',{}, context_instance = RequestContext(request))
+#             return render_to_response('register.html', {'success': True  } , context_instance = RequestContext(request))
+#         else:
+#             return render_to_response('register.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
+#         # Agregar el usuario a la base de datos
+#    #
+#     return render_to_response('register.html',{}, context_instance = RequestContext(request))
 
 def Contributors(request):
 	template = loader.get_template('index.html')
@@ -91,7 +105,7 @@ def logon(request):
             password = request.POST['password']
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('/index')
+            return HttpResponseRedirect('profile.html')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -102,8 +116,8 @@ def logout(request):
     return HttpResponseRedirect
 
 
-def view_change_password(request):
-    return render_to_response('profile.html', context_instance = RequestContext(request))
+# def view_change_password(request):
+#     return render_to_response('profile.html', context_instance = RequestContext(request))
 
-def change_password(request):
-    return render_to_response('profile.html', context_instance = RequestContext(request))
+# def change_password(request):
+#     return render_to_response('profile.html', context_instance = RequestContext(request))

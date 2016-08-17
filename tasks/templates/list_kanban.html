@@ -11,11 +11,11 @@
                   <th>Funciones</th>
                 </tr>  
                 </thead>  	
-                  {% for color in object_list %}
+                  {% for color in state1 %}
                   <tbody>
 					<tr>
 					<td>{{ color.name_states }}</td>
-					<td><a class="btn btn-primary" href="{% url 'edit_states_kanban' pk=state_kanban.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states_kanban' pk=state_kanban.pk %}">Borrar</a></td> 
+					<td><a class="btn btn-primary" href="{% url 'edit_states' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="">Borrar</a></td> 
                     </tr>
                   </tbody>
                   {% endfor %}
