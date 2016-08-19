@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>list_activities</title>
+	</head>
+	<body>
+	<h1>lista de tareas pendientes</h1> 
+	
+	    <select id="activity" name="activity" type="text" placeholder="placeholder" class="form-control input-md">
+            <option value="0">Seleccione</option>
+                {% for activity in activi %}
+            <option value="{{ activity.id }}">{{ activity.activity }}</option>
+                {% endfor %}
+        </select>
+        <button type=" type="submit">Editar</button>
+        <button type=" type="submit">eliminar</button>
+
+       
+
+   	</body>
+</html>
