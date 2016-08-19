@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 from .models import User
 from django.contrib import auth
 from .models import Contributors
@@ -48,6 +49,12 @@ class FormRegistroValidator(Validator):
         #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
         return True
 
+        if User.objects.filter(username = self._post[('username')]).exists():
+            self._message = 'Username is already registered'
+            return False
+        #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
+        return True
+        
 class FormLoginValidator(Validator):
     acceso = None
 

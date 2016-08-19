@@ -4,11 +4,11 @@
 
 	<h1>Register</h1>
 
-   <!--  <div class="row">
-		<div class="col-lg-12 col-sm-12">
+      <div class="row">
+    <div class="col-lg-12 col-sm-12">
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="/menu">Inicio</a>
+                    <i class="fa fa-dashboard"></i>  <a href="#">Inicio</a>
                 </li>
                 <li>
                     <i class="fa fa-folder-open"></i> Users
@@ -17,13 +17,10 @@
                     <i class="fa fa-file"></i> Register
                 </li>
             </ol>
-			<h1 class="page-header">
-				<small>user registration system</small>
-			</h1>
-		</div>
+    </div>
     </div>
 
-    <!-- /.row
+    <!-- /.row -->
     <div class="col-lg-12">
         <div class="row">
         {% if indicador == 0 %}
@@ -34,20 +31,21 @@
                 <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
         {% else %}
             <div class="alert alert-info fade in" id="respuesta">
-                <i class="fa fa-info-circle"></i> <strong>  Please complete the following fields to store registration</strong>
+                <i class="fa fa-info-circle"></i> <strong>Please complete the following fields to store registration</strong>
         {% endif %}
             </div>
         </div>
     </div>
-    <!-- /.row -->
-           {% if error %}
+
+
+        {% if error %}
           <div class="alert alert-danger"> {{ error }} </div>
         {% endif %}
         {% if success %}
           <div class="alert alert-success"> New usuaro successfully created. You can enter now </div>
         {% endif %}
- 
 
+ <div class="container">
     <div class="row">
         <div class="col-lg-12">
 
@@ -110,6 +108,9 @@
     </form>
 </div>
 
+ <!-- Main Content -->
+    
 
+   
 {% endblock %}
 

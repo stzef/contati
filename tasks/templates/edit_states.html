@@ -1,6 +1,8 @@
 {% extends 'base_tasks.html' %}
 
 {% block content %}
+<div class="panel">
+<div class="panel-body">
 <form method="POST">{% csrf_token %}
   	<label for="states">Editar Estado</label> <br/>
 	{{ form.as_p}}<br/>
@@ -9,5 +11,7 @@
  
   <input class="btn btn-primary" type="submit" value="Guardar" />
 </form>
+</div>
+</div>
 
 {% endblock %}

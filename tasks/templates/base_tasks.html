@@ -2,19 +2,48 @@
 <html>
     <head>
         <title>Tasks</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- Bootstrap Core CSS -->
+        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Font Awesome CSS -->
+        <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}">
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div class="page-header">
-            <h1><a href="">Tasks</a></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{% url 'index' %}">
+                Contati
+              </a>
+            </div>
+          </div>
+        </nav>
+        <!-- Start Logo Section -->
+        <section id="logo-section" class="text-center">
+                <div class="col-md-12">
+                    <div class="logo text-center">
+                        <h1>Tasks</h1>
+                    </div>  
+                </div>
+        </section>
+        <!-- End Logo Section -->
+
+        <div class="mainbody-section">
+            <div class="text-center">
+                <h1><a href="">Estados</a></h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
                 </div>
             </div>
         </div>

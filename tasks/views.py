@@ -5,8 +5,8 @@ from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm
 from django.core.urlresolvers import reverse
 
-def view_tasks(request):
-     return render_to_response('../templates/list_tasks.html')
+def view_index(request):
+     return render_to_response('../templates/index.html')
 
 def edit_tasks(request):
      return render_to_response('../templates/edit_tasks.html')

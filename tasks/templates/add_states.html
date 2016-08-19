@@ -1,13 +1,17 @@
 {% extends 'base_tasks.html' %}
 
 {% block content %}
+<div class="panel">
+<div class="panel-body">
 <form action="{% url 'add_states' %}" method="post">{% csrf_token %}
   	<label for="states">Agregar un nuevo Estado</label> <br/>
 	{{ form.name_states}}
  
   <br/>
  
-  <input type="submit" value="Guardar" />
+  <input class="btn btn-primary" type="submit" value="Guardar" />
 </form>
+</div>
+</div>
 
 {% endblock %}
