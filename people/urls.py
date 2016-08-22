@@ -15,8 +15,7 @@ urlpatterns = [
 
    	url(r'^login$', login, {'template_name':'login.html'}, name='login'),
 	url(r'^logout$',auth_views.logout, {'next_page':'/'}, name="logout"),
-	url(r'^logon$', logon, name='logon'),
-
+	
    	url(r'^profile$', profile, name='profile'),
 	url(r'^profile/change-password$', view_change_password, name='view-change-password'),
 	url('^change-password$', change_password, name='change-password'),

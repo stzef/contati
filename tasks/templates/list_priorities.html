@@ -14,7 +14,7 @@
                 </li>
                 
                 <li class="active">
-                    <i class="fa fa-tags"></i> Estados Kanban 
+                    <i class="fa fa-tags"></i> Prioridades
                 </li>
             </ol>
     </div>
@@ -26,15 +26,15 @@
   	<table class="table table-bordered table-hover table-striped">
           <thead>
           <tr>
-            <th>Estado Kanban</th>
+            <th>Prioridad</th>
             <th>Funciones</th>
           </tr>  
           </thead>  	
-            {% for state in state1 %}
+            {% for state in prioritie %}
             <tbody>
 		<tr>
-		<td>{{ state.name_states }} | {{ state.color }}</td>
-		<td><a class="btn btn-primary" href="{% url 'edit_states_kanban' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states_kanban' pk=state.pk %}">Borrar</a></td> 
+		<td>{{ state.name_prioritie }} | {{ state.order }}</td>
+		<td><a class="btn btn-primary" href="{% url 'edit_priorities' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_priorities' pk=state.pk %}">Borrar</a></td> 
               </tr>
             </tbody>
             {% endfor %}
@@ -43,7 +43,7 @@
       </div>	      
   </div>
 
-  <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_states_kanban' %}">Agregar nuevo estado</a></p><br />
+  <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_priorities' %}">Agregar nuevo estado</a></p><br />
 
 
 {% endblock %}

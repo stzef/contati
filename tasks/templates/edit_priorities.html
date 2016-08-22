@@ -1,6 +1,7 @@
 {% extends 'base_tasks.html' %}
 
 {% block content %}
+
   <div class="row">
     <div class="col-lg-12 col-sm-12">
             <ol class="breadcrumb">
@@ -13,22 +14,21 @@
                 </li>
                 
                 <li class="active">
-                    <i class="fa fa-tags"></i> Estados Kanban 
+                    <i class="fa fa-tags"></i> Prioridades 
                 </li>
             </ol>
     </div>
   </div>
+  
 <div class="panel">
-<div class="panel-body">  
-<form action="{% url 'add_states_kanban' %}" method="post">{% csrf_token %}
-  	<label for="states">Agregar un nuevo Estado</label> 
-	{{ form.name_states}} <br/>
-  <label for="states">Color</label> 
-  {{ form.color}}
-    
+<div class="panel-body">
+<form method="POST">{% csrf_token %}
+  	<label for="states">Editar Prioridad</label> <br/>
+	{{ form.as_p}}<br/>
+ 
   <br/>
  
-  <input type="submit" value="Guardar" />
+  <input class="btn btn-primary" type="submit" value="Guardar" />
 </form>
 </div>
 </div>

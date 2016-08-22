@@ -1,22 +1,41 @@
+
+</html>
 {% load staticfiles %}
 <html>
-<head>
-	<meta  charset="UTF-8" />
-	<title>Contati</title>
-   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-	
-	{% block register %}
-	{% endblock %}
-	
-	{% block login_content %}
-	{% endblock %}
+    <head>
+        <title>People</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-	{% block profile_content %}
-	{% endblock %}
+        <!-- Font Awesome CSS -->
+        <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
 
-</body>
+        <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}">
+
+        <!-- Custom Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!-- Start Logo Section -->
+        <section id="logo-section" class="text-center">
+                <div class="col-md-12">
+                    <div class="logo text-center">
+                        <h1>People</h1>
+                    </div>  
+                </div>
+        </section>
+        <!-- End Logo Section -->
+
+        <div class="mainbody-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,51 +1,48 @@
 {% extends "base.html" %}
 
-{% block login_content %}
+{% block content %}
 
-<!-- 	<h1>Login</h1>
-	<form action="" method="post">
-		{% csrf_token %}
-		<input type="hidden" name="action" value="login">
-		
-		<input type="text" name="username">
-		<input type="password" name="password">
 
-		<button type="submit">Login</button>
-	</form>
-	<h1>Signup</h1>
-		<form action="" method="post">
-		{% csrf_token %}
-		<input type="hidden" name="action" value="signup">
 
-		<input type="text" name="username">
-        <input type="password" name="password">
+		 <ol class="breadcrumb">
 
-        <button type="submit">Submit</button>
-	</form> -->
+            <li class="active">Login</li>
+         </ol>
 
-		<div class="container">
-            <div class="form-container flip">
-                {% if error %}
-                  <div class="alert alert-danger"> {{ error }} </div>
-                {% endif %}
-                <form class="login-form" action="/logon" method="post">
-                    {% csrf_token %}
-                    <h3 class="title">Hello.</h3>
-                    <div class="form-group" id="username">
-                        <input class="form-input" tooltip-class="username-tooltip" name="username" placeholder="Usuario" required="true"></input>
-                        <span id="username-tool"class="tooltip username-tooltip">Usuario </span>
-                    </div>
-                    <div class="form-group" id="password">
-                        <input type="password" name="password" class="form-input" tooltip-class="password-tooltip" placeholder="Contraseña"></input>
-                        <span class="tooltip password-tooltip"> Contraseña </span>
-                    </div>
-                    <div class="form-group">
-                        <button class="login-button" type="submit">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    {% if error %}
+      <div class="alert alert-danger"> {{ error }} </div>
+    {% endif %}
 
+    <div class="box_signin">
+      <div class="row">
+        <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <form class="form-signin" action="" method="post" >
+              {% csrf_token %}
+                <h2 class="form-signin-heading text-center">Get in</h2>
+                <hr />
+                <p>¿You have not yet registered? <a href="{% url 'register-user' %}">Sign up!</a></p>
+                <div class="form-group">
+                <label for="id_usuario" class="sr-only">User</label>
+
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+
+                <label for="id_clave" class="sr-only">Password</label>
+
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="">
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remind me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block"  id="btnEnviar" type="submit">Get in</button>
+              </div>
+            </form>
+            
+          </div><!-- col -->
+          </div><!-- row-->
+      </div><!--box_signin -->
        	
 {% endblock %}
 

@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States, States_kanban
+from .models import States, States_kanban, Priorities, Departments
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
-from .forms import StatesForm, StatesKanbanForm
+from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm
 from django.core.urlresolvers import reverse
 
 def view_index(request):
@@ -61,16 +61,6 @@ class deleteStates(DeleteView):
 		return reverse('list_states')		
 
 
-class listStatesKanban(ListView):
-	model = States_kanban
-	#context_object_name = "statek"
-	template_name = '../templates/list_kanban.html'
-
-	def get_queryset(self, *args, **kwargs):
-		qs = super(listStatesKanban, self).get_queryset(*args, **kwargs)
-		return qs 
-
-
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
 	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))           
@@ -97,5 +87,62 @@ class deleteStatesKanban(DeleteView):
 	template_name = '../templates/delete_kanban.html'
 
 	def get_success_url(self):
-		return reverse('list_states_kanban')					
+		return reverse('list_states_kanban')
+
+
+def list_priorities(request):
+	priorities = Priorities.objects.filter()
+	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))           
+
+class createPriorities(CreateView):
+	model = Priorities
+	form_class = PrioritiesForm
+	template_name = '../templates/add_priorities.html'
+
+	def get_success_url(self):
+		return reverse('list_priorities')
+
+class editPriorities(UpdateView):
+	model = Priorities
+	form_class = PrioritiesForm
+	template_name = '../templates/edit_priorities.html'
+
+	def get_success_url(self):
+		return reverse('list_priorities')
+
+class deletePriorities(DeleteView):
+	model = Priorities
+	form_class = PrioritiesForm
+	template_name = '../templates/delete_priorities.html'
+
+	def get_success_url(self):
+		return reverse('list_priorities')			
+
 						
+def list_departments(request):
+	departments = Departments.objects.filter()
+	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))           
+
+class createDepartments(CreateView):
+	model = Departments
+	form_class = DepartmentsForm
+	template_name = '../templates/add_departments.html'
+
+	def get_success_url(self):
+		return reverse('list_departments')
+
+class editDepartments(UpdateView):
+	model = Departments
+	form_class = DepartmentsForm
+	template_name = '../templates/edit_departments.html'
+
+	def get_success_url(self):
+		return reverse('list_departments')
+
+class deleteDepartments(DeleteView):
+	model = Departments
+	form_class = DepartmentsForm
+	template_name = '../templates/delete_departments.html'
+
+	def get_success_url(self):
+		return reverse('list_departments')							

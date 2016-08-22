@@ -81,13 +81,7 @@ def view_register(request):
 def index(request):
 	return render_to_response('index.html', context_instance = RequestContext(request))
 
-
 def login(request):
-     return render_to_response('login.html', context_instance = RequestContext(request))
-
-from django.contrib.auth.hashers import make_password
-
-def logon(request):
 
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
@@ -97,7 +91,7 @@ def logon(request):
             password = request.POST['password']
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('profile')
+            return HttpResponseRedirect('index.html')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -105,7 +99,7 @@ def logon(request):
 ("/")
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect
+    return HttpResponseRedirect('/login')
 
 
 def view_change_password(request):
@@ -134,19 +128,7 @@ def change_password(request):
         us.save()
         save = True
 
-  
-
-    if save and not user is None:
-        user.foto = request.FILES['newphoto']
-        user.save()
-
-    try:
-        
-        setattr(user, 'foto', user.foto )
-    except:
-        pass
-
-    return render_to_response('profile.html', { "user": user } , context_instance = RequestContext(request))
+    return render_to_response('change-password.html', { "user": user } , context_instance = RequestContext(request))
 
     # else:
     #         return render_to_response('profile.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
