@@ -25,8 +25,11 @@ def add_activity(request):
      
 
 def action_activity(request):
-  activi = Activities.objects.all()
-  return render_to_response('../templates/edit_activity.html', {'activi': activi}, context_instance=RequestContext(request))
+  	activi = Activities.objects.all()
+  	if request.method == 'PUT':
+  		pass
+
+  	return render_to_response('../templates/edit_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
 def list_products(request):
 	produ = Product.objects.filter()
@@ -45,8 +48,8 @@ def add_product(request):
 
 
 def action_product(request):
-     return render_to_response('../templates/product.html')
-
+  	produ = Product.objects.all()
+  	return render_to_response('../templates/edit_product.html', {'produ': produ}, context_instance=RequestContext(request))
 
 
               
