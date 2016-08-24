@@ -8,12 +8,16 @@ from django.core.urlresolvers import reverse
 def view_index(request):
      return render_to_response('../templates/index.html')
 
+def view_board(request):
+     return render_to_response('../templates/board.html')     
+
 def edit_tasks(request):
      return render_to_response('../templates/edit_tasks.html')
 
 def add_tasks(request):
      return render_to_response('../templates/add_tasks.html')    
 
+# <----------- View States ------------------>
 
 #Agregar un nuevo Estado
 def add_states(request):
@@ -60,6 +64,7 @@ class deleteStates(DeleteView):
 	def get_success_url(self):
 		return reverse('list_states')		
 
+# <----------- View States Kanban ------------------>
 
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
@@ -89,6 +94,7 @@ class deleteStatesKanban(DeleteView):
 	def get_success_url(self):
 		return reverse('list_states_kanban')
 
+# <----------- View Priorities ------------------>
 
 def list_priorities(request):
 	priorities = Priorities.objects.filter()
@@ -118,6 +124,7 @@ class deletePriorities(DeleteView):
 	def get_success_url(self):
 		return reverse('list_priorities')			
 
+# <----------- View Departments ------------------>
 						
 def list_departments(request):
 	departments = Departments.objects.filter()
