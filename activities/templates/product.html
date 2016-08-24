@@ -14,14 +14,26 @@
                         </li>
                     </ol>
             </div>
-                 <a href="{% url 'list_products' %}">Editar</a>
             </div>
+            <a class="btn btn-default" href="{% url 'list_products' %}">Editar</a>
+            <br /><br />
 
-	<h1>lista de Productos</h1> 
-	{% for producto in produ %}
-        <div>
-            <h3>{{ producto.product }} </h3> 
-        </div>
-    {% endfor %}
+            <div class="panel">
+                        <div class="panel-body">
+                        <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr><th>lista de Productos</th></tr>
+                            </thead> 
+                            <tbody> {% for producto in produ %}
+                                 <tr>
+                                    <td>{{ producto.product }} </td> 
+                                </tr>
+                            </tbody> {% endfor %}
+                        </table>
+                        </div>
+                        </div>        
+            </div>
     
 {% endblock %}

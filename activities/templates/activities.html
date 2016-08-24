@@ -14,14 +14,30 @@
                         </li>
                     </ol>
             </div>
-                 <a href="{% url 'list_products' %}">productos</a>
             </div>
 
-	<h1>lista de tareas pendientes</h1> 
-	{% for activity in activi %}
-        <div>
-            <h3>{{ activity.activity }} </h3> 
-        </div>
-    {% endfor %}
+            <a class="btn btn-default" href="{% url 'list_products' %}">productos</a>
+
+            <br /><br />
+
+            <div class="panel">
+                        <div class="panel-body">
+                        <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr><th>lista de tareas pendientes</th></tr>
+                            </thead> 
+                            <tbody>	{% for activity in activi %}
+                                <tr>
+                                    <td>{{ activity.activity }} </td> 
+                                </tr>
+                            </tbody>  {% endfor %}
+                        </table>
+                        </div>
+                        </div>        
+            </div>
+
+            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_activity' %}">Agregar nueva actividad</a></p><br />
     
 {% endblock %}

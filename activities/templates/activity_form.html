@@ -1,4 +1,4 @@
-{% extends 'base_tasks.html' %}
+{% extends 'base_act.html' %}
 
 {% block content %}
 <div class="row">
@@ -8,6 +8,10 @@
                 <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
             </li>
             
+            <li>
+                <i class="fa fa-tags"></i> <a href="{% url 'list_activities' %}">Actividades </a>
+            </li>
+
             <li class="active">
                 <i class="fa fa-tags"></i> Add Activities
             </li>
