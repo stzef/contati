@@ -8,6 +8,7 @@ from django.template import RequestContext
 from StringIO import StringIO
 from django.template.loader import render_to_string
 from models import Activities,Product
+from django.core import serializers
 
 def list_activities(request):
 	activi = Activities.objects.filter()
@@ -26,6 +27,7 @@ def add_activity(request):
 
 def action_activity(request):
   	activi = Activities.objects.all()
+  	producto.product = request.POST['producto']
   	if request.method == 'PUT':
   		pass
 
@@ -43,13 +45,11 @@ def add_product(request):
 		return render_to_response('../templates/product_form.html', context_instance=RequestContext(request)) 
 	return render_to_response('../templates/product_form.html',  context_instance=RequestContext(request)) 
 
-
-
-
-
 def action_product(request):
   	produ = Product.objects.all()
   	return render_to_response('../templates/edit_product.html', {'produ': produ}, context_instance=RequestContext(request))
 
-
-              
+def ciudades(request):
+    ciudades =  Ciudad.objects.filter(departamento_id = request.GET['departamento'])
+    data = serializers.serialize('json', ciudades, fields=('id','nombre'))
+    return HttpResponse( data , content_type ='application/json' )              
