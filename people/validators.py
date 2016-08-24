@@ -40,8 +40,11 @@ class FormRegistroValidator(Validator):
         #validar que las contraseñas sehan iguales
         if not self._post['password1'] == self._post['password2']:
             self._message = 'Passwords do not match'
-
             return False
+
+        if User.objects.filter(username = self._post[('username')]).exists():
+            self._message = 'Username is already registered'
+            return False    
 
         if User.objects.filter(email = self._post[('email')]).exists():
             self._message = 'Email is already registered'
@@ -49,12 +52,7 @@ class FormRegistroValidator(Validator):
         #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
         return True
 
-        if User.objects.filter(username = self._post[('username')]).exists():
-            self._message = 'Username is already registered'
-            return False
-        #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
-        return True
-        
+       
 class FormLoginValidator(Validator):
     acceso = None
 
@@ -67,6 +65,6 @@ class FormLoginValidator(Validator):
 
         self.acceso = auth.authenticate(username = username, password = password )
         if self.acceso is None:
-            self._message = 'Usuario o contraseña inválido'
+            self._message = 'Invalid user or password'
             return False
         return True

@@ -15,6 +15,7 @@ def add_tasks(request):
      return render_to_response('../templates/add_tasks.html')    
 
 
+#Agregar un nuevo Estado
 def add_states(request):
 	if request.method == "POST":
 		form = StatesForm(request.POST)
@@ -26,15 +27,14 @@ def add_states(request):
 
 	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))           
 
-
-
+#Listar Estados
 def list_states(request):
 	state1 = States.objects.filter()
 	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
 
-
-def edit_states(request, pk):
-	state = get_object_or_404(States, pk=pk)
+#Editar Estados por funcion
+def edit_states(request, pk): #Se asignan el parametro requuest y la llave primaria pk
+	state = get_object_or_404(States, pk=pk) #se obtiene el objeto por pk
 	if request.method == "POST":	
 		form = StatesForm(request.POST, instance=state)
 		if form.is_valid():

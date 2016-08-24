@@ -5,21 +5,26 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import login 
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
    
   
-   	url(r'^view_register$',view_register, name='view-register'),
-   	url(r'^register$', register, name='register-user'),  	
-   	url(r'^authenticate$', authenticate, name='authenticate'),
+   	
 
    	url(r'^login$', login, {'template_name':'login.html'}, name='login'),
+   	url(r'^authenticate$', authenticate, name='authenticate'),
 	url(r'^logout$',auth_views.logout, {'next_page':'/'}, name="logout"),
 	
-   	url(r'^profile$', profile, name='profile'),
+	url(r'^view_register$',view_register, name='view-register'),
+   	url(r'^register$', register_user, name='register-user'),  	
+   	
+
+   	url(r'^profile$', profile,  name='profile'),
 	url(r'^profile/change-password$', view_change_password, name='view-change-password'),
 	url('^change-password$', change_password, name='change-password'),
-
+	
+	
 	
  ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

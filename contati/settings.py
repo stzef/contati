@@ -147,4 +147,4 @@ MEDIA_ROOT =  BASE_DIR + '/media'
 
 MEDIA_URL = '/media/' # verificar URL's en urls.py
 
-LOGIN_REDIRECT_URL = reverse_lazy('profile.html')
+#LOGIN_REDIRECT_URL = reverse_lazy('index.html')
