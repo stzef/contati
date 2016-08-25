@@ -68,3 +68,18 @@ class FormLoginValidator(Validator):
             self._message = 'Invalid user or password'
             return False
         return True
+
+class FormChangePasswordValidator(Validator):
+
+    def is_valid(self):
+
+
+        if User.objects.filter(username = self._post[('username')]).exists():
+            self._message = 'Username is already registered'
+            return False    
+
+        if User.objects.filter(email = self._post[('email')]).exists():
+            self._message = 'Email is already registered'
+            return False
+        #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
+        return True

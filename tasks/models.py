@@ -19,15 +19,15 @@ class Departments(models.Model):
 class Tasks(models.Model):
 	description = models.CharField(max_length=45)
 	answer = models.CharField(max_length=45)
-	responsible =  models.ForeignKey('people.contributors')
+	responsible =  models.ForeignKey('people.Contributors')
 	department =  models.ForeignKey('departments')
 	prioritie =  models.ForeignKey('priorities')	
 	states =  models.ForeignKey('states')	
-	#allocator =  models.ForeignKey('people.contributors')
+	#allocator =  models.ForeignKey('people.Contributors')
 	start_date = models.DateTimeField(default=timezone.now)
 	finish_date = models.DateTimeField(blank=True, null=True)
 	states_kanban =  models.ForeignKey('states_kanban')
-	#client =  models.ForeignKey('people.Customers')
+	#Customers =  models.ForeignKey('people.Customers')
 
 	def finish(self):
 		self.finish_date = timezone.now()

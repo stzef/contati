@@ -2,14 +2,24 @@
 {% block content %}
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li>
+            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}"> Inicio</a>
+        </li>
+        <li>
+        <i class="fa fa-cog"></i><a href="{% url 'change-password' %}"> Settings</a>
+        </li>
         <li class="active">profile</li>
+
+        <li>
+            <a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
+        </li>
+
     </ol>
     <div class="row">
 
 
         <div class="col-md-3">
-
+			<h2><font><font><img src="/media/{{ user.foto }}" class='img-circle' alt="photo" > </font></font></h2>
             <h2><font><font>{{ user.first_name }} {{ user.last_name }}</font></font></h2>
         </div>
 

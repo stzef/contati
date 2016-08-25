@@ -10,7 +10,7 @@ class Contributors(models.Model):
 	last_name = models.CharField(max_length=50)
 	role = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
-	foto = models.ImageField( upload_to = 'photos/')
+	image = models.ImageField( blank = True)
 	
 	class Meta:
 		db_table = 'Contributors'
@@ -22,7 +22,7 @@ class Contributors(models.Model):
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
-	foto = models.ImageField( upload_to = 'photos/')
+	image = models.ImageField( blank = True)
 
 	class Meta:
 		db_table = 'Customers'

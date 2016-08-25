@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from validators import Validator
 from django.core.exceptions import NON_FIELD_ERRORS
-from .validators import FormRegistroValidator, FormLoginValidator, Validator
+from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
 from people.forms import ContributorsForm ,CustomersForm
@@ -62,7 +62,7 @@ def authenticate(request):
             password = request.POST['password']
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/profile')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -83,15 +83,17 @@ def view_change_password(request):
 
 
 @login_required(login_url="/login")
-def change_password(request):
+def change_password(request):    
     """view del profile
     """
-    
+
     user = User.objects.get( id = request.user.id )
     save = False
     if request.method == 'POST':
+      
         # Aqui realizar la respectiva validacion
         # Actulizar datos de usuario
+     
         us = User.objects.get( id = request.user.id )
         us.first_name  = request.POST['first_name']
         us.username  = request.POST['username']
@@ -100,15 +102,17 @@ def change_password(request):
         us.password = make_password(request.POST['password1'])
         us.save()
         save = True
+        user_int = None
 
-    if save and not user is None:
-        user.foto = request.FILES['newfoto']
-        user.save()
+    if save and not user_int is None:
+        user_int.foto = request.FILES['newfoto']
+        user_int.save()
 
     try:
-        setattr(user, 'foto', user.foto )
+        setattr(user, 'foto', user_int.foto )
     except:
         pass
 
-    return render_to_response('change-password.html', { "user": user } , context_instance = RequestContext(request))
-
+    return render_to_response('change-password.html', { "user": user} , context_instance = RequestContext(request))
+    
+       
