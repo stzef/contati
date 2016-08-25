@@ -15,7 +15,8 @@
                     </ol>
             </div>
             </div>
-            <a class="btn btn-default" href="{% url 'list_products' %}">Editar</a>
+            <a class="btn btn-default" href="{% url 'edit_product' %}">Editar</a>
+            
             <br /><br />
 
             <div class="panel">
@@ -35,5 +36,6 @@
                         </div>
                         </div>        
             </div>
-    
+            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_products' %}">Agregar nuevo pruducto</a></p><br />
+
 {% endblock %}

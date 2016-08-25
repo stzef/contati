@@ -10,6 +10,14 @@ from django.template.loader import render_to_string
 from models import Activities,Product
 from django.core import serializers
 
+def add_products(request):
+	if request.method == 'POST':
+		producto = Product()
+		producto.product = request.POST['producto']
+		producto.save()
+		return redirect('list_products')
+	return render_to_response('../templates/product_fo.html',  context_instance=RequestContext(request)) 
+
 def list_activities(request):
 	activi = Activities.objects.filter()
 	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))  
@@ -19,31 +27,21 @@ def add_activity(request):
 		form = ActivitiesForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return render_to_response('../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request)) 
+			return redirect('list_activities') 
 	else:
 		form =	ActivitiesForm()
 	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))  
      
 
 def action_activity(request):
-  	activi = Activities.objects.all()
-  	producto.product = request.POST['producto']
-  	if request.method == 'PUT':
-  		pass
-
-  	return render_to_response('../templates/edit_activity.html', {'activi': activi}, context_instance=RequestContext(request))
+  	produ = Product.objects.all()
+  	return render_to_response('../templates/edit_activity.html', {'produ': produ}, context_instance=RequestContext(request))
 
 def list_products(request):
 	produ = Product.objects.filter()
 	return render_to_response('../templates/product.html', {'produ': produ}, context_instance=RequestContext(request))  
 
-def add_product(request):
-	if request.method == 'POST':
-		producto = Product()
-		producto.product = request.POST['producto']
-		producto.save()
-		return render_to_response('../templates/product_form.html', context_instance=RequestContext(request)) 
-	return render_to_response('../templates/product_form.html',  context_instance=RequestContext(request)) 
+
 
 def action_product(request):
   	produ = Product.objects.all()
