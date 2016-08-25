@@ -17,33 +17,34 @@
             </div>
 
 	<h1>lista de tareas pendientes</h1> 
-	
+	<form method="post" action="">
+      {% csrf_token %}
 	    <select id="activity" name="activity" type="text" placeholder="placeholder" class="form-control input-md">
             <option value="0">Seleccione</option>
                 {% for activity in activi %}
             <option value="{{ activity.id }}">{{ activity.activity }}</option>
                 {% endfor %}
         </select>
-        <button class="btn btn-primary" type=" type="submit">Editar</button>
-        <button class="btn btn-primary" type=" type="submit">eliminar</button>
-
+        <button id="activity" name="activity" class="btn btn-primary"  type="submit">Editar</button>
+        <button id="activity" name="activity" class="btn btn-primary"  type="submit">eliminar</button>
+    </form>
 {% endblock %}
 
 {% block javascript %}
 <script>
-  $("#id_activity").change(
+
+    $("#id_departamento").change(
 
     function(){
-      //console.log( '/ciudades?departamento='+ $("#id_departamento").val());
-       $.ajax({
-         url: '/action_activity?departamento='+ this.value, // la URL para la petición
-         type: 'PUT', // especifica si será una petición POST o GET
-         success : function(data) { // código a ejecutar si la petición es satisfactoria;
-              print "registro actualizado"
-              }
-          }
-        });
-  });
+        $.ajax({
+        type: 'PUT',
+        url: '/action_activity',
+        data: { pk: pk },
+        success: function() {
+            alert('Object deleted!')
+        },
+        headers: { 'X_METHODOVERRIDE': 'DELETE' }
+    });
 
 
 </script>
