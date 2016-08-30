@@ -16,8 +16,7 @@
             </div>
             </div>
 
-            <a class="btn btn-default" href="{% url 'list_products' %}">productos</a>
-            <a class="btn btn-default" href="{% url 'edit_activity' %}">Editar Actividades</a>
+           
 
 
             <br /><br />
@@ -28,11 +27,15 @@
 
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
-                                <tr><th>lista de tareas pendientes</th></tr>
+                                <tr>
+                                    <th>lista de tareas pendientes</th>
+                                    <th>funciones</th>
+                                </tr>
                             </thead> 
                             <tbody>	{% for activity in activi %}
                                 <tr>
                                     <td>{{ activity.activity }} </td> 
+                                    <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}" >Editar</a> <a class="btn btn-danger">Borrar</a></td> 
                                 </tr>
                             </tbody>  {% endfor %}
                         </table>
@@ -40,6 +43,6 @@
                         </div>        
             </div>
 
-            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_activity' %}">Agregar nueva actividad</a></p><br />
+            <p><a class="btn btn-primary btn-lg pull-right" >Agregar nueva actividad</a></p><br />
     
 {% endblock %}

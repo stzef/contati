@@ -11,8 +11,8 @@ class ActivitiesForm(forms.ModelForm):
         'product',
         ]
         labels = {
-        'activity': 'activity',
-        'product': 'product',
+        'activity': 'actividad',
+        'product': 'producto',
         }
         widgets = {
         'activities': forms.TextInput(),
