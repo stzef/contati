@@ -1,0 +1,1067 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"a",
+				"activi"
+			],
+			[
+				"A",
+				"Activities"
+			],
+			[
+				"ge",
+				"GET"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"ac",
+				"ac_year"
+			],
+			[
+				"this",
+				"this_value"
+			],
+			[
+				"val",
+				"val_calcu"
+			],
+			[
+				"E",
+				"edit_activity"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"pro",
+				"product_form"
+			],
+			[
+				"P",
+				"ProductForm"
+			],
+			[
+				"p",
+				"ProductForm"
+			],
+			[
+				"get",
+				"get_param"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"para",
+				"urlParam"
+			],
+			[
+				"rep",
+				"response"
+			],
+			[
+				"In",
+				"Invinicab"
+			],
+			[
+				"thi",
+				"this_value"
+			],
+			[
+				"value",
+				"value_tot"
+			],
+			[
+				"valu",
+				"value_tot"
+			],
+			[
+				"ini",
+				"invini_deta"
+			],
+			[
+				"in",
+				"invini_deta"
+			],
+			[
+				"cii",
+				"cii"
+			],
+			[
+				"invini",
+				"invini_deta"
+			],
+			[
+				"data",
+				"data_table"
+			],
+			[
+				"va",
+				"value_extra"
+			],
+			[
+				"pre",
+				"preventDefault"
+			],
+			[
+				"invi",
+				"invini_deta"
+			],
+			[
+				"activi",
+				"activity"
+			],
+			[
+				"max",
+				"max_length"
+			],
+			[
+				"inf",
+				"infa_web"
+			],
+			[
+				"de",
+				"decimal_places"
+			],
+			[
+				"Char",
+				"CharField"
+			],
+			[
+				"N",
+				"NTIARLOS"
+			],
+			[
+				"fech",
+				"fecha_final"
+			],
+			[
+				"fecha",
+				"fecha_final"
+			],
+			[
+				"cat",
+				"category"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"ca",
+				"cat_slug"
+			],
+			[
+				"conditio",
+				"conditions"
+			],
+			[
+				"ar",
+				"args"
+			],
+			[
+				"url",
+				"url_random"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"pa",
+				"pageTitle"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"send",
+				"send_reset"
+			],
+			[
+				"events_",
+				"events_inactive"
+			],
+			[
+				"msg",
+				"msg_2"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"C",
+				"CZONA"
+			],
+			[
+				"CV",
+				"CLAVE"
+			],
+			[
+				"CT",
+				"CTALOPOS"
+			],
+			[
+				"IF",
+				"IFPRISES"
+			],
+			[
+				"CR",
+				"CREGIVA"
+			],
+			[
+				"Eve",
+				"EventoLongitudMaps"
+			],
+			[
+				"la",
+				"latlng"
+			],
+			[
+				"n",
+				"n_evento"
+			],
+			[
+				"id",
+				"id_evento"
+			],
+			[
+				"find",
+				"findById"
+			],
+			[
+				"confer",
+				"conferencista"
+			],
+			[
+				"fin",
+				"findById"
+			],
+			[
+				"confe",
+				"conferencista"
+			],
+			[
+				"evento",
+				"evento_pk"
+			],
+			[
+				"fore",
+				"foreignKey"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"tag",
+				"tag_url"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"sen",
+				"send_email"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"ex",
+				"exit"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"back",
+				"background"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "ssss.sublime-project",
+			"settings":
+			{
+				"buffer_size": 192,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views.py",
+			"settings":
+			{
+				"buffer_size": 2698,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Context",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "|+| \"form\"\n",
+			"settings":
+			{
+				"buffer_size": 11,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> C:\\Users\\Plutton\\Documents\\contati\\activities\\views.py\n	|+| 1\n	|+| 13\n	|+| 25\n	|+| 27\n",
+			"settings":
+			{
+				"buffer_size": 89,
+				"line_ending": "Windows",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 334.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package c",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 160.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Plutton/Documents/contati",
+		"/C/Users/Plutton/Documents/contati/activities"
+	],
+	"file_history":
+	[
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/elements/sidebar.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/models.py",
+		"/C/Users/Plutton/Documents/contati/activities/templates/base_act.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/movimientos/views.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/inventarios/inventory.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/models.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/views.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/views.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/movimientos/movement.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/management/commands/baseData.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/urls.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/constantes.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/settings.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/movimientos/models.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/admin.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/admin.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/movimientos/admin.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/forms.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/urls.py",
+		"/D/Proyectos/infa web/infa_web/requirements.txt",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/terceros/models.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/models.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/management/commands/baseDataTest.py",
+		"/D/Proyectos/infa web/infa_web/.gitignore",
+		"/D/Proyectos/infa web/infa_web/infa_web/wsgi.py",
+		"/D/Proyectos/infa web/infa_web/Procfile",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/articulos/article.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/urls.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/static/stylus/styles.styl",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/layouts/base.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/inventarios/list-inventory.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/Procfile",
+		"/D/Proyectos/infa web/infa_web/infa_web/static/js/app.js",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/forms.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/static/js/jquery.numeric.min.js",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/management/commands/basicData.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/articulos/tests.py",
+		"/C/Users/Plutton/Documents/contati/activities/templates/static/js/jquery.form.min.js",
+		"/C/Users/Plutton/Desktop/tbl/sql/arlos.sql",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/migrations/__init__.py",
+		"/C/Users/Plutton/Desktop/ciudades.sql",
+		"/C/Users/Plutton/Documents/contati/activities/templates/product_form.html",
+		"/C/Users/Plutton/Documents/contati/activities/forms2.py",
+		"/C/Users/Plutton/Desktop/esdos.sql",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/articulos/group.html",
+		"/C/Users/Plutton/Documents/contati/activities/urls.py",
+		"/C/Users/Plutton/Documents/contati/activities/templates/product.html",
+		"/C/Users/Plutton/Documents/contati/tasks/templates/add_states.html",
+		"/C/Users/Plutton/Documents/contati/activities/templates/activities.html",
+		"/C/Users/Plutton/Documents/contati/activities/views.py",
+		"/C/Users/Plutton/Documents/contati/activities/models.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/elements/nav.html",
+		"/C/Users/Plutton/Desktop/activities - copia/templates/activities.html",
+		"/C/Users/Plutton/Documents/contati/contati/urls.py",
+		"/C/Users/Plutton/Documents/contati/activities/apps.py",
+		"/C/Users/Plutton/Documents/contati/contati/settings.py",
+		"/C/Users/Plutton/Documents/contati/activities/__init__.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/home/dashboard.html",
+		"/C/Users/Plutton/Desktop/tiarlos.sql",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/templates/articulos/add-article.html",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/terceros/views.py",
+		"/C/Users/Plutton/Documents/contati/tasks/urls.py",
+		"/C/Users/Plutton/Downloads/AdminLTE-master/index.html",
+		"/D/Proyectos/infa web/infa_web/generate.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/admin.py",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/inventarios/apps.py",
+		"/C/Users/Plutton/Desktop/timoca.sql",
+		"/C/Users/Plutton/Desktop/anocon.sql",
+		"/C/Users/Plutton/Desktop/pericon.sql",
+		"/C/Users/Plutton/Desktop/marcas.sql",
+		"/C/Users/Plutton/Desktop/ubica.sql",
+		"/C/Users/Plutton/Desktop/timo.sql",
+		"/C/Users/Plutton/Desktop/citerce.sql",
+		"/C/Users/Plutton/Desktop/zonas.sql",
+		"/C/Users/Plutton/Desktop/vende.sql",
+		"/C/Users/Plutton/Desktop/autorre.sql",
+		"/C/Users/Plutton/Desktop/regiva.sql",
+		"/C/Users/Plutton/Desktop/tiide.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/gpos.sql",
+		"/C/Users/Plutton/Desktop/ivas.sql",
+		"/D/Proyectos/infa web/infa_web/infa_web/apps/base/urls.py",
+		"/C/Users/Plutton/Desktop/tbl/sql/mven.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/mocacie.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/mvsadeta.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/moca.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/mvsa.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/invinicab.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/mvendeta.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/arlosdesglo.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/bode.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/esrue.sql",
+		"/C/Users/Plutton/Desktop/tbl/sql/invini.sql",
+		"/C/Users/Plutton/Desktop/cierredetatalo.sql",
+		"/C/Users/Plutton/Desktop/cierredeta.sql",
+		"/C/Users/Plutton/Desktop/aedeta.sql",
+		"/C/Users/Plutton/Desktop/bode.sql",
+		"/C/Users/Plutton/Desktop/invinicab.sql",
+		"/C/Users/Plutton/Desktop/arlosdesglo.sql",
+		"/C/Users/Plutton/Desktop/coda.sql",
+		"/C/Users/Plutton/Desktop/movideta.sql",
+		"/C/Users/Plutton/Desktop/meros.sql",
+		"/C/Users/Plutton/Desktop/movi.sql",
+		"/C/Users/Plutton/Desktop/mesas.sql",
+		"/C/Users/Plutton/Desktop/codadeta.sql",
+		"/C/Users/Plutton/Desktop/mocacie.sql",
+		"/C/Users/Plutton/Desktop/respedi.sql",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1469195910/SimonBolivarCoello/public_html/wp-content/themes/uoc-theme/archive.php",
+		"/C/xampp/htdocs/coello/wp-content/themes/uoc-theme/archive.php",
+		"/C/xampp/htdocs/coello/wp-content/themes/uoc-theme/cs-templates/blog-styles/blog-medium.php",
+		"/C/xampp/htdocs/coello/wp-content/plugins/stzEF-convocatorias/stzEF-convocatorias.php",
+		"/C/xampp/htdocs/coello/wp-config.php",
+		"/C/Users/Plutton/Downloads/iecoello_bd.sql",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1469105455/SimonBolivarCoello/public_html/wp-content/themes/uoc-theme/cs-templates/blog-styles/blog-list.php",
+		"/C/Users/Plutton/Documents/Simon Bolivar - Archivos/uoc-theme/cs-templates/blog-styles/blog-list.php",
+		"/C/Users/Plutton/AppData/Roaming/Sublime Text 3/Packages/User/sftp_servers/SimonBolivarCoello",
+		"/C/Users/Plutton/Documents/FileZilla.xml",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934259/stzEF/public_html/meregistro/app/Model/Evento.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934472/stzEF/public_html/meregistro/app/View/Eventos/create_event.ctp",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934588/stzEF/public_html/meregistro/app/Controller/EventosController.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934411/stzEF/public_html/meregistro/app/Controller/RegistersController.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468933296/stzEF/public_html/meregistro/app/Model/Register.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468936050/stzEF/public_html/meregistro/app/View/Eventos/show_event.ctp",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468933273/stzEF/public_html/meregistro/app/View/Registers/excel.ctp",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468932867/stzEF/public_html/meregistro/app/View/Registers/get_by_register.ctp",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468936849/stzEF/public_html/meregistro/app/Model/Municipio.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934423/stzEF/public_html/meregistro/app/View/Registers/registrarme_evento.ctp",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934818/stzEF/public_html/meregistro/app/Controller/MunicipiosController.php",
+		"/C/users/plutton/appdata/local/temp/sublime-sftp-browse-1468934355/stzEF/public_html/meregistro/app/Model/Municipio.php"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"D:\\Proyectos\\infa web\\infa_web\\infa_web\\apps",
+			"C:\\xampp\\htdocs\\coello\\wp-content\\themes\\uoc-theme",
+			"C:\\Users\\Plutton\\Documents\\Simon Bolivar - Archivos\\uoc-theme",
+			"C:\\Users\\Plutton\\Documents\\Simon Bolivar - Archivos\\simonbolivar",
+			"C:\\Users\\Plutton\\Documents\\simonbolivar",
+			"C:\\xampp\\htdocs\\meregistro\\app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"forms",
+			"'",
+			"getvalue",
+			"clientes",
+			"                            ",
+			"arlo",
+			"articulo",
+			"ctiarlo",
+			"filter",
+			"data",
+			"tiarlos",
+			"Tiarlos",
+			"        ",
+			"first_name",
+			"arlo",
+			"Arlos.obj",
+			"Arlo",
+			"Arlo.objects.creat",
+			"nubica",
+			"DEFAULT_UBICACION",
+			"Cgpo.ob",
+			"Arlo.objects.create",
+			"Marcas.",
+			"Marca.",
+			"Marca",
+			"false",
+			"Arlos",
+			"Arlo",
+			"carlos",
+			"0.00",
+			"tiarlos",
+			"Tiarlos",
+			"CESTADO_ACTIVO",
+			"DEFAULT_BODEGA",
+			"CESTADO_ACTIVO",
+			"DEFAULT_IVA",
+			"DEFAULT_UNIDAD",
+			"CTIARLO_ARTICULO",
+			"DEFAULT_GRUPO",
+			"CESTADO_ACTIVO",
+			"CTIARLO_ARTICULO",
+			"ncorto",
+			"nlargo",
+			"ncorto",
+			"fii",
+			"order_date",
+			"nlargo",
+			"cont-info",
+			"DataTable",
+			"loading_animation",
+			"conso",
+			"data",
+			"val",
+			"cant",
+			"text",
+			"carlos",
+			"cantidad",
+			"trigger",
+			";",
+			": ",
+			"    ",
+			"new()",
+			"btn-new",
+			"edit_inventory",
+			"btn-new",
+			"conso",
+			"style=\"border: none;\"",
+			"text",
+			"nunidad",
+			"<b>",
+			"cont",
+			"val-tot",
+			".attr('class', 'text-center')",
+			"index",
+			"DT_RowClass",
+			"add",
+			"push",
+			"item",
+			"codigo",
+			"item",
+			"push",
+			"\",",
+			"item",
+			"data_table",
+			"content-data",
+			"print",
+			"console",
+			"value.fii",
+			"niva",
+			"nciu",
+			"nesdo",
+			"val_tot",
+			"cesdo",
+			"val_tot",
+			"minute",
+			"day",
+			"inline",
+			"val_tot",
+			"row",
+			"param1",
+			"empty",
+			"data_table",
+			"btn-create",
+			"cii",
+			"btn-create",
+			"save",
+			"rename",
+			"reset",
+			"val-tot",
+			"cesdo",
+			"estadoInactivo",
+			"cbarras",
+			"nesdo",
+			"data",
+			"value_tot",
+			"val_tot",
+			"data",
+			"console",
+			"data_extra",
+			"arlo",
+			"data",
+			"cii",
+			"inventory_latest",
+			"all",
+			"code",
+			"msg",
+			"all",
+			"last"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"á",
+			"í",
+			"ó"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "ssss.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								78,
+								78
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								506,
+								506
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 89,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								89,
+								89
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": -0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 130.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 130.0
+	},
+	"output.xdebug":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ssss.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 2,
+	"settings":
+	{
+		"xdebug":
+		{
+			"restore_index":
+			{
+				"158":
+				{
+					"group": 0,
+					"index": 0
+				}
+			},
+			"restore_layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			}
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 221.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -9,6 +9,7 @@ from StringIO import StringIO
 from django.template.loader import render_to_string
 from models import Activities,Product
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 
 def add_products(request):
 	if request.method == 'POST':
@@ -17,7 +18,7 @@ def add_products(request):
 		producto.save()
 		return redirect('list_products')
 	return render_to_response('../templates/product_fo.html',  context_instance=RequestContext(request)) 
-
+@csrf_exempt
 def list_activities(request):
 	activi = Activities.objects.filter()
 	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))  
@@ -33,19 +34,29 @@ def add_activity(request):
 	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))  
      
 
-def action_activity(request):
-  	activi = Activities.objects.all()
+@csrf_exempt
+def action_activity(request, pk):
+
+	
+  	print ("fucion action")
+  	activi = get_object_or_404(Activities, pk=pk)
+
+  	#print (request.method)
+	#return HttpResponse(request.method)
 
   	if request.method == 'PUT':
-  		modelform = modelform_factory(MyModel)
-  		form = Activity_form(request.PUT)
+   		form = Activitiesform(request.PUT, instance=activi)
 		if form.is_valid():
 		    form.save()
-		return redirect('list_activities')
+		return redirect('list_activities', pk=activi.pk)
 
 	elif request.method == 'DELETE':
+		print "------------------------"
+		print pk
+		print "------------------------"
+		return HttpResponse('ok')
 	# delete an object and send a confirmation response
-		Activities.objects.get(pk=request.DELETE['pk']).delete()
+		Activities.objects.get(pk=pk).delete()
 		return HttpResponse('ok')
 
 

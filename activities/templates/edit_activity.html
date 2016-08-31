@@ -1,51 +1,54 @@
 {% extends 'base_tasks.html' %}
 
 {% block content %}
-
+ <script src="/static/js/jquery.min.js"></script>
 <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-                        </li>
-                        
-                        <li class="active">
-                            <i class="fa fa-tags"></i> Actividades
-                        </li>
-                    </ol>
-            </div>
-            </div>
+    <div class="col-lg-12 col-sm-12">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+                </li>
+                
+                <li class="active">
+                    <i class="fa fa-tags"></i> Actividades
+                </li>
+            </ol>
+    </div>
+    </div>
 
-	<h1>lista de tareas pendientes</h1> 
-	<form method="post" action="">
-      {% csrf_token %}
-	    <select id="activity" name="activity" type="text" placeholder="placeholder" class="form-control input-md">
-            <option value="0">Seleccione</option>
-                {% for activity in activi %}
-            <option value="{{ activity.id }}">{{ activity.activity }}</option>
-                {% endfor %}
-        </select>
-        <button id="activity" name="activity" class="btn btn-primary"  type="submit">Editar</button>
-        <button id="activity" name="activity" class="btn btn-primary"  type="submit">eliminar</button>
+	<div class="panel">
+    <div class="panel-body" >
+    <form>
+        {% csrf_token %}
+        <label for="states">Editar Estado</label> <br/>
+            <input  value={{activi.activity}} />
+            <br/>
+ 
+            <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
     </form>
-{% endblock %}
-
-{% block javascript %}
+    </div>
+    </div>
+ <script src="/static/js/jquery.min.js"></script>
 <script>
 
-    $("#id_departamento").change(
+  $("form").submit(function(event){
 
-    function(){
+         console.log( "entrando ajax");
+         event.preventDefault()
         $.ajax({
-        type: 'PUT',
-        url: '/action_activity',
-        data: { pk: pk },
-        success: function() {
-            alert('Object deleted!')
-        },
-        headers: { 'X_METHODOVERRIDE': 'DELETE' }
-    });
+            type: 'DELETE',
+            //console.log( "ajax");
+            //console.log( "antes delete"),
+            url: '/activities/7',
+            //data: { pk: 4 },
+            success: function() {
+                
+                alert('Object deleted!')
+            },
+            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
+        });
 
+  })          
 
 </script>
 {% endblock %}
