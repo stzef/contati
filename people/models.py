@@ -6,15 +6,17 @@ from django.contrib.auth.models import User
 # Create your models here
 
 class Contributors(models.Model):
-	first_name = models.CharField(max_length=50)    
-	last_name = models.CharField(max_length=50)
+	
 	role = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
-	image = models.ImageField( blank = True)
-	
+	image = models.TextField( blank = True)
+	image_2 = models.ImageField(upload_to='img/')
+
 	class Meta:
 		db_table = 'Contributors'
 
+	def photo(self):
+		return self.image if str(self.image_2) == '' else '/media/'+str(self.image_2)
 
 	def __str__(self):
 		return u'%s' % (self.user) 
@@ -22,8 +24,7 @@ class Contributors(models.Model):
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
-	image = models.ImageField( blank = True)
-
+	
 	class Meta:
 		db_table = 'Customers'
 	

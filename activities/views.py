@@ -18,7 +18,7 @@ def add_products(request):
 		producto.save()
 		return redirect('list_products')
 	return render_to_response('../templates/product_fo.html',  context_instance=RequestContext(request)) 
-
+@csrf_exempt
 def list_activities(request):
 	activi = Activities.objects.filter()
 	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))  
@@ -34,9 +34,11 @@ def add_activity(request):
 	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))  
      
 
-#@csrf_exempt
+@csrf_exempt
 def action_activity(request, pk):
-  	#activi = Activities.objects.all()
+
+	
+  	print ("fucion action")
   	activi = get_object_or_404(Activities, pk=pk)
 
   	#print (request.method)
@@ -49,8 +51,12 @@ def action_activity(request, pk):
 		return redirect('list_activities', pk=activi.pk)
 
 	elif request.method == 'DELETE':
+		print "------------------------"
+		print pk
+		print "------------------------"
+		return HttpResponse('ok')
 	# delete an object and send a confirmation response
-		Activities.objects.get(pk=request.DELETE['pk']).delete()
+		Activities.objects.get(pk=pk).delete()
 		return HttpResponse('ok')
 
 

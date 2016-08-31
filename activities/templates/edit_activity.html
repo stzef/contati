@@ -17,29 +17,32 @@
     </div>
 
 	<div class="panel">
-    <div class="panel-body" id="edit-activity">
-    <form method="POST">{% csrf_token %}
+    <div class="panel-body" >
+    <form>
+        {% csrf_token %}
         <label for="states">Editar Estado</label> <br/>
             <input  value={{activi.activity}} />
             <br/>
  
-        <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
+            <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
     </form>
     </div>
     </div>
-{% endblock %}
-
-{% block javascript %}
+ <script src="/static/js/jquery.min.js"></script>
 <script>
 
-  $("#edit-activity").click(function(event){
+  $("form").submit(function(event){
 
-         console.log( "ssssssssssssssssseeeeee");
+         console.log( "entrando ajax");
+         event.preventDefault()
         $.ajax({
             type: 'DELETE',
-            url: '/action_activity',
-            data: { pk: pk },
+            //console.log( "ajax");
+            //console.log( "antes delete"),
+            url: '/activities/7',
+            //data: { pk: 4 },
             success: function() {
+                
                 alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }

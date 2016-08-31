@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'login/css/form-elements.css' %}">
+        <link rel="stylesheet" href="{% static 'login/css/form-elements.css' %}">
         <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
 
         <!-- para poner el favicon
@@ -92,10 +92,10 @@
                         <div class="col-sm-6 col-sm-offset-3 social-login">
                           <h3>...or login with:</h3>
                           <div class="social-login-buttons">
-                            <a class="btn btn-link-1 btn-link-1-facebook" href="#">
+                            <a class="btn btn-link-1 btn-link-1-facebook" href="{% url 'social:begin' 'facebook' %}?next=/profile">
                               <i class="fa fa-facebook"></i> Facebook
                             </a>
-                            <a class="btn btn-link-1 btn-link-1-twitter" href="#">
+                            <a class="btn btn-link-1 btn-link-1-twitter" href="{% url 'social:begin' 'twitter' %}?next=/profile">
                               <i class="fa fa-twitter"></i> Twitter
                             </a>
                           </div>

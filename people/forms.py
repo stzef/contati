@@ -24,12 +24,23 @@ class Register_Form(forms.Form):
 		}
 class ContributorsForm(forms.ModelForm):
 
-    class Meta:
-        model = Contributors
-        fields = ['first_name']
-        labels = {'first_name': 'Nombre colaborador'}
-        widgets = {'first_name': forms.TextInput(attrs={'class':'forms-control'})}
+	# image = forms.ImageField()
 
+	# class Meta:
+	# 	model = User
+	# 	fields = ['first_name','last_name','email','image']
+        
+    
+
+
+	# username = forms.CharField(label = 'username', widget = forms.TextInput(attrs = {'class': 'form-control', 'required': True, 'readonly': True}))
+	# first_name = forms.CharField(label = 'first_name', widget = forms.TextInput(attrs = {'class': 'form-control', 'required': True, 'readonly': True}))
+	# last_name = forms.CharField(label = 'last_name', widget = forms.TextInput(attrs = {'class': 'form-control', 'required': True, 'readonly': True}))
+	# email = forms.CharField(label = 'email', widget = forms.TextInput(attrs = {'class': 'form-control', 'required': True, 'readonly': True}))
+	# image = forms.ImageField(label = 'image', widget = forms.TextInput(attrs = {'class': 'form-control', 'required': True, 'readonly': True}))
+	
+	
+        
 class CustomersForm(forms.ModelForm):
 
     class Meta:

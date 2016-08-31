@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response, redirect, RequestContext
+from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from django.template import loader, RequestContext
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -10,8 +10,9 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
-from people.forms import ContributorsForm ,CustomersForm
+#from people.forms import ContributorsForm, CustomersForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import UpdateView
 
 
 
@@ -99,20 +100,45 @@ def change_password(request):
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']
         us.email  = request.POST['email']
-        us.password = make_password(request.POST['password1'])
+        
+        #us.password = make_password(request.POST['password1'])
         us.save()
-        save = True
-        user_int = None
+
+        profile = Contributors.objects.get( user=us)
+        profile.image  = request.FILES['image']
+        profile.save()
+        
 
     if save and not user_int is None:
-        user_int.foto = request.FILES['newfoto']
+        user_int.image = request.FILES['newfoto']
         user_int.save()
 
     try:
-        setattr(user, 'foto', user_int.foto )
+        setattr(user, 'image', user_int.image )
     except:
         pass
 
     return render_to_response('change-password.html', { "user": user} , context_instance = RequestContext(request))
+    # if request.method == 'POST':
+    #     form = ContributorsForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         user = form.save()
+    #         user.save()
+    #         return HttpResponseRedirect('/profile')
+    #     else:
+    #         form = ContributorsForm()
     
-       
+    # template = loader.get_template('change-password.html')
+    # form = ContributorsForm()
+    # context = {
+    #     'form':form
+    # } 
+    # return HttpResponse(template.render(context, request))
+
+
+
+# class ContributorsUpdate(UpdateView):
+    
+#     template_name= 'change-password.html'
+#     form_class = ContributorsForm
+#     model = User
