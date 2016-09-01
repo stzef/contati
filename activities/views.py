@@ -54,11 +54,11 @@ def action_activity(request, pk):
 		print "------------------------"
 		print pk
 		print "------------------------"
-		return HttpResponse('ok')
+		#return HttpResponse('ok')
 	# delete an object and send a confirmation response
 		Activities.objects.get(pk=pk).delete()
-		return HttpResponse('ok')
-
+		return HttpResponse('../templates/activities.html')
+		 
 
   	#if request.method =='DELETE':
   	#	id_activi = request.method.DELETE['activity_id']
@@ -74,8 +74,26 @@ def list_products(request):
 
 
 def action_product(request):
-  	produ = Product.objects.all()
-  	return render_to_response('../templates/edit_product.html', {'produ': produ}, context_instance=RequestContext(request))
+    	print ("fucion action")
+  	produ = get_object_or_404(Product, pk=pk)
+
+  	#print (request.method)
+	#return HttpResponse(request.method)
+
+  	if request.method == 'PUT':
+   		form = Productform(request.PUT, instance=produ)
+		if form.is_valid():
+		    form.save()
+		return redirect('list_activities', pk=activi.pk)
+
+	elif request.method == 'DELETE':
+		print "------------------------"
+		print pk
+		print "------------------------"
+		return HttpResponse('ok')
+	# delete an object and send a confirmation response
+		Activities.objects.get(pk=pk).delete()
+		return HttpResponse('ok')
 
 def ciudades(request):
     ciudades =  Ciudad.objects.filter(departamento_id = request.GET['departamento'])
