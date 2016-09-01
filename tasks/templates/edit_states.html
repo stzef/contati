@@ -17,9 +17,9 @@
 
 <div class="panel">
 <div class="panel-body">
-<form method="POST">{% csrf_token %}
+<form>{% csrf_token %}
   	<label for="states">Editar Estado</label> <br/>
-	{{ form.as_p}}<br/>
+	<input value="{{ object.name_states }}"><br/>
  
   <br/>
  
@@ -27,5 +27,25 @@
 </form>
 </div>
 </div>
+
+<script>
+
+  $("form").submit(function(event){
+
+         event.preventDefault()
+        $.ajax({
+            type: 'PUT',
+            url: 'edit_states',
+            data: { pk: pk },
+            success: function() {
+                
+                alert('Object deleted!')
+            },
+            //headers: { 'X_METHODOVERRIDE': 'PUT' }
+        });
+
+  })          
+
+</script>
 
 {% endblock %}
