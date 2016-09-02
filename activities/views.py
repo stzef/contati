@@ -38,7 +38,7 @@ def add_activity(request):
 def action_activity(request, pk):
 
 	
-  	print ("fucion action")
+  	print (request)
   	activi = get_object_or_404(Activities, pk=pk)
 
   	#print (request.method)
@@ -73,7 +73,7 @@ def list_products(request):
 
 
 
-def action_product(request):
+def action_product(request, pk):
     	print ("fucion action")
   	produ = get_object_or_404(Product, pk=pk)
 
@@ -84,15 +84,15 @@ def action_product(request):
    		form = Productform(request.PUT, instance=produ)
 		if form.is_valid():
 		    form.save()
-		return redirect('list_activities', pk=activi.pk)
+		return redirect('list_product', pk=produ.pk)
 
 	elif request.method == 'DELETE':
 		print "------------------------"
-		print pk
+		print (pk)
 		print "------------------------"
 		return HttpResponse('ok')
 	# delete an object and send a confirmation response
-		Activities.objects.get(pk=pk).delete()
+		Product.objects.get(pk=pk).delete()
 		return HttpResponse('ok')
 
 def ciudades(request):
