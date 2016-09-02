@@ -8,14 +8,17 @@
                         <li>
                             <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
                         </li>
-                        
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{% url 'list_activities' %}">Actividades</a>
+                        </li>
+
                         <li class="active">
-                            <i class="fa fa-tags"></i> Actividades
+                            <i class="fa fa-tags"></i> producto
                         </li>
                     </ol>
             </div>
             </div>
-            <a class="btn btn-default" href="{% url 'edit_product' %}">Editar</a>
+            
             
             <br /><br />
 
@@ -30,6 +33,7 @@
                             <tbody> {% for producto in produ %}
                                  <tr>
                                     <td>{{ producto.product }} </td> 
+                                    <td><a class="btn btn-primary"  >Editar</a> <a class="btn btn-danger"  >Borrar</a></td> 
                                 </tr>
                             </tbody> {% endfor %}
                         </table>

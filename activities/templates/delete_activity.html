@@ -19,9 +19,16 @@
 	<div class="panel">
     <div class="panel-body" >
     <form>
+<<<<<<< HEAD
         {% csrf_token %} 
         <label for="states">Editar Estado</label> <br/>
             <input  value={{activi.activity}} />
+=======
+        {% csrf_token %}
+        <label for="states">Editar Estado</label> <br/>
+            <input value= {{activi.activity}} />
+            <input id="pk" value= {{activi.id}} />        
+>>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
             <br/>
  
             <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
@@ -32,6 +39,7 @@
 <script>
 
   $("form").submit(function(event){
+<<<<<<< HEAD
 
          console.log( "entrando ajax");
          event.preventDefault()
@@ -39,6 +47,19 @@
             type: 'DELETE',
             url: '/activities/'+ activi.id,
             //data: { pk=activi.id },
+=======
+         
+         console.log( "entrando ajax");
+         event.preventDefault()
+         var pk = $("#pk").val();
+        $.ajax({
+            type: 'DELETE',
+            //console.log( "ajax");
+            //console.log( "antes delete"),
+            url: '/activities?pk',
+            //data: { pk: 4 },
+             
+>>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
             success: function() {
                 
                 alert('Object deleted!')
