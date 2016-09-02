@@ -35,8 +35,8 @@
          event.preventDefault()
         $.ajax({
             type: 'PUT',
-            url: 'edit_states',
-            data: { pk: pk },
+            url: 'edit_states' + pk,
+            //data: { pk: pk },
             success: function() {
                 
                 alert('Object deleted!')
@@ -44,7 +44,9 @@
             //headers: { 'X_METHODOVERRIDE': 'PUT' }
         });
 
-  })          
+  })
+
+    $("form").submit();          
 
 </script>
 

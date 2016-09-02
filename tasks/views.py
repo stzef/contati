@@ -3,7 +3,7 @@ from django.shortcuts import render, render_to_response, redirect, RequestContex
 from .models import States, States_kanban, Priorities, Departments
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy 
 
 def view_index(request):
      return render_to_response('../templates/index.html')
@@ -52,9 +52,18 @@ class editStates(UpdateView):
 	model = States
 	form_class = StatesForm
 	template_name = '../templates/edit_states.html'
+	#success_url=reverse_lazy('list_states')
 
 	def get_success_url(self):
 		return reverse('list_states')
+
+	def get_context_data(self, **kwargs):
+		context = super(editStates, self).get_context_data(**kwargs)
+		context['title'] = 'Editar Estados'
+		context['mode_view'] = 'edit'
+		context['current_pk'] = self.kwargs["pk"]
+		context['url'] = reverse_lazy('edit_states',kwargs={'pk': self.kwargs["pk"]},)	
+		return context
 
 class deleteStates(DeleteView):
 	model = States

@@ -34,12 +34,9 @@
   $("form").submit(function(event){
 
          console.log( "entrando ajax");
-         //console.log(pk);
          event.preventDefault()
         $.ajax({
             type: 'DELETE',
-            //console.log( "ajax");
-            //console.log( "antes delete"),
             url: '/activities/'+ activi.id,
             //data: { pk=activi.id },
             success: function() {
