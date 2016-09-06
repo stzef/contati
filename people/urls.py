@@ -21,10 +21,9 @@ urlpatterns = [
    	
 
    	url(r'^profile$', profile,  name='profile'),
-	url(r'^profile/change-password$', view_change_password, name='view-change-password'),
 	url('^change-password$', change_password, name='change-password'),
 	
-	# url(r'^profile/change-password/$', ContributorsUpdate.as_view(), name='view-change-password'),
+	
 	
  ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

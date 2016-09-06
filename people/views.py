@@ -75,18 +75,8 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
-def profile(request):
-        return render_to_response('profile.html', context_instance = RequestContext(request)) 
-
-
-def view_change_password(request):
-    return render_to_response('change-password.html', context_instance = RequestContext(request))
-
-
 @login_required(login_url="/login")
-def change_password(request):    
-    """view del profile
-    """
+def profile(request):
 
     user = User.objects.get( id = request.user.id )
     save = False
@@ -94,51 +84,52 @@ def change_password(request):
       
         # Aqui realizar la respectiva validacion
         # Actulizar datos de usuario
-     
+    
         us = User.objects.get( id = request.user.id )
         us.first_name  = request.POST['first_name']
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']
         us.email  = request.POST['email']
-        
+    
         #us.password = make_password(request.POST['password1'])
         us.save()
-
-        profile = Contributors.objects.get( user=us)
-        profile.image  = request.FILES['image']
-        profile.save()
         
+        
+        profile = Contributors.objects.get( user= us)
+        profile.image_2  = request.FILES['image']
+        profile.save()
+    return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
-    if save and not user_int is None:
-        user_int.image = request.FILES['newfoto']
-        user_int.save()
 
-    try:
-        setattr(user, 'image', user_int.image )
-    except:
-        pass
+def view_change_password(request):
+    return render_to_response('change-password.html', context_instance = RequestContext(request))
 
-    return render_to_response('change-password.html', { "user": user} , context_instance = RequestContext(request))
-    # if request.method == 'POST':
-    #     form = ContributorsForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         user = form.save()
-    #         user.save()
-    #         return HttpResponseRedirect('/profile')
-    #     else:
-    #         form = ContributorsForm()
+
+
+def change_password(request):    
+    """view del profile
+    """
+    error = False
+    if request.method == 'POST':
+        validator = FormChangePasswordValidator(request.POST)
+        validator.required = ['password1']
+
+        if validator.is_valid():
+            us = User.objects.get( id = request.user.id )
+            
+            
+            us.password = make_password(request.POST['password1'])
+                      
+            #TODO: ENviar correo electronico para confirmar cuenta
+            # user.is_active = True
+            us.save()
+
+
+            return render_to_response('profile.html', {'success': True  } , context_instance = RequestContext(request))
+        else:
+            return render_to_response('profile.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
+        # Agregar el usuario a la base de datos
+   
+    return render_to_response('profile.html',{}, context_instance = RequestContext(request))
+
     
-    # template = loader.get_template('change-password.html')
-    # form = ContributorsForm()
-    # context = {
-    #     'form':form
-    # } 
-    # return HttpResponse(template.render(context, request))
-
-
-
-# class ContributorsUpdate(UpdateView):
-    
-#     template_name= 'change-password.html'
-#     form_class = ContributorsForm
-#     model = User

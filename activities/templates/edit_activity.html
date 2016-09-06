@@ -42,15 +42,8 @@
          console.log(pk);
         $.ajax({
             type: 'DELETE',
-<<<<<<< HEAD
-            //console.log( "ajax");
-            //console.log( "antes delete"),
-            url: '/activities/'+ activi.id,
-            //data: { pk=activi.id },
-=======
             url: '/activities/'+pk,
-                      
->>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
+            
             success: function() {
                 alert('Object deleted!')
             },

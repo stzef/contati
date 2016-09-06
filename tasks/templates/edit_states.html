@@ -2,51 +2,55 @@
 
 {% block content %}
 <div class="row">
-<div class="col-lg-12 col-sm-12">
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-            </li>
-            
-            <li class="active">
-                <i class="fa fa-tags"></i> Estados
-            </li>
-        </ol>
-</div>
+  <div class="col-lg-12 col-sm-12">
+          <ol class="breadcrumb">
+              <li>
+                  <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+              </li>
+              
+              <li class="active">
+                  <i class="fa fa-tags"></i> Estados
+              </li>
+          </ol>
+  </div>
 </div>
 
 <div class="panel">
-<div class="panel-body">
-<form>{% csrf_token %}
-  	<label for="states">Editar Estado</label> <br/>
-	<input value="{{ object.name_states }}"><br/>
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form>
+    {% csrf_token %}
+      	<label for="states">Editar Estado</label> <br/>
+    	<input value="{{ object.name_states }}"><br/>
+      <input type="hidden"  id="pk" value="{{ object.id }}" /> 
+     
+      <br/>
+     
+      <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+  </div>
 </div>
 
 <script>
 
   $("form").submit(function(event){
 
-         event.preventDefault()
+        event.preventDefault()
+        var pk = $("#pk").val();
+        console.log(pk);
         $.ajax({
             type: 'PUT',
-            url: 'edit_states' + pk,
-            //data: { pk: pk },
+            // url: '/states/' + pk ,
+            data: {  
+              'pk': pk,
+            },
             success: function() {
                 
                 alert('Object deleted!')
             },
-            //headers: { 'X_METHODOVERRIDE': 'PUT' }
+            headers: { 'X-HTTP-Method-Override': 'PUT' },
         });
 
-  })
-
-    $("form").submit();          
+  });         
 
 </script>
 

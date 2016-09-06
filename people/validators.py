@@ -71,16 +71,13 @@ class FormLoginValidator(Validator):
 
 class FormChangePasswordValidator(Validator):
 
-    def is_valid(self):
+     def is_valid(self):
 
-
-        if User.objects.filter(username = self._post[('username')]).exists():
-            self._message = 'Username is already registered'
-            return False    
-
-        if User.objects.filter(email = self._post[('email')]).exists():
-            self._message = 'Email is already registered'
+        if not super(FormChangePasswordValidator, self).is_valid():
             return False
-        #Por ultimo retornamos que en caso de que todo marche bien es correcto el formulario
+        #validar que las contraseñas sehan iguales
+        if not self._post['password1'] == self._post['password2']:
+            self._message = 'Passwords do not match'
+            return False
         return True
 

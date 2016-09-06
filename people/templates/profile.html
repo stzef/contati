@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
+
 <div class="container">
     <ol class="breadcrumb">
         <li>
             <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}"> Inicio</a>
         </li>
-        <li>
-        <i class="fa fa-cog"></i><a href="{% url 'change-password' %}"> Settings</a>
-        </li>
+        
         <li class="active">profile</li>
 
         <li>
@@ -16,19 +16,51 @@
 
     </ol>
     <div class="row">
+        {% if error %}
+          <div class="alert alert-danger"> {{ error }} </div>
+        {% endif %}
+        {% if success %}
+          <div class="alert alert-success"> Se realizaron los cambios con exito </div>
+        {% endif %}
 
-
-        <div class="col-md-3">
-			<h2><font><font><img src="{{ user.contributors.photo }}" class='img-circle' alt="photo" height="75px" > </font></font></h2>
+        <div class="col-md-6">
+            <h2><font><font><img src="{{ user.contributors.photo}}"  alt="photo" height="300px" width="350px" > </font></font></h2>
             <h2><font><font>{{ user.first_name }} {{ user.last_name }}</font></font></h2>
         </div>
 
-       
+
+        <div class="col-md-4">
+
+          <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <label>Nombre Usuario </label><input type="text" class="form-control" name="username"  value="{{ user.username }}" >
+            <label>Nombre </label><input type ="text" class="form-control" name="first_name"  value="{{ user.first_name }}" >
+            <label>Apellido </label><input type="text" class="form-control" name="last_name"  value="{{ user.last_name }}" >
+            <label>Correo</label><input  type="email" class="form-control" name="email"  value="{{ user.email }}" >
+
+            <label>Cambiar image </label>
+          <input type="file" name="image" value="Cambiar image" class="form-control"/>
+
+          <br/>
+          <input type="submit" class="btn btn-primary pull-right"  value="Editar" />
+          </form>
+        
+        </div>
+        <div class="col-md-4">
+        <form method="post" action="{% url 'change-password' %}" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <label>Cambiar Contraseña</label>
+        <br>
+        <label>Contraseña</label><input  type="password" class="form-control" name="password1"  placeholder="Contraseña" value="" >
+        <label >Confirmar Contraseña</label><input type="password" name='password2' class="form-control"  placeholder="Confirmar Contraseña"></h4>        
+            
+            <br/>
+          <input type="submit" class="btn btn-primary pull-right"  value="Editar" />
+          </form>
+        </div>
+    </div><!-- row-->
 
 
-    </div><!-- row -->
-
-
-</div><!--container -->
+</div> <!--container -->
 
 {% endblock %}

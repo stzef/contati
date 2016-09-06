@@ -4,6 +4,35 @@ from .models import States, States_kanban, Priorities, Departments
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm
 from django.core.urlresolvers import reverse, reverse_lazy 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+class AjaxableResponseMixin(object):
+    """
+    Mixin to add AJAX support to a form.
+    Must be used with an object-based FormView (e.g. CreateView)
+    """
+    def form_invalid(self, form):
+        response = super(AjaxableResponseMixin, self).form_invalid(form)
+        if self.request.is_ajax():
+            return JsonResponse(form.errors, status=400)
+        else:
+            return response
+
+    def form_valid(self, form):
+        # We make sure to call the parent's form_valid() method because
+        # it might do some processing (in the case of CreateView, it will
+        # call form.save() for example).
+        response = super(AjaxableResponseMixin, self).form_valid(form)
+        if self.request.is_ajax():
+            data = {
+                'pk': self.object.pk,
+            }
+            return JsonResponse(data)
+        else:
+            return response
+
 
 def view_index(request):
      return render_to_response('../templates/index.html')
@@ -48,23 +77,22 @@ def edit_states(request, pk): #Se asignan el parametro requuest y la llave prima
 		form = StatesForm(instance=state)	
 	return render(request, '../templates/edit_states.html', {'form': form}, context_instance=RequestContext(request))   
 
-class editStates(UpdateView):
+@method_decorator(csrf_exempt, name='dispatch')
+class editStates(AjaxableResponseMixin, UpdateView):
 	model = States
 	form_class = StatesForm
 	template_name = '../templates/edit_states.html'
-	#success_url=reverse_lazy('list_states')
+	success_url=reverse_lazy('list_states')
 
-	def get_success_url(self):
-		return reverse('list_states')
+	# def get_success_url(self):
+	# 	return reverse('list_states')
 
 	def get_context_data(self, **kwargs):
 		context = super(editStates, self).get_context_data(**kwargs)
-		context['title'] = 'Editar Estados'
-		context['mode_view'] = 'edit'
 		context['current_pk'] = self.kwargs["pk"]
-		context['url'] = reverse_lazy('edit_states',kwargs={'pk': self.kwargs["pk"]},)	
+		context['url'] = reverse_lazy('edit_states',kwargs={'pk': self.kwargs["pk"]},)
 		return context
-
+			
 class deleteStates(DeleteView):
 	model = States
 	form_class = StatesForm
