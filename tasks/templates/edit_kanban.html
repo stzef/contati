@@ -12,25 +12,41 @@
                 <li>
                     <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
                 </li>
+
+                <li>
+                    <i class="fa fa-tags"></i> <a href="{% url 'list_states_kanban' %}">Estados Kanban </a>
+                </li>
                 
                 <li class="active">
-                    <i class="fa fa-tags"></i> Estados Kanban 
+                    <i class="fa fa-tags"></i> Editar Estados Kanban 
                 </li>
             </ol>
     </div>
   </div>
   
 <div class="panel">
-<div class="panel-body">
-<form method="POST">{% csrf_token %}
-  	<label for="states">Editar Estado Color</label> <br/>
-	{{ form.as_p}}<br/>
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form method="POST">
+    {% csrf_token %}
+      <div class="form-group">
+        <label class="section-title-p col-md-3 text-right" for="{{form.name_states.id_for_label}}"><strong>{{form.name_states.label}}:</strong></label>
+        <div class="col-md-6">
+          {{ form.name_states }}<br/><br/>
+          <!-- <input type="hidden"  id="pk" value="{{ object.id }}" /> -->
+        </div>
+      </div>
+      <div class="col-md-12"></div>
+      <div class="form-group">
+        <label class="section-title-p col-md-3 text-right" for="{{form.color.id_for_label}}"><strong>{{form.color.label}}:</strong></label>
+        <div class="col-md-6">
+          {{ form.color}}<br/><br/>
+          <!-- <input type="hidden"  id="pk" value="{{ object.id }}" /> -->
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+        </div>
+      </div>
+     
+    </form>
+  </div>
 </div>
 
 {% endblock %}

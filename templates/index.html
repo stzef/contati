@@ -8,6 +8,9 @@
 	<!-- Bootstrap Core CSS -->
         <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- Custom CSS -->
+        <link href="../static/index/css/style.css" rel="stylesheet">
+
         <!-- Font Awesome CSS -->
         <link href="../static/css/font-awesome.css" rel="stylesheet">
         <link href="../static/css/font-awesome.min.css" rel="stylesheet">
@@ -15,20 +18,12 @@
 		<!-- Custom CSS -->
         <link href="../static/index/css/animate.css" rel="stylesheet">
 
-        <!-- Custom CSS -->
-        <link href="../static/index/css/style.css" rel="stylesheet">
-
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-
 
         <!-- Template js -->
         <script src="../static/js/jquery-2.1.1.min.js"></script>
         <script src="../static/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../static/js/jquery.appear.js"></script>
-        <script src="../static/js/jqBootstrapValidation.js"></script>
-        <script src="../static/js/modernizr.custom.js"></script>
-        <script src="../static/js/script.js"></script>
 
 	<title></title>
 </head>
@@ -39,10 +34,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="logo text-center">
+                        <section class="logo text-center">
                             <h1>Contati</h1>
-                            <span>Kanban Board for business SistematizarEF</span>
-                        </div>
+                            <span class="logo-span">Kanban Board for business SistematizarEF</span>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -57,21 +52,21 @@
                     
                     <div class="col-md-3">
                         
-                        <div class="menu-item blue">
+                        <div class="menu-item red">
                             <a href="{% url 'board' %}" data-toggle="modal">
                                 <i class="fa fa-magic"></i>
                                 <p>Tablero</p>
                             </a>
                         </div>
                         
-                        <div class="menu-item green">
+                        <div class="menu-item color">
                             <a href="{% url 'list_states' %}" data-toggle="modal">
                                 <i class="fa fa-tags"></i>
                                 <p>Estados, prioridades y departamentos</p>
                             </a>
                         </div>
                         
-                        <div class="menu-item light-red">
+                        <div class="menu-item blue">
                             <a href="{% url 'profile' %}" data-toggle="modal">
                                 <i class="fa fa-user"></i>
                                 <p>Perfil</p>
@@ -112,7 +107,7 @@
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="menu-item color responsive">
+                                <div class="menu-item light-orange responsive">
                                     <a href="#service-modal" data-toggle="modal">
                                         <i class="fa fa-bar-chart"></i>
                                         <p>Reportes</p>
@@ -121,7 +116,7 @@
                             </div>
                             
                             <div class="col-md-6">
-                                <div class="menu-item light-orange responsive-2">
+                                <div class="menu-item light-red responsive-2">
                                     <a href="#team-modal" data-toggle="modal">
                                         <i class="fa fa-tasks"></i>
                                         <p>Tareas</p>
@@ -142,7 +137,7 @@
                             </a>
                         </div>
                         
-                        <div class="menu-item color">
+                        <div class="menu-item green">
                             <a href="{% url 'list_activities' %}" data-toggle="modal">
                                 <i class="fa fa-list"></i>
                                 <p>Actividades</p>

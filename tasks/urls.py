@@ -8,7 +8,7 @@ urlpatterns = [
 
 	url(r'^states/add$',views.add_states, name='add_states'),
 	url(r'^states$',views.list_states, name='list_states'),
-	url(r'^states/(?P<pk>\d+)/edit/$', views.editStates.as_view(), name='edit_states'),
+	url(r'^states/(?P<pk>\d+)/$', views.editStates.as_view(), name='edit_states'),
 	url(r'^states/(?P<pk>\d+)/delete/$', views.deleteStates.as_view(), name='delete_states'),
 
 	url(r'^states-kanban$', views.list_states_kanban, name='list_states_kanban'),

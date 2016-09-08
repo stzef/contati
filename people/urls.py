@@ -22,7 +22,12 @@ urlpatterns = [
 
    	url(r'^profile$', profile,  name='profile'),
 	url('^change-password$', change_password, name='change-password'),
-	
+
+	url(r'^customers$', views.list_Customers, name='list_customers'),
+	url(r'^customers/add$', views.createCustomers.as_view(), name='add_customers'),
+	url(r'^customers/(?P<pk>\d+)/edit/$', views.editCustomers.as_view(), name='edit_customers'),
+	url(r'^customers/(?P<pk>\d+)/delete/$', views.deleteCustomers, name='delete_customers'),
+
 	
 	
  ]
