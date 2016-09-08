@@ -23,24 +23,24 @@
   <div class="panel">
   	<div class="panel-body">
       <div class="table-responsive">
-  	<table class="table table-bordered table-hover table-striped">
+      	<table class="table table-bordered table-hover table-striped">
           <thead>
-          <tr>
-            <th>Prioridad</th>
-            <th>Funciones</th>
-          </tr>  
+              <tr>
+                <th>Prioridad</th>
+                <th>Funciones</th>
+              </tr>  
           </thead>  	
-            {% for state in prioritie %}
-            <tbody>
-		<tr>
-		<td>{{ state.name_prioritie }} | {{ state.order }}</td>
-		<td><a class="btn btn-primary" href="{% url 'edit_priorities' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_priorities' pk=state.pk %}">Borrar</a></td> 
-              </tr>
-            </tbody>
-            {% endfor %}
-      </table>
+          {% for state in prioritie %}
+          <tbody>
+  		      <tr>
+  		        <td>{{ state.name_prioritie }} | {{ state.order }}</td>
+  		        <td><a class="btn btn-primary" href="{% url 'edit_priorities' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_priorities' pk=state.pk %}">Borrar</a></td> 
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
       </div>
-      </div>	      
+    </div>	      
   </div>
 
   <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_priorities' %}">Agregar nuevo estado</a></p><br />

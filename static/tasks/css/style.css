@@ -28,11 +28,12 @@ li {
 }
 
 a {
-    color: #FF432E;
+    color: #1a6fca;
     text-decoration: none;
 }
 
 a:hover {
+    color: #074073;
     text-decoration: none;
 }
 
@@ -56,8 +57,8 @@ p {
 }
 
 .btn-primary {
-    border-color: #FF432E;
-    background-color: #FF432E;
+    border-color: #2a6ba5;
+    background-color: #408dd0;
     text-transform: uppercase;
     font-weight: 300;
     color: #fff;
@@ -77,7 +78,7 @@ p {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
     color: #fff;
-    border-color: #ea321e;
+    border-color: #0C3C55;
     background-color: none !important;
 }
 
@@ -111,12 +112,10 @@ fieldset[disabled] .btn-primary.active {
     text-transform: none;
 }
 
-.section-title p {
-    padding-bottom: 60px;
-    color: #999;
-    font-size: 18px;
-    //font-style: italic;
-    font-weight: 300;
+.section-title-p {
+    color: #1D2123;
+    font-size: 21px;
+    font-weight: 200;
 }
 
 
@@ -224,105 +223,3 @@ and (max-width : 1199px) {
     
 }
 
-
-/**** Start Modal Section ****/
-
-.section-modal .modal-content {
-    padding: 100px 0 !important;
-    min-height: 100%;
-    border: 0 !important;
-    border-radius: 0;
-    background-clip: border-box;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-    color: #888;
-    font-weight: 300;
-}
-
-
-
-.section-modal .close-modal {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 75px;
-    height: 75px;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.section-modal .close-modal:hover {
-    opacity: .3;
-}
-
-.section-modal .close-modal .lr {
-    z-index: 1051;
-    width: 1px;
-    height: 75px;
-    margin-left: 35px;
-    background-color: #222;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.section-modal .close-modal .lr .rl {
-    z-index: 1052;
-    width: 1px;
-    height: 75px;
-    background-color: #222;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-
-.form-box {
-    margin-top: 35px;
-}
-
-.form-top {
-    overflow: hidden;
-    padding: 0 25px 15px 25px;
-    background: #fff;
-    -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
-    text-align: left;
-}
-
-.form-top-left {
-    float: left;
-    width: 75%;
-    padding-top: 25px;
-}
-
-.form-top-left h3 { margin-top: 0; }
-
-.form-top-right {
-    float: left;
-    width: 25%;
-    padding-top: 5px;
-    font-size: 66px;
-    color: #ddd;
-    line-height: 100px;
-    text-align: right;
-}
-
-.form-bottom {
-    padding: 25px 25px 30px 25px;
-    background: #eee;
-    -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
-    text-align: left;
-}
-
-.form-bottom form textarea {
-    height: 100px;
-}
-
-.form-bottom form button.btn {
-    width: 100%;
-}
-
-.form-bottom form .input-error {
-    border-color: #4aaf51;
-}

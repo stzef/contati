@@ -41,45 +41,26 @@ def action_activity(request, pk):
   	print (request)
   	activi = get_object_or_404(Activities, pk=pk)
 
-  	#print (request.method)
-	#return HttpResponse(request.method)
-
   	if request.method == 'PUT':
    		form = Activitiesform(request.PUT, instance=activi)
 		if form.is_valid():
 		    form.save()
 		return redirect('list_activities', pk=activi.pk)
 
-	elif request.method == 'DELETE':
-		print "------------------------"
-		print pk
-		print "------------------------"
-		#return HttpResponse('ok')
-	# delete an object and send a confirmation response
+	elif request.method == 'DELETE':		
 		Activities.objects.get(pk=pk).delete()
 		return HttpResponse('../templates/activities.html')
-		 
-
-  	#if request.method =='DELETE':
-  	#	id_activi = request.method.DELETE['activity_id']
- 	#	a = Activities.objects.DELETE[pk == id_activi]
- 	#	a.delete() 	
- 	#	return redirect('list_activities')
-  	return render_to_response('../templates/edit_activity.html', {'activi': activi}, context_instance=RequestContext(request))
+  	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
 def list_products(request):
 	produ = Product.objects.filter()
 	return render_to_response('../templates/product.html', {'produ': produ}, context_instance=RequestContext(request))  
 
 
-
+@csrf_exempt
 def action_product(request, pk):
     	print ("fucion action")
-  	produ = get_object_or_404(Product, pk=pk)
-
-  	#print (request.method)
-	#return HttpResponse(request.method)
-
+  	produ = get_object_or_404(Product, pk=pk)  	
   	if request.method == 'PUT':
    		form = Productform(request.PUT, instance=produ)
 		if form.is_valid():
@@ -87,15 +68,7 @@ def action_product(request, pk):
 		return redirect('list_product', pk=produ.pk)
 
 	elif request.method == 'DELETE':
-		print "------------------------"
-		print (pk)
-		print "------------------------"
-		return HttpResponse('ok')
-	# delete an object and send a confirmation response
+		print "dentro delete product"
 		Product.objects.get(pk=pk).delete()
 		return HttpResponse('ok')
-
-def ciudades(request):
-    ciudades =  Ciudad.objects.filter(departamento_id = request.GET['departamento'])
-    data = serializers.serialize('json', ciudades, fields=('id','nombre'))
-    return HttpResponse( data , content_type ='application/json' )              
+	return render_to_response('../templates/delete_product.html', {'produ': produ}, context_instance=RequestContext(request))

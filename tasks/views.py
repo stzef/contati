@@ -149,9 +149,7 @@ class editPriorities(UpdateView):
 	model = Priorities
 	form_class = PrioritiesForm
 	template_name = '../templates/edit_priorities.html'
-
-	def get_success_url(self):
-		return reverse('list_priorities')
+	success_url=reverse_lazy('list_priorities')
 
 class deletePriorities(DeleteView):
 	model = Priorities

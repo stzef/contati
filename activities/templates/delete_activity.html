@@ -8,9 +8,12 @@
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
                 </li>
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'list_activities' %}">Actividades</a>
+                </li>
                 
                 <li class="active">
-                    <i class="fa fa-tags"></i> Actividades
+                    <i class="fa fa-tags"></i> Borrar
                 </li>
             </ol>
     </div>
@@ -19,49 +22,32 @@
 	<div class="panel">
     <div class="panel-body" >
     <form>
-<<<<<<< HEAD
         {% csrf_token %} 
-        <label for="states">Editar Estado</label> <br/>
-            <input  value={{activi.activity}} />
-=======
-        {% csrf_token %}
-        <label for="states">Editar Estado</label> <br/>
+        <label for="states">Eliminar Actividad</label> <br/>
             <input value= {{activi.activity}} />
-            <input id="pk" value= {{activi.id}} />        
->>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
+            <input type="hidden"  id="pk" value={{activi.id}} /> 
+            <br/>
             <br/>
  
-            <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
+            <input class="btn btn-primary" type="submit" id="edit-activity" value="Eliminar" />
     </form>
     </div>
     </div>
- <script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.min.js"></script>
 <script>
 
   $("form").submit(function(event){
-<<<<<<< HEAD
-
-         console.log( "entrando ajax");
-         event.preventDefault()
-        $.ajax({
-            type: 'DELETE',
-            url: '/activities/'+ activi.id,
-            //data: { pk=activi.id },
-=======
          
          console.log( "entrando ajax");
+         //console.log(pk);
          event.preventDefault()
          var pk = $("#pk").val();
+         console.log(pk);
         $.ajax({
             type: 'DELETE',
-            //console.log( "ajax");
-            //console.log( "antes delete"),
-            url: '/activities?pk',
-            //data: { pk: 4 },
-             
->>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
+            url: '/activities/'+pk,
+            
             success: function() {
-                
                 alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }

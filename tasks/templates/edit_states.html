@@ -8,8 +8,12 @@
                   <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
               </li>
               
+              <li>
+                  <i class="fa fa-tags"></i>  <a href="{% url 'list_states' %}">Estados</a>
+              </li>
+
               <li class="active">
-                  <i class="fa fa-tags"></i> Estados
+                  <i class="fa fa-tags"></i> Editar Estados
               </li>
           </ol>
   </div>
@@ -19,17 +23,22 @@
   <div class="panel-body">
     <form>
     {% csrf_token %}
-      	<label for="states">Editar Estado</label> <br/>
-    	<input value="{{ object.name_states }}"><br/>
-      <input type="hidden"  id="pk" value="{{ object.id }}" /> 
+      <div class="form-group">
+      	<label class="section-title-p col-md-2 text-right" for="{{form.name_states.id_for_label}}"><strong>Editar {{form.name_states.label}}:</strong></label>
+        <div class="col-md-7">
+        	{{ form.name_states }}<br/>
+          <input type="hidden"  id="pk" value="{{ object.id }}" />
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+        </div>
+      </div>
      
-      <br/>
-     
-      <input class="btn btn-primary" type="submit" value="Guardar" />
     </form>
   </div>
 </div>
+{% endblock %}
 
+
+{% block javascript %}
 <script>
 
   $("form").submit(function(event){
@@ -39,7 +48,7 @@
         console.log(pk);
         $.ajax({
             type: 'PUT',
-            // url: '/states/' + pk ,
+            url: '/states/'+pk,
             data: {  
               'pk': pk,
             },

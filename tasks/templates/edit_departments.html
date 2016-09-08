@@ -11,25 +11,33 @@
                 <li>
                     <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
                 </li>
+
+                <li>
+                    <i class="fa fa-tags"></i> <a href="{% url 'list_departments' %}">Departamentos </a>
+                </li>
                 
                 <li class="active">
-                    <i class="fa fa-tags"></i> Departamentos 
+                    <i class="fa fa-tags"></i> Editar Departamentos 
                 </li>
             </ol>
     </div>
   </div>
 
 <div class="panel">
-<div class="panel-body">
-<form method="POST">{% csrf_token %}
-  	<label for="states">Editar Departamento</label> <br/>
-	{{ form.as_p}}<br/>
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form>
+    {% csrf_token %}
+      <div class="form-group">
+        <label class="section-title-p col-md-2 text-right" for="{{form.name_department.id_for_label}}"><strong>Editar {{form.name_department.label}}:</strong></label>
+        <div class="col-md-7">
+          {{ form.name_department }}<br/>
+          <input type="hidden"  id="pk" value="{{ object.id }}" />
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+        </div>
+      </div>
+     
+    </form>
+  </div>
 </div>
 
 {% endblock %}
