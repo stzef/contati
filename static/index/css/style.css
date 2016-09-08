@@ -35,6 +35,15 @@ p {
 }
 
 
+div.polaroid {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+div.container1 {
+  padding: 10px;
+}
+
 .btn-primary {
     border-color: #FF432E;
     background-color: #FF432E;
@@ -82,12 +91,14 @@ p {
 
 /**** Start Logo Section ****/
 
-#logo-section {
-    
-}
-
 .logo h1 {
     font-family: 'Lobster', cursive;
+    color: #fff;
+    font-size: 60px;
+}
+
+.logo2 h1 {
+    font-family: 'Oswald', cursive;
     color: #fff;
     font-size: 60px;
 }
