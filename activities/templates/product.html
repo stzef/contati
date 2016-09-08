@@ -33,7 +33,7 @@
                             <tbody> {% for producto in produ %}
                                  <tr>
                                     <td>{{ producto.product }} </td> 
-                                    <td><a class="btn btn-primary"  >Editar</a> <a class="btn btn-danger"  >Borrar</a></td> 
+                                    <td><a class="btn btn-primary" href="{% url 'edit_product' pk=producto.pk %}" >Editar</a> <a class="btn btn-danger" href="{% url 'delete_product' pk=producto.pk %}" >Borrar</a></td> 
                                 </tr>
                             </tbody> {% endfor %}
                         </table>

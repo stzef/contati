@@ -1,0 +1,15 @@
+
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
+}
+
+.full {
+  background: url(../images/background2.jpg) no-repeat center center fixed; 
+  /*background-color: #C9C9C9;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

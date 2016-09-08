@@ -1,0 +1,62 @@
+{% extends 'base_tasks.html' %}
+
+{% block content %}
+ <script src="/static/js/jquery.min.js"></script>
+<div class="row">
+    <div class="col-lg-12 col-sm-12">
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+                </li>
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'list_activities' %}">Actividades</a>
+                </li>
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'list_products' %}">Productos</a>
+                </li>
+                
+                <li class="active">
+                    <i class="fa fa-tags"></i> Borrar
+                </li>
+            </ol>
+    </div>
+    </div>
+
+	<div class="panel">
+    <div class="panel-body" >
+    <form>
+        {% csrf_token %} 
+        <label for="states">Eliminar Producto</label> <br/>
+            <input value= {{produ.product}} />
+            <input type="hidden"  id="pk" value={{produ.id}} /> 
+            <br/>
+            <br/>
+ 
+            <input class="btn btn-primary" type="submit" id="edit-product" value="Eliminar" />
+    </form>
+    </div>
+    </div>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+
+  $("form").submit(function(event){
+         
+         console.log( "entrando ajax");
+         //console.log(pk);
+         event.preventDefault()
+         var pk = $("#pk").val();
+         console.log(pk);
+        $.ajax({
+            type: 'DELETE',
+            url: '/products/'+pk,
+            
+            success: function() {
+                alert('Object deleted!')
+            },
+            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
+        });
+
+  })          
+
+</script>
+{% endblock %}
