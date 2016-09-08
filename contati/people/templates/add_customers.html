@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+<div class="col-lg-12 col-sm-12">
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+            </li>
+            
+            <li class="active">
+                <i class="fa fa-tags"></i> Customers
+            </li>
+        </ol>
+</div>
+</div>
+<div class="panel">
+<div class="panel-body">
+<form action="{% url 'add_customers' %}" method="post">{% csrf_token %}
+  	<label for="states">Agregar un nuevo Cliente</label> <br/>
+    <label for="states">Nombre</label>
+	   {{ form.name}}
+    <label for="states">Apellido</label> 
+      {{ form.last_name}}
+ 
+  <br/>
+ 
+  <input class="btn btn-primary" type="submit" value="Guardar" />
+</form>
+</div>
+</div>
+
+{% endblock %}

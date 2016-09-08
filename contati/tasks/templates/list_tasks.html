@@ -1,0 +1,10 @@
+{% extends 'base_tasks.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="list_tasks">
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}

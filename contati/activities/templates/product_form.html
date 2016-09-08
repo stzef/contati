@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>formulario aderir producto</title>
+	</head>
+	<body>
+	<form method="post">
+	{% csrf_token %}
+	{{ prod.as_p }}
+	<button type=" type="submit">guardar</button>
+	</form>
+	</body>
+</html>
