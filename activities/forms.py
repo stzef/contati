@@ -15,6 +15,6 @@ class ActivitiesForm(forms.ModelForm):
         'product': 'product',
         }
         widgets = {
-        'activities': forms.TextInput(),
-        'product': forms.Select(),
+        'activity': forms.TextInput(attrs={'class':'form-control'}),
+        'product': forms.Select(attrs={'class':'form-control'}),
         }

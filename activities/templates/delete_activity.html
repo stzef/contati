@@ -19,20 +19,25 @@
     </div>
     </div>
 
-	<div class="panel">
-    <div class="panel-body" >
-    <form>
-        {% csrf_token %} 
-        <label for="states">Eliminar Actividad</label> <br/>
-            <input value= {{activi.activity}} />
-            <input type="hidden"  id="pk" value={{activi.id}} /> 
-            <br/>
-            <br/>
- 
-            <input class="btn btn-primary" type="submit" id="edit-activity" value="Eliminar" />
-    </form>
+<div class="panel">
+    <div class="panel-body">
+        <form>
+            {% csrf_token %} 
+            <div class="form-group col-md-12">
+                <label class="section-title-p ">Eliminar Actividad</label> <br/>
+                <label class="section-title-p "><strong> {{activi.activity}} </strong></label>
+                <input type="hidden"  id="pk" value={{activi.id}} /> 
+            </div>
+            <br /><br /><br />
+            <div class="col-md-12">         
+                <button class="btn btn-danger" type="submit">Eliminar</button>
+                <a class="btn btn-default" href="{% url 'list_activities' %}">Cancelar</a>
+            </div>
+
+        </form>
     </div>
-    </div>
+</div>
+
 <script src="/static/js/jquery.min.js"></script>
 <script>
 
