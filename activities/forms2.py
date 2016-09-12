@@ -13,5 +13,5 @@ class ProductForm(forms.ModelForm):
         'product': 'product'
         }
         widgets = {
-        'product': forms.TextInput()
+        'product': forms.TextInput(attrs={'class':'form-control'})
         }

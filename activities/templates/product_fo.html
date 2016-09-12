@@ -21,16 +21,21 @@
         </ol>
 </div>
 </div>
+
 <div class="panel">
-<div class="panel-body">
-<label for="states">Agregar nuevo producto</label> <br/>
-    <form method="post">
+  <div class="panel-body">
+    <form action="{% url 'add_products' %}" method="post">{% csrf_token %}
     {% csrf_token %}
-    <input id="textinput" name="producto" type="text" placeholder="" class="form-control">
-     <br/>
-     <input class="btn btn-primary" type="submit" value="Guardar" />
+      <div class="form-group">
+        <label class="section-title-p col-md-4"><strong>Agregar un nuevo Producto:</strong></label>
+        <div class="col-md-7">
+          {{ form.product }}<br/>
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+        </div>
+      </div>
+     
     </form>
-</div>
+  </div>
 </div>
 
 {% endblock %}

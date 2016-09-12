@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from.models import *
 from forms import ActivitiesForm
+from forms2 import ProductForm
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 from django.template import RequestContext
@@ -13,11 +14,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 def add_products(request):
 	if request.method == 'POST':
-		producto = Product()
-		producto.product = request.POST['producto']
-		producto.save()
-		return redirect('list_products')
-	return render_to_response('../templates/product_fo.html',  context_instance=RequestContext(request)) 
+		form = ProductForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('list_products') 
+	else:
+		form =	ProductForm()
+	return render_to_response('../templates/product_fo.html', {'form':form}, context_instance=RequestContext(request)) 
+
 @csrf_exempt
 def list_activities(request):
 	activi = Activities.objects.filter()
