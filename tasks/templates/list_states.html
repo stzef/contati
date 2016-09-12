@@ -35,7 +35,7 @@
                   <tbody>
 					<tr>
 					<td>{{ state.name_states }}</td>
-					<td><a class="btn btn-primary" href="{% url 'edit_states' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states' pk=state.pk %}">Borrar</a></td> 
+					<td><a class="btn btn-info btn-simple btn-xs" href="{% url 'edit_states' pk=state.pk %}"> <i class="fa fa-edit"></i> </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_states' pk=state.pk %}"> <i class="fa fa-times"></i> </a></td> 
                     </tr>
                   </tbody>
                   {% endfor %}
