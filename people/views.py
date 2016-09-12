@@ -66,7 +66,7 @@ def authenticate(request):
             password = request.POST['password']
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('/profile')
+            return HttpResponseRedirect('/')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -76,7 +76,7 @@ def authenticate(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('login')
 
 #<------------- view profile ------------->
 

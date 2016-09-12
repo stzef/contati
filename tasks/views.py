@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 class AjaxableResponseMixin(object):
     """
@@ -33,9 +35,10 @@ class AjaxableResponseMixin(object):
         else:
             return response
 
-
+@login_required(login_url="/login")
 def view_index(request):
-     return render_to_response('../templates/index.html')
+	user = User.objects.get( id = request.user.id )
+	return render_to_response('../templates/index.html', { "user": user}, context_instance = RequestContext(request))
 
 def view_board(request):
      return render_to_response('../templates/board.html')     
