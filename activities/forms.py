@@ -8,13 +8,13 @@ class ActivitiesForm(forms.ModelForm):
         
         fields = [
         'activity',
-        'product',
+        'project',
         ]
         labels = {
         'activity': 'activity',
-        'product': 'product',
+        'projects': 'projects',
         }
         widgets = {
         'activity': forms.TextInput(attrs={'class':'form-control'}),
-        'product': forms.Select(attrs={'class':'form-control'}),
+        'projects': forms.Select(attrs={'class':'form-control'}),
         }

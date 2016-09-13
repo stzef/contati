@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.template import RequestContext
 from StringIO import StringIO
 from django.template.loader import render_to_string
-from models import Activities,Product
+from models import Activities,Projects
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 

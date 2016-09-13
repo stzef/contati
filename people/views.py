@@ -171,7 +171,7 @@ class editCustomers(UpdateView):
 @csrf_exempt
 def deleteCustomers(request, pk):
     print (request)
-    activi = get_object_or_404(Customers, pk=pk)
+    customer = get_object_or_404(Customers, pk=pk)
 
     if request.method == 'PUT':
         form = CustomersForm(request.PUT, instance=customer)
@@ -180,9 +180,6 @@ def deleteCustomers(request, pk):
         return redirect('list_customers', pk=customer.pk)
 
     elif request.method == 'DELETE':
-        print "------------------------"
-        print pk
-        print "------------------------"
     
         Customers.objects.get(pk=pk).delete()
         return HttpResponse('../templates/delete_customers.html')
