@@ -1,0 +1,45 @@
+{% extends 'base_templates.html' %}
+
+{% block content %}
+
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{% url 'list_activities' %}">Actividades</a>
+                        </li>
+
+                        <li class="active">
+                            <i class="fa fa-tags"></i> proyecto
+                        </li>
+                    </ol>
+            </div>
+            </div>
+            
+            
+            <br /><br />
+
+            <div class="panel">
+                        <div class="panel-body">
+                        <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr><th>lista de proyectos</th></tr>
+                            </thead> 
+                            <tbody> {% for proyecto in produ %}
+                                 <tr>
+                                    <td>{{ proyecto.project}} </td> 
+                                    <td><a class="btn btn-primary" href="{% url 'edit_projects' pk=proyecto.pk %}" >Editar</a> <a class="btn btn-danger" href="{% url 'delete_projects' pk=proyecto.pk %}" >Borrar</a></td> 
+                                </tr>
+                            </tbody> {% endfor %}
+                        </table>
+                        </div>
+                        </div>        
+            </div>
+            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_projects' %}">Agregar nuevo Proyecto</a></p><br />
+
+{% endblock %}
