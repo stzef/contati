@@ -64,7 +64,7 @@ def list_projects(request):
 @csrf_exempt
 def action_projects(request, pk):
     	print ("fucion action")
-  	produ = get_object_or_404(projects, pk=pk)  	
+  	produ = get_object_or_404(Projects, pk=pk)  	
   	if request.method == 'PUT':
    		form = Projectsform(request.PUT, instance=produ)
 		if form.is_valid():
