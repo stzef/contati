@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States, States_kanban, Priorities, Departments
+from .models import States, States_kanban, Priorities, Departments, Tasks
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
-from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm
+from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -43,11 +43,21 @@ def view_index(request):
 def view_board(request):
      return render_to_response('../templates/board.html')     
 
+#Listar Estados
+def list_tasks(request):
+	state1 = Tasks.objects.filter()
+	return render_to_response('../templates/list_tasks.html', {'state1': state1}, context_instance=RequestContext(request))           
+
 def edit_tasks(request):
      return render_to_response('../templates/edit_tasks.html')
 
-def add_tasks(request):
-     return render_to_response('../templates/add_tasks.html')    
+class createTasks(CreateView):
+	model = Tasks
+	form_class = TasksForm
+	template_name = '../templates/add_tasks.html'
+
+	def get_success_url(self):
+		return reverse('list_tasks')
 
 # <----------- View States ------------------>
 

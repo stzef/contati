@@ -1,10 +1,45 @@
 {% extends 'base_templates.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="list_tasks">
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+    
+    <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
+                        </li>
+                        
+                        <li class="active">
+                            <i class="fa fa-tags"></i> Tareas
+                        </li>
+                    </ol>
+            </div>
+            </div>
+
+        <div class="panel">
+        	<div class="panel-body">
+            <div class="table-responsive">
+        	<table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                  <th>Tareas</th>
+                  <th>Funciones</th>
+                </tr>  
+                </thead>  	
+                  {% for tasks in state1 %}
+                  <tbody>
+					<tr>
+					<td>{{ tasks.description }}</td>
+					<td><a class="btn btn-info btn-simple btn-xs" href="{% url 'edit_states' pk=tasks.pk %}"> <i class="fa fa-edit"></i> </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_states' pk=tasks.pk %}"> <i class="fa fa-times"></i> </a></td> 
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+            </table>
+            </div>
+            </div>	      
         </div>
-    {% endfor %}
+
+        <div class="col-md-11 col-xl-11"><p class="text-right"><a href="{% url 'add_tasks' %}"><i class="fa fa-plus-circle" style="font-size: 72px;"></i></a></p><br />
+        </div>
+
 {% endblock content %}
