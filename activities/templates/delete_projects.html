@@ -12,7 +12,7 @@
                     <i class="fa fa-dashboard"></i>  <a href="{% url 'list_activities' %}">Actividades</a>
                 </li>
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="{% url 'list_products' %}">Productos</a>
+                    <i class="fa fa-dashboard"></i>  <a href="{% url 'list_projects' %}">Proyectos</a>
                 </li>
                 
                 <li class="active">
@@ -27,14 +27,14 @@
         <form>
             {% csrf_token %} 
             <div class="form-group col-md-12">
-                <label class="section-title-p ">Eliminar Actividad: </label>
-                <label class="section-title-p "><strong> {{produ.product}} </strong></label>
+                <label class="section-title-p ">Eliminar Producto: </label>
+                <label class="section-title-p "><strong> {{produ.projects}} </strong></label>
                 <input type="hidden"  id="pk" value={{produ.id}} /> 
             </div>
             <br /><br /><br />
             <div class="col-md-12">         
                 <button class="btn btn-danger" type="submit">Eliminar</button>
-                <a class="btn btn-default" href="{% url 'list_products' %}">Cancelar</a>
+                <a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>
             </div>
 
         </form>
@@ -54,7 +54,7 @@
          console.log(pk);
         $.ajax({
             type: 'DELETE',
-            url: '/products/'+pk,
+            url: '/projects/'+pk,
             
             success: function() {
                 alert('Object deleted!')

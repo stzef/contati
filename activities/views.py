@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from.models import *
 from forms import ActivitiesForm
-from forms2 import ProductForm
+from forms2 import ProjectsForm
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 from django.template import RequestContext
@@ -12,15 +12,15 @@ from models import Activities,Projects
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-def add_products(request):
+def add_projects(request):
 	if request.method == 'POST':
-		form = ProductForm(request.POST)
+		form = ProjectsForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('list_products') 
+			return redirect('list_projects') 
 	else:
-		form =	ProductForm()
-	return render_to_response('../templates/product_fo.html', {'form':form}, context_instance=RequestContext(request)) 
+		form =	ProjectsForm()
+	return render_to_response('../templates/projects_fo.html', {'form':form}, context_instance=RequestContext(request)) 
 
 @csrf_exempt
 def list_activities(request):
@@ -56,23 +56,23 @@ def action_activity(request, pk):
 		return HttpResponse('../templates/activities.html')
   	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
-def list_products(request):
-	produ = Product.objects.filter()
-	return render_to_response('../templates/product.html', {'produ': produ}, context_instance=RequestContext(request))  
+def list_projects(request):
+	produ = Projects.objects.filter()
+	return render_to_response('../templates/projects.html', {'produ': produ}, context_instance=RequestContext(request))  
 
 
 @csrf_exempt
-def action_product(request, pk):
+def action_projects(request, pk):
     	print ("fucion action")
-  	produ = get_object_or_404(Product, pk=pk)  	
+  	produ = get_object_or_404(projects, pk=pk)  	
   	if request.method == 'PUT':
-   		form = Productform(request.PUT, instance=produ)
+   		form = Projectsform(request.PUT, instance=produ)
 		if form.is_valid():
 		    form.save()
-		return redirect('list_product', pk=produ.pk)
+		return redirect('list_projects', pk=produ.pk)
 
 	elif request.method == 'DELETE':
-		print "dentro delete product"
-		Product.objects.get(pk=pk).delete()
+		print "dentro delete projects"
+		Projects.objects.get(pk=pk).delete()
 		return HttpResponse('ok')
-	return render_to_response('../templates/delete_product.html', {'produ': produ}, context_instance=RequestContext(request))
+	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
