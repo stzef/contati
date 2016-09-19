@@ -9,8 +9,11 @@
                     <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
                 </li>
                 
+                <li>
+                    <i class="fa fa-list"></i><a href="{% url 'list_customers' %}"> Clientes</a>
+                </li>
                 <li class="active">
-                    <i class="fa fa-tags"></i> Customers
+                    <i class="fa fa-tags"></i> Borrar
                 </li>
             </ol>
     </div>
@@ -20,9 +23,9 @@
     <form>
     {% csrf_token %}
     <div class="form-group col-md-12">
-  	 <label class="section-title-p ">Eliminar cliente </label><br/>
-     <label class="section-title-p "><strong> {{customer.name}} </strong></label>
-      <input type="hidden"  id="pk" value={{customer.id}} />
+  	 <label class="section-title-p ">Eliminar cliente: </label><br/>
+     <label class="section-title-p "><strong> {{custo.name}} {{custo.last_name}}  </strong></label>
+      <input type="hidden"  id="pk" value={{custo.id}} />
       </form>
     </div> 
     <br/>
@@ -40,25 +43,26 @@
 
   $("form").submit(function(event){
          
-         console.log( "entrando ajax");
+        console.log( "entrando ajax");
          //console.log(pk);
-         event.preventDefault()
-         var pk = $("#pk").val();
-         console.log(pk);
+        event.preventDefault()
+        var pk = $("#pk").val();
+        console.log(pk);
         $.ajax({
             type: 'DELETE',
             url: '/customers/'+pk,
-            
+           
             success: function() {
                 alert('Object deleted!')
             },
-            
+            headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });
 
-  })          
+  })  
 
+   
 </script>
-{% endblock %}
 
+{% endblock %}
 
 <!-- {{ object.name }} {{ object.last_name }} -->

@@ -3267,9 +3267,6 @@ body > .navbar-collapse[data-color="purple"]:after {
     border-top-color: white;
   }
 
-  .dropdown-menu {
-    display: none;
-  }
 
   .navbar-fixed-top {
     -webkit-backface-visibility: hidden;

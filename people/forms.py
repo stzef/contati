@@ -45,7 +45,16 @@ class CustomersForm(forms.ModelForm):
 
     class Meta:
         model = Customers
-        fields = ['name', 'last_name']
-        labels = {'name': 'Nombre cliente','last_name':'Apellido'}
-        widgets = {'name': forms.TextInput(attrs={'class':'forms-control'})}
+        fields = [
+        'name', 
+        'last_name'
+        ]
+        labels = {
+        'name': 'name', 
+        'last_name': 'last_name'
+        }
+        widgets = {
+        'name': forms.TextInput(attrs={'class':'form-control'}), 
+        'last_name': forms.TextInput(attrs={'class':'form-control'}),
+        }
 

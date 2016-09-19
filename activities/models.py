@@ -11,3 +11,6 @@ class Activities(models.Model):
 	activity = models.CharField(max_length=45)
 	project =  models.ForeignKey(Projects)
 
+	def __str__(self):
+		return '{}'.format(self.activity)
+

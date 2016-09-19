@@ -61,6 +61,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'activities.middleware.HttpPostTunnelingMiddleware',
+    'people.middleware.HttpPostTunnelingMiddleware',
+
 ]
 
 ROOT_URLCONF = 'contati.urls'

@@ -59,6 +59,11 @@ class createTasks(CreateView):
 	def get_success_url(self):
 		return reverse('list_tasks')
 
+	def get_dato(self, request, *args, **kwargs):
+		dato = request.user.id
+		print "usuario:" + dato 
+		return dato	
+
 # <----------- View States ------------------>
 
 #Agregar un nuevo Estado

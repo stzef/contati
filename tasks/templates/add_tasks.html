@@ -21,7 +21,7 @@
 
 <div class="panel">
   <div class="panel-body">
-    <form action="{% url 'add_tasks' %}" method="post">{% csrf_token %}
+    <form action="{% url 'add_tasks' %}" method="post">{{ form.errors }}
     {% csrf_token %}
       <div class="form-group">
         <label class="section-title-p col-md-4"><strong>Agregar un nueva tarea:</strong></label>

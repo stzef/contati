@@ -26,7 +26,8 @@
                   <th>Funciones</th>
                 </tr>  
                 </thead>  	
-                  {% for tasks in state1 %}
+               
+                  {% for tasks in user.contributors.tasks_set.all %}
                   <tbody>
 					<tr>
 					<td>{{ tasks.description }}</td>
