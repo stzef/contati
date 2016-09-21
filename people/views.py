@@ -182,6 +182,7 @@ class editCustomers(UpdateView):
 @csrf_exempt
 def action_customers(request, pk):
    
+    print (request)
     custo = get_object_or_404(Customers, pk=pk)
 
     if request.method == 'PUT':
