@@ -69,7 +69,7 @@ class createTasks(CreateView):
 
 	def post(self, request, *args, **kwargs):
 	 	campo = TasksForm(request.POST)
-	 	if form.is_valid():
+	 	if campo.is_valid():
 	 		campo.responsible = request.POST['dato']
 	 		campo.save()
 	 	return render(request, self.template_name)
