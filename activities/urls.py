@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^projects/add/$',views.add_projects, name='add_projects'),#POST
     url(r'^projects/(?P<pk>\d+)/$',views.action_projects, name='edit_projects'),#PUT
     url(r'^projects/(?P<pk>\d+)/$',views.action_projects, name='delete_projects'),#DELETE
+    url(r'^config/$',views.list_config, name='list_config'),#GET
 ]
