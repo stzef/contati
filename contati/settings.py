@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
-
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Quick-start development settings - unsuitable for production
@@ -89,6 +91,7 @@ TEMPLATES = [
     },
 ]
 
+WSGI_APPLICATION = 'contati.wsgi.application'
 AUTHENTICATION_BACKENDS = (
 # Facebook
 'social.backends.facebook.FacebookOAuth2',
@@ -124,18 +127,25 @@ SOCIAL_AUTH_PIPELINE = (
     
 )
 
-
-
-WSGI_APPLICATION = 'contati.wsgi.application'
-
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'd278evkp26mki5',
+        'USER': 'rtnyarmoevvnzz',
+        'PASSWORD': 'ful3iSglY4D9jp0SewtikmVQnX',
+        'HOST': 'ec2-174-129-223-35.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -193,6 +203,7 @@ STATICFILES_DIRS = [ BASE_DIR + '/static', ]
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 MEDIA_ROOT = BASE_DIR + '/media'
 
