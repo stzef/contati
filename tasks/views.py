@@ -67,7 +67,7 @@ class createTasks(CreateView):
 	 	# campo.save()
 	 	return context
 
-	def saveUser(self, request, **kwargs):
+	def POST(self, request, **kwargs):
 	 	campo = Tasks()
 	 	campo.responsible = request.POST['dato']
 	 	campo.save()
