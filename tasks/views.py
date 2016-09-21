@@ -60,10 +60,19 @@ class createTasks(CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
 	 	request = kwargs.get("request")
-	 	context["form"] = self.form_class
-	 	context["dato"] = User.objects.get( id = self.request.user.id )	 	
-	 	# context['url'] = {'dato': dato, 'form': form }
+	 	context['form'] = self.get_form()
+	 	context['dato'] = User.objects.get( id = self.request.user.id )	 	
+	 	# campo = Tasks()
+	 	# campo.responsible = request.POST['dato']
+	 	# campo.save()
 	 	return context
+
+	def saveUser(self, request, **kwargs):
+	 	campo = Tasks()
+	 	campo.responsible = request.POST['dato']
+	 	campo.save()
+	 	print campo
+	 	return render_to_response('list_tasks', context_instance = RequestContext(request))
 
 # <----------- View States ------------------>
 
