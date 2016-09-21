@@ -67,12 +67,12 @@ class createTasks(CreateView):
 	 	# campo.save()
 	 	return context
 
-	def POST(self, request, **kwargs):
+	def post(self, request, *args, **kwargs):
 	 	campo = Tasks()
 	 	campo.responsible = request.POST['dato']
 	 	campo.save()
 	 	print campo
-	 	return render_to_response('list_tasks', context_instance = RequestContext(request))
+	 	return render(request, self.template_name)
 
 # <----------- View States ------------------>
 
