@@ -32,8 +32,12 @@
                             </thead> 
                             <tbody> {% for proyecto in produ %}
                                  <tr>
+                                    <!--<td>{{ proyecto.project}} </td> 
+                                    <td><a class="btn btn-primary" href="{% url 'edit_projects' pk=proyecto.pk %}" >Editar</a> <a class="btn btn-danger" href="{% url 'delete_projects' pk=proyecto.pk %}" >Borrar</a></td> -->
+                                    
                                     <td>{{ proyecto.project}} </td> 
-                                    <td><a class="btn btn-primary" href="{% url 'edit_projects' pk=proyecto.pk %}" >Editar</a> <a class="btn btn-danger" href="{% url 'delete_projects' pk=proyecto.pk %}" >Borrar</a></td> 
+                                    <td><a class="btn btn-info btn-simple btn-xs" href="{% url 'edit_projects' pk=proyecto.pk %}"> <i class="fa fa-edit"></i> </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_projects' pk=proyecto.pk %}"> <i class="fa fa-times"></i> </a></td> 
+
                                 </tr>
                             </tbody> {% endfor %}
                         </table>
