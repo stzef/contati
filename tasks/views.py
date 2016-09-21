@@ -55,14 +55,15 @@ class createTasks(CreateView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/add_tasks.html'
+	success_url=reverse_lazy('list_tasks')
 
-	def get_success_url(self):
-		return reverse('list_tasks')
-
-	def get_dato(self, request, *args, **kwargs):
-		dato = request.user.id
-		print "usuario:" + dato 
-		return dato	
+	def get_context_data(self, **kwargs):
+		context = super(createTasks, self).get_context_data(**kwargs)
+	 	request = kwargs.get("request")
+	 	context["form"] = self.form_class
+	 	context["dato"] = User.objects.get( id = self.request.user.id )	 	
+	 	# context['url'] = {'dato': dato, 'form': form }
+	 	return context
 
 # <----------- View States ------------------>
 

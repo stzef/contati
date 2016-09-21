@@ -28,7 +28,7 @@
       <input type="hidden"  id="pk" value={{custo.id}} />
       </form>
     </div> 
-    <br/>
+    <br/><br /><br />
     <div class="col-md-12">        
       	<button class="btn btn-danger" type="submit">Eliminar</button>
       	<a class="btn btn-default" href="{% url 'list_customers' %}">Cancelar</a>
@@ -43,26 +43,26 @@
 
   $("form").submit(function(event){
          
-        console.log( "entrando ajax");
+         console.log( "entrando ajax");
          //console.log(pk);
-        event.preventDefault()
-        var pk = $("#pk").val();
-        console.log(pk);
+         event.preventDefault()
+         var pk = $("#pk").val();
+         console.log(pk);
         $.ajax({
             type: 'DELETE',
-            url: '/customers/'+pk,
-           
+            url: 'customers/'+pk,
+            
             success: function() {
                 alert('Object deleted!')
             },
-            headers: { 'X_METHODOVERRIDE': 'DELETE' }
+            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });
 
-  })  
+  })          
 
-   
 </script>
+
+</div>
 
 {% endblock %}
 
-<!-- {{ object.name }} {{ object.last_name }} -->
