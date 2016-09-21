@@ -72,7 +72,7 @@ class createTasks(CreateView):
 	 	if campo.is_valid():
 	 		campo.responsible = request.POST['dato']
 	 		campo.save()
-	 	return render(request, self.success_url)
+	 	#return render(request, self.success_url)
 
 # <----------- View States ------------------>
 
