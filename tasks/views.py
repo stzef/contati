@@ -68,10 +68,10 @@ class createTasks(CreateView):
 	 	return context
 
 	def post(self, request, *args, **kwargs):
-	 	campo = Tasks()
-	 	campo.responsible = request.POST['dato']
-	 	campo.save()
-	 	print campo
+	 	campo = TasksForm(request.POST)
+	 	if form.is_valid():
+	 		campo.responsible = request.POST['dato']
+	 		campo.save()
 	 	return render(request, self.template_name)
 
 # <----------- View States ------------------>
