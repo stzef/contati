@@ -61,20 +61,17 @@ class createTasks(CreateView):
 		context = super(createTasks, self).get_context_data(**kwargs)
 	 	request = kwargs.get("request")
 	 	context['form'] = self.get_form()
-	 	context['dato'] = User.objects.get( id = self.request.user.id )	 	
-	 	
-	 	# context['form'] = self.get_form(request.POST)
-	 	# if context['form'].is_valid():
-	 	# 	context['form'].responsible = request.POST['dato']
-	 	# 	context['form'].save()
+	 	context['dato'] = User.objects.get( id = self.request.user.id )	
 	 	return context
 
-	# def post(self, request, *args, **kwargs):
-	#  	campo = self.get_form(request.POST)
-	#  	if campo.is_valid():
-	#  		campo.responsible = request.POST['dato']
-	#  		campo.save()
-	#  	return HttpResponse(campo)
+	def post(self, request, *args, **kwargs):
+	 	campo = self.get_form(request.POST)
+	 	print "antes valid"
+	 	if campo.is_valid():
+	 		campo.responsible = request.POST['dato']
+	 		print campo
+	 		campo.save()
+	 	return HttpResponse(campo)
 
 # <----------- View States ------------------>
 
