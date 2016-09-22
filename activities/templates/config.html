@@ -5,21 +5,19 @@
           <div class="row">
             <div class="col-lg-12 col-sm-12">
                     
-            </div>
-            </div>
-
-            <a class="btn btn-default" href="{% url 'list_projects' %}">Proyectos</a>
-            <a class="btn btn-default" href="{% url 'list_activities' %}">Actividades</a>
-            <a class="btn btn-default" href="{% url 'list_customers' %}">Clientes</a>
-            <br /><br />
+            
 
             <div class="panel">
                         <div class="panel-body">
                         <div class="table-responsive">
-
+                        <a class="btn btn-default" href="{% url 'list_projects' %}"><li class="fa fa-building-o"></li>Proyectos</a>
+                        <a class="btn btn-default" href="{% url 'list_activities' %}"><li class="fa fa-tasks"></li>Actividades</a>
+                        <a class="btn btn-default" href="{% url 'list_customers' %}"><li class="fa fa-users"></li>Clientes</a>
                         
                         </div>
                         </div>        
+            </div>
+            </div>
             </div>
             <a href="https://mail.google.com/mail/#inbox">Gmail</a> 
             
