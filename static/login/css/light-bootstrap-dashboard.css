@@ -33,7 +33,7 @@
 }
 /*           Font Smoothing      */
 body {
-  background-image: url(../static/img/sidebar-4.jpg) no-repeat;
+  background-image: url(../../img/bg.jpg) no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: 50% 50%;
