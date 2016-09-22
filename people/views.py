@@ -150,10 +150,12 @@ def add_Customers(request):
         form = CustomersForm()
 
     return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
-@csrf_exempt
+
+
 def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
+
 
 class createCustomers(CreateView):
     model = Customers
@@ -162,6 +164,7 @@ class createCustomers(CreateView):
 
     def get_success_url(self):
         return reverse('list_customers')
+
 
 class editCustomers(UpdateView):
     model = Customers
