@@ -29,25 +29,39 @@
     <link href="{% static 'css/datetimepicker.css' %}" rel="stylesheet" />
 
 </head>
-	<h1>Registro</h1>
+	
 <body>
 <div class="content">
-    <div class="col-lg-12">
-        <div class="row">
-        {% if indicador == 0 %}
-            <div class="alert alert-danger fade in" id="respuesta">
-                <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
-        {% elif indicador == 1 %}
-            <div class="alert alert-success fade in" id="respuesta">
-                <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
-        {% else %}
-            <div class="alert alert-info fade in" id="respuesta">
-                <i class="fa fa-info-circle"></i> <strong>Por favor complete los siguientes campos para almacenar el registro</strong>
-        {% endif %}
-            </div>
-        </div>
-    </div>
+    <div class="container-fluid">
+            <div class="top-content">
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>Contati</strong> Formulario de Registro</h1>
+                            <div class="description">
+                              <p>
+                                ¡Hola! esta es la página de Registro, por favor, introduzca sus datos y disfruta de ella !<br/> Es un tablero Kanban para SistematizarEF.
+                              </p>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                    {% if indicador == 0 %}
+                      <div class="alert alert-danger fade in" id="respuesta">
+                          <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+                    {% elif indicador == 1 %}
+                    <div class="alert alert-success fade in" id="respuesta">
+                      <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+                    {% else %}
+                    <div class="alert alert-info fade in" id="respuesta">
+                      <i class="fa fa-info-circle"></i> <strong>Por favor complete los siguientes campos para almacenar el registro</strong>
+                    {% endif %}
+                    </div>
+                  </div>
+                </div>
+  
 
         {% if error %}
           <div class="alert alert-danger"> {{ error }} </div>
@@ -56,16 +70,11 @@
           <div class="alert alert-success"> Nueva usuaro creado correctamente. Puede ingresar ahora </div>
         {% endif %}
 
- <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-
-        <div class="col-sm-12">
-                          
-          <div class="form-box">
-            <div class="form-top">
-              <div class="form-top-left">
-                <h3>Inscríbete ahora</h3>
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 form-box">
+              <div class="form-top">
+                <div class="form-top-left">
+                    <h1>Inscríbete ahora</h1>
                   <p>Completa el siguiente formulario para obtener acceso:</p>
               </div>
               <div class="form-top-right">
@@ -75,13 +84,9 @@
 
           <div class="form-bottom">
          <form method="post" action="" class="registration-form">
-      {% csrf_token %}
-      <div class="container-fluid">
-        <div class="row">
-
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-
+          {% csrf_token %}
+            <h2 class="form-signin-heading text-center">Registro</h2>
+            <hr />
             <div class="form-group">
                 <label class="sr-only" for="form-first-name"> Name</label>
                 <input type= "text" name="first_name" class="form-first-name form-control" id="first_name" placeholder="Nombre">
@@ -121,7 +126,7 @@
 
             <div>
               <p>
-                <button type="submit" class="btn btn-primary btn-lg pull-right">Registrar</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block" >Registrar</button>
               </p>
             </div>
           </div>
