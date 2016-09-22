@@ -63,10 +63,10 @@ class createTasks(CreateView):
 	 	context['form'] = self.get_form()
 	 	context['dato'] = User.objects.get( id = self.request.user.id )	 	
 	 	
-	 	campo = self.get_form(request.POST)
-	 	if campo.is_valid():
-	 		campo.responsible = request.POST['dato']
-	 		campo.save()
+	 	context['form'] = self.get_form(request.POST)
+	 	if context['form'].is_valid():
+	 		context['form'].responsible = request.POST['dato']
+	 		context['form'].save()
 	 	return context
 
 	# def post(self, request, *args, **kwargs):
