@@ -3374,6 +3374,10 @@ body > .navbar-collapse[data-color="purple"]:after {
     font-size: 20px;
     margin-right: 10px;
   }
+
+  .co {
+    background-color: white;
+  }
 }
 @media (min-width: 992px) {
   .table-full-width {
