@@ -53,7 +53,8 @@
             url: '/activities/'+pk,
             
             success: function() {
-                alert('Object deleted!')
+                location.href = "list_activities"
+               // alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });
