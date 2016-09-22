@@ -170,6 +170,10 @@ input:focus {
   outline: 0 !important;
 }
 
+  .co {
+    background-color: white;
+  }
+
 /*           Animations              */
 .form-control,
 .input-group-addon,
@@ -3375,9 +3379,6 @@ body > .navbar-collapse[data-color="purple"]:after {
     margin-right: 10px;
   }
 
-  .co {
-    background-color: white;
-  }
 }
 @media (min-width: 992px) {
   .table-full-width {
