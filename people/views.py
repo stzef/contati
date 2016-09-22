@@ -139,7 +139,7 @@ def change_password(request):
 #<------------ view Customers --------------->  
 
 # Agregar clientes
-@login_required
+
 def add_Customers(request):
     if request.method == "POST":
         form = CustomersForm(request.POST)
@@ -151,12 +151,12 @@ def add_Customers(request):
 
     return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
 
-@login_required
+
 def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
-@login_required
+
 class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
@@ -165,7 +165,7 @@ class createCustomers(CreateView):
     def get_success_url(self):
         return reverse('list_customers')
 
-@login_required
+
 class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm
