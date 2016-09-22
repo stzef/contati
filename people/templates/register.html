@@ -48,27 +48,35 @@
                     </div>
 
                     <div class="row">
-                    {% if indicador == 0 %}
-                      <div class="alert alert-danger fade in" id="respuesta">
-                          <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
-                    {% elif indicador == 1 %}
-                    <div class="alert alert-success fade in" id="respuesta">
-                      <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
-                    {% else %}
-                    <div class="alert alert-info fade in" id="respuesta">
-                      <i class="fa fa-info-circle"></i> <strong>Por favor complete los siguientes campos para almacenar el registro</strong>
-                    {% endif %}
-                    </div>
-                  </div>
-                </div>
-  
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    {% if indicador == 0 %}
+                                      <div class="alert alert-danger fade in" id="respuesta">
+                                          <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+                                    {% elif indicador == 1 %}
+                                      <div class="alert alert-success fade in" id="respuesta">
+                                          <i class="fa fa-info-circle"></i> <strong>  {{ respuesta }}</strong>
+                                    {% else %}
+                                      <div class="alert alert-info fade in" id="respuesta">
+                                          <i class="fa fa-info-circle"></i> <strong>Por favor complete los siguientes campos para almacenar el registro</strong>
+                                    {% endif %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
+                            <div class="form-top-right">
+                              <i class="fa fa-key"></i>
+                            </div>
+                            </div>
+                            <div class="form-bottom">
 
-        {% if error %}
-          <div class="alert alert-danger"> {{ error }} </div>
-        {% endif %}
-        {% if success %}
-          <div class="alert alert-success"> Nueva usuaro creado correctamente. Puede ingresar ahora </div>
-        {% endif %}
+                             {% if error %}
+                                <div class="alert alert-danger"> {{ error }} </div>
+                              {% endif %}
+                              {% if success %}
+                                <div class="alert alert-success"> Nueva usuaro creado correctamente. Puede ingresar ahora </div>
+                              {% endif %}
 
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3 form-box">
