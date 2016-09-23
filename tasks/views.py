@@ -67,8 +67,8 @@ class createTasks(CreateView):
 	def post(self, request, *args, **kwargs):
 	 	campo = TasksForm(request.POST)
 	 	print "antes valid"
+	 	campo.responsible = request.POST.get['dato']
 	 	if campo.is_valid():
-	 		campo.responsible = request.POST.get['dato']
 	 		print campo
 	 		campo.save()
 	 	return super(createTasks, self).post(request, *args, **kwargs)
