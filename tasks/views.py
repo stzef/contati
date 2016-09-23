@@ -69,9 +69,9 @@ class createTasks(CreateView):
 	#  	return super(createTasks, self).post(request, *args, **kwargs)
 
 class editTasks(UpdateView):
-    model = Tasks
+	model = Tasks
 	form_class = TasksForm
-	template_name = '../templates/edit_states.html'
+	template_name = '../templates/edit_tasks.html'
 	success_url=reverse_lazy('list_tasks')	
 
 # <----------- View States ------------------>
