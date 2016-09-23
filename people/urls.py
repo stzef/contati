@@ -10,6 +10,9 @@ from django.views.generic import TemplateView
 from . import views
 
 
+
+
+
 urlpatterns = [
    
   
@@ -27,11 +30,11 @@ urlpatterns = [
 	url('^change-password$', views.change_password, name='change-password'),
 	url('^change-image$', views.change_image, name='change-image'),
 
-
-	url(r'^customers/$', views.list_Customers, name='list_customers'),
-	url(r'^customers/add/$', login_required(views.createCustomers.as_view(template_name="add_customers"))), 
-	url(r'^customers/(?P<pk>\d+)/edit/$', login_required(views.editCustomers.as_view(template_name="edit_customers"))),
-	url(r'^customers/(?P<pk>\d+)/$', views.action_customers, name='delete_customers'),
+	
+	url(r'^customers/login$', views.list_Customers,auth_views.login name='list_customers'),
+	url(r'^customers/add/login$', views.createCustomers.as_view(), auth_views.login name="add_customers"), 
+	url(r'^customers/(?P<pk>\d+)/edit/login$', login_required(views.editCustomers.as_view(template_name="edit_customers"))),
+	url(r'^customers/(?P<pk>\d+)/login$', views.action_customers, name='delete_customers'),
 
 	
 	

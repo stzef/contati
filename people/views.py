@@ -20,6 +20,7 @@ from django.utils.decorators import method_decorator
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here. 
 #<---------------------- view register -----------------> 
 
