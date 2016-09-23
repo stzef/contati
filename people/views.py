@@ -11,7 +11,7 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
-from people.forms import ContributorsForm, CustomersForm
+from people.forms import CustomersForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse, reverse_lazy 
@@ -160,7 +160,8 @@ def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
-@login_required(login_url="/login")class createCustomers(CreateView):
+@login_required(login_url="/login")
+class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/add_customers.html'
@@ -185,7 +186,8 @@ class editCustomers(UpdateView):
 #     def get_success_url(self):
 #         return reverse('list_customers')  
 
-@csrf_exempt
+
+@login_required(login_url="/login")
 def action_customers(request, pk):
    
     print (request)

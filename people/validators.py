@@ -65,7 +65,7 @@ class FormLoginValidator(Validator):
 
         self.acceso = auth.authenticate(username = username, password = password )
         if self.acceso is None:
-            self._message = 'Invalid user or password'
+            self._message = 'usuario o contraseña invalida'
             return False
         return True
 
@@ -77,7 +77,7 @@ class FormChangePasswordValidator(Validator):
             return False
         #validar que las contraseñas sehan iguales
         if not self._post['password1'] == self._post['password2']:
-            self._message = 'Passwords do not match'
+            self._message = 'las contraseñas no coinciden'
             return False
         return True
 
