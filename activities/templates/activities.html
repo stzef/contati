@@ -20,13 +20,7 @@
                             </thead>
                             
                             <tbody>{% for activity in activi %} 
-                                <tr>
-                                    <!--<td>{{ activity.activity }} </td> 
-                                    <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}" >Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}" >Borrar</a></td> 
-                                    <td>{{ activity.activity }} </td> 
-                                    <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}"value= Editar </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_activity' pk=activity.pk %}"> <i class="fa fa-times"></i> </a></
-                                    td> 
-                                    <input class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}" value="Guardar" />-->
+                                <tr>                                    
                                     <td>{{ activity.activity }} </td> 
                                     <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}">Borrar</a></td> 
 
@@ -37,6 +31,6 @@
                         </div>        
             </div>
             <a href="https://mail.google.com/mail/#inbox">Gmail</a> 
-            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_activity' %}" >Agregar nueva Actividad</a></p><br />
+            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_activity' %}" >Agregar</a></p><br />
     
 {% endblock %}
