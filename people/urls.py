@@ -31,7 +31,7 @@ urlpatterns = [
 	url('^change-image$', views.change_image, name='change-image'),
 
 	
-	url(r'^customers/login$', views.list_Customers,auth_views.login name='list_customers'),
+	url(r'^customers/login$', auth_views.login name='list_customers'),
 	url(r'^customers/add/login$', views.createCustomers.as_view(), auth_views.login name="add_customers"), 
 	url(r'^customers/(?P<pk>\d+)/edit/login$', login_required(views.editCustomers.as_view(template_name="edit_customers"))),
 	url(r'^customers/(?P<pk>\d+)/login$', views.action_customers, name='delete_customers'),
