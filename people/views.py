@@ -24,11 +24,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here. 
 #<---------------------- view register -----------------> 
 
-@login_required(login_url="/login")
+#@login_required(login_url="/login")
 def view_register(request):
     return render_to_response('register.html', context_instance = RequestContext(request))
 
-@login_required(login_url="/login")
+#@login_required(login_url="/login")
 def register_user(request):
     error = False
     if request.method == 'POST':
