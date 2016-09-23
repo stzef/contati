@@ -3,19 +3,7 @@
 {% block content %}
 <div class="row">
 <div class="col-lg-12 col-sm-12">
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-            </li>
-            
-            <li>
-                <i class="fa fa-tags"></i> <a href="{% url 'list_activities' %}">Actividades </a>
-            </li>
-
-            <li class="active">
-                <i class="fa fa-tags"></i> Agregar Actividades
-            </li>
-        </ol>
+  <h3>ACTIVIDADES</h3>
 </div>
 </div>
 
@@ -28,7 +16,8 @@
         <div class="col-md-7">
           {{ form.activity }}<br/>
           {{ form.project }}<br/>  <br/>                  
-          <input class="btn btn-primary" type="submit" value="Guardar" />           
+          <input class="btn btn-primary" type="submit" value="Guardar" />
+          <a class="btn btn-default" href="{% url 'list_activities' %}">Cancelar</a>           
         </div>
       </div>
      
