@@ -6,6 +6,7 @@ from django.contrib.auth.views import login
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.contrib.auth.decorators import login_required, permission_required
 
 urlpatterns = [
    
