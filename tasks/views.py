@@ -68,10 +68,10 @@ class createTasks(CreateView):
 	 	campo = self.get_form(request.POST)
 	 	print "antes valid"
 	 	if campo.is_valid():
-	 		campo.responsible = request.POST.get['dato']
+	 		campo.responsible = request.POST['dato']
 	 		print campo
 	 		campo.save()
-	 	return HttpResponse()
+	 	return super(createTasks, self).post(request, *args, **kwargs)
 
 # <----------- View States ------------------>
 
