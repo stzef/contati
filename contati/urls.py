@@ -1,5 +1,4 @@
 from django.conf.urls import url, include, patterns
-patterns
 from django.contrib import admin
 from people.views import *
 from tasks.views import view_index, view_board
