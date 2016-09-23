@@ -21,9 +21,11 @@ from django.core import serializers
 # Create your views here. 
 #<---------------------- view register -----------------> 
 
+@login_required(login_url="/login")
 def view_register(request):
-    return render_to_response('register.html', context_instance = RequestContext(request))  
+    return render_to_response('register.html', context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def register_user(request):
     error = False
     if request.method == 'POST':
@@ -53,10 +55,11 @@ def register_user(request):
 
 #<------------- view login --------------->
 
+@login_required(login_url="/login")
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
 
-
+@login_required(login_url="/login")
 def authenticate(request):
 
     if request.method == 'POST':
@@ -101,6 +104,7 @@ def profile(request):
                 
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def change_image(request):
     user = User.objects.get( id = request.user.id )
     save = False
@@ -112,7 +116,7 @@ def change_image(request):
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
 
-@login_required
+@login_required(login_url="/login")
 def change_password(request):    
     """view del profile
     """
@@ -139,7 +143,7 @@ def change_password(request):
 #<------------ view Customers --------------->  
 
 # Agregar clientes
-
+@login_required(login_url="/login")
 def add_Customers(request):
     if request.method == "POST":
         form = CustomersForm(request.POST)
@@ -151,13 +155,12 @@ def add_Customers(request):
 
     return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
 
-
+@login_required(login_url="/login")
 def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
-
-class createCustomers(CreateView):
+@login_required(login_url="/login")class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/add_customers.html'
@@ -165,7 +168,7 @@ class createCustomers(CreateView):
     def get_success_url(self):
         return reverse('list_customers')
 
-
+@login_required(login_url="/login")
 class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm
