@@ -5,8 +5,10 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import login 
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
 from django.contrib.auth.decorators import login_required, permission_required
+from django.views.generic import TemplateView
+from . import views
+
 
 urlpatterns = [
    
@@ -25,9 +27,10 @@ urlpatterns = [
 	url('^change-password$', views.change_password, name='change-password'),
 	url('^change-image$', views.change_image, name='change-image'),
 
+
 	url(r'^customers/$', views.list_Customers, name='list_customers'),
-	url(r'^customers/add/$', views.createCustomers.as_view(), name='add_customers'),
-	url(r'^customers/(?P<pk>\d+)/edit/$', views.editCustomers.as_view(), name='edit_customers'),
+	url(r'^customers/add/$', login_required(views.createCustomers.as_view(template_name="add_customers"))), 
+	url(r'^customers/(?P<pk>\d+)/edit/$', login_required(views.editCustomers.as_view(template_name="edit_customers"))),
 	url(r'^customers/(?P<pk>\d+)/$', views.action_customers, name='delete_customers'),
 
 	

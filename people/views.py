@@ -60,7 +60,6 @@ def register_user(request):
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
 
-@login_required(login_url="/login")
 def authenticate(request):
 
     if request.method == 'POST':
