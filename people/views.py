@@ -16,8 +16,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.core import serializers
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
@@ -56,7 +57,6 @@ def register_user(request):
 
 #<------------- view login --------------->
 
-@login_required(login_url="/login")
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
 
@@ -145,15 +145,11 @@ def change_password(request):
 
 # Agregar clientes
 
-class LoginRequiredMixin(object):
-    @classmethod
-    def as_view(cls, **initkwargs):
-        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
-        return login_required(view)
 
 
 
-def add_Customers(LoginRequiredMixin, request):
+@method_decorator(login_required)
+def add_Customers(request):
     if request.method == "POST":
         form = CustomersForm(request.POST)
         if form.is_valid():
@@ -165,12 +161,16 @@ def add_Customers(LoginRequiredMixin, request):
     return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
 
 
-def list_Customers(LoginRequiredMixin, request):
+
+@method_decorator(login_required)
+def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
 
-class createCustomers(LoginRequiredMixin, CreateView):
+
+@method_decorator(login_required)
+class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/add_customers.html'
@@ -179,7 +179,8 @@ class createCustomers(LoginRequiredMixin, CreateView):
         return reverse('list_customers')
 
 
-class editCustomers(LoginRequiredMixin, UpdateView):
+@method_decorator(login_required)
+class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/edit_customers.html'
@@ -196,7 +197,8 @@ class editCustomers(LoginRequiredMixin, UpdateView):
 #         return reverse('list_customers')  
 
 
-def action_customers(LoginRequiredMixin, request, pk):
+@method_decorator(login_required)
+def action_customers(request, pk):
    
     print (request)
     custo = get_object_or_404(Customers, pk=pk)
