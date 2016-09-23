@@ -11,19 +11,24 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
-from people.forms import ContributorsForm, CustomersForm
+from people.forms import CustomersForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
 
+@login_required(login_url="/login")
 def view_register(request):
-    return render_to_response('register.html', context_instance = RequestContext(request))  
+    return render_to_response('register.html', context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def register_user(request):
     error = False
     if request.method == 'POST':
@@ -55,7 +60,6 @@ def register_user(request):
 
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
-
 
 def authenticate(request):
 
@@ -101,6 +105,7 @@ def profile(request):
                 
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def change_image(request):
     user = User.objects.get( id = request.user.id )
     save = False
@@ -112,7 +117,7 @@ def change_image(request):
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
 
-@login_required
+@login_required(login_url="/login")
 def change_password(request):    
     """view del profile
     """
@@ -140,6 +145,8 @@ def change_password(request):
 
 # Agregar clientes
 
+
+@login_required(login_url="/login")
 def add_Customers(request):
     if request.method == "POST":
         form = CustomersForm(request.POST)
@@ -151,7 +158,7 @@ def add_Customers(request):
 
     return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
 
-
+@login_required(login_url="/login")
 def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
@@ -164,6 +171,7 @@ class createCustomers(CreateView):
 
     def get_success_url(self):
         return reverse('list_customers')
+
 
 
 class editCustomers(UpdateView):
@@ -182,7 +190,8 @@ class editCustomers(UpdateView):
 #     def get_success_url(self):
 #         return reverse('list_customers')  
 
-@csrf_exempt
+
+@login_required(login_url="/login")
 def action_customers(request, pk):
    
     print (request)
