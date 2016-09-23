@@ -26,7 +26,7 @@
                                     <td>{{ activity.activity }} </td> 
                                     <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}"> <i class="fa fa-edit"></i> </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_activity' pk=activity.pk %}"> <i class="fa fa-times"></i> </a></
                                     td> 
-                                    <input class="btn btn-primary" type="submit" value="Guardar" />
+                                    <input class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}" value="Guardar" />
 
                                 </tr>
                             </tbody>  {% endfor %}
