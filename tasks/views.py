@@ -48,9 +48,6 @@ def list_tasks(request):
 	state1 = Tasks.objects.filter()
 	return render_to_response('../templates/list_tasks.html', {'state1': state1}, context_instance=RequestContext(request))           
 
-def edit_tasks(request):
-     return render_to_response('../templates/edit_tasks.html')
-
 class createTasks(CreateView):
 	model = Tasks
 	form_class = TasksForm
@@ -70,6 +67,12 @@ class createTasks(CreateView):
 	#  	campo.responsible = request.POST['dato']
 	#  	campo.save()
 	#  	return super(createTasks, self).post(request, *args, **kwargs)
+
+class editTasks(UpdateView):
+    model = Tasks
+	form_class = TasksForm
+	template_name = '../templates/edit_states.html'
+	success_url=reverse_lazy('list_tasks')	
 
 # <----------- View States ------------------>
 

@@ -23,7 +23,7 @@
                   <tbody>
 					<tr>
 					<td>{{ tasks.description }}</td>
-					<td><a class="btn btn-info btn-simple btn-xs" href="{% url 'edit_states' pk=tasks.pk %}"> <i class="fa fa-edit"></i> </a> <a class="btn btn-danger btn-simple btn-xs" href="{% url 'delete_states' pk=tasks.pk %}"> <i class="fa fa-times"></i> </a></td> 
+					<td><a class="btn btn-primary" href="{% url 'edit_states' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_states' pk=tasks.pk %}">Borrar</a></td> 
                     </tr>
                   </tbody>
                   {% endfor %}
