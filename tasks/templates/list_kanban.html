@@ -4,19 +4,7 @@
 
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-            <ol class="breadcrumb">
-                <li>
-                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-                </li>
-
-                <li>
-                    <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
-                </li>
-                
-                <li class="active">
-                    <i class="fa fa-tags"></i> Estados Kanban 
-                </li>
-            </ol>
+            <h3>ESTADOS KANBAN</h3>
     </div>
   </div>
 
@@ -43,7 +31,7 @@
       </div>	      
   </div>
 
-  <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_states_kanban' %}">Agregar nuevo estado</a></p><br />
+  <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_states_kanban' %}">Agregar</a></p><br />
 
 
 {% endblock %}
