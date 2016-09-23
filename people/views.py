@@ -147,7 +147,7 @@ def change_password(request):
 
 
 
-@method_decorator(login_required)
+
 def add_Customers(request):
     if request.method == "POST":
         form = CustomersForm(request.POST)
@@ -161,14 +161,13 @@ def add_Customers(request):
 
 
 
-@method_decorator(login_required)
+
 def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
 
 
-@method_decorator(login_required)
 class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
@@ -178,7 +177,7 @@ class createCustomers(CreateView):
         return reverse('list_customers')
 
 
-@method_decorator(login_required)
+
 class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm
@@ -196,7 +195,7 @@ class editCustomers(UpdateView):
 #         return reverse('list_customers')  
 
 
-@method_decorator(login_required)
+
 def action_customers(request, pk):
    
     print (request)
