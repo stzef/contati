@@ -65,7 +65,7 @@ class createTasks(CreateView):
 	 	return context
 
 	def post(self, request, *args, **kwargs):
-	 	campo = self.get_form(request.POST)
+	 	campo = TasksForm(request.POST)
 	 	print "antes valid"
 	 	if campo.is_valid():
 	 		campo.responsible = request.POST['dato']
