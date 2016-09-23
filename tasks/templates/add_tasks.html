@@ -3,19 +3,7 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <ol class="breadcrumb">
-        <li>
-            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-        </li>
-
-        <li>
-           <i class="fa fa-tags"></i> <a href="{% url 'list_tasks' %}">Tareas </a>
-        </li>
-        
-        <li class="active">
-            <i class="fa fa-tags"></i> Agregar Tareas
-        </li>
-    </ol>
+    <h3>AGREGAR TAREA</h3>
   </div>
 </div>
 
@@ -24,7 +12,7 @@
     <form action="{% url 'add_tasks' %}" method="post">{{ form.errors }}
     {% csrf_token %}
       <div class="form-group">
-        <label class="section-title-p col-md-4"><strong>Agregar un nueva tarea:</strong></label>
+        <label class="section-title-p col-md-4"><strong>Agregar una nueva tarea:</strong></label>
         <div class="col-md-7">
           
           <strong>{{ form.responsible.label }}</strong> <input type="hidden" name="dato" value="{{ dato.id }}" /> {{ dato.first_name }} <br/>
@@ -39,7 +27,8 @@
           <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
           <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
 
-          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+          <input class="btn btn-primary" type="submit" value="Guardar" />
+          <a class="btn btn-default" href="{% url 'list_states' %}">Cancelar</a> 
         </div>
       </div>
      

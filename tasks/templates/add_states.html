@@ -3,19 +3,7 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <ol class="breadcrumb">
-        <li>
-            <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-        </li>
-
-        <li>
-           <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
-        </li>
-        
-        <li class="active">
-            <i class="fa fa-tags"></i> Agregar Estados
-        </li>
-    </ol>
+    <h3>AGREGAR ESTADO</h3>
   </div>
 </div>
 
@@ -27,7 +15,8 @@
         <label class="section-title-p col-md-4"><strong>Agregar un nuevo Estado:</strong></label>
         <div class="col-md-7">
           {{ form.name_states }}<br/>
-          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+          <input class="btn btn-primary" type="submit" value="Guardar" />
+          <a class="btn btn-default" href="{% url 'list_states' %}">Cancelar</a> 
         </div>
       </div>
      
