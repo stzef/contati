@@ -1,166 +1,169 @@
+{% extends 'base_templates.html' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta  charset="UTF-8" />
-    <title>Contati</title>
+{% block content %}
 
-	<!-- Bootstrap Core CSS -->
-        <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title"><i class="fa fa-user" aria-hidden="true"></i> <strong>Bienvenid@, {{ user.first_name }} {{ user.last_name }}</strong></h4>
+                        <p class="category">Email, lo más reciente</p>
+                    </div>
+                    <div class="content">
+                        <div><p>5 Mensajes nuevos</p></div>
 
-        <!-- Font Awesome CSS -->
-        <link href="../static/css/font-awesome.css" rel="stylesheet">
-        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-		
-		<!-- Custom CSS -->
-        <link href="../static/index/css/animate.css" rel="stylesheet">
-
-        <!-- Custom CSS -->
-        <link href="../static/index/css/style.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-
-
-        <!-- Template js -->
-        <script src="../static/js/jquery-2.1.1.min.js"></script>
-        <script src="../static/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../static/js/jquery.appear.js"></script>
-        <script src="../static/js/jqBootstrapValidation.js"></script>
-        <script src="../static/js/modernizr.custom.js"></script>
-        <script src="../static/js/script.js"></script>
-
-	<title></title>
-</head>
-<body>
-
-	<!-- Start Logo Section -->
-        <section id="logo-section" class="text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="logo text-center">
-                            <h1>Contati</h1>
-                            <span>Kanban Board for business SistematizarEF</span>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Gmail Conectado
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Logo Section -->
-        
-        
-        <!-- Start Main Body Section -->
-        <div class="mainbody-section text-center">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col-md-3">
-                        
-                        <div class="menu-item blue">
-                            <a href="{% url 'board' %}" data-toggle="modal">
-                                <i class="fa fa-magic"></i>
-                                <p>Tablero</p>
-                            </a>
-                        </div>
-                        
-                        <div class="menu-item green">
-                            <a href="{% url 'list_states' %}" data-toggle="modal">
-                                <i class="fa fa-tags"></i>
-                                <p>Estados, prioridades y departamentos</p>
-                            </a>
-                        </div>
-                        
-                        <div class="menu-item light-red">
-                            <a href="{% url 'profile' %}" data-toggle="modal">
-                                <i class="fa fa-user"></i>
-                                <p>Perfil</p>
-                            </a>
-                        </div>
-                        
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">Actividades</h4>
+                        <p class="category">Actividades en proceso</p>
                     </div>
-                    
-                    <div class="col-md-6">
-                        
-                        <!-- Start Carousel Section -->
-                        <div class="home-slider">
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="padding-bottom: 30px;">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                </ol>
+                    <div class="content">
+                        <div>Actividades iniciadas y realizando</div>
 
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img src="../static/index/images/1.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="../static/index/images/2.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img src="../static/index/images/3.jpg" class="img-responsive" alt="">
-                                    </div>
-
-                                </div>
-
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> 
                             </div>
                         </div>
-                        <!-- Start Carousel Section -->
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="menu-item color responsive">
-                                    <a href="#service-modal" data-toggle="modal">
-                                        <i class="fa fa-bar-chart"></i>
-                                        <p>Reportes</p>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <div class="menu-item light-orange responsive-2">
-                                    <a href="#team-modal" data-toggle="modal">
-                                        <i class="fa fa-tasks"></i>
-                                        <p>Tareas</p>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
                     </div>
-                    
-                    <div class="col-md-3">
-                        
-                        <div class="menu-item light-red">
-                            <a href="#contact-modal" data-toggle="modal">
-                                <i class="fa fa-cogs"></i>
-                                <p>Configuración</p>
-                            </a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">Tareas</h4>
+                        <p class="category">Tareas en Proceso</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>"Registrar nuevos usuarios"</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                            </label>
+                                        </td>
+                                        <td>Investigar sobre un tema nuevo: google charts</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
+                                            </label>
+                                        </td>
+                                        <td>Implementar metodos correctos en el codigo</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Crear historias de usuarios para el nuevo proyecto</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Leer "Following makes Medium better"</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                                        <td>Elborar función de cuentas de inventario</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        
-                        <div class="menu-item color">
-                            <a href="{% url 'list_activities' %}" data-toggle="modal">
-                                <i class="fa fa-list"></i>
-                                <p>Actividades</p>
-                            </a>
+
+                                <div class="footer">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Actualizado hace 3 minutos
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="menu-item blue">
-                            <a href="{% url 'register-user' %}" data-toggle="modal">
-                                <i class="fa fa-pencil-square-o"></i>
-                                <p>Registro Usuario</p>
-                            </a>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Main Body Section -->
 
-</body>
-</html>
+{% endblock %}
+        

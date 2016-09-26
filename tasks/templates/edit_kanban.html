@@ -1,36 +1,37 @@
-{% extends 'base_tasks.html' %}
+{% extends 'base_templates.html' %}
 
 {% block content %}
 
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-            <ol class="breadcrumb">
-                <li>
-                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-                </li>
-
-                <li>
-                    <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
-                </li>
-                
-                <li class="active">
-                    <i class="fa fa-tags"></i> Estados Kanban 
-                </li>
-            </ol>
+            <h3>EDITAR ESTADO KANBAN</h3>
     </div>
   </div>
   
 <div class="panel">
-<div class="panel-body">
-<form method="POST">{% csrf_token %}
-  	<label for="states">Editar Estado Color</label> <br/>
-	{{ form.as_p}}<br/>
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form method="POST">
+    {% csrf_token %}
+      <div class="form-group">
+        <label class="section-title-p col-md-3 text-right" for="{{form.name_states.id_for_label}}"><strong>{{form.name_states.label}}:</strong></label>
+        <div class="col-md-6">
+          {{ form.name_states }}<br/><br/>
+          <!-- <input type="hidden"  id="pk" value="{{ object.id }}" /> -->
+        </div>
+      </div>
+      <div class="col-md-12"></div>
+      <div class="form-group">
+        <label class="section-title-p col-md-3 text-right" for="{{form.color.id_for_label}}"><strong>{{form.color.label}}:</strong></label>
+        <div class="col-md-6">
+          {{ form.color}}<br/><br/>
+          <!-- <input type="hidden"  id="pk" value="{{ object.id }}" /> -->
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+          <a class="btn btn-default" href="{% url 'list_states_kanban' %}">Cancelar</a>
+        </div>
+      </div>
+     
+    </form>
+  </div>
 </div>
 
 {% endblock %}

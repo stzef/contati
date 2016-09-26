@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_templates.html' %}
 
 {% block content %}
 <div class="row">
@@ -8,23 +8,29 @@
                 <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
             </li>
             
+            <li>
+                <i class="fa fa-list"></i> <a href="{% url 'list_customers' %}">Clientes</a>
+            </li>
             <li class="active">
-                <i class="fa fa-tags"></i> Customers
+                <i class="fa fa-pencil-square-o"></i> Agregar Clientes
             </li>
         </ol>
 </div>
 </div>
 <div class="panel">
-<div class="panel-body">
-<form action="{% url 'add_customers' %}" method="post">{% csrf_token %}
-  	<label for="states">Agregar un nuevo Cliente</label> <br/>
-	{{ form.name_Customers}}
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form action="{% url 'add_customers' %}" method="post">{% csrf_token %}
+    {% csrf_token %}
+      <div class="form-group">
+        <label class="section-title-p col-md-4"><strong>Agregar un nuevo Cliente:</strong></label>
+        <div class="col-md-7">
+          Nombre: {{ form.name }}<br/> Apellido: {{ form.last_name }}
+          <br/>
+          <input class="btn btn-primary" type="submit" value="Guardar" />
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

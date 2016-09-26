@@ -1,12 +1,14 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States, States_kanban, Priorities, Departments
+from .models import States, States_kanban, Priorities, Departments, Tasks
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
-from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm
+from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 class AjaxableResponseMixin(object):
     """
@@ -33,22 +35,52 @@ class AjaxableResponseMixin(object):
         else:
             return response
 
-
+@login_required(login_url="/login")
 def view_index(request):
-     return render_to_response('../templates/index.html')
+	user = User.objects.get( id = request.user.id )
+	return render_to_response('../templates/index.html', { "user": user}, context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def view_board(request):
      return render_to_response('../templates/board.html')     
 
-def edit_tasks(request):
-     return render_to_response('../templates/edit_tasks.html')
+#Listar Estados
+@login_required(login_url="/login")
+def list_tasks(request):
+	state1 = Tasks.objects.filter()
+	return render_to_response('../templates/list_tasks.html', {'state1': state1}, context_instance=RequestContext(request))           
 
-def add_tasks(request):
-     return render_to_response('../templates/add_tasks.html')    
+class createTasks(CreateView):
+	model = Tasks
+	form_class = TasksForm
+	template_name = '../templates/add_tasks.html'
+	success_url=reverse_lazy('list_tasks')
+
+	# def get_context_data(self, **kwargs):
+	# 	context = super(createTasks, self).get_context_data(**kwargs)
+	#  	request = kwargs.get("request")
+	#  	context['form'] = self.get_form()
+	#  	context['dato'] = User.objects.get( id = self.request.user.id )	
+	#  	return context
+
+	# def post(self, request, *args, **kwargs):
+	#  	campo = TasksForm(request.POST)
+	#  	print "antes valid"
+	#  	campo.responsible = request.POST['dato']
+	#  	campo.save()
+	#  	return super(createTasks, self).post(request, *args, **kwargs)
+
+class editTasks(UpdateView):
+	model = Tasks
+	form_class = TasksForm
+	template_name = '../templates/edit_tasks.html'
+	success_url=reverse_lazy('list_tasks')	
 
 # <----------- View States ------------------>
 
 #Agregar un nuevo Estado
+
+@login_required(login_url="/login")
 def add_states(request):
 	if request.method == "POST":
 		form = StatesForm(request.POST)
@@ -61,11 +93,13 @@ def add_states(request):
 	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))           
 
 #Listar Estados
+@login_required(login_url="/login")
 def list_states(request):
 	state1 = States.objects.filter()
 	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
 
 #Editar Estados por funcion
+@login_required(login_url="/login")
 def edit_states(request, pk): #Se asignan el parametro requuest y la llave primaria pk
 	state = get_object_or_404(States, pk=pk) #se obtiene el objeto por pk
 	if request.method == "POST":	
@@ -103,6 +137,7 @@ class deleteStates(DeleteView):
 
 # <----------- View States Kanban ------------------>
 
+@login_required(login_url="/login")
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
 	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))           
@@ -133,6 +168,7 @@ class deleteStatesKanban(DeleteView):
 
 # <----------- View Priorities ------------------>
 
+@login_required(login_url="/login")
 def list_priorities(request):
 	priorities = Priorities.objects.filter()
 	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))           
@@ -149,9 +185,7 @@ class editPriorities(UpdateView):
 	model = Priorities
 	form_class = PrioritiesForm
 	template_name = '../templates/edit_priorities.html'
-
-	def get_success_url(self):
-		return reverse('list_priorities')
+	success_url=reverse_lazy('list_priorities')
 
 class deletePriorities(DeleteView):
 	model = Priorities
@@ -162,7 +196,8 @@ class deletePriorities(DeleteView):
 		return reverse('list_priorities')			
 
 # <----------- View Departments ------------------>
-						
+
+@login_required(login_url="/login")						
 def list_departments(request):
 	departments = Departments.objects.filter()
 	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))           

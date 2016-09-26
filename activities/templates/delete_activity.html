@@ -1,68 +1,49 @@
-{% extends 'base_tasks.html' %}
+{% extends 'base_templates.html' %}
 
 {% block content %}
  <script src="/static/js/jquery.min.js"></script>
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-            <ol class="breadcrumb">
-                <li>
-                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-                </li>
-                
-                <li class="active">
-                    <i class="fa fa-tags"></i> Actividades
-                </li>
-            </ol>
+        <h3>ACTIVIDADES</h3>
     </div>
     </div>
 
-	<div class="panel">
-    <div class="panel-body" >
-    <form>
-<<<<<<< HEAD
-        {% csrf_token %} 
-        <label for="states">Editar Estado</label> <br/>
-            <input  value={{activi.activity}} />
-=======
-        {% csrf_token %}
-        <label for="states">Editar Estado</label> <br/>
-            <input value= {{activi.activity}} />
-            <input id="pk" value= {{activi.id}} />        
->>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
-            <br/>
- 
-            <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
-    </form>
+<div class="panel">
+    <div class="panel-body">
+        <form>
+            {% csrf_token %} 
+            <div class="form-group col-md-12">
+                <label class="section-title-p ">Eliminar Actividad</label> <br/>
+                <label class="section-title-p "><strong> {{activi.activity}} </strong></label>
+                <input type="hidden"  id="pk" value={{activi.id}} /> 
+            </div>
+            <br /><br /><br />
+            <div class="col-md-12">         
+                <button class="btn btn-danger" type="submit" >Eliminar</button>
+                <a class="btn btn-default" href="{% url 'list_activities' %}">Cancelar</a>
+            </div>
+
+        </form>
     </div>
-    </div>
- <script src="/static/js/jquery.min.js"></script>
+</div>
+
+<script src="/static/js/jquery.min.js"></script>
 <script>
 
   $("form").submit(function(event){
-<<<<<<< HEAD
-
-         console.log( "entrando ajax");
-         event.preventDefault()
-        $.ajax({
-            type: 'DELETE',
-            url: '/activities/'+ activi.id,
-            //data: { pk=activi.id },
-=======
          
          console.log( "entrando ajax");
+         //console.log(pk);
          event.preventDefault()
          var pk = $("#pk").val();
+         console.log(pk);
         $.ajax({
             type: 'DELETE',
-            //console.log( "ajax");
-            //console.log( "antes delete"),
-            url: '/activities?pk',
-            //data: { pk: 4 },
-             
->>>>>>> c4651cec8539121005120bd8bb42b2f59eb2f171
+            url: '/activities/'+pk,
+            
             success: function() {
-                
-                alert('Object deleted!')
+               
+               // alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });

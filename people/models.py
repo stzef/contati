@@ -19,7 +19,7 @@ class Contributors(models.Model):
 		return self.image if str(self.image_2) == '' else '/media/'+str(self.image_2)
 
 	def __str__(self):
-		return u'%s' % (self.user) 
+		return '{}'.format(self.user) 
 
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
@@ -29,7 +29,7 @@ class Customers(models.Model):
 		db_table = 'Customers'
 	
 	def __str__(self):
-		return u'%s' % (self.name) 
+		return '{}'.format(self.name) 
 
 class user(User):
     class Meta:

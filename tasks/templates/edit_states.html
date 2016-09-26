@@ -1,17 +1,9 @@
-{% extends 'base_tasks.html' %}
+{% extends 'base_templates.html' %}
 
 {% block content %}
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-          <ol class="breadcrumb">
-              <li>
-                  <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-              </li>
-              
-              <li class="active">
-                  <i class="fa fa-tags"></i> Estados
-              </li>
-          </ol>
+          <h3>EDITAR ESTADO</h3>
   </div>
 </div>
 
@@ -19,17 +11,23 @@
   <div class="panel-body">
     <form>
     {% csrf_token %}
-      	<label for="states">Editar Estado</label> <br/>
-    	<input value="{{ object.name_states }}"><br/>
-      <input type="hidden"  id="pk" value="{{ object.id }}" /> 
+      <div class="form-group">
+      	<label class="section-title-p col-md-2 text-right" for="{{form.name_states.id_for_label}}"><strong>Editar {{form.name_states.label}}:</strong></label>
+        <div class="col-md-7">
+        	{{ form.name_states }}<br/>
+          <input type="hidden"  id="pk" value="{{ object.id }}" />
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+          <a class="btn btn-default" href="{% url 'list_states' %}">Cancelar</a>
+        </div>
+      </div>
      
-      <br/>
-     
-      <input class="btn btn-primary" type="submit" value="Guardar" />
     </form>
   </div>
 </div>
+{% endblock %}
 
+
+<!-- {% block javascript %}
 <script>
 
   $("form").submit(function(event){
@@ -39,7 +37,7 @@
         console.log(pk);
         $.ajax({
             type: 'PUT',
-            // url: '/states/' + pk ,
+            url: '/states/'+pk,
             data: {  
               'pk': pk,
             },
@@ -54,4 +52,4 @@
 
 </script>
 
-{% endblock %}
+{% endblock %} -->

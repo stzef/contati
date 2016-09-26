@@ -10,16 +10,23 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
-#from people.forms import ContributorsForm, CustomersForm
+from people.forms import CustomersForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
+from django.core.urlresolvers import reverse, reverse_lazy 
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.core import serializers
 
 
 
-# Create your views here.  
+# Create your views here. 
+#<---------------------- view register -----------------> 
+
 
 def view_register(request):
-    return render_to_response('register.html', context_instance = RequestContext(request))  
+    return render_to_response('register.html', context_instance = RequestContext(request))
+
 
 def register_user(request):
     error = False
@@ -48,10 +55,10 @@ def register_user(request):
    #
     return render_to_response('register.html',{}, context_instance = RequestContext(request))
 
+#<------------- view login --------------->
 
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
-
 
 def authenticate(request):
 
@@ -63,17 +70,18 @@ def authenticate(request):
             password = request.POST['password']
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('/profile')
+            return HttpResponseRedirect('/')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
     return render_to_response('login.html', context_instance = RequestContext(request))
 ("/")
 
-
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/login/')
+
+#<------------- view profile ------------->
 
 @login_required(login_url="/login")
 def profile(request):
@@ -91,21 +99,23 @@ def profile(request):
         us.last_name  = request.POST['last_name']
         us.email  = request.POST['email']
     
-        #us.password = make_password(request.POST['password1'])
         us.save()
-        
-        
+                
+    return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
+
+@login_required(login_url="/login")
+def change_image(request):
+    user = User.objects.get( id = request.user.id )
+    save = False
+    if request.method == 'POST':
+        us = User.objects.get( id = request.user.id )
         profile = Contributors.objects.get( user= us)
         profile.image_2  = request.FILES['image']
         profile.save()
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
 
 
-def view_change_password(request):
-    return render_to_response('change-password.html', context_instance = RequestContext(request))
-
-
-
+@login_required(login_url="/login")
 def change_password(request):    
     """view del profile
     """
@@ -116,20 +126,85 @@ def change_password(request):
 
         if validator.is_valid():
             us = User.objects.get( id = request.user.id )
-            
-            
+              
             us.password = make_password(request.POST['password1'])
-                      
-            #TODO: ENviar correo electronico para confirmar cuenta
-            # user.is_active = True
             us.save()
 
 
             return render_to_response('profile.html', {'success': True  } , context_instance = RequestContext(request))
         else:
             return render_to_response('profile.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
-        # Agregar el usuario a la base de datos
    
     return render_to_response('profile.html',{}, context_instance = RequestContext(request))
 
-    
+
+
+#<------------ view Customers --------------->  
+
+# Agregar clientes
+
+
+@login_required(login_url="/login")
+def add_Customers(request):
+    if request.method == "POST":
+        form = CustomersForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('list_customers') 
+    else:
+        form = CustomersForm()
+
+    return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
+
+@login_required(login_url="/login")
+def list_Customers(request):
+    customers = Customers.objects.all()
+    return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
+
+
+class createCustomers(CreateView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/add_customers.html'
+
+    def get_success_url(self):
+        return reverse('list_customers')
+
+
+
+class editCustomers(UpdateView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/edit_customers.html'
+
+    def get_success_url(self):
+        return reverse('list_customers')
+
+# class deleteCustomers(DeleteView):
+#     model = Customers
+#     form_class = CustomersForm
+#     template_name = '../templates/delete_customers.html'
+
+#     def get_success_url(self):
+#         return reverse('list_customers')  
+
+
+@login_required(login_url="/login")
+def action_customers(request, pk):
+   
+    print (request)
+    custo = get_object_or_404(Customers, pk=pk)
+
+    if request.method == 'PUT':
+        form = CustomersForm(request.PUT, instance=custo)
+        if form.is_valid():
+            form.save()
+        return redirect('list_customers', pk=custo.pk)
+
+    elif request.method == 'DELETE':       
+        Customers.objects.get(pk=pk).delete()
+        return HttpResponse('../templates/list_customers.html')
+    return render_to_response('../templates/delete_customers.html', {'custo': custo}, context_instance=RequestContext(request))
+        
+  
+

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Activities
+from .models import Activities, Projects
 
 class ActivitiesForm(forms.ModelForm):
 
@@ -8,13 +8,13 @@ class ActivitiesForm(forms.ModelForm):
         
         fields = [
         'activity',
-        'product',
+        'project',
         ]
         labels = {
         'activity': 'activity',
-        'product': 'product',
+        'project': 'projects',
         }
         widgets = {
-        'activities': forms.TextInput(),
-        'product': forms.Select(),
+        'activity': forms.TextInput(attrs={'class':'form-control'}),
+        'project': forms.Select(attrs={'class':'form-control'}) ,
         }

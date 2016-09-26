@@ -1,17 +1,17 @@
 from django import forms
-from .models import Product
+from .models import Projects
 
-class ProductForm(forms.ModelForm):
+class ProjectsForm(forms.ModelForm):
 
     class Meta:
-        model = Product
+        model = Projects
         
         fields = [
-        'product'
+        'project'
         ]
         labels = {
-        'product': 'product'
+        'project': 'projects'
         }
         widgets = {
-        'product': forms.TextInput()
+        'project': forms.TextInput(attrs={'class':'form-control'})
         }

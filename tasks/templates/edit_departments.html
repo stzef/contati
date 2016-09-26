@@ -1,35 +1,28 @@
-{% extends 'base_tasks.html' %}
+{% extends 'base_templates.html' %}
 
 {% block content %}
   <div class="row">
     <div class="col-lg-12 col-sm-12">
-            <ol class="breadcrumb">
-                <li>
-                    <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-                </li>
-
-                <li>
-                    <i class="fa fa-tags"></i> <a href="{% url 'list_states' %}">Estados </a>
-                </li>
-                
-                <li class="active">
-                    <i class="fa fa-tags"></i> Departamentos 
-                </li>
-            </ol>
+            <h3>EDITAR DEPARTAMENTO</h3>
     </div>
   </div>
 
 <div class="panel">
-<div class="panel-body">
-<form method="POST">{% csrf_token %}
-  	<label for="states">Editar Departamento</label> <br/>
-	{{ form.as_p}}<br/>
- 
-  <br/>
- 
-  <input class="btn btn-primary" type="submit" value="Guardar" />
-</form>
-</div>
+  <div class="panel-body">
+    <form>
+    {% csrf_token %}
+      <div class="form-group">
+        <label class="section-title-p col-md-2 text-right" for="{{form.name_department.id_for_label}}"><strong>Editar {{form.name_department.label}}:</strong></label>
+        <div class="col-md-7">
+          {{ form.name_department }}<br/>
+          <input type="hidden"  id="pk" value="{{ object.id }}" />
+          <input class="btn btn-primary" type="submit" value="Guardar" /> 
+          <a class="btn btn-default" href="{% url 'list_departments' %}">Cancelar</a>
+        </div>
+      </div>
+     
+    </form>
+  </div>
 </div>
 
 {% endblock %}
