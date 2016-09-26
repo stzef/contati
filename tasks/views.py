@@ -74,10 +74,13 @@ class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/edit_tasks.html'
-	#success_url=reverse_lazy('list_tasks')	
+	success_url=reverse_lazy('list_tasks')	
 
-	def get_success_url(self):
-		return reverse('list_tasks')
+class deleteTasks(DeleteView):
+	model = Tasks
+	form_class = TasksForm
+	template_name = '../templates/delete_tasks.html'
+	success_url=reverse_lazy('list_tasks')		
 
 # <----------- View States ------------------>
 
