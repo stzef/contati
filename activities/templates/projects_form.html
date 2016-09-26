@@ -8,6 +8,7 @@
 	{% csrf_token %}
 	{{ prod.as_p }}
 	<button type=" type="submit">guardar</button>
+	<a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>  
 	</form>
 	</body>
 </html>
