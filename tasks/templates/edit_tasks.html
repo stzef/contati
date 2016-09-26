@@ -9,17 +9,16 @@
 
 <div class="panel">
   <div class="panel-body">
-    <form>{{ form.errors }}
-    {% csrf_token %}
+    <form >{{ form.errors }}{% csrf_token %}
       <div class="form-group">
-      	<label class="section-title-p col-md-2 text-right"><strong>Editar:</strong></label>
+      	<label class="section-title-p col-md-4"><strong>Editar:</strong></label>
         <div class="col-md-7">
         	
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
           <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
-          <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
+          <strong>{{ form.start_date.label }}</strong> {{ object.start_date }} <br/>
           <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
           <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/>
