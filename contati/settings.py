@@ -62,8 +62,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'activities.middleware.HttpPostTunnelingMiddleware',
-    #'people.middleware.HttpPostTunnelingMiddleware',
+    'activities.middleware.HttpPostTunnelingMiddleware',
+    'people.middleware.HttpPostTunnelingMiddleware',
 
 ]
 
@@ -141,10 +141,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'HOST': 'ec2-54-243-52-115.compute-1.amazonaws.com',
-        'NAME': 'dbojevf40698oe',
-        'USER': 'zbwsdukuxjdbza',
-        'PASSWORD': 'XaoLb9jZDnugCv5-_h5dCstGLj',        
+        'NAME': 'db8v0i7ebe5phv',
+        'USER': 'omgelvbdkvyrcc',
+        'PASSWORD': 'OTNe0eUOriVC2WTLQz9GZbCzUh',
+        'HOST': 'ec2-54-163-238-215.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
