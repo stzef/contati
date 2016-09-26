@@ -33,7 +33,7 @@ def register_user(request):
     error = False
     if request.method == 'POST':
         validator = FormRegistroValidator(request.POST)
-        validator.required = ['first_name','username','last_name', 'email','password1']
+        validator.required = ['first_name','username','last_name', 'cargo', 'email','password1']
 
         if validator.is_valid():
             user = User()
@@ -43,13 +43,19 @@ def register_user(request):
             user.last_name = request.POST['last_name']
             user.email = request.POST['email']
             user.password = make_password(request.POST['password1'])
-                      
-            #TODO: ENviar correo electronico para confirmar cuenta
-            # user.is_active = True
             user.save()
 
+            user_contri = Contributors()
+            user_contri.cargo = request.POST['cargo']
+            # los campos de cargo deben estar especificados para que los pueda 
+            # guardar en la base de datos, asi como darwin los hizo en cursoshop
+            # que puso los datos de sexo en una lista en el template y leugo solo los trajo 
+            # y los guardo en la bd
+            user_contri.save()
+       
+            #TODO: ENviar correo electronico para confirmar cuenta
+            # user.is_active = True
             
-
             return render_to_response('login.html', {'success': True  } , context_instance = RequestContext(request),)
             
         else:
