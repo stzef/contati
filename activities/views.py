@@ -20,7 +20,7 @@ def add_projects(request):
 			return redirect('list_projects') 
 	else:
 		form =	ProjectsForm()
-	return render_to_response('../templates/projects_fo.html', {'form':form}, context_instance=RequestContext(request)) 
+	return render_to_response('../templates/projects_form.html', {'form':form}, context_instance=RequestContext(request)) 
 
 @csrf_exempt
 def list_activities(request):
