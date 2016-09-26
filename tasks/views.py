@@ -35,7 +35,7 @@ class AjaxableResponseMixin(object):
         else:
             return response
 
-
+@login_required(login_url="/login")
 def view_index(request):
 	user = User.objects.get( id = request.user.id )
 	return render_to_response('../templates/index.html', { "user": user}, context_instance = RequestContext(request))
@@ -74,7 +74,10 @@ class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/edit_tasks.html'
-	success_url=reverse_lazy('list_tasks')	
+	#success_url=reverse_lazy('list_tasks')	
+
+	def get_success_url(self):
+		return reverse('list_tasks')
 
 # <----------- View States ------------------>
 

@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
 	url(r'^tasks$',views.list_tasks, name='list_tasks'),
-	url(r'^tasks/<pk>$',login_required(views.editTasks.as_view()), name='edit_tasks'),
 	url(r'^tasks/add$',login_required(views.createTasks.as_view()), name='add_tasks'),
+	url(r'^tasks/(?P<pk>\d+)/edit/$',login_required(views.editTasks.as_view()), name='edit_tasks'),
 
 	url(r'^states/add$',views.add_states, name='add_states'),
 	url(r'^states$',views.list_states, name='list_states'),
