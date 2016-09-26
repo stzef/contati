@@ -1,0 +1,32 @@
+<script tipo = "text / javascript" src = "https://www.gstatic.com/charts/loader.js" > </ script> <script tipo = "text / javascript" > Google . tablas . de carga ( ' actuales ' , { paquetes : [ ' corechart ' ]}); google . tablas . setOnLoadCallback ( drawChart ); ... </ script>
+
+{% extends 'base_templates.html' %}
+
+{% block content %}
+
+<html> <head> <! - Cargar el API AJAX -> <script tipo = "text / javascript" src = "https://www.gstatic.com/charts/loader.js" > </ script> <script tipo = "text / javascript" > // cargar la API de visualización y el paquete corechart.       google . tablas . de carga ( 'actual' , { "paquetes" : [ 'corechart' ]}); // Establecer una devolución de llamada de ejecutar cuando se carga el API de visualización de google.       google . tablas . setOnLoadCallback ( drawChart ); // devolución de llamada que crea y llena una tabla de datos, // instancia el gráfico circular, pasa en los datos y . // dibuja la función drawChart () { // Crear la tabla de datos. var datos = nueva Google . visualización . DataTable ();         datos . addColumn ( 'cadena' , 'Topping' );         datos . addColumn ( "número" , "rebanadas" );         los datos . addRows ( [ [ 'Setas' , 3 ], [ 'Cebolla' , 1 ], [ '' Aceitunas , 1 ], [ 'calabacín' , 1 ], [ 'pepperoni' , 2 ] ]); // Establecer opciones de gráficos var opciones = { "title" : "¿Cuánto pizza que comí anoche ' , ' width ' : 400 , " altura " : 300 }; . // Instantiate y dibujar nuestra carta, que pasa en algunas opciones var tabla = nueva google . visualización . PieChart ( documento . getElemenById ( 'chart_div' ));         la carta . dibujar ( de datos , opciones ); } </ script> </ head> <body> <! - div que contendrá el gráfico -> <div ID = "chart_div" > </ div> </ body> </ html>
+
+<div class="row">
+	<div class="col-lg-12 col-sm-12">
+         <h3>PROYECTOS</h3>
+	</div>
+</div>
+
+	<div class="panel">  			
+   		<form action="{% url '' %}" method="post">
+   			 {% csrf_token %}
+   				
+      		<div class="form-group">
+        		<label class="section-title-p col-md-4"><strong>Agregar un nuevo Proyecto:</strong></label>
+        		<div class="col-md-7">
+         	 		{{ form.project }}<br/>
+          			<input class="btn btn-primary" type="submit" value="Guardar" /> 
+          			<a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>  
+       			 </div>
+      		</div>
+     
+    	</form>
+  	</div>
+</div>
+
+{% endblock %}
