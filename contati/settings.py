@@ -141,10 +141,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'd278evkp26mki5',
-        'USER': 'rtnyarmoevvnzz',
-        'PASSWORD': 'ful3iSglY4D9jp0SewtikmVQnX',
-        'HOST': 'ec2-174-129-223-35.compute-1.amazonaws.com',
+        'NAME': 'db8v0i7ebe5phv',
+        'USER': 'omgelvbdkvyrcc',
+        'PASSWORD': 'OTNe0eUOriVC2WTLQz9GZbCzUh',
+        'HOST': 'ec2-54-163-238-215.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
