@@ -1,0 +1,32 @@
+<script tipo = "text / javascript" src = "https://www.gstatic.com/charts/loader.js" > </ script> <script tipo = "text / javascript" > Google . tablas . de carga ( ' actuales ' , { paquetes : [ ' corechart ' ]}); google . tablas . setOnLoadCallback ( drawChart ); ... </ script>
+
+{% extends 'base_templates.html' %}
+
+{% block content %}
+
+
+<div class="row">
+<div class="col-lg-12 col-sm-12">
+         <h3>PROYECTOS</h3>
+</div>
+	</div>
+
+		<div class="panel">
+  			<div class="panel-body">
+   			 <form action="{% url '' %}" method="post">
+   			 {% csrf_token %}
+   				
+      	<div class="form-group">
+        	<label class="section-title-p col-md-4"><strong>Agregar un nuevo Proyecto:</strong></label>
+        	<div class="col-md-7">
+         	 {{ form.project }}<br/>
+          		<input class="btn btn-primary" type="submit" value="Guardar" /> 
+          		<a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>  
+        </div>
+      </div>
+     
+    </form>
+  </div>
+</div>
+
+{% endblock %}
