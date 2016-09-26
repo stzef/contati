@@ -80,3 +80,7 @@ def action_projects(request, pk):
 def list_config(request):
 	produ = Projects.objects.filter()
 	return render_to_response('../templates/config.html', {'produ': produ}, context_instance=RequestContext(request))  
+
+def list_reportes(request):
+	#activi = Activities.objects.filter()
+	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))  
