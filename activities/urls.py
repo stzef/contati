@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^projects/(?P<pk>\d+)/$',login_required(views.action_projects), name='edit_projects'),#PUT
     url(r'^projects/(?P<pk>\d+)/$',login_required(views.action_projects), name='delete_projects'),#DELETE
     url(r'^config/$',login_required(views.list_config), name='list_config'),#GET
-    url(r'^reportes/$',login_required(views.list_repotres), name='list_repotres'),#GEt
+    url(r'^reportes/$',login_required(views.list_reportes), name='list_reportes'),#GEt
 ]
