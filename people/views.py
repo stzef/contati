@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from django.template import loader, RequestContext
@@ -18,17 +17,18 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
-from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
 
-#@login_required(login_url="/login")
+
 def view_register(request):
     return render_to_response('register.html', context_instance = RequestContext(request))
 
-#@login_required(login_url="/login")
+
+
 def register_user(request):
     error = False
     if request.method == 'POST':
@@ -48,13 +48,20 @@ def register_user(request):
             # user.is_active = True
             user.save()
 
+            
 
-            return render_to_response('register.html', {'success': True  } , context_instance = RequestContext(request))
+            return render_to_response('login.html', {'success': True  } , context_instance = RequestContext(request),)
+            
         else:
             return render_to_response('register.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
         # Agregar el usuario a la base de datos
-   #
+        
+        
+   #    
     return render_to_response('register.html',{}, context_instance = RequestContext(request))
+
+
+    
 
 #<------------- view login --------------->
 
@@ -78,10 +85,9 @@ def authenticate(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
 ("/")
 
-
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('login')
+    return HttpResponseRedirect('/login/')
 
 #<------------- view profile ------------->
 
@@ -100,7 +106,7 @@ def profile(request):
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']
         us.email  = request.POST['email']
-    
+        us.cargo = request.POST['cargo']
         us.save()
                 
     return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
@@ -110,6 +116,7 @@ def change_image(request):
     user = User.objects.get( id = request.user.id )
     save = False
     if request.method == 'POST':
+        
         us = User.objects.get( id = request.user.id )
         profile = Contributors.objects.get( user= us)
         profile.image_2  = request.FILES['image']

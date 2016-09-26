@@ -58,6 +58,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Cargo</label>
+                                                <input type="text" class="form-control" placeholder="cargo" value="{{ user.cargo }}" name="cargo">
+                                            </div>
+                                        </div>
+                                    
 
                                     <button id="miboton" type="submit" value="refrescar" class="btn btn-info btn-fill pull-right">Actualizar Perfil</button>
                                         <div class="clearfix"></div>
@@ -121,8 +128,7 @@
                             </div>
                             <div class="content">
                                 <div class="author">
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo}}" alt="..."/>
-
+                                    <img class="avatar border-gray" src="../static/img/icono_perfil.png" src="{{ user.contributors.photo}}"   alt= "">
                                       <h4 class="title">{{ user.first_name }}<br />
                                          <small>{{ user.username }}</small>
                                       </h4>
@@ -140,7 +146,6 @@
                 </div>
             </div>
         </div>
-
 
 
 <script type="text/javascript">

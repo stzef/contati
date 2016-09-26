@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Contributors(models.Model):
 	
-	role = models.CharField(max_length=50)
+	cargo = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
 	image = models.TextField( blank = True)
 	image_2 = models.ImageField(upload_to='img/')
@@ -32,5 +32,6 @@ class Customers(models.Model):
 		return '{}'.format(self.name) 
 
 class user(User):
+	
     class Meta:
         proxy = True

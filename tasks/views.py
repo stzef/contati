@@ -40,10 +40,12 @@ def view_index(request):
 	user = User.objects.get( id = request.user.id )
 	return render_to_response('../templates/index.html', { "user": user}, context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
 def view_board(request):
      return render_to_response('../templates/board.html')     
 
 #Listar Estados
+@login_required(login_url="/login")
 def list_tasks(request):
 	state1 = Tasks.objects.filter()
 	return render_to_response('../templates/list_tasks.html', {'state1': state1}, context_instance=RequestContext(request))           
@@ -77,6 +79,8 @@ class editTasks(UpdateView):
 # <----------- View States ------------------>
 
 #Agregar un nuevo Estado
+
+@login_required(login_url="/login")
 def add_states(request):
 	if request.method == "POST":
 		form = StatesForm(request.POST)
@@ -89,11 +93,13 @@ def add_states(request):
 	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))           
 
 #Listar Estados
+@login_required(login_url="/login")
 def list_states(request):
 	state1 = States.objects.filter()
 	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
 
 #Editar Estados por funcion
+@login_required(login_url="/login")
 def edit_states(request, pk): #Se asignan el parametro requuest y la llave primaria pk
 	state = get_object_or_404(States, pk=pk) #se obtiene el objeto por pk
 	if request.method == "POST":	
@@ -131,6 +137,7 @@ class deleteStates(DeleteView):
 
 # <----------- View States Kanban ------------------>
 
+@login_required(login_url="/login")
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
 	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))           
@@ -161,6 +168,7 @@ class deleteStatesKanban(DeleteView):
 
 # <----------- View Priorities ------------------>
 
+@login_required(login_url="/login")
 def list_priorities(request):
 	priorities = Priorities.objects.filter()
 	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))           
@@ -188,7 +196,8 @@ class deletePriorities(DeleteView):
 		return reverse('list_priorities')			
 
 # <----------- View Departments ------------------>
-						
+
+@login_required(login_url="/login")						
 def list_departments(request):
 	departments = Departments.objects.filter()
 	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))           
