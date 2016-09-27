@@ -114,9 +114,9 @@ def profile(request):
         us.email  = request.POST['email']
         us.save()
 
+        print request.POST['role']
+        user_cont = Contributors(user=user,role=request.POST['role'])
 
-        user_cont = Contributors(user=user)
-        user_cont.role = request.POST['role']
         user_cont.save()
 
     return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
