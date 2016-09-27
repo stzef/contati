@@ -100,14 +100,14 @@ def logout(request):
 @login_required(login_url="/login")
 def profile(request):
 
-    user = User.objects.get( id = request.user.id )
+    user = User.objects.get( user = request.user.id )
     save = False
     if request.method == 'POST':
       
         # Aqui realizar la respectiva validacion
         # Actulizar datos de usuario
     
-        us = User.objects.get( id = request.user.id )
+        us = User.objects.get( user = request.user.id )
         us.first_name  = request.POST['first_name']
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']

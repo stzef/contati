@@ -24,6 +24,10 @@ class Contributors(models.Model):
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
 	last_name = models.CharField(max_length=50)
+	direccion = models.CharField(max_length=50)
+	telefono = models.CharField(max_length=50)
+	contacto1 = models.CharField(max_length=50)
+	contacto2 = models.CharField(max_length=50)
 	
 	class Meta:
 		db_table = 'Customers'
