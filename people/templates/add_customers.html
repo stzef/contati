@@ -3,18 +3,8 @@
 {% block content %}
 <div class="row">
 <div class="col-lg-12 col-sm-12">
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="{% url 'index' %}">Inicio</a>
-            </li>
-            
-            <li>
-                <i class="fa fa-list"></i> <a href="{% url 'list_customers' %}">Clientes</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-pencil-square-o"></i> Agregar Clientes
-            </li>
-        </ol>
+       <h3>CLIENTES</h3>       
+       
 </div>
 </div>
 <div class="panel">
@@ -26,7 +16,16 @@
         <div class="col-md-7">
           Nombre: {{ form.name }}<br/> Apellido: {{ form.last_name }}
           <br/>
+          Direccion: {{ form.address }}<br/> Telefono: {{ form.telephone }}
+          <br/>
+          Contacto1: {{ form.contact1 }}<br/> Contacto2: {{ form.contact2 }}
+          <br/>
+          Correo: {{ form.email }}
+          <br/>
+          <br/>
+
           <input class="btn btn-primary" type="submit" value="Guardar" />
+          <a class="btn btn-default" href="{% url 'list_customers' %}">Cancelar</a> 
         </div>
       </div>
     </form>

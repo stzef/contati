@@ -33,7 +33,7 @@ def register_user(request):
     error = False
     if request.method == 'POST':
         validator = FormRegistroValidator(request.POST)
-        validator.required = ['first_name','username','last_name', 'cargo', 'email','password1']
+        validator.required = ['first_name','username','last_name', 'email','password1','role',]
 
         if validator.is_valid():
             user = User()
@@ -46,7 +46,7 @@ def register_user(request):
             user.save()
 
             user_contri = Contributors(user=user)
-            user_contri.cargo = request.POST['cargo']
+            user_contri.role = request.POST['role']
             # los campos de cargo deben estar especificados para que los pueda 
             # guardar en la base de datos, asi como darwin los hizo en cursoshop
             # que puso los datos de sexo en una lista en el template y leugo solo los trajo 
@@ -112,10 +112,14 @@ def profile(request):
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']
         us.email  = request.POST['email']
-        us.cargo = request.POST['cargo']
         us.save()
-                
-    return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
+
+
+        user_cont = Contributors(user=user)
+        user_cont.role = request.POST['role']
+        user_cont.save()
+
+    return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
 
 @login_required(login_url="/login")
 def change_image(request):
