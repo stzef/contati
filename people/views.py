@@ -45,7 +45,7 @@ def register_user(request):
             user.password = make_password(request.POST['password1'])
             user.save()
 
-            user_contri = Contributors()
+            user_contri = Contributors(user=user)
             user_contri.cargo = request.POST['cargo']
             # los campos de cargo deben estar especificados para que los pueda 
             # guardar en la base de datos, asi como darwin los hizo en cursoshop
@@ -100,14 +100,14 @@ def logout(request):
 @login_required(login_url="/login")
 def profile(request):
 
-    user = User.objects.get( user = request.user.id )
+    user = User.objects.get( id = request.user.id )
     save = False
     if request.method == 'POST':
       
         # Aqui realizar la respectiva validacion
         # Actulizar datos de usuario
     
-        us = User.objects.get( user = request.user.id )
+        us = User.objects.get( id = request.user.id )
         us.first_name  = request.POST['first_name']
         us.username  = request.POST['username']
         us.last_name  = request.POST['last_name']

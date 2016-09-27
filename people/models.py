@@ -10,7 +10,7 @@ class Contributors(models.Model):
 	cargo = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
 	image = models.TextField( blank = True)
-	image_2 = models.ImageField(upload_to='img/')
+	image_2 = models.ImageField(upload_to='img/', default="../static/img/icono_perfil.png")
 
 	class Meta:
 		db_table = 'Contributors'
