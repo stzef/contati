@@ -74,7 +74,7 @@ class TasksForm(forms.ModelForm):
                 'department' : forms.Select(attrs={'class':'form-control'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control'}) ,
                 'states' : forms.Select(attrs={'class':'form-control'}),
-                'start_date' : forms.TextInput(attrs={'class':'form-control date'}),
+                'start_date' : forms.TextInput(attrs={'class':'glyphicon glyphicon-calendar'}),
                 'finish_date' : forms.TextInput(attrs={'class':'form-control date'}),
                 'states_kanban' : forms.Select(attrs={'class':'form-control'}),
                 'activity' : forms.Select(attrs={'class':'form-control'}),
