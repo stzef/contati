@@ -15,6 +15,8 @@
         <label class="section-title-p col-md-4"><strong>Agregar una nueva tarea:</strong></label>
         <div class="col-md-7">
           
+          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
+          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/>
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
@@ -22,9 +24,7 @@
           <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
           <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
-          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/>
           <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/>
-          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
           <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
 
           <input class="btn btn-primary" type="submit" value="Guardar" />

@@ -40,9 +40,10 @@ class DepartmentsForm(forms.ModelForm):
 
 class TasksForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super(TasksForm, self).__init__(*args, **kwargs)
-        self.fields['responsible'].query_set = Contributors.objects.get( id = pk )
+    # def __init__(self, *args, **kwargs):
+    #     super(TasksForm, self).__init__(*args, **kwargs)
+    #     request = kwargs.get("request")
+    #     self.fields['responsible'].query_set = Contributors.objects.get( id = self.request.user.id )
 
     class Meta:
         model = Tasks
@@ -74,7 +75,7 @@ class TasksForm(forms.ModelForm):
         }
         widgets = {
                 'description' : forms.Textarea(attrs={'class':'form-control'}),
-                'answer' : forms.TextInput(attrs={'class':'form-control'}),
+                'answer' : forms.Textarea(attrs={'class':'form-control'}),
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}' }) ,
                 'department' : forms.Select(attrs={'class':'form-control'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control'}) ,
