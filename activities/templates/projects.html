@@ -17,7 +17,7 @@
                                     <th>funciones</th>
                                 </tr>
                             </thead> 
-                            <tbody> {% for proyecto in produ %}
+                            <tbody> {% for proyecto in project %}
                                  <tr>                                    
                                     <td>{{ proyecto.project}} </td> 
                                     <td><a class="btn btn-primary" href="{% url 'edit_projects' pk=proyecto.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_projects' pk=proyecto.pk %}">Borrar</a></td> 

@@ -3,7 +3,8 @@
 {% block content %}
 <div class="row">
   <div class="col-lg-12 col-sm-12">
-    <h3>AGREGAR TAREA</h3>
+    <h3>AGREGAR TAREA
+    <a class="btn btn-info pull-right" href="{% url 'list_tasks'  %}">Lista Tareas</a></h3>
   </div>
 </div>
 
@@ -12,23 +13,28 @@
     <form action="{% url 'add_tasks' %}" method="post">{{ form.errors }}
     {% csrf_token %}
       <div class="form-group">
-        <label class="section-title-p col-md-4"><strong>Agregar una nueva tarea:</strong></label>
-        <div class="col-md-7">
-          
+        <div class="col-md-6">
+
+          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/> 
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
           <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
-          <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
-          <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
-          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/>
-          <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/>
-          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
-          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
+          <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/> 
 
           <input class="btn btn-primary" type="submit" value="Guardar" />
           <a class="btn btn-default" href="{% url 'list_tasks' %}">Cancelar</a> 
+
+        </div>
+        <div class="col-md-6"> 
+          
+          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
+          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
+
+          <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
+          <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+
         </div>
       </div>
      
