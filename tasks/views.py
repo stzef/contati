@@ -40,7 +40,8 @@ class AjaxableResponseMixin(object):
 def view_index(request):
 	project = Projects.objects.filter()
 	user = User.objects.get( id = request.user.id )
-	return render_to_response('../templates/index.html', { "user": user,"project": project}, context_instance = RequestContext(request))
+	tareas = Tasks.objects.filter()
+	return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas }, context_instance = RequestContext(request))
 
 @login_required(login_url="/login")
 def view_board(request):

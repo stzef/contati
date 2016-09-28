@@ -26,11 +26,11 @@
             <div class="col-md-6">
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">Actividades</h4>
-                        <p class="category">Actividades en proceso</p>
+                        <h4 class="title">Reportes</h4>
+                        <p class="category">Graficas en Torta</p>
                     </div>
                     <div class="content">
-                        <div>Actividades iniciadas y realizando</div>
+                        <div>Bola de Graficas</div>
 
                         <div class="footer">
                             <hr>
@@ -52,13 +52,14 @@
                         <div class="table-full-width">
                             <table class="table">
                                 <tbody>
+                                {% for tareas in user.contributors.tasks_set.all %}
                                     <tr>
                                         <td>
                                             <label class="checkbox">
                                                 <input type="checkbox" value="" data-toggle="checkbox">
                                             </label>
                                         </td>
-                                        <td>"Registrar nuevos usuarios"</td>
+                                        <td>{{ tareas.description }}</td>
                                         <td class="td-actions text-right">
                                             <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
@@ -68,86 +69,7 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                            </label>
-                                        </td>
-                                        <td>Investigar sobre un tema nuevo: google charts</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                            </label>
-                                        </td>
-                                        <td>Implementar metodos correctos en el codigo</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-                                        <td>Crear historias de usuarios para el nuevo proyecto</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-                                        <td>Leer "Following makes Medium better"</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-                                        <td>Elborar función de cuentas de inventario</td>
-                                        <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
