@@ -95,13 +95,15 @@
                                 <li><a href="#">Otras Notificaciones</a></li>
                               </ul>
                               <li>
-                                <select  type="text" class="form-control">
-                                    <option value="4">Proyecto</option>
+                                <form>                              
+                                <select  name="seleccion" type="text" class="form-control">
+                                    <option value="0" >Proyecto</option>
                                     <br>
                                     {% for row in project %}
                                         <option value="{{ row.id }}">{{ row.project }}</option>
                                     {% endfor %}
                                 </select>
+                                 </form>
                               </li>
 
                                                

@@ -40,10 +40,9 @@ class DepartmentsForm(forms.ModelForm):
 
 class TasksForm(forms.ModelForm):
 
-    # def __init__(self, *args, **kwargs):
-    #     super(TasksForm, self).__init__(*args, **kwargs)
-    #     request = kwargs.get("request")
-    #     self.fields['responsible'].query_set = Contributors.objects.get( id = self.request.user.id )
+    def __init__(self,user, *args, **kwargs):
+        super(TasksForm, self).__init__(*args, **kwargs)
+        self.fields['responsible'].initial = Contributors.objects.get( user = user )
 
     class Meta:
         model = Tasks
