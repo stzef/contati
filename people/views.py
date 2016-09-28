@@ -46,6 +46,7 @@ def register_user(request):
             user.save()
 
             user_contri = Contributors(user=user)
+            user_contri.id = user
             user_contri.role = request.POST['role']
             # los campos de cargo deben estar especificados para que los pueda 
             # guardar en la base de datos, asi como darwin los hizo en cursoshop
@@ -114,9 +115,8 @@ def profile(request):
         us.email  = request.POST['email']
         us.save()
 
-        print request.POST['role']
-        user_cont = Contributors(user=user,role=request.POST['role'])
-
+        user_cont = User()
+        user_cont.role = request.POST['rol']
         user_cont.save()
 
     return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
@@ -195,35 +195,31 @@ class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/edit_customers.html'
+    success_url=reverse_lazy('list_customers') 
 
-    def get_success_url(self):
-        return reverse('list_customers')
-
-# class deleteCustomers(DeleteView):
-#     model = Customers
-#     form_class = CustomersForm
-#     template_name = '../templates/delete_customers.html'
-
-#     def get_success_url(self):
-#         return reverse('list_customers')  
+class deleteCustomers(DeleteView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/delete_customers.html'
+    success_url=reverse_lazy('list_customers')  
 
 
-@login_required(login_url="/login")
-def action_customers(request, pk):
+# @login_required(login_url="/login")
+# def action_customers(request, pk):
    
-    print (request)
-    custo = get_object_or_404(Customers, pk=pk)
+#     print (request)
+#     custo = get_object_or_404(Customers, pk=pk)
 
-    if request.method == 'PUT':
-        form = CustomersForm(request.PUT, instance=custo)
-        if form.is_valid():
-            form.save()
-        return redirect('list_customers', pk=custo.pk)
+#     if request.method == 'PUT':
+#         form = CustomersForm(request.PUT, instance=custo)
+#         if form.is_valid():
+#             form.save()
+#         return redirect('list_customers', pk=custo.pk)
 
-    elif request.method == 'DELETE':       
-        Customers.objects.get(pk=pk).delete()
-        return HttpResponse('../templates/list_customers.html')
-    return render_to_response('../templates/delete_customers.html', {'custo': custo}, context_instance=RequestContext(request))
+#     elif request.method == 'DELETE':       
+#         Customers.objects.get(pk=pk).delete()
+#         return HttpResponse('../templates/list_customers.html')
+#     return render_to_response('../templates/delete_customers.html', {'custo': custo}, context_instance=RequestContext(request))
         
   
 
