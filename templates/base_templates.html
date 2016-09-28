@@ -95,9 +95,20 @@
                                 <li><a href="#">Otras Notificaciones</a></li>
                               </ul>
                         </li>
+
+                               <li>
+                           <select  type="text" placeholder="placeholder" >
+                                <option value="0">proye</option>
+                                {% for row in project %}
+                                    <option value="{{ row.id }}">{{ row.project }}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                        </li>
+
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">                    
                         <li>
                            <a href="{% url 'profile' %}">
                            <i class="pe-7s-user"></i>
