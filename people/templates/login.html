@@ -69,6 +69,13 @@
                             <div class="form-bottom">
 
 
+                            
+                              {% if success %}
+                                <div class="alert alert-success"> Nueva usuaro creado correctamente. Puede ingresar ahora </div>
+                              {% endif %}
+
+
+
                               {% if error %}
                                   <div class="alert alert-danger"> {{ error }} </div>
                               {% endif %}
