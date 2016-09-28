@@ -4,7 +4,8 @@
     
     <div class="row">
             <div class="col-lg-12 col-sm-12">
-                    <h3>TAREAS</h3>
+                    <h3>TAREAS
+                    <a class="btn btn-primary pull-right" href="{% url 'add_tasks'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
             </div>
             </div>
 
@@ -30,9 +31,6 @@
             </table>
             </div>
             </div>	       
-        </div>
-        <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_tasks'  %}">Agregar</a></p><br />
-
-        
+        </div>        
 
 {% endblock content %}
