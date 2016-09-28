@@ -2,7 +2,6 @@
 {% block content %}
 {% load staticfiles %}
 <!-- <meta http-equiv="refresh" content="10"> -->
-<script language="javascript" src="js/jquery-1.2.6.min.js"></script>
 
 <div class="content">
             <div class="container-fluid">
@@ -58,15 +57,16 @@
                                             </div>
                                         </div>
                                     </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Rol</label>
-                                                <input type="text" class="form-control" placeholder="Rol" value="{{ user_contri.role }}" name="rol">
+                                                <input type="text" class="form-control" placeholder="Rol" value="{{ user_cont.role }}" name="role">
                                             </div>
                                         </div>
-                                    
+                                  
 
-                                    <button id="miboton" type="submit" value="refrescar" class="btn btn-info btn-fill pull-right">Actualizar Perfil</button>
+                                    <button  type="submit"  class="btn btn-info btn-fill pull-right">Actualizar Perfil</button>
                                         <div class="clearfix"></div>
 
                                 </form>
@@ -148,14 +148,6 @@
         </div>
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#miboton').click(function() {
-            // Recargo la página
-            location.reload();
-        });
-    });
-</script>
 
 
 
