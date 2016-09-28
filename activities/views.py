@@ -57,8 +57,8 @@ def action_activity(request, pk):
   	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
 def list_projects(request):
-	produ = Projects.objects.filter()
-	return render_to_response('../templates/projects.html', {'produ': produ}, context_instance=RequestContext(request))  
+	project = Projects.objects.filter()
+	return render_to_response('../templates/projects.html', {'project': project}, context_instance=RequestContext(request))  
 
 
 @csrf_exempt
