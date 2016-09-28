@@ -9,13 +9,14 @@
   </div>
 <div class="panel">
   <div class="panel-body">
-    <form>
-    {% csrf_token %}
+    <form method="POST">
+    
     <div class="form-group col-md-12">
   	 <label class="section-title-p ">Eliminar cliente: </label><br/>
-     <label class="section-title-p "><strong> {{custo.name}} {{custo.last_name}}  </strong></label>
-      <input type="hidden"  id="pk" value={{custo.id}} />
-      </form>
+     <label class="section-title-p "><strong> {{object.name}}   </strong></label>  
+     {% csrf_token %}
+      <!-- <input type="hidden"  id="pk" value={{custo.id}} /> -->
+      
     </div> 
     <br/><br /><br />
     <div class="col-md-12">        
@@ -27,7 +28,7 @@
   </div>
 </div>
 
-<script src="/static/js/jquery.min.js"></script>
+<!-- <script src="/static/js/jquery.min.js"></script>
 <script>
 
   $("form").submit(function(event){
@@ -49,7 +50,7 @@
 
   })          
 
-</script>
+</script> -->
 
 </div>
 

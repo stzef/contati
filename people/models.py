@@ -5,9 +5,11 @@ from django.contrib.auth.models import User
 
 # Create your models here
 
+
+list_role = ( ('C', 'Colaborador') , ('A', 'Administrador'))
 class Contributors(models.Model):
 	
-	role = models.CharField(max_length=50)
+	role = models.CharField(max_length=1, choices = list_role)
 	user = models.OneToOneField(User,primary_key=True)
 	image = models.TextField( blank = True)
 	image_2 = models.ImageField(upload_to='img/', default="../static/img/icono_perfil.png")
