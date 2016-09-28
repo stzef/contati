@@ -78,8 +78,8 @@ def action_projects(request, pk):
 	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
 
 def list_config(request):
-	produ = Projects.objects.filter()
-	return render_to_response('../templates/config.html', {'produ': produ}, context_instance=RequestContext(request))  
+	project = Projects.objects.filter()
+	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))  
 
 def list_reportes(request):
 	#activi = Activities.objects.filter()

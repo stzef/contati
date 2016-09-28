@@ -49,8 +49,9 @@ def view_board(request):
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
+	project = Projects.objects.filter()
 	state1 = Tasks.objects.filter()
-	return render_to_response('../templates/list_tasks.html', {'state1': state1}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_tasks.html', {'state1': state1, 'project': project}, context_instance=RequestContext(request))           
 
 class createTasks(CreateView):
 	model = Tasks
