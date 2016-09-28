@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 
 class Contributors(models.Model):
 	
-	cargo = models.CharField(max_length=50)
+	role = models.CharField(max_length=50)
 	user = models.OneToOneField(User,primary_key=True)
 	image = models.TextField( blank = True)
-	image_2 = models.ImageField(upload_to='img/')
+	image_2 = models.ImageField(upload_to='img/', default="../static/img/icono_perfil.png")
 
 	class Meta:
 		db_table = 'Contributors'
@@ -23,7 +23,13 @@ class Contributors(models.Model):
 
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
-	last_name = models.CharField(max_length=50)
+	last_name = models.CharField(max_length=50,blank=True, null=True)
+	address = models.CharField(max_length=50)
+	telephone = models.CharField(max_length=50)
+	contact1 = models.CharField(max_length=50,blank=True, null=True)
+	contact2 = models.CharField(max_length=50,blank=True, null=True)
+	email = models.CharField(max_length=50,blank=True, null=True)
+	
 	
 	class Meta:
 		db_table = 'Customers'
