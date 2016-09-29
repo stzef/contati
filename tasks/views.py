@@ -68,20 +68,6 @@ class createTasks(CreateView):
 		form_kwargs["user"] = self.request.user
 		return form_kwargs
 
-	# def get_context_data(self, **kwargs):
-	# 	context = super(createTasks, self).get_context_data(**kwargs)
-	#  	request = kwargs.get("request")
-	#  	context['form'] = self.get_form()
-	#  	context['dato'] = User.objects.get( id = self.request.user.id )	
-	#  	return context
-
-	# def post(self, request, *args, **kwargs):
-	#  	campo = TasksForm(request.POST)
-	#  	print "antes valid"
-	#  	campo.responsible = request.POST['dato']
-	#  	campo.save()
-	#  	return super(createTasks, self).post(request, *args, **kwargs)
-
 class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm

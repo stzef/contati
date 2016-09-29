@@ -858,7 +858,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   border-color: #87CB16;
 }
 .has-error .form-control {
-  color: #FF4A55;
+  color: #3e3c3c;
 }
 .has-error .form-control:focus {
   border-color: #FF4A55;
