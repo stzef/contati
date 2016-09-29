@@ -162,7 +162,8 @@
     <!--   Core JS Files   -->
     <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
-
+    <script type="text/javascript" src="{% static 'js/transition.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/collape.js' %}"></script>
     <!--  Checkbox, Radio & Switch Plugins -->
     <script src="{% static 'js/bootstrap-checkbox-radio-switch.js' %}"></script>
 
@@ -179,10 +180,26 @@
     
     <script src="{% static 'js/datetimepicker.js' %}"></script>
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         $(function () {
                 $('.date').datetimepicker({ format:'YYYY-MM-DD HH:mm'});
             });
-    </script>
+    </script>-->
+
+ 
+
+
+
+
+
+
+
+    <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    locale: 'ru'
+                });
+            });
+        </script>
 
 </html>
