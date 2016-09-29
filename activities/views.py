@@ -77,7 +77,7 @@ def action_projects(request, pk):
 		return HttpResponse('ok')
 	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
 
-def list_config(request):
+def list_config(request):	
 	project = Projects.objects.filter()
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))  
 
