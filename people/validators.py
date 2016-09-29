@@ -81,3 +81,13 @@ class FormChangePasswordValidator(Validator):
             return False
         return True
 
+
+class FormChangeImageValidator(Validator):
+
+    def is_valid(self):
+        for field in self.required:
+            if not super(FormChangeImageValidator, self).is_valid():
+                return False
+        return True
+
+    

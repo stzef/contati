@@ -45,17 +45,9 @@ def register_user(request):
             user.password = make_password(request.POST['password1'])
             user.save()
 
-            user_contri = Contributors(user=user)
-            user_contri.id = user
+            user_contri = Contributors(user=user)        
             user_contri.role = request.POST['role']
-            # los campos de cargo deben estar especificados para que los pueda 
-            # guardar en la base de datos, asi como darwin los hizo en cursoshop
-            # que puso los datos de sexo en una lista en el template y leugo solo los trajo 
-            # y los guardo en la bd
             user_contri.save()
-       
-            #TODO: ENviar correo electronico para confirmar cuenta
-            # user.is_active = True
             
             return render_to_response('login.html', {'success': True  } , context_instance = RequestContext(request),)
             
@@ -63,8 +55,6 @@ def register_user(request):
             return render_to_response('register.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
         # Agregar el usuario a la base de datos
         
-        
-   #    
     return render_to_response('register.html',{}, context_instance = RequestContext(request))
 
 
@@ -117,6 +107,7 @@ def profile(request):
 
         user_cont = Contributors(user=user)
         user_cont.role = request.POST['role']
+        
         user_cont.save()
 
     return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
