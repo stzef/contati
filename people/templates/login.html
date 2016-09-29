@@ -27,7 +27,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{% static 'css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
     <link href="{% static 'css/datetimepicker.css' %}" rel="stylesheet" />
-
+   
 </head>
 <body>
 <div class="content">
@@ -67,18 +67,17 @@
                             </div>
                             </div>
                             <div class="form-bottom">
-
-
                             
                               {% if success %}
                                 <div class="alert alert-success"> Nueva usuaro creado correctamente. Puede ingresar ahora </div>
                               {% endif %}
-
+                            </div>
 
 
                               {% if error %}
                                   <div class="alert alert-danger"> {{ error }} </div>
                               {% endif %}
+                              
                               <form class="login-form" action="/authenticate" method="post" >
                                 {% csrf_token %}
                                   <h2 class="form-signin-heading text-center">Login</h2>
@@ -97,6 +96,10 @@
 
                                   <div class="checkbox">
                                       <label>
+                                        <span class="icons">
+                                          <span class="first-icon fa fa-square-o"></span>
+                                          <span class="second-icon fa fa-check-square-o"></span>
+                                        </span>
                                           <input type="checkbox" value="remember-me"> Recuerdame
                                       </label>
                                   </div>

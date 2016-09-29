@@ -92,40 +92,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'contati.wsgi.application'
-AUTHENTICATION_BACKENDS = (
-# Facebook
-'social.backends.facebook.FacebookOAuth2',
 
-# Twitter
- 'social.backends.twitter.TwitterOAuth',
-
-# Django
-'django.contrib.auth.backends.ModelBackend',
-)
-
-# Facebook Keys
-SOCIAL_AUTH_FACEBOOK_KEY = '945595242230181'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'be3015077927cb65c9fc79a976382637'
-
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/profile"
-# Twitter Keys
-SOCIAL_AUTH_TWITTER_KEY = 'bXnFzylizaTxEfPWYGoVtLcV8'
-SOCIAL_AUTH_TWITTER_SECRET = 'hnT9gkcLtbv8k83fWHdXhxQAxKsnEKlMhgViLpm17LjwdPWC4J'
-
-SOCIAL_AUTH_PIPELINE = (
-    'social.pipeline.social_auth.social_details',
-    'social.pipeline.social_auth.social_uid',
-    'social.pipeline.social_auth.auth_allowed',
-    'social.pipeline.social_auth.social_user',
-    'social.pipeline.user.get_username',
-    'social.pipeline.mail.mail_validation',
-    'social.pipeline.user.create_user',
-    'social.pipeline.social_auth.associate_user',
-    'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details',
-    'people.pipeline.get_profile_picture',
-    
-)
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
