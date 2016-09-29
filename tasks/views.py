@@ -68,19 +68,10 @@ class createTasks(CreateView):
 		form_kwargs["user"] = self.request.user
 		return form_kwargs
 
-	# def get_context_data(self, **kwargs):
-	# 	context = super(createTasks, self).get_context_data(**kwargs)
-	#  	request = kwargs.get("request")
-	#  	context['form'] = self.get_form()
-	#  	context['dato'] = User.objects.get( id = self.request.user.id )	
-	#  	return context
-
-	# def post(self, request, *args, **kwargs):
-	#  	campo = TasksForm(request.POST)
-	#  	print "antes valid"
-	#  	campo.responsible = request.POST['dato']
-	#  	campo.save()
-	#  	return super(createTasks, self).post(request, *args, **kwargs)
+	def get_context_data(self, **kwargs):
+		context = super(createTasks, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		return context 	
 
 class editTasks(UpdateView):
 	model = Tasks
@@ -88,11 +79,26 @@ class editTasks(UpdateView):
 	template_name = '../templates/edit_tasks.html'
 	success_url=reverse_lazy('list_tasks')	
 
+	def get_form_kwargs(self, **kwargs):
+		form_kwargs = super(editTasks, self).get_form_kwargs(**kwargs)
+		form_kwargs["user"] = self.request.user
+		return form_kwargs
+
+	def get_context_data(self, **kwargs):
+		context = super(createTasks, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		return context 		
+
 class deleteTasks(DeleteView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/delete_tasks.html'
-	success_url=reverse_lazy('list_tasks')		
+	success_url=reverse_lazy('list_tasks')	
+
+	def get_context_data(self, **kwargs):
+		context = super(createTasks, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		return context 		
 
 # <----------- View States ------------------>
 

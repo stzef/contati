@@ -81,3 +81,4 @@ class FormChangePasswordValidator(Validator):
             return False
         return True
 
+

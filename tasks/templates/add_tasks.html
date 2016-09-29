@@ -11,7 +11,7 @@
 <div class="panel">
 
   <div class="panel-body">
-    <form action="{% url 'add_tasks' %}" method="post">{{ form.errors }}
+    <form action="{% url 'add_tasks' %}" method="post">
     {% csrf_token %}
       <div class="form-group">
         <div class="col-md-6">
@@ -29,11 +29,15 @@
 
         </div>
         <div class="col-md-6"> 
-          
-          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
+          <div class="form-group has-error">
+          <strong>{{ form.description.label }} *</strong> {{ form.description }}
+          <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+          </div>  
           <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
-
-          <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
+          <div class="form-group has-error">
+          <strong>{{ form.start_date.label }} *</strong> {{ form.start_date }}
+          <label class="control-label" for="inputError">{{ form.start_date.errors }}</label> <br/>
+          </div>
           <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
 
         </div>
