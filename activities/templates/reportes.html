@@ -1,33 +1,84 @@
-<script tipo = "text / javascript" src = "https://www.gstatic.com/charts/loader.js" > </ script> <script tipo = "text / javascript" > Google . tablas . de carga ( ' actuales ' , { paquetes : [ ' corechart ' ]}); google . tablas . setOnLoadCallback ( drawChart ); ... </ script>
-
 {% extends 'base_templates.html' %}
+{% load staticfiles %}
 
 {% block content %}
-
-<div class="row">
-	<div class="col-lg-12 col-sm-12">
-         <h3>reportes</h3>
-	</div>
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
 </div>
+   			 
+  
+  
+    <!--Load the AJAX API-->
+    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
+    <script type="text/javascript">
+     var data;
+     var chart;
 
-	<div class="panel">  			
-   		<form  method="post">
-   			 {% csrf_token %}
-   				
-      		<div class="form-group">
-        		<label class="section-title-p col-md-4"><strong>Agregar un nuevo Proyecto:</strong></label>
-        		<div class="col-md-7">
-         	 		{{ form.project }}<br/>
-          			<input class="btn btn-primary" type="submit" value="Guardar" /> 
-          			<a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>"
+      // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create our data table.
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['infa', 3],
+          ['Siacol web', 1],
+          ['Paginas web', 1],
+          ['Pruebas Tic', 1],
+          ['otros', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Reporte general de horas trabajadas por proyecto',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        google.visualization.events.addListener(chart, 'select', selectHandler);
+        chart.draw(data, options);
+      }
+
+      function selectHandler() {
+        var selectedItem = chart.getSelection()[0];
+        var value = data.getValue(selectedItem.row, 0);
+        alert('The user selected ' + value);
+      }
+
+    </script>
+ 
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div" style="width:400; height:300"></div>
+
+  </body>
 
 
-          			<html> <head> <! - Cargar el API AJAX -> <script tipo = "text / javascript" src = "https://www.gstatic.com/charts/loader.js" > </ script> <script tipo = "text / javascript" > // cargar la API de visualización y el paquete corechart.       google . tablas . de carga ( 'actual' , { "paquetes" : [ 'corechart' ]}); // Establecer una devolución de llamada de ejecutar cuando se carga el API de visualización de google.       google . tablas . setOnLoadCallback ( drawChart ); // devolución de llamada que crea y llena una tabla de datos, // instancia el gráfico circular, pasa en los datos y . // dibuja la función drawChart () { // Crear la tabla de datos. var datos = nueva Google . visualización . DataTable ();         datos . addColumn ( 'cadena' , 'Topping' );         datos . addColumn ( "número" , "rebanadas" );         los datos . addRows ( [ [ 'Setas' , 3 ], [ 'Cebolla' , 1 ], [ '' Aceitunas , 1 ], [ 'calabacín' , 1 ], [ 'pepperoni' , 2 ] ]); // Establecer opciones de gráficos var opciones = { "title" : "¿Cuánto pizza que comí anoche ' , ' width ' : 400 , " altura " : 300 }; . // Instantiate y dibujar nuestra carta, que pasa en algunas opciones var tabla = nueva google . visualización . PieChart ( documento . getElemenById ( 'chart_div' ));         la carta . dibujar ( de datos , opciones ); } </ script> </ head> <body> <! - div que contendrá el gráfico -> <div ID = "chart_div" ></ div> </ body> </ html>
-       			 </div>
-      		</div>
-     
-    	</form>
-  	</div>
-</div>
 
 {% endblock %}

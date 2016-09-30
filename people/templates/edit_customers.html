@@ -11,23 +11,41 @@
   
 <div class="panel">
   <div class="panel-body">
-  <form method="POST">{{ form.errors }}
+  <form method="POST">
     {% csrf_token %}
       <div class="form-group">        
         <div class="col-md-6">
-          <strong>{{ form.name.label }}</strong> {{ form.name}} <br/> 
+          
+          <div class="form-group has-error">
+          <strong>{{ form.name.label }}*</strong> {{ form.name}} <br/>
+          <label class="control-label" for="inputError">{{ form.name.errors }}</label> <br/>
+          </div>
+          <div class="form-group">
           <strong>{{ form.last_name.label }}</strong> {{ form.last_name }} <br/>
-          <strong>{{ form.address.label }}</strong> {{ form.address }} <br/>
-          <strong>{{ form.telephone.label }}</strong> {{ form.telephone }} <br/>  
- 
+          </div><br>
+          <div class="form-group has-error">   
+          <strong>{{ form.address.label }}*</strong> {{ form.address }} <br/>
+          <label class="control-label" for="inputError">{{ form.address.errors }}</label> <br/>
+          </div>
+          <div class="form-group has-error">
+          <strong>{{ form.telephone.label }}*</strong> {{ form.telephone }} <br/>
+          <label class="control-label" for="inputError">{{ form.telephone.errors }}</label> <br/> 
+          </div>
+          
           <input class="btn btn-primary" type="submit" value="Guardar" />
           <a class="btn btn-default" href="{% url 'list_customers' %}">Cancelar</a>
 
         </div>
-        <div class="col-md-6"> 
-          <strong>{{ form.contact1.label }}</strong> {{ form.contact1 }} <br/> 
+        <div class="col-md-6">
+          <div class="form-group"> 
+          <strong>{{ form.contact1.label }}</strong> {{ form.contact1 }} <br/>
+          </div><br>
+          <div class="form-group">
           <strong>{{ form.contact2.label }}</strong> {{ form.contact2 }} <br/>
+          </div><br>
+          <div class="form-group">
           <strong>{{ form.email.label }}</strong> {{ form.email }} <br/>
+          </div>
         
         </div>
       </div>
