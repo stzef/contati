@@ -17,3 +17,4 @@ requests-oauthlib==0.6.2
 six==1.10.0
 static3==0.7.0
 whitenoise==3.2.1
+xhtml2pdf==0.0.6

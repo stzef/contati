@@ -47,3 +47,22 @@
   </div>
 </div>
 {% endblock %}
+
+{% block javascript %}
+<script>
+  $("#id_project").change(
+    function(){
+
+       $.ajax({
+         url: '/activities'+ this.value, // la URL para la petición
+         type: 'GET', // especifica si será una petición POST o GET
+         success : function(data) { // código a ejecutar si la petición es satisfactoria;
+              $("#id_activi").html("<option value'0'>-- Escoje una actividad --</option>" );
+              for ( var i =0; i < data.length; i++){
+                $("#id_activi").append("<option value='"+ data[i].pk +"'>"+ data[i].fields.activity +"</option>" );
+              }
+          }
+        });
+  });
+</script>
+{% endblock %}
