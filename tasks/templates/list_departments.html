@@ -3,8 +3,9 @@
 {% block content %}
 
   <div class="row">
-    <div class="col-lg-12 col-sm-12">
-            <h3>DEPARTAMENTOS</h3>
+    <div class="col-lg-12 col-sm-12">            
+            <h3>DEPARTAMENTOS
+                 <a class="btn btn-primary pull-right" href="{% url 'add_departments'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
     </div>
   </div>
 
@@ -30,8 +31,4 @@
       </div>
       </div>	      
   </div>
-
-  <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_departments' %}">Agregar</a></p><br />
-
-
 {% endblock %}

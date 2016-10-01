@@ -4,8 +4,10 @@
 
           <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <h3>PROYECTOS</h3>                
-              </div>                       
+                <h3>PROYECTOS
+                 <a class="btn btn-primary pull-right" href="{% url 'add_projects'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>               
+            </div>  
+          </div>                     
             <div class="panel">
                         <div class="panel-body">
                         <div class="table-responsive">
@@ -26,7 +28,5 @@
                         </table>
                         </div>
                         </div>        
-            </div>
-            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_projects' %}">Agregar </a></p><br />
-
+            </div>     
 {% endblock %}

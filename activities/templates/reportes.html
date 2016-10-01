@@ -3,82 +3,77 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
+	<div class="row">
+		<div class='col-sm-6'>
+			<div class="form-group">
+				<div class='input-group date' id='datetimepicker1'>
+					<input type='text' class="form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
 </div>
-   			 
-  
-  
-    <!--Load the AJAX API-->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-    <script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
-    <script type="text/javascript">
-     var data;
-     var chart;
+	 
+	<div id="chart_div" style="width:400; height:300"></div>
 
-      // Load the Visualization API and the piechart package.
-      google.charts.load('current', {'packages':['corechart']});
+{% endblock %}
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+{% block javascript %}
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker1').datetimepicker();
+		});
+	</script>
+	<!--Load the AJAX API-->
+	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+	<script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
+	<script type="text/javascript">
+	 var data;
+	 var chart;
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+	  // Load the Visualization API and the piechart package.
+	  google.charts.load('current', {'packages':['corechart']});
 
-        // Create our data table.
-        data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['infa', 3],
-          ['Siacol web', 1],
-          ['Paginas web', 1],
-          ['Pruebas Tic', 1],
-          ['otros', 2]
-        ]);
+	  // Set a callback to run when the Google Visualization API is loaded.
+	  google.charts.setOnLoadCallback(drawChart);
 
-        // Set chart options
-        var options = {'title':'Reporte general de horas trabajadas por proyecto',
-                       'width':400,
-                       'height':300};
+	  // Callback that creates and populates a data table,
+	  // instantiates the pie chart, passes in the data and
+	  // draws it.
+	  function drawChart() {
 
-        // Instantiate and draw our chart, passing in some options.
-        chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        google.visualization.events.addListener(chart, 'select', selectHandler);
-        chart.draw(data, options);
-      }
+		// Create our data table.
+		data = new google.visualization.DataTable();
+		data.addColumn('string', 'Topping');
+		data.addColumn('number', 'Slices');
+		data.addRows([
+		  ['infa', 3],
+		  ['Siacol web', 1],
+		  ['Paginas web', 1],
+		  ['Pruebas Tic', 1],
+		  ['otros', 2]
+		]);
 
-      function selectHandler() {
-        var selectedItem = chart.getSelection()[0];
-        var value = data.getValue(selectedItem.row, 0);
-        alert('The user selected ' + value);
-      }
+		// Set chart options
+		var options = {'title':'Reporte general de horas trabajadas por proyecto',
+					   'width':400,
+					   'height':300};
 
-    </script>
- 
-  <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div" style="width:400; height:300"></div>
+		// Instantiate and draw our chart, passing in some options.
+		chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		google.visualization.events.addListener(chart, 'select', selectHandler);
+		chart.draw(data, options);
+	  }
 
-  </body>
+	  function selectHandler() {
+		var selectedItem = chart.getSelection()[0];
+		var value = data.getValue(selectedItem.row, 0);
+		alert('The user selected ' + value);
+	  }
 
-</div>
-
+	</script>
 {% endblock %}

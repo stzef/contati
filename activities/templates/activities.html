@@ -4,7 +4,10 @@
 
           <div class="row">
             <div class="col-lg-12 col-sm-12">                    
-                <h3>ACTIVIDADES</h3>
+                 <h3>ACTIVIDADES
+                 <a class="btn btn-primary pull-right" href="{% url 'add_activity'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
+
+            </div>
             </div>            
 
             <div class="panel">
@@ -30,7 +33,5 @@
                         </div>
                         </div>        
             </div>
-            <a href="https://mail.google.com/mail/#inbox">Gmail</a> 
-            <p><a class="btn btn-primary btn-lg pull-right" href="{% url 'add_activity' %}" >Agregar</a></p><br />
-    
+            <a href="https://mail.google.com/mail/#inbox">Gmail</a>              
 {% endblock %}
