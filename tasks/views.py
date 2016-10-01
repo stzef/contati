@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from .models import States, States_kanban, Priorities, Departments, Tasks
@@ -84,10 +85,12 @@ class editTasks(UpdateView):
 		form_kwargs["user"] = self.request.user
 		return form_kwargs
 
+
 	def get_context_data(self, **kwargs):
-		context = super(createTasks, self).get_context_data(**kwargs)
+		context = super(editTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		return context 		
+		return context 	
+		
 
 class deleteTasks(DeleteView):
 	model = Tasks
@@ -96,7 +99,7 @@ class deleteTasks(DeleteView):
 	success_url=reverse_lazy('list_tasks')	
 
 	def get_context_data(self, **kwargs):
-		context = super(createTasks, self).get_context_data(**kwargs)
+		context = super(deleteTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
 		return context 		
 
