@@ -21,7 +21,7 @@ class CustomersForm(forms.ModelForm):
         
         labels = {
         'name': 'Nombre', 
-        'last_name': 'Aellido',
+        'last_name': 'Apellido',
         'address': 'Direccion',
         'telephone': 'Telefono',
         'contact1': 'Contacto1',

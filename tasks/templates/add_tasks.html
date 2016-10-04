@@ -49,7 +49,7 @@
 {% endblock %}
 
 {% block javascript %}
-<script>
+<!--<script>
   $("#id_project").change(
     function(){
 
@@ -64,5 +64,14 @@
           }
         });
   });
+</script>-->
+<script>
+$("#proy").change(function() {
+  var x = $("#proy").val();
+   console.log(x);
+  $.ajax({ url: "test.html", context: document.body, success: function(){
+    alert('Object deleted!')
+  }});
+});
 </script>
 {% endblock %}
