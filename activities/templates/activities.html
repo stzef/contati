@@ -19,17 +19,21 @@
                                 <tr>
                                     <th>Lista de Actividades</th>
                                     <th>funciones</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>{% for activity in activi %} 
+                                </tr>  
+
+                            </thead>  
+                                                                
+                            <tbody>   {% for activity in activi %} 
+   
                                 <tr>                                    
                                     <td>{{ activity.activity }} </td> 
+
                                     <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}">Borrar</a></td> 
 
                                 </tr>
-                            </tbody>  {% endfor %}
-                        </table>
+                            </tbody>    {% endfor %}
+                        </table> 
+
                         </div>
                         </div>        
             </div>

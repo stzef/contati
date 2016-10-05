@@ -43,6 +43,9 @@ class TasksForm(forms.ModelForm):
     def __init__(self,user, *args, **kwargs):
         super(TasksForm, self).__init__(*args, **kwargs)
         self.fields['responsible'].initial = Contributors.objects.get( user = user )
+        self.fields['prioritie'].initial = Priorities.objects.get(name_prioritie= "Media")
+        self.fields['states'].initial = States.objects.get(name_states= "Activo")
+        self.fields['states_kanban'].initial = States_kanban.objects.get(name_states= "Por hacer")
 
     class Meta:
         model = Tasks
@@ -66,8 +69,8 @@ class TasksForm(forms.ModelForm):
                 'department' : 'Departamento' ,
                 'prioritie' : 'Prioridad' ,
                 'states' : 'Estado',
-                'start_date' : 'Hora Inicio',
-                'finish_date' : 'Hora Fin',
+                'start_date' : 'fecha Inicio',
+                'finish_date' : 'fecha Entrega',
                 'states_kanban' : 'Estado Kanban',
                 'activity' : 'Actividad',
                 'Customers' : 'Cliente',
@@ -78,9 +81,9 @@ class TasksForm(forms.ModelForm):
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}' }) ,
                 'department' : forms.Select(attrs={'class':'form-control'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control'}) ,
-                'states' : forms.Select(attrs={'class':'form-control'}),
+                'states' : forms.Select(attrs={'class':'form-control'}), 
                 'start_date' : forms.TextInput(attrs={'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
-                'finish_date' : forms.TextInput(attrs={'class':'form-control date'}),
+                'finish_date' : forms.TextInput(attrs={'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
                 'states_kanban' : forms.Select(attrs={'class':'form-control'}),
                 'activity' : forms.Select(attrs={'class':'form-control', 'id':'id_activi', 'value' : '{{ object.activity }}' }),
                 'Customers' : forms.Select(attrs={'class':'form-control'}),
