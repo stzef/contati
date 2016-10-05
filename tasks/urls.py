@@ -7,6 +7,7 @@ urlpatterns = [
 	url(r'^tasks/add$',login_required(views.createTasks.as_view()), name='add_tasks'),
 	url(r'^tasks/(?P<pk>\d+)/edit/$',login_required(views.editTasks.as_view()), name='edit_tasks'),
 	url(r'^tasks/(?P<pk>\d+)/delete/$',login_required(views.deleteTasks.as_view()), name='delete_tasks'),
+	
 
 	url(r'^states/add$',views.add_states, name='add_states'),
 	url(r'^states$',views.list_states, name='list_states'),

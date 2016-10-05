@@ -6,7 +6,7 @@ from tasks.views import view_index, view_board
 urlpatterns = [
 
 	url(r'^$', login_required(view_index), name='index'),
-	url(r'^board$', view_board, name='board'),
+	url(r'^board$', view_board, name='board'),	
     url(r'^admin/', admin.site.urls),
 
     url(r'', include('people.urls')),

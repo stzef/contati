@@ -67,10 +67,13 @@
 </script>-->
 <script>
 $("#proy").change(function() {
-  var x = $("#proy").val();
-   console.log(x);
-  $.ajax({ url: "test.html", context: document.body, success: function(){
-    alert('Object deleted!')
+  var pk = $("#pk").val();
+   console.log(pk);
+  $.ajax({
+          //debugger,
+          url: '/tasks/add?seleccion=',    
+          success: function() {
+            alert('despliegue actividades')
   }});
 });
 </script>
