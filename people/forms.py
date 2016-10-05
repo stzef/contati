@@ -10,7 +10,6 @@ class CustomersForm(forms.ModelForm):
         model = Customers
         fields = [
         'name', 
-        'last_name',
         'address',
         'telephone',
         'contact1',
@@ -21,7 +20,6 @@ class CustomersForm(forms.ModelForm):
         
         labels = {
         'name': 'Nombre', 
-        'last_name': 'Apellido',
         'address': 'Direccion',
         'telephone': 'Telefono',
         'contact1': 'Contacto1',
@@ -31,7 +29,6 @@ class CustomersForm(forms.ModelForm):
         }
         widgets = {
         'name': forms.TextInput(attrs={'class':'form-control'}), 
-        'last_name': forms.TextInput (attrs={'class':'form-control'}),
         'address': forms.TextInput(attrs={'class':'form-control'}),
         'telephone': forms.TextInput(attrs={'class':'form-control'}),
         'contact1': forms.TextInput(attrs={'class':'form-control'}),

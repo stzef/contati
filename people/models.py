@@ -26,7 +26,6 @@ class Contributors(models.Model):
 
 class Customers(models.Model):
 	name = models.CharField(max_length=50)    
-	last_name = models.CharField(max_length=50,blank=True, null=True)
 	address = models.CharField(max_length=50)
 	telephone = models.CharField(max_length=50)
 	contact1 = models.CharField(max_length=50,blank=True, null=True)
