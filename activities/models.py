@@ -16,7 +16,6 @@ class Activities(models.Model):
 		return '{}'.format(self.activity)
 
 class Sprint(models.Model):
-	"""docstring for ClassName"""
 	start_date = models.DateTimeField(default=timezone.now)
 	finish_date = models.DateTimeField(default=timezone.now)
 	states = models.ForeignKey('tasks.States_kanban')
