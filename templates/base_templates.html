@@ -102,11 +102,18 @@
            					   		{% csrf_token %}                           
 										<select id="proy" name="seleccion" type="text" class="form-control">
 											<option value="0" >Proyecto</option>
-											<br>
+											<br>							
+
+
 											{% for row in project %}
-												<option value="{{ row.id }}">{{ row.project }}</option>							
+												<option value="{{ row.id }}">{{ row.project }}							
+												</option>
+
 											{% endfor %}
-											<input type="hidden"  id="pk" value={{row.id}} /> 
+											
+											
+											<li><a href="{% url 'add_projects'  %}">Agregar Proyecto<i class="fa fa-plus" aria-hidden="true"></i></a></li>
+
 										</select>
 								 </form>
 							  </li>
