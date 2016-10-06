@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from .models import States, States_kanban, Priorities, Departments, Tasks
-from activities.models import Projects
+from activities.models import Projects, Activities
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
 from django.core.urlresolvers import reverse, reverse_lazy 
@@ -51,13 +51,13 @@ def view_board(request):
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
-	selected_option = request.POST.get('row.proje', None)
-	print ("dentro de tareas")  
+	selected_option = request.POST.get('row.proje', None)	
 	print (selected_option) 
 	project = Projects.objects.filter()
 	state1 = Tasks.objects.filter()
 	return render_to_response('../templates/list_tasks.html', {'state1': state1, 'project': project}, context_instance=RequestContext(request))           
 
+from django.core import serializers
 class createTasks(CreateView):
 	model = Tasks
 	form_class = TasksForm
@@ -71,9 +71,10 @@ class createTasks(CreateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
+		context['project'] = Projects.objects.all()  
+		context['activity'] = Activities.objects.filter(project = 'seleccion')
 		return context 	
-
+	
 class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm

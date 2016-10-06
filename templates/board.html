@@ -15,7 +15,19 @@
     <link href="../static/board/css/the-big-picture.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drag(ev) {
+ev.dataTransfer.setData("text",ev.target.id)
+}
+function drop(ev) {
+  ev.preventDefault();
+  var datos=ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById( datos));
+}
+</script>
 <body>
 
     <!-- Navigation -->
@@ -55,26 +67,26 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
 
-                <div class="col-md-4 col-sm-4 well well-lg"> 
+                <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="allowDrop(event)" ondrop="drop(event)">
+                  <a class="btn btn-primary pull-right" href="{% url 'add_tasks'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
+
                     <h1>To do!</h1>
                     <hr>
-                    <p>tasks 1</p>
-                    <p>tasks 3</p>
-                    <p>tasks 4</p>
-                    <p>tasks 9</p>
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="primer">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="segundo">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="tercero">
                 </div>
-                <div class="col-md-4 col-sm-4 well well-lg"> 
+                <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="allowDrop(event)" ondrop="drop(event)">
                     <h1>Doing!</h1>
                     <hr>
                     <p>tasks 2</p>
                     <p>tasks 7</p>
                     <p>tasks 8</p>
                 </div>
-                <div class="col-md-4 col-sm-4 well well-lg"> 
+                <div class="col-md-4 col-sm-4 well well-lg" id="div3" ondragover="allowDrop(event)" ondrop="drop(event)">
                     <h1>Finish</h1>
                     <hr>
-                    <p>tasks 5</p>
-                    <p>tasks 6</p>
+
                     <p>tasks 10</p>
                 </div>
 
