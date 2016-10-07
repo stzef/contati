@@ -18,16 +18,26 @@
 
 </head>
 <script type="text/javascript">
-function allowDrop(ev) {
-  ev.preventDefault();
+
+function star(ev) {
+ev.dataTransfer.effectAllowed = 'move';
+ev.dataTransfer.setData("text",ev.target.id);
+ev.dataTransfer.setDragImage(ev.target,80,80);
 }
-function drag(ev) {
-ev.dataTransfer.setData("text",ev.target.id)
+function enter(ev) {
+  return true;
+}
+function over(ev) {
+  ev.preventDefault();
 }
 function drop(ev) {
   ev.preventDefault();
   var datos=ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById( datos));
+  ev.stopPropagation();
+}
+function end(ev) {
+ev.dataTransfer.clearData("text");
 }
 </script>
 <body>
@@ -69,23 +79,21 @@ function drop(ev) {
         <div class="row">
             <div class="col-md-12 col-sm-12">
 
-                <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="allowDrop(event)" ondrop="drop(event)">
+                <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
                   <a class="btn btn-primary pull-right" href="{% url 'add_tasks'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
 
                     <h1>To do!</h1>
                     <hr>
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="primer">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="segundo">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="drag(event)" placeholder="tercero">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="primer">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
                 </div>
-                <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="allowDrop(event)" ondrop="drop(event)">
+                <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
                     <h1>Doing!</h1>
                     <hr>
-                    <p>tasks 2</p>
-                    <p>tasks 7</p>
-                    <p>tasks 8</p>
+
                 </div>
-                <div class="col-md-4 col-sm-4 well well-lg" id="div3" ondragover="allowDrop(event)" ondrop="drop(event)">
+                <div class="col-md-4 col-sm-4 well well-lg" id="div3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
                     <h1>Finish</h1>
                     <hr>
 
