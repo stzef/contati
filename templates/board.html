@@ -20,6 +20,7 @@
 <script type="text/javascript">
 
 function star(ev) {
+  console.log(ev.target)
 ev.dataTransfer.effectAllowed = 'move';
 ev.dataTransfer.setData("text",ev.target.id);
 ev.dataTransfer.setDragImage(ev.target,80,80);
@@ -85,8 +86,8 @@ ev.dataTransfer.clearData("text");
                     <h1>To do!</h1>
                     <hr>
                     <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="primer">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
+                    <input type="text" class="form-control" id="usr1" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
+                    <input type="text" class="form-control" id="usr2" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
                 </div>
                 <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
                     <h1>Doing!</h1>
