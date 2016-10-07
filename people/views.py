@@ -194,23 +194,6 @@ class deleteCustomers(DeleteView):
     template_name = '../templates/delete_customers.html'
     success_url=reverse_lazy('list_customers')  
 
-
-# @login_required(login_url="/login")
-# def action_customers(request, pk):
-   
-#     print (request)
-#     custo = get_object_or_404(Customers, pk=pk)
-
-#     if request.method == 'PUT':
-#         form = CustomersForm(request.PUT, instance=custo)
-#         if form.is_valid():
-#             form.save()
-#         return redirect('list_customers', pk=custo.pk)
-
-#     elif request.method == 'DELETE':       
-#         Customers.objects.get(pk=pk).delete()
-#         return HttpResponse('../templates/list_customers.html')
-#     return render_to_response('../templates/delete_customers.html', {'custo': custo}, context_instance=RequestContext(request))
-        
-  
-
+@login_required(login_url="/login")
+def view_administrator(request):
+    return render_to_response('../templates/administrator.html')

@@ -4,7 +4,10 @@
 <div class="row">
   <div class="col-lg-12 col-sm-12">
           <h3>EDITAR TAREA
-    <a class="btn btn-info pull-right" href="{% url 'list_tasks'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Tareas</a></h3>
+    <a class="btn btn-info pull-right" href="{% url 'list_tasks'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Tareas</a>
+    
+      <a class="btn btn-default pull-right" href="{% url 'list_tasks' %}">Cancelar</a>
+      <input class="btn btn-primary pull-right" type="submit" value="Guardar" /></h3>
   </div>
 </div>
 
@@ -15,16 +18,16 @@
       <div class="form-group">
         <div class="col-md-6">
 
-          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/> 
+          
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
+          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/> 
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
           <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
           <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/> 
 
-          <input class="btn btn-primary" type="submit" value="Guardar" />
-          <a class="btn btn-default" href="{% url 'list_tasks' %}">Cancelar</a> 
+        
 
         </div>
         <div class="col-md-6"> 

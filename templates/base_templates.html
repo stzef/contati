@@ -63,18 +63,52 @@
 						<p>Actividades</p>
 					</a>
 				</li>
-				<li>
-					<a href="{% url 'list_config' %}">
-						<i class="pe-7s-science"></i>
-						<p>Configuración</p>
-					</a>
-				</li>
-				<li>
-					<a href="{% url 'list_reportes' %}">
-						<i class="pe-7s-map-marker"></i>
-						<p>Reportes</p>
-					</a>
-				</li>
+				
+			
+                    <ul class="nav" id="side-menu">
+                     
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#beneficiarios"><i class="pe-7s-menu"></i> Otros<span class="fa arrow"></span></a>
+                            <ul id="beneficiarios" class="collapse nav nav-second-level">
+                                <li>
+                                    <a href="{% url 'list_config' %}">
+									<i class="pe-7s-science"></i>Configuracion</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_customers' %}">
+                                    <i class="pe-7s-notebook"></i>Clientes</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_projects' %}">
+                                    <i class="pe-7s-folder"></i>Proyectos</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_departments' %}">
+                                    <i class="pe-7s-culture"></i>Departamentos</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_states' %}">
+                                    <i class="pe-7s-ticket"></i>Estado</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_states_kanban' %}">
+                                    <i class="pe-7s-ticket"></i>Estado Kanban</a>
+                                </li>
+                                <li> 
+                                    <a href="{% url 'list_priorities' %}">
+                                    <i class="pe-7s-check"></i>Prioridad</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'list_reportes' %}">
+									<i class="pe-7s-map-marker"></i>Reportes</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>                    
+        
+
+				
 				<li class="active-pro">
 					<a href="#">
 						<i class="pe-7s-rocket"></i>
@@ -105,23 +139,23 @@
 							  </ul>
 							  <li>
 								<form method="post">  
-           					   		{% csrf_token %}                           
+           					   		{% csrf_token %}
+           					   		
+           					   		<li><a href="{% url 'add_projects'  %}"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
+           					   		                      
 										<select id="proy" name="seleccion" type="text" class="form-control">
-											<option value="0" >Proyecto</option>
-											<br>							
-
+											<option value="0" >Proyecto</option>						
+											<br>	
 
 											{% for row in project %}
-												<option value="{{ row.id }}">{{ row.project }}							
+												<option value="{{ row.id }}">{{ row.project }}	
 												</option>
-
 											{% endfor %}
-											
-											
-											<li><a href="{% url 'add_projects'  %}">Agregar Proyecto<i class="fa fa-plus" aria-hidden="true"></i></a></li>
-
 										</select>
-								 </form>
+									
+											
+											
+								 </form>	
 							  </li>
 
 											   
