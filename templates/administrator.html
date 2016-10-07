@@ -1,6 +1,20 @@
 {% extends 'base_templates.html' %}
+
 {% block content %}
-{% for projects in tasks.user.contributors.projects_set.all %}
-<td>{{ projects.description }}</td>
-{% endfor %}
+
+		<div class="row">
+			<div class="panel">
+        	<div class="panel-body">
+            	<div class="table-responsive">
+        	
+			{% for projects in activities.tasks.user.contributors.projects_set.all %}
+				
+
+
+
+			{% endfor %}
+		
+
+
+
 {% endblock %}
