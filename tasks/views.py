@@ -46,7 +46,19 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-     return render_to_response('../templates/board.html')     
+	return render_to_response('../templates/board.html')     
+
+@login_required(login_url="/login")
+def add_board_tasks(request):
+	if request.method == 'POST':
+		form = TasksForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('board') 
+	else:
+		form =	TasksForm()
+	return render_to_response( {'form':form }, context_instance=RequestContext(request))     
+
 
 #Listar Estados
 @login_required(login_url="/login")
