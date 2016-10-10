@@ -6,7 +6,7 @@ urlpatterns = [
 
 	url(r'^$', login_required(view_index), name='index'),
 	url(r'^board$', view_board, name='board'),
-	url(r'^board/addTasks$', add_board_tasks, name='add_board_taks'),
+	url(r'^board/addTasks$', add_board_tasks, name='add_board_tasks'),
 	url(r'^administrator$', view_administrator, name='administrator'),	
     url(r'^admin/', admin.site.urls),
 
