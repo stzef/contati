@@ -20,6 +20,7 @@
 <script type="text/javascript">
 
 function star(ev) {
+  console.log(ev.target)
 ev.dataTransfer.effectAllowed = 'move';
 ev.dataTransfer.setData("text",ev.target.id);
 ev.dataTransfer.setDragImage(ev.target,80,80);
@@ -40,6 +41,7 @@ function end(ev) {
 ev.dataTransfer.clearData("text");
 }
 </script>
+
 <body>
 
     <!-- Navigation -->
@@ -80,13 +82,14 @@ ev.dataTransfer.clearData("text");
             <div class="col-md-12 col-sm-12">
 
                 <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
-                  <a class="btn btn-primary pull-right" href="{% url 'add_tasks'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
+
+                  <a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal" data-modal-id="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
 
                     <h1>To do!</h1>
                     <hr>
                     <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="primer">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
+                    <input type="text" class="form-control" id="usr1" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
+                    <input type="text" class="form-control" id="usr2" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
                 </div>
                 <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
                     <h1>Doing!</h1>
@@ -100,16 +103,37 @@ ev.dataTransfer.clearData("text");
                     <p>tasks 10</p>
                 </div>
 
-
             </div>
         </div><!-- /.row -->
+
     </div><!-- /.container -->
 
+    <div class="modal hide fade" id="MyModal" tabindex="-1" role="dialog" >
+      <!-- <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+          </div>
+          <div class="modal-body">
+            <h3>Modal Body</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <!-- jQuery -->
-    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'js/bootstrap-modal.js' %}"></script> -->
 
 </body>
 
