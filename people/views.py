@@ -171,6 +171,8 @@ def list_Customers(request):
     customers = Customers.objects.all()
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
+    class Meta:
+        ordering = ['name']
 
 class createCustomers(CreateView):
     model = Customers

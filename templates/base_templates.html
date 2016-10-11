@@ -68,8 +68,8 @@
                     <ul class="nav" id="side-menu">
                      
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#beneficiarios"><i class="pe-7s-menu"></i> Otros<span class="fa arrow"></span></a>
-                            <ul id="beneficiarios" class="collapse nav nav-second-level">
+                            <a href="javascript:;" data-toggle="collapse" data-target="#Otros"><i class="pe-7s-menu"></i> Otros<span class="fa arrow"></span></a>
+                            <ul id="Otros" class="collapse nav nav-second-level">
                                 <li>
                                     <a href="{% url 'list_config' %}">
 									<i class="pe-7s-science"></i>Configuracion</a>
@@ -147,7 +147,7 @@
 											<option value="0" >Proyecto</option>						
 											<br>	
 
-											{% for row in project %}
+											{% for row in project %}                                                                                                                                                                            
 												<option value="{{ row.id }}">{{ row.project }}	
 												</option>
 											{% endfor %}
