@@ -34,7 +34,8 @@ class Customers(models.Model):
 	
 	
 	class Meta:
-		db_table = 'Customers'
+	 	db_table = 'Customers'
+
 	
 	def __str__(self):
 		return '{}'.format(self.name) 
