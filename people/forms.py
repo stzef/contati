@@ -15,6 +15,8 @@ class CustomersForm(forms.ModelForm):
         'contact1',
         'contact2',
         'email',
+        
+        
 
         ]
         
@@ -25,6 +27,7 @@ class CustomersForm(forms.ModelForm):
         'contact1': 'Contacto1',
         'contact2': 'Contacto2',
         'email': 'Correo',
+        
 
         }
         widgets = {
@@ -34,5 +37,6 @@ class CustomersForm(forms.ModelForm):
         'contact1': forms.TextInput(attrs={'class':'form-control'}),
         'contact2': forms.TextInput(attrs={'class':'form-control'}),
         'email': forms.TextInput(attrs={'class':'form-control'}),
+       
         }
 

@@ -168,11 +168,10 @@ def add_Customers(request):
 
 @login_required(login_url="/login")
 def list_Customers(request):
-    customers = Customers.objects.all()
+    customers = Customers.objects.all().order_by('name')
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
-    class Meta:
-        ordering = ['name']
+    
 
 class createCustomers(CreateView):
     model = Customers

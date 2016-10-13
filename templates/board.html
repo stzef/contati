@@ -18,7 +18,7 @@
 
 </head>
 
-<script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+
 
 <body>
 
@@ -62,13 +62,15 @@
                 <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
 
 
-                  <a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
+                  <a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>    
+                  <TEXTAREA id="demos" rows="5" cols="30" name="txtsugerencias">Sus sugerencias aquí...</TEXTAREA><BR>
+                    <button type="submit" onclick="myFunction()">Enviar formulario</button>
 
 
                     <h1>To do!</h1>
                     <hr>
-                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="primer">
-                    <input type="text" class="form-control" id="usr1" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo">
+                    <input type="text" class="form-control" id="usr" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="primer" "{{ x }}">
+                    <input type="text" class="form-control" id="usr1" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="segundo" "{{ x }}">
                     <input type="text" class="form-control" id="usr2" draggable="true" ondragstart="star(event)" ondragend="end(event)" placeholder="tercero">
                 </div>
                 <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
@@ -133,7 +135,7 @@
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
+    <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
 </body>
 
 </html>

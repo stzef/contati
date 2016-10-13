@@ -6,10 +6,14 @@ ev.dataTransfer.effectAllowed = 'move';
 ev.dataTransfer.setData("text",ev.target.id);
 ev.dataTransfer.setDragImage(ev.target,80,80);
 }
-btnTarea.addEventListener("click", btnTarea);
-function btnTarea() {
-      document.body.style.backgroundColor = "red";
+debugger
+var x
+function myFunction() {
+    x = document.getElementById("usr1");
+    //console.log(x);
+    //document.body.style.backgroundColor = "red";
 }
+
 
 function enter(ev) {
   return true;

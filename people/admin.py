@@ -14,5 +14,6 @@ class Contributors(admin.ModelAdmin):
 	
 class Customers(admin.ModelAdmin):
 	"""docstring for Contributors"""
-	list_display = ('name','last_name')
+	
+	list_display = ('name',)
 	
