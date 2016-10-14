@@ -139,20 +139,22 @@ def list_states(request):
 	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
 
 #Editar Estados por funcion
-@login_required(login_url="/login")
-def edit_states(request, pk): #Se asignan el parametro requuest y la llave primaria pk
-	state = get_object_or_404(States, pk=pk) #se obtiene el objeto por pk
-	if request.method == "POST":	
-		form = StatesForm(request.POST, instance=state)
-		if form.is_valid():
-			form.save()
-		return redirect('list_states', pk=state.pk) 
-	else:
-		form = StatesForm(instance=state)	
-	return render(request, '../templates/edit_states.html', {'form': form}, context_instance=RequestContext(request))   
+#@login_required(login_url="/login")
+#def edit_states(request, pk): #Se asignan el parametro requuest y la llave primaria pk
+	# state = get_object_or_404(States, pk=pk) #se obtiene el objeto por pk
+	# if request.method == "POST":	
+	# 	form = StatesForm(request.POST, instance=state)
+	# 	if form.is_valid():
+	# 		form.save()
+	# 	return redirect('list_states', pk=state.pk) 
+	# else:
+	# 	form = StatesForm(instance=state)	
+	# return render(request, '../templates/edit_states.html', {'form': form}, context_instance=RequestContext(request))   
 
-@method_decorator(csrf_exempt, name='dispatch')
-class editStates(AjaxableResponseMixin, UpdateView):
+
+
+#@method_decorator(csrf_exempt, name='dispatch')
+class editStates(UpdateView):
 	model = States
 	form_class = StatesForm
 	template_name = '../templates/edit_states.html'
@@ -161,11 +163,11 @@ class editStates(AjaxableResponseMixin, UpdateView):
 	# def get_success_url(self):
 	# 	return reverse('list_states')
 
-	def get_context_data(self, **kwargs):
-		context = super(editStates, self).get_context_data(**kwargs)
-		context['current_pk'] = self.kwargs["pk"]
-		context['url'] = reverse_lazy('edit_states',kwargs={'pk': self.kwargs["pk"]},)
-		return context
+	# def get_context_data(self, **kwargs):
+	# 	context = super(editStates, self).get_context_data(**kwargs)
+	# 	context['current_pk'] = self.kwargs["pk"]
+	# 	context['url'] = reverse_lazy('edit_states',kwargs={'pk': self.kwargs["pk"]},)
+	# 	return context
 			
 class deleteStates(DeleteView):
 	model = States
@@ -202,10 +204,8 @@ class deleteStatesKanban(DeleteView):
 	model = States_kanban
 	form_class = StatesKanbanForm
 	template_name = '../templates/delete_kanban.html'
-
-	def get_success_url(self):
-		return reverse('list_states_kanban')
-
+	success_url = reverse_lazy('list_states_kanban')
+	
 # <----------- View Priorities ------------------>
 
 @login_required(login_url="/login")
@@ -254,14 +254,12 @@ class editDepartments(UpdateView):
 	model = Departments
 	form_class = DepartmentsForm
 	template_name = '../templates/edit_departments.html'
-
-	def get_success_url(self):
-		return reverse('list_departments')
+	success_url=reverse_lazy('list_departments')
+	
 
 class deleteDepartments(DeleteView):
 	model = Departments
 	form_class = DepartmentsForm
 	template_name = '../templates/delete_departments.html'
-
-	def get_success_url(self):
-		return reverse('list_departments')							
+	success_url=reverse_lazy('list_departments')
+	

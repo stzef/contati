@@ -68,7 +68,7 @@ def action_projects(request, pk):
   	if request.method == 'PUT':
    		form = Projectsform(request.PUT, instance=produ)
 		if form.is_valid():
-		    form.save()
+		   	form.save()
 		return redirect('list_projects', pk=produ.pk)
 
 	elif request.method == 'DELETE':
