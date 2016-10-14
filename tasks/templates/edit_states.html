@@ -16,7 +16,7 @@
       	<label class="section-title-p col-md-2 text-right" for="{{form.name_states.id_for_label}}"><strong>Editar {{form.name_states.label}}:</strong></label>
         <div class="col-md-7">
         	{{ form.name_states }}<br/>
-          <!--<input type="hidden"  id="pk" value="{{ object.id }}" />-->
+         
           <input class="btn btn-primary" type="submit" value="Guardar" /> 
           <a class="btn btn-default" href="{% url 'list_states' %}">Cancelar</a>
         </div>
@@ -28,29 +28,3 @@
 {% endblock %}
 
 
-<!-- {% block javascript %}
-<script>
-
-  $("form").submit(function(event){
-
-        event.preventDefault()
-        var pk = $("#pk").val();
-        console.log(pk);
-        $.ajax({
-            type: 'PUT',
-            url: '/states/'+pk,
-            data: {  
-              'pk': pk,
-            },
-            success: function() {
-                
-                alert('Object deleted!')
-            },
-            headers: { 'X-HTTP-Method-Override': 'PUT' },
-        });
-
-  });         
-
-</script>
-
-{% endblock %} -->

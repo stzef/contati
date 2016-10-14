@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 from models import Activities,Projects
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import UpdateView, DeleteView, ListView, CreateView
+from django.core.urlresolvers import reverse, reverse_lazy
 
 def add_projects(request):
 	if request.method == 'POST':
@@ -84,3 +86,10 @@ def list_config(request):
 def list_reportes(request):
 	#activi = Activities.objects.filter()
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))  
+
+class editProjects(UpdateView):
+	model = Projects
+	form_class = ProjectsForm
+	template_name = '../templates/edit_projects.html'
+	success_url=reverse_lazy('list_projects')
+	
