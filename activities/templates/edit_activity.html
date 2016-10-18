@@ -4,46 +4,27 @@
  <script src="/static/js/jquery.min.js"></script>
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-        <h3>ACTIVIDADES</h3>
+        <h3>ACTIVIDADES
+        <a class="btn btn-info pull-right" href="{% url 'list_activities'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Actividades</a></h3>
     </div>
     </div>
 
 	<div class="panel">
     <div class="panel-body" >
-    <form>
-        {% csrf_token %} 
-        <label for="states">Editar Estado</label> <br/>
-            <input value= {{activi.activity}} />
-            <id="pk" {{activi.id}} />  
-            <input type="hidden"  id="pk" value={{activi.id}} /> 
-            <br/>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group"> 
+        <label class="section-title-p col-md-2 text-right" for="{{form.activity.id_for_label}}"><strong>Editar {{form.activity.label}}:</strong></label>
+        <div class="col-md-7">
+            {{ form.activity }}<br/>
+            {{ form.project }}<br/>
  
-            <input class="btn btn-primary" type="submit" id="edit-activity" value="Guardar" />
+            <input class="btn btn-primary" type="submit"  value="Guardar" />
             <a class="btn btn-default" href="{% url 'list_activities' %}">Cancelar</a> 
-    </form>
+          </div>
+        </div>
+      </form>
     </div>
-    </div>
- <script src="/static/js/jquery.min.js"></script>
-<script>
-
-  $("form").submit(function(event){
-         
-         console.log( "entrando ajax");
-         //console.log(pk);
-         event.preventDefault()
-         var pk = $("#pk").val();
-         console.log(pk);
-        $.ajax({
-            type: 'DELETE',
-            url: '/activities/'+pk,
-            
-            success: function() {
-                alert('Object deleted!')
-            },
-            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
-        });
-
-  })          
-
-</script>
+  </div>
+ 
 {% endblock %}

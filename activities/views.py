@@ -76,7 +76,7 @@ def action_projects(request, pk):
 	elif request.method == 'DELETE':
 		print "dentro delete projects"
 		Projects.objects.get(pk=pk).delete()
-		return HttpResponse('ok')
+		return HttpResponse('../templates/proyects.html')
 	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
 
 def list_config(request):	
@@ -92,4 +92,10 @@ class editProjects(UpdateView):
 	form_class = ProjectsForm
 	template_name = '../templates/edit_projects.html'
 	success_url=reverse_lazy('list_projects')
+
+class editActivity(UpdateView):
+	model = Activities
+	form_class = ActivitiesForm
+	template_name = '../templates/edit_activity.html'
+	success_url=reverse_lazy('list_activities')
 	

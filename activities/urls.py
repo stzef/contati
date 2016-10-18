@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     url(r'^activities/$',login_required(views.list_activities), name='list_activities'),#GEt
     url(r'^activities/add/$',login_required(views.add_activity), name='add_activity'),#POST
-    url(r'^activities/(?P<pk>\d+)/$',login_required(views.action_activity), name='edit_activity'),#PUT
+    url(r'^activities/(?P<pk>\d+)/edit$',login_required(views.editActivity.as_view()), name='edit_activity'),#PUT
     url(r'^activities/(?P<pk>\d+)/$',login_required(views.action_activity), name='delete_activity'),#DELETE
     url(r'^projects/$',login_required(views.list_projects), name='list_projects'),#GET
     url(r'^projects/add/$',login_required(views.add_projects), name='add_projects'),#POST

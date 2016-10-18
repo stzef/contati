@@ -15,10 +15,10 @@ class Activities(models.Model):
 	def __str__(self):
 		return '{}'.format(self.activity)
 
-class Sprint(models.Model):
-	start_date = models.DateTimeField(default=timezone.now)
-	finish_date = models.DateTimeField(default=timezone.now)
-	states = models.ForeignKey('tasks.States_kanban')
+# class Sprint(models.Model):
+# 	start_date = models.DateTimeField(default=timezone.now)
+# 	finish_date = models.DateTimeField(default=timezone.now)
+# 	states = models.ForeignKey('tasks.States_kanban')
 
 	def finish(self):
 		self.finish_date = timezone.now()
