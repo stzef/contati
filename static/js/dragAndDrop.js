@@ -1,14 +1,14 @@
 
 
 function star(ev) {
-  console.log(ev.target)
+  //console.log(ev.target)
 ev.dataTransfer.effectAllowed = 'move';
 ev.dataTransfer.setData("text",ev.target.id);
 ev.dataTransfer.setDragImage(ev.target,80,80);
 }
 var ids =0
 function myFunction() {
-    debugger
+    //debugger
     var demos = $("#demos").val();
     ids += 1
     //console.log(ids);
