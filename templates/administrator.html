@@ -194,11 +194,45 @@
 				</div>
 			</div>
 		</nav>
-
+		  
 <div class="content">
 	<div class="container-fluid">
 
 	{% block content %}
+		<div class="col-md-6">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">ACTIVIDADES</h4>
+                        <p class="category">actividades en Proceso</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <tbody>
+                                {% for tareas in activities %}
+                                    <tr>
+                                        <td>
+                                            <label class="checkbox">
+                                                <input type="checkbox" value="" data-toggle="checkbox">
+                                            </label>
+                                        </td>
+                   7                     <td>{{ tareas.activity }}</td>
+                                        <td class="td-actions text-right">
+                                            <a href="{% url 'edit_activity' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'delete_activity' pk=tareas.pk %}" class="btn btn-danger btn-simple btn-xs">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
 	{% endblock %}
 	</div>
 
