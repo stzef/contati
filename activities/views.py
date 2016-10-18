@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from.models import *
-from forms import ActivitiesForm
-from forms2 import ProjectsForm
+from forms import ActivitiesForm, ProjectsForm
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
 from django.template import RequestContext

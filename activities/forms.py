@@ -18,3 +18,18 @@ class ActivitiesForm(forms.ModelForm):
         'activity': forms.TextInput(attrs={'class':'form-control'}),
         'project': forms.Select(attrs={'class':'form-control'}) ,
         }
+
+class ProjectsForm(forms.ModelForm):
+
+    class Meta:
+        model = Projects
+        
+        fields = [
+        'project'
+        ]
+        labels = {
+        'project': 'projects'
+        }
+        widgets = {
+        'project': forms.TextInput(attrs={'class':'form-control'})
+        }
