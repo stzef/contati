@@ -31,7 +31,7 @@ class Customers(models.Model):
 	contact1 = models.CharField(max_length=50,blank=True, null=True)
 	contact2 = models.CharField(max_length=50,blank=True, null=True)
 	email = models.CharField(max_length=50,blank=True, null=True)
-	
+	#image = models.CharField( max_length=20,blank = True, null=True)
 	
 	class Meta:
 	 	db_table = 'Customers'

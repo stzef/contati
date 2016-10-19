@@ -32,6 +32,7 @@ urlpatterns = [
 	url('^change-image$', views.change_image, name='change-image'),
 
 	url(r'^customers/$', login_required(views.list_Customers), name='list_customers'),
+	#url(r'^customers/add/$', add_Customers, name="add_customers"), 
 	url(r'^customers/add/$', login_required(views.createCustomers.as_view()), name="add_customers"), 
 	url(r'^customers/(?P<pk>\d+)/edit/$', login_required(views.editCustomers.as_view()), name="edit_customers"),
 	url(r'^customers/(?P<pk>\d+)/delete$', login_required(views.deleteCustomers.as_view()), name='delete_customers'),

@@ -1,0 +1,31 @@
+
+    <h3>Tasks, aqui entrando</h3>
+
+            <form name="contact-form" method="POST" action="{% url 'add_board_tasks' %}">
+            {% csrf_token %}
+                            <div class="form-group">
+                                <strong>Responsable:</strong> {{ form.responsible }} <br/>
+                            </div>
+                            <div class="form-group has-error">
+                                <strong>{{ form.description.label }} *</strong> {{ form.description }}
+                                <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+                            </div>
+                            <div class="form-group">
+                                <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
+                            </div>
+                            <div class="form-group">
+                                <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+                            </div>
+                            <div class="form-group">
+                                <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
+                            </div>
+                            <div class="form-group has-error">
+                                <strong>{{ form.start_date.label }} *</strong> {{ form.start_date }}
+                                <label class="control-label" for="inputError">{{ form.start_date.errors }}</label> <br/>
+                            </div>
+                            <div class="form-group">
+                                <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        </form>
+

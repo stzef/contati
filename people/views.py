@@ -171,18 +171,12 @@ def list_Customers(request):
     customers = Customers.objects.all().order_by('name')
     return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
 
-    
-
 class createCustomers(CreateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/add_customers.html'
-
-    def get_success_url(self):
-        return reverse('list_customers')
-
-
-
+    success_url=reverse_lazy('list_customers')
+    
 class editCustomers(UpdateView):
     model = Customers
     form_class = CustomersForm

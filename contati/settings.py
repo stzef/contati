@@ -44,9 +44,7 @@ INSTALLED_APPS = [
     'people.apps.PeopleConfig',
     'tasks.apps.TasksConfig',
     'activities',
-    'social.apps.django_app.default',
-
-
+    
     # Third-party apps
    
     
