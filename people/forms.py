@@ -15,8 +15,7 @@ class CustomersForm(forms.ModelForm):
         'contact1',
         'contact2',
         'email',
-        
-        
+          
 
         ]
         
