@@ -51,20 +51,13 @@ def view_board(request):
 class createTasksBoard(CreateView):
 	model = Tasks
 	form_class = TasksForm
+	template_name = '../templates/add_board_tasks.html'
+	success_url=reverse_lazy('board')
 
-	# def get_form_kwargs(self, **kwargs):
-	# 	form_kwargs = super(createTasks, self).get_form_kwargs(**kwargs)
-	# 	form_kwargs["user"] = self.request.user
-	# 	return form_kwargs
-
-	def form_valid(self, form):
-		self.object = form.save()
-		return render(self.request, {'form': self.object})
-
-	def get_context_data(self, **kwargs):
-		context = super(createTasks, self).get_context_data(**kwargs)
-		context['form'] = self.form_class 
-		return context
+	def get_form_kwargs(self, **kwargs):
+		form_kwargs = super(createTasksBoard, self).get_form_kwargs(**kwargs)
+		form_kwargs["user"] = self.request.user
+		return form_kwargs
  	
 #Listar Estados
 @login_required(login_url="/login")
