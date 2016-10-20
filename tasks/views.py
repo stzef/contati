@@ -49,15 +49,15 @@ def view_board(request):
     user = User.objects.get( id = request.user.id )
     tareas = Tasks.objects.filter()
 
-	if request.method == "POST":
+    if request.method == "POST":
 		form = TasksForm(request.POST, user=request.user)
 		if form.is_valid():
 			form.save()
-		return redirect('board') 
-	else:
+		return redirect('board')
+    else:
 		form = TasksForm(user=request.user)
 
-	return render_to_response('../templates/board.html', {"user": user, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )     
+    return render_to_response('../templates/board.html', {"user": user, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
 
 # class createTasksBoard(CreateView):
 # 	model = Tasks
@@ -69,7 +69,7 @@ def view_board(request):
 # 		form_kwargs = super(createTasksBoard, self).get_form_kwargs(**kwargs)
 # 		form_kwargs["user"] = self.request.user
 # 		return form_kwargs
- 	
+
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):

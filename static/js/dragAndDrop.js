@@ -1,5 +1,6 @@
 var contador =0
 function myFunction() {
+    debugger
     var demos = $("#demos").val();
     contador += 1
       var padre = document.getElementById('pru');
@@ -18,9 +19,12 @@ function myFunction() {
 
 function mi_funcion() {
   debugger
-  var padre = document.getElementById('pru');
-  var hijo = document.createElement("input");
-  padre.appendChild(hijo);
+  var tarea = document.getElementById('1');
+  console.log(tarea);
+
+  //var padre = document.getElementById('pru');
+  //var hijo = document.createElement("input");
+  //padre.appendChild(hijo);
 }
 
 function star(ev) {
