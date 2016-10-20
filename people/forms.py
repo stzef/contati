@@ -39,3 +39,31 @@ class CustomersForm(forms.ModelForm):
        
         }
 
+class ContributorsForm(forms.ModelForm):
+
+    class Meta:
+        model = Contributors
+        fields = [
+        'role', 
+        'user',
+        'image',
+        'image_2',
+
+
+        ]
+        
+        labels = {
+        'role': 'Rol', 
+        'user': 'Usuario',
+        'image': 'Imagen',
+        'image_2': 'Imagen 2',
+        
+
+        }
+        widgets = {
+        'role': forms.TextInput(attrs={'class':'form-control'}), 
+        'user': forms.Select(attrs={'class':'form-control', 'value': '{{ object.user }}' }),
+        'image': forms.TextInput(attrs={'class':'form-control'}),
+        'image_2': forms.TextInput(attrs={'class':'form-control'}),
+        }
+

@@ -4,21 +4,22 @@ from django.template import loader, RequestContext
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.views.generic import UpdateView, DeleteView, ListView, CreateView
+from django.views.generic import UpdateView, DeleteView, ListView, CreateView, FormView
 from validators import Validator
 from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
-from people.forms import CustomersForm
+from people.forms import CustomersForm, ContributorsForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
-
-
+from tasks.models import Tasks
+from tasks.forms import TasksForm
+from activities.models import Activities
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
@@ -189,6 +190,18 @@ class deleteCustomers(DeleteView):
     template_name = '../templates/delete_customers.html'
     success_url=reverse_lazy('list_customers')  
 
-@login_required(login_url="/login")
-def view_administrator(request):
-    return render_to_response('../templates/administrator.html')
+
+class view_administrator(ListView,):
+
+    model = Contributors
+    template_name = '../templates/administrator.html'
+
+    def get_queryset(self):
+        return super(view_administrator, self).get_queryset().order_by('user__first_name')
+
+class proyect(FormView):
+    model = Activities
+    template_name = '../templates/administrator.html'
+
+    
+        
