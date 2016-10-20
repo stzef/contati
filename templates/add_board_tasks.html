@@ -1,7 +1,7 @@
 
     <h3>Tasks, aqui entrando</h3>
 
-            <form name="contact-form" method="POST" action="{% url 'add_board_tasks' %}">
+            <form name="contact-form" method="POST">
             {% csrf_token %}
                             <div class="form-group">
                                 <strong>Responsable:</strong> {{ form.responsible }} <br/>
