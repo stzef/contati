@@ -5,7 +5,7 @@ from .models import States, States_kanban, Priorities, Departments, Tasks
 from activities.models import Projects, Activities
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
-from django.core.urlresolvers import reverse, reverse_lazy 
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -46,7 +46,9 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-	return render_to_response('../templates/board.html')     
+    user = User.objects.get( id = request.user.id )
+    tareas = Tasks.objects.filter()
+    return render_to_response('../templates/board.html',  { "user": user, "tareas":tareas }, context_instance = RequestContext(request))
 
 class createTasksBoard(CreateView):
 	model = Tasks
@@ -58,15 +60,15 @@ class createTasksBoard(CreateView):
 		form_kwargs = super(createTasksBoard, self).get_form_kwargs(**kwargs)
 		form_kwargs["user"] = self.request.user
 		return form_kwargs
- 	
+
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
-	selected_option = request.POST.get('row.proje', None)	
-	print (selected_option) 
+	selected_option = request.POST.get('row.proje', None)
+	print (selected_option)
 	project = Projects.objects.filter()
 	state1 = Tasks.objects.filter()
-	return render_to_response('../templates/list_tasks.html', {'state1': state1, 'project': project}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_tasks.html', {'state1': state1, 'project': project}, context_instance=RequestContext(request))
 
 from django.core import serializers
 class createTasks(CreateView):
@@ -82,15 +84,15 @@ class createTasks(CreateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()  
+		context['project'] = Projects.objects.all()
 		#context['activity'] = Activities.objects.filter(project = 'seleccion')
-		return context 	
-	
+		return context
+
 class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/edit_tasks.html'
-	success_url=reverse_lazy('list_tasks')	
+	success_url=reverse_lazy('list_tasks')
 
 	def get_form_kwargs(self, **kwargs):
 		form_kwargs = super(editTasks, self).get_form_kwargs(**kwargs)
@@ -101,19 +103,19 @@ class editTasks(UpdateView):
 	def get_context_data(self, **kwargs):
 		context = super(editTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		return context 	
-		
+		return context
+
 
 class deleteTasks(DeleteView):
 	model = Tasks
 	form_class = TasksForm
 	template_name = '../templates/delete_tasks.html'
-	success_url=reverse_lazy('list_tasks')	
+	success_url=reverse_lazy('list_tasks')
 
 	def get_context_data(self, **kwargs):
 		context = super(deleteTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		return context 		
+		return context
 
 # <----------- View States ------------------>
 
@@ -125,25 +127,25 @@ def add_states(request):
 		form = StatesForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return redirect('list_states') 
+		return redirect('list_states')
 	else:
 		form = StatesForm()
 
-	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))
 
 #Listar Estados
 @login_required(login_url="/login")
 def list_states(request):
 	state1 = States.objects.filter()
-	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))
 
 class editStates(UpdateView):
 	model = States
 	form_class = StatesForm
 	template_name = '../templates/edit_states.html'
-	
+
 	def get_success_url(self):
-		return reverse('list_states')	
+		return reverse('list_states')
 
 
 class deleteStates(DeleteView):
@@ -152,14 +154,14 @@ class deleteStates(DeleteView):
 	template_name = '../templates/delete_states.html'
 
 	def get_success_url(self):
-		return reverse('list_states')		
+		return reverse('list_states')
 
 # <----------- View States Kanban ------------------>
 
 @login_required(login_url="/login")
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
-	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))
 
 class createStatesKanban(CreateView):
 	model = States_kanban
@@ -181,18 +183,18 @@ class deleteStatesKanban(DeleteView):
 	model = States_kanban
 	form_class = StatesKanbanForm
 	template_name = '../templates/delete_kanban.html'
-	
+
 	def get_success_url(self):
 		return reverse('list_states_kanban')
 
-	
-	
+
+
 # <----------- View Priorities ------------------>
 
 @login_required(login_url="/login")
 def list_priorities(request):
 	priorities = Priorities.objects.filter()
-	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))
 
 class createPriorities(CreateView):
 	model = Priorities
@@ -214,14 +216,14 @@ class deletePriorities(DeleteView):
 	template_name = '../templates/delete_priorities.html'
 
 	def get_success_url(self):
-		return reverse('list_priorities')			
+		return reverse('list_priorities')
 
 # <----------- View Departments ------------------>
 
-@login_required(login_url="/login")						
+@login_required(login_url="/login")
 def list_departments(request):
 	departments = Departments.objects.filter()
-	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))           
+	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))
 
 class createDepartments(CreateView):
 	model = Departments
@@ -236,11 +238,10 @@ class editDepartments(UpdateView):
 	form_class = DepartmentsForm
 	template_name = '../templates/edit_departments.html'
 	success_url=reverse_lazy('list_departments')
-	
+
 
 class deleteDepartments(DeleteView):
 	model = Departments
 	form_class = DepartmentsForm
 	template_name = '../templates/delete_departments.html'
 	success_url=reverse_lazy('list_departments')
-	
