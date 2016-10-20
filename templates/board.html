@@ -24,7 +24,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-        <div class="container">
+        <div class="container onload="mi_funcion()"">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -55,7 +55,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" onload="mi_funcion()">
         <div class="row">
             <div class="col-md-12 col-sm-12">
 
@@ -81,7 +81,7 @@
                     <h1>Finish</h1>
                     <hr>
                     <div class="" id="pru"></div>
-                    
+
                     <div class="" id="pru1"></div>
                 </div>
 
@@ -100,7 +100,7 @@
           <div class="modal-body">
 
             {% include "add_board_tasks.html" %}
-            
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -112,6 +112,11 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function mi_funcion() {
+      
+    }
+    </script>
 </body>
 
 </html>
