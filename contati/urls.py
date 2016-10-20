@@ -9,7 +9,9 @@ urlpatterns = [
 	url(r'^board$', view_board, name='board'),
 	url(r'^board/addTasks$', login_required(createTasksBoard.as_view()), name='add_board_tasks'),
 	url(r'^administrator$', login_required(view_administrator.as_view()), name='administrator'),	
+    url(r'^administrator$', login_required(proyect.as_view()), name='proyect'),
     url(r'^admin/', admin.site.urls),
+
     #url(r'^administrator$', view_administrator, name='administrator'),
 
     url(r'', include('people.urls')),

@@ -150,12 +150,10 @@
 											<option value="0" >Proyecto</option>						
 											<br>	
 											
-											{% for row in project %}
-
-
+											{% for row in object_list %}
 											
-												<option value="{{ row.id }}">{{ row.project }}	
-												</option>
+											<option value="{{ row.id }}">{{ row.project }}	
+											</option>
 											{% endfor %}
 
 																				

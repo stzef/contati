@@ -4,7 +4,7 @@ from django.template import loader, RequestContext
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.views.generic import UpdateView, DeleteView, ListView, CreateView
+from django.views.generic import UpdateView, DeleteView, ListView, CreateView, FormView
 from validators import Validator
 from django.core.exceptions import NON_FIELD_ERRORS
 from .validators import FormRegistroValidator, FormLoginValidator, Validator, FormChangePasswordValidator
@@ -192,5 +192,16 @@ class deleteCustomers(DeleteView):
 
 
 class view_administrator(ListView,):
+
     model = Contributors
     template_name = '../templates/administrator.html'
+
+    def get_queryset(self):
+        return super(view_administrator, self).get_queryset().order_by('user__first_name')
+
+class proyect(FormView):
+    model = Activities
+    template_name = '../templates/administrator.html'
+
+    
+        
