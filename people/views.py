@@ -203,5 +203,5 @@ class proyect(FormView):
     model = Activities
     template_name = '../templates/administrator.html'
 
-    
-        
+def tasks(request):  
+    return render_to_response('tasks.html', context_instance = RequestContext(request))    

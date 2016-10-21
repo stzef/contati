@@ -76,9 +76,9 @@ class TasksForm(forms.ModelForm):
                 'Customers' : 'Cliente',
         }
         widgets = {
+                'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}' }) ,
                 'description' : forms.Textarea(attrs={'class':'form-control'}),
                 'answer' : forms.Textarea(attrs={'class':'form-control'}),
-                'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}' }) ,
                 'department' : forms.Select(attrs={'class':'form-control'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control'}) ,
                 'states' : forms.Select(attrs={'class':'form-control'}), 

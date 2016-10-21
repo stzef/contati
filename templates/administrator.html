@@ -31,6 +31,10 @@
 	<link href="{% static 'css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
 	<link href="{% static 'css/datetimepicker.css' %}" rel="stylesheet" />
    
+
+    <!-- Custom CSS -->
+    <link href="{% static 'board/css/the-big-picture.css' %}" rel="stylesheet">
+ 
         
 </head>
 <body>
@@ -144,7 +148,7 @@
            					   		{% csrf_token %}
            					   		
            					   	                 
-										<select id="proy" name="seleccion" type="text" class="form-control">
+										<select id="proy" name="seleccion" type="text" class="form-control" id="project">
 											
 
 											<option value="0" >Proyecto</option>						
@@ -205,24 +209,39 @@
                     <div class="content">
                         <div class="table-full-width">
                             <table class="table">
-                            <a href="">
+                            
                             <ul>
 						        {% for publisher in object_list %}
+                            	<a href="{% url 'tasks' %}" data-remote="false" data-toggle="modal" data-target="#myModal">
 						            <li>{{ publisher.user}}  <img class="avatar border-gray" src="{{publisher.photo}}" alt="foto"> </li>
 						            
+                            	</a>                         	                                   
 						        {% endfor %}
 						        
 						    </ul>
-                            </a>                         	                                   
                           	</table>
                         </div>
                    </div>		                
 		        </div>
+		        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      
+    </div>
 		    </div>
 		</div>
 	</div>
+
+	
 </div>
 </div>
+ 	<script src="https://code.jquery.com/jquery.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+   	<script>
+   	$("#myModal").on("show.bs.modal", function(e) {
+    var link = $(e.relatedTarget);
+    $(this).find("modal").load(link.attr("href"));
+});
+   	</script>
 </body>
 	<footer class="footer">
 			<div class="container-fluid">
@@ -271,10 +290,8 @@
 				$('.date').datetimepicker({ format:'YYYY-MM-DD HH:mm'});
 			});
 	</script>-->
-    
-    
 
-</body>
+
 
 </html>
 

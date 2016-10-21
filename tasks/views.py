@@ -46,18 +46,19 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-    user = User.objects.get( id = request.user.id )
-    tareas = Tasks.objects.filter()
+	usu = User.objects.get( id = request.user.id )
+	tareas = Tasks.objects.filter()
+	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-		form = TasksForm(request.POST, user=request.user)
+		#import pdb; pdb.set_trace()
+		form = TasksForm(request.POST, user=request.user )
 		if form.is_valid():
+			form.responsible = request.user
 			form.save()
-		return redirect('board') 
-	else:
-		form = TasksForm(user=request.user)
+		return redirect('board') 		
 
-	return render_to_response('../templates/board.html', {"user": user, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )     
+	return render_to_response('../templates/board.html', {"usu": usu, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )     
 
 # class createTasksBoard(CreateView):
 # 	model = Tasks
