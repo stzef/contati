@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel"> Tareas </h4>
+          </div>
+          <div class="modal-body">
+
+		<h3>tareas</h3>
+
+			{% for tareas in user.contributors.tasks_set.all  %}
+			<td>{{ tareas.description }}</td>
+			{% endfor %}
+            
+            
+          </div>
+        </div>
+      </div>

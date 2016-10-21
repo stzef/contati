@@ -35,7 +35,7 @@ class Tasks(models.Model):
 	department =  models.ForeignKey('departments', blank=True, null = True)
 	prioritie =  models.ForeignKey('priorities', blank=True, null = True)	
 	states =  models.ForeignKey('states', blank=True, null = True)
-	start_date = models.DateTimeField(default=timezone.now)
+	start_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 	finish_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 	states_kanban =  models.ForeignKey('states_kanban', blank=True, null = True)
 	activity = models.ForeignKey('activities.Activities', blank=True, null = True)

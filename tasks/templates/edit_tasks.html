@@ -7,13 +7,15 @@
     <a class="btn btn-info pull-right" href="{% url 'list_tasks'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Tareas</a>
     
       <a class="btn btn-default pull-right" href="{% url 'list_tasks' %}">Cancelar</a>
-      <input class="btn btn-primary pull-right" type="submit" value="Guardar" /></h3>
+      
+      </h3>
   </div>
 </div>
 
 <div class="panel">
   <div class="panel-body">
     <form method="post">{{ form.errors }}
+    <input class="btn btn-primary pull-right" type="submit" value="Guardar" />
     {% csrf_token %}
       <div class="form-group">
         <div class="col-md-6">

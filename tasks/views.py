@@ -46,18 +46,37 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-    user = User.objects.get( id = request.user.id )
-    tareas = Tasks.objects.filter()
+	usu = User.objects.get( id = request.user.id )
+	tareas = Tasks.objects.filter()
+	form = TasksForm(user=request.user)
 
+<<<<<<< HEAD
+	if request.method == "POST":
+		# import pdb; pdb.set_trace()
+		#form = TasksForm(request.POST, user=request.user )
+		form = TasksForm(user=request.user )
+=======
     if request.method == "POST":
 		form = TasksForm(request.POST, user=request.user)
+>>>>>>> 9d8dbbf7e32c40e7f5267f494f5326e08c3d1d43
 		if form.is_valid():
+			form.responsible = request.POST['responsible']
+			form.description = request.POST['description']
+			form.activity = request.POST['activity']
+			form.states = request.POST['states']
+			form.prioritie = request.POST['prioritie']
 			form.save()
+<<<<<<< HEAD
+		return redirect('board') 		
+
+	return render_to_response('../templates/board.html', {"usu": usu, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )     
+=======
 		return redirect('board')
     else:
 		form = TasksForm(user=request.user)
 
     return render_to_response('../templates/board.html', {"user": user, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
+>>>>>>> 9d8dbbf7e32c40e7f5267f494f5326e08c3d1d43
 
 # class createTasksBoard(CreateView):
 # 	model = Tasks
