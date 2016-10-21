@@ -18,7 +18,7 @@ class StatesKanbanForm(forms.ModelForm):
         labels = {'name_states': 'Nombre Estado',
                    'color' : 'Color'}
         widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'}),
-                    'color' : forms.TextInput(attrs={'class':'form-control'})}  
+                    'color' : forms.TextInput(attrs={'class':'form-control'})}
 
 class PrioritiesForm(forms.ModelForm):
 
@@ -28,7 +28,7 @@ class PrioritiesForm(forms.ModelForm):
         labels = {'name_prioritie': 'Nombre Prioridad',
                    'order' : 'Orden'}
         widgets = {'name_prioritie': forms.TextInput(attrs={'class':'form-control'}),
-                    'order' : forms.TextInput(attrs={'class':'form-control'})}  
+                    'order' : forms.TextInput(attrs={'class':'form-control'})}
 
 class DepartmentsForm(forms.ModelForm):
 
@@ -77,14 +77,14 @@ class TasksForm(forms.ModelForm):
         }
         widgets = {
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
-                'description' : forms.Textarea(attrs={'class':'form-control', 'name':'description'}),
+                'description' : forms.Textarea(attrs={'class':'form-control', 'id':'demos', 'name':'description'}),
                 'answer' : forms.Textarea(attrs={'class':'form-control', 'name':'answer'}),
                 'department' : forms.Select(attrs={'class':'form-control', 'name':'department'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control', 'name':'prioritie'}) ,
-                'states' : forms.Select(attrs={'class':'form-control', 'name':'states'}), 
+                'states' : forms.Select(attrs={'class':'form-control', 'name':'states'}),
                 'start_date' : forms.TextInput(attrs={'name':'start_date', 'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
                 'finish_date' : forms.TextInput(attrs={'name':'finish_date', 'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
                 'states_kanban' : forms.Select(attrs={'class':'form-control', 'name':'states_kanban'}),
                 'activity' : forms.Select(attrs={'name':'activity', 'class':'form-control', 'id':'id_activi', 'value' : '{{ object.activity }}' }),
                 'Customers' : forms.Select(attrs={'name':'customers', 'class':'form-control'}),
-        }        
+        }
