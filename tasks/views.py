@@ -53,7 +53,6 @@ def view_board(request):
 	if request.method == "POST":
 		# import pdb; pdb.set_trace()
 		#form = TasksForm(request.POST, user=request.user )
-<<<<<<< HEAD
 		form = TasksForm(user=request.user)
 		tas = Tasks()
 		tas.responsible = request.POST['responsible']
@@ -62,24 +61,10 @@ def view_board(request):
 		tas.states = request.POST['states']
 		tas.prioritie = request.POST['prioritie']
 		tas.save()
-		return redirect('board') 		
-
-	return render_to_response('../templates/board.html', {"usu": usu, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )     
-
-=======
-		form = TasksForm(user=request.user )
-
-		if form.is_valid():
-			form.responsible = request.POST['responsible']
-			form.description = request.POST['description']
-			form.activity = request.POST['activity']
-			form.states = request.POST['states']
-			form.prioritie = request.POST['prioritie']
-			form.save()
 		return redirect('board')
 
 	return render_to_response('../templates/board.html', {"usu": usu, 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
->>>>>>> 4ec248404f781b6fdaa01586eef08432688ab2e1
+
 
 # class createTasksBoard(CreateView):
 # 	model = Tasks
