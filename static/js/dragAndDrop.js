@@ -19,7 +19,7 @@ function myFunction() {
 
 function mi_funcion() {
   debugger
-  var tarea = document.getElementById('1');
+  var tarea = document.getElementsByName("pintar");
   console.log(tarea);
 
   //var padre = document.getElementById('pru');

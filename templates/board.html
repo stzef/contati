@@ -71,11 +71,8 @@
                     <hr>
                     <div class="" id="pru"></div>
                     <tbody id="tareas">   {% for tarea in tareas %}
-
-                        <tr>
-                               
-                            <input type="text"  id="{{tarea.id}}" class="form-control" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" value={{tarea.description}} />
-                            <br>
+                        <tr>                          
+                            <a type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >{{tarea.description}} </a>
                         </tr>
                     </tbody>
                    {% endfor %}
