@@ -40,7 +40,7 @@ class DepartmentsForm(forms.ModelForm):
 
 class TasksForm(forms.ModelForm):
 
-    def __init__(self,user, *args, **kwargs):
+    def __init__(self,user=None, *args, **kwargs):
         super(TasksForm, self).__init__(*args, **kwargs)
         self.fields['responsible'].initial = Contributors.objects.get( user = user )
         self.fields['prioritie'].initial = Priorities.objects.get(name_prioritie= "Media")
@@ -76,15 +76,15 @@ class TasksForm(forms.ModelForm):
                 'Customers' : 'Cliente',
         }
         widgets = {
-                'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}' }) ,
-                'description' : forms.Textarea(attrs={'class':'form-control'}),
-                'answer' : forms.Textarea(attrs={'class':'form-control'}),
-                'department' : forms.Select(attrs={'class':'form-control'}) ,
-                'prioritie' : forms.Select(attrs={'class':'form-control'}) ,
-                'states' : forms.Select(attrs={'class':'form-control'}), 
-                'start_date' : forms.TextInput(attrs={'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
-                'finish_date' : forms.TextInput(attrs={'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
-                'states_kanban' : forms.Select(attrs={'class':'form-control'}),
-                'activity' : forms.Select(attrs={'class':'form-control', 'id':'id_activi', 'value' : '{{ object.activity }}' }),
-                'Customers' : forms.Select(attrs={'class':'form-control'}),
+                'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
+                'description' : forms.Textarea(attrs={'class':'form-control', 'name':'description'}),
+                'answer' : forms.Textarea(attrs={'class':'form-control', 'name':'answer'}),
+                'department' : forms.Select(attrs={'class':'form-control', 'name':'department'}) ,
+                'prioritie' : forms.Select(attrs={'class':'form-control', 'name':'prioritie'}) ,
+                'states' : forms.Select(attrs={'class':'form-control', 'name':'states'}), 
+                'start_date' : forms.TextInput(attrs={'name':'start_date', 'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
+                'finish_date' : forms.TextInput(attrs={'name':'finish_date', 'class':'form-control','type':'date','min':'1980-01-01','max':'2025-12-31'}),
+                'states_kanban' : forms.Select(attrs={'class':'form-control', 'name':'states_kanban'}),
+                'activity' : forms.Select(attrs={'name':'activity', 'class':'form-control', 'id':'id_activi', 'value' : '{{ object.activity }}' }),
+                'Customers' : forms.Select(attrs={'name':'customers', 'class':'form-control'}),
         }        

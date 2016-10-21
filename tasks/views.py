@@ -51,10 +51,15 @@ def view_board(request):
 	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-		#import pdb; pdb.set_trace()
-		form = TasksForm(request.POST, user=request.user )
+		# import pdb; pdb.set_trace()
+		#form = TasksForm(request.POST, user=request.user )
+		form = TasksForm(user=request.user )
 		if form.is_valid():
-			form.responsible = request.user
+			form.responsible = request.POST['responsible']
+			form.description = request.POST['description']
+			form.activity = request.POST['activity']
+			form.states = request.POST['states']
+			form.prioritie = request.POST['prioritie']
 			form.save()
 		return redirect('board') 		
 
@@ -70,7 +75,7 @@ def view_board(request):
 # 		form_kwargs = super(createTasksBoard, self).get_form_kwargs(**kwargs)
 # 		form_kwargs["user"] = self.request.user
 # 		return form_kwargs
- 	
+
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
