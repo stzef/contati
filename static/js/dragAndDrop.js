@@ -45,6 +45,9 @@ function drop(ev) {
   ev.preventDefault();
   var datos=ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById( datos));
+  var destino = ev.target.id
+  console.log("destino: "+destino);
+  console.log("objeto: "+datos);
   ev.stopPropagation();
 }
 

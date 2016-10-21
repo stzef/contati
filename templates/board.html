@@ -63,15 +63,15 @@
 
 
                   <a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
-                  <TEXTAREA id="demos" rows="5" cols="30" name="txtsugerencias">Sus sugerencias aquí...</TEXTAREA><BR>
-                    <button type="submit" onclick="myFunction()">Enviar formulario</button>
+                  <!--<TEXTAREA id="demos" rows="5" cols="30" name="txtsugerencias">Sus sugerencias aquí...</TEXTAREA><BR>
+                    <button type="submit" onclick="myFunction()">Enviar formulario</button>-->
 
 
                     <h1>To do!</h1>
                     <hr>
                     <div class="" id="pru"></div>
                     <tbody id="tareas">   {% for tarea in tareas %}
-                        <tr>                          
+                        <tr>
                             <a type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >{{tarea.description}} </a>
                         </tr>
                     </tbody>
@@ -111,7 +111,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-    <script type="text/javascript">mi_funcion()</script>
+    <!--<script type="text/javascript">mi_funcion()</script>-->
 </body>
 
 </html>
