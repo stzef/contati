@@ -50,14 +50,7 @@ def view_board(request):
 	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-<<<<<<< HEAD
 		#import pdb; pdb.set_trace()
-		form = TasksForm(user=request.user)
-=======
-		import pdb; pdb.set_trace()
-		#form = TasksForm(request.POST, user=request.user )
-		#form = TasksForm(user=request.user)
->>>>>>> 645c81a9f9db0753876b322c5dbb9e4dd83018d4
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.description = request.POST['description']
@@ -65,26 +58,9 @@ def view_board(request):
 		tas.states_id = request.POST['states']
 		tas.prioritie_id = request.POST['prioritie']
 		tas.save()
-<<<<<<< HEAD
 
-=======
->>>>>>> 645c81a9f9db0753876b322c5dbb9e4dd83018d4
 		return redirect('board')
 	return render_to_response('../templates/board.html', { 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
-
-<<<<<<< HEAD
-=======
-# class createTasksBoard(CreateView):
-# 	model = Tasks
-# 	form_class = TasksForm
-# 	template_name = '../templates/add_board_tasks.html'
-# 	success_url=reverse_lazy('board')
-
-# 	def get_form_kwargs(self, **kwargs):
-# 		form_kwargs = super(createTasksBoard, self).get_form_kwargs(**kwargs)
-# 		form_kwargs["user"] = self.request.user
-# 		return form_kwargs
->>>>>>> 645c81a9f9db0753876b322c5dbb9e4dd83018d4
 
 #Listar Estados
 @login_required(login_url="/login")
