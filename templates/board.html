@@ -56,40 +56,47 @@
 
     <!-- Page Content -->
     <div class="container" onload="mi_funcion()">
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
 
-                <div class="col-md-4 col-sm-4 well well-lg" id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
+        <div class="panel">
+            <div class="panel-body">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th><a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+                      <h1>To do!</h1>
+                    </th>
 
-
-                  <a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
-                  <!--<TEXTAREA id="demos" rows="5" cols="30" name="txtsugerencias">Sus sugerencias aquí...</TEXTAREA><BR>
-                    <button type="submit" onclick="myFunction()">Enviar formulario</button>-->
-
-
-                    <h1>To do!</h1>
-                    <hr>
-                    <div class="" id="pru"></div>
-                    <tbody id="tareas">   {% for tarea in tareas %}
-                        <tr>
-                            <a type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >{{tarea.description}} </a>
-                        </tr>
-                    </tbody>
-                   {% endfor %}
-                </div>
-                <div class="col-md-4 col-sm-4 well well-lg" id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
+                    <th><a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
                     <h1>Doing!</h1>
-                    <hr>
-
-                </div>
-                <div class="col-md-4 col-sm-4 well well-lg" id="div3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)">
+                    </th>
+                    <th><a id="agregar" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+                
                     <h1>Finish</h1>
-                    <hr>
-                </div>
+                    </th>
+                </tr> 
+                </thead> 
 
+                <tbody id="tareas">
+                    <tr>
+                        <td style="width: 35%;">
+                            <div id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                            {% for tarea in tareas %}
+                                <a type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >{{tarea.description}} </a>
+                            {% endfor %}
+                            </div>
+                        </td>
+                        <td style="width: 35%;"><div id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;"></div>
+                        </td> 
+                        <td style="width: 35%;"><div id="div3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+                  
+            </table>
             </div>
-        </div><!-- /.row -->
-
+            </div>         
+        </div>    
     </div><!-- /.container -->
 
     <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -105,7 +112,6 @@
 
           </div>
         </div>
-      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>
