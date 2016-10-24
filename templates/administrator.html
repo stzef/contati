@@ -57,7 +57,7 @@
 					</a>
 				</li>                
 				<li>
-					<a href="{% url 'list_tasks' %}">
+					<a href="{% url 'tasks_ad' %}">
 						<i class="pe-7s-news-paper"></i>
 						<p>Tareas</p>
 					</a>
@@ -212,7 +212,7 @@
                             
                             <ul>
 						        {% for publisher in object_list %}
-                            	<a href="{% url 'tasks' %}" data-remote="false" data-toggle="modal" data-target="#myModal">
+                            	<a href="{% url 'tasks_ad' %}" data-remote="false" data-toggle="modal" data-target="#myModal">
 						            <li>{{ publisher.user}}  <img class="avatar border-gray" src="{{publisher.photo}}" alt="foto"> </li>
 						            
                             	</a>                         	                                   

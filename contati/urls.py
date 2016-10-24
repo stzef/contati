@@ -11,7 +11,7 @@ urlpatterns = [
 	url(r'^administrator$', login_required(view_administrator.as_view()), name='administrator'),	
     url(r'^administrator$', login_required(proyect.as_view()), name='proyect'),
     url(r'^admin/', admin.site.urls),
-    url(r'^tasks$', tasks, name='tasks'),
+    url(r'^tasks-ad$', tasks, name='tasks_ad'),
     #url(r'^administrator$', view_administrator, name='administrator'),
 
     url(r'', include('people.urls')),
