@@ -20,5 +20,7 @@
                             <div class="form-group">
                               <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
                             </div>
-                            <button type="submit" onclick="myFunction() class="btn btn-primary">Enviar Mensaje</button>
-                        </form>
+                            <form  method="post">
+                              {% csrf_token %}
+                              <button type="submit" onclick="myFunction() class="btn btn-primary">Enviar Mensaje</button>
+                            </form>
