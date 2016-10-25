@@ -29,17 +29,17 @@ class Departments(models.Model):
 		return '{}'.format(self.name_department)
 
 class Tasks(models.Model):
-	description = models.CharField(max_length=45)
-	answer = models.CharField(max_length=45)
-	responsible =  models.ForeignKey('people.Contributors')
-	department =  models.ForeignKey('departments')
-	prioritie =  models.ForeignKey('priorities')	
-	states =  models.ForeignKey('states')
+	description = models.CharField(max_length=100)
+	answer = models.CharField(max_length=50, null = True)
+	responsible =  models.ForeignKey('people.Contributors', null = True)
+	department =  models.ForeignKey('departments', null = True)
+	prioritie =  models.ForeignKey('priorities', null = True)	
+	states =  models.ForeignKey('states', null = True)
 	start_date = models.DateTimeField(default=timezone.now)
 	finish_date = models.DateTimeField(blank=True, null=True)
-	states_kanban =  models.ForeignKey('states_kanban')
-	activity = models.ForeignKey('activities.Activities')
-	Customers =  models.ForeignKey('people.Customers')
+	states_kanban =  models.ForeignKey('states_kanban', null = True)
+	activity = models.ForeignKey('activities.Activities', null = True)
+	Customers =  models.ForeignKey('people.Customers', null = True)
 
 	def finish(self):
 		self.finish_date = timezone.now()
