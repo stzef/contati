@@ -18,8 +18,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
 from tasks.models import *
-from tasks.forms import TasksForm, DepartmentsForm
+from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm
 from activities.models import Activities, Projects
+from activities.forms import ActivitiesForm, ProjectsForm
+
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
@@ -207,6 +209,8 @@ def tasks(request):
     model = Tasks
     template_name = '../templates/admin/tasks.html'    
 
+# <----------- View tasks administrator ------------------>
+
 class tasks_add(CreateView):  
     model = Tasks
     form_class = TasksForm
@@ -263,6 +267,8 @@ class tasks_delete(DeleteView):
 #     template_name = '../templates/admin/departments_list.html'
 #     success_url=reverse_lazy('departments_list')
 
+# <----------- View Departments administrator ------------------>
+
 @login_required(login_url="/login")
 def departments_list(request):
     departments = Departments.objects.filter()
@@ -273,3 +279,232 @@ class departments_add(CreateView):
     form_class = DepartmentsForm
     template_name = '../templates/admin/departments_add.html'    
     success_url=reverse_lazy('departments_list')
+
+class departments_edit(UpdateView):
+    model = Departments
+    form_class = DepartmentsForm
+    template_name = '../templates/admin/departments_edit.html'    
+    success_url=reverse_lazy('departments_list')
+ 
+class departments_delete(DeleteView):
+    model = Departments
+    form_class = DepartmentsForm
+    template_name = '../templates/admin/departments_delete.html'    
+    success_url=reverse_lazy('departments_list')
+
+# <----------- View States Kanban administrator ------------------>
+
+@login_required(login_url="/login")
+def states_kanban_list(request):
+    state1 = States_kanban.objects.filter()
+    return render_to_response('../templates/admin/kanban_list.html', {'state1': state1}, context_instance=RequestContext(request))
+
+class StatesKanbanCreate(CreateView):
+    model = States_kanban
+    form_class = StatesKanbanForm
+    template_name = '../templates/admin/kanban_add.html'
+
+    def get_success_url(self):
+        return reverse('states_kanban_list')
+
+class StatesKanbanEdit(UpdateView):
+    model = States_kanban
+    form_class = StatesKanbanForm
+    template_name = '../templates/admin/kanban_edit.html'
+
+    def get_success_url(self):
+        return reverse('states_kanban_list')
+
+class StatesKanbanDelete(DeleteView):
+    model = States_kanban
+    form_class = StatesKanbanForm
+    template_name = '../templates/admin/kanban_delete.html'
+
+    def get_success_url(self):
+        return reverse('states_kanban_list')
+
+# <----------- View States administrator ------------------>
+
+
+@login_required(login_url="/login")
+def states_add(request):
+    if request.method == "POST":
+        form = StatesForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('states_list')
+    else:
+        form = StatesForm()
+
+    return render_to_response('../templates/admin/states_add.html', {'form': form}, context_instance=RequestContext(request))
+
+@login_required(login_url="/login")
+def states_list(request):
+    state1 = States.objects.filter()
+    return render_to_response('../templates/admin/states_list.html', {'state1': state1}, context_instance=RequestContext(request))
+
+class States_edit(UpdateView):
+    model = States
+    form_class = StatesForm
+    template_name = '../templates/admin/states_edit.html'
+
+    def get_success_url(self):
+        return reverse('states_list')
+
+
+class States_delete(DeleteView):
+    model = States
+    form_class = StatesForm
+    template_name = '../templates/admin/states_delete.html'
+
+    def get_success_url(self):
+        return reverse('states_list')
+
+# <----------- View Priorities administrator ------------------>
+
+@login_required(login_url="/login")
+def priorities_list(request):
+    priorities = Priorities.objects.filter()
+    return render_to_response('../templates/admin/priorities_list.html', {'prioritie': priorities}, context_instance=RequestContext(request))
+
+class Priorities_create(CreateView):
+    model = Priorities
+    form_class = PrioritiesForm
+    template_name = '../templates/admin/priorities_add.html'
+
+    def get_success_url(self):
+        return reverse('priorities_list')
+
+class Priorities_edit(UpdateView):
+    model = Priorities
+    form_class = PrioritiesForm
+    template_name = '../templates/admin/priorities_edit.html'
+    success_url=reverse_lazy('priorities_list')
+
+class Priorities_delete(DeleteView):
+    model = Priorities
+    form_class = PrioritiesForm
+    template_name = '../templates/admin/priorities_delete.html'
+
+    def get_success_url(self):
+        return reverse('priorities_list')
+# <----------- View activities administrator ------------------>
+    
+def activities_list(request):
+    activi = Activities.objects.filter()
+    return render_to_response('../templates/admin/activities_list.html', {'activi': activi}, context_instance=RequestContext(request))  
+
+
+def activity_add(request):
+    if request.method == 'POST':
+        form = ActivitiesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('activities_list') 
+    else:
+        form =  ActivitiesForm()
+    return render(request, '../templates/admin/activities_add.html', {'form':form}, context_instance=RequestContext(request))  
+     
+
+@csrf_exempt
+def activity_delete(request, pk):
+
+    
+    print (request)
+    activi = get_object_or_404(Activities, pk=pk)
+
+    if request.method == 'PUT':
+        form = Activitiesform(request.PUT, instance=activi)
+        if form.is_valid():
+            form.save()
+        return redirect('activities_list', pk=activi.pk)
+
+    elif request.method == 'DELETE':        
+        Activities.objects.get(pk=pk).delete()
+        return HttpResponse('../templates/admin/activities_list.html')
+    return render_to_response('../templates/admin/activities_delete.html', {'activi': activi}, context_instance=RequestContext(request))
+
+
+class Activity_edit(UpdateView):
+    model = Activities
+    form_class = ActivitiesForm
+    template_name = '../templates/admin/activities_edit.html'
+    success_url=reverse_lazy('activities_list')
+
+#<------------ view Customers administrator --------------->  
+
+
+
+@login_required(login_url="/login")
+def Customers_add(request):
+    if request.method == "POST":
+        form = CustomersForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('customers_list') 
+    else:
+        form = CustomersForm()
+
+    return render_to_response('../templates/admin/customers_add.html', {'form': form}, context_instance=RequestContext(request))              
+
+@login_required(login_url="/login")
+def Customers_list(request):
+    customers = Customers.objects.all().order_by('name')
+    return render_to_response('../templates/admin/customers_list.html', {'customers': customers}, context_instance=RequestContext(request))           
+
+class Customers_add(CreateView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/admin/customers_add.html'
+    success_url=reverse_lazy('customers_list')
+    
+class Customers_edit(UpdateView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/admin/customers_edit.html'
+    success_url=reverse_lazy('customers_list') 
+
+class Customers_delete(DeleteView):
+    model = Customers
+    form_class = CustomersForm
+    template_name = '../templates/admin/customers_delete.html'
+    success_url=reverse_lazy('customers_list')  
+
+#<------------ view Customers administrator --------------->  
+
+
+def projects_add(request):
+    if request.method == 'POST':
+        form = ProjectsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('projects_list') 
+    else:
+        form =  ProjectsForm()
+    return render_to_response('../templates/admin/projects_add.html', {'form':form}, context_instance=RequestContext(request))
+
+def projects_list(request):
+    project = Projects.objects.filter()
+    return render_to_response('../templates/admin/projects_list.html', {'project': project}, context_instance=RequestContext(request))  
+
+
+def projects_delete(request, pk):
+    print ("fucion action")
+    produ = get_object_or_404(Projects, pk=pk)      
+    if request.method == 'PUT':
+        form = Projectsform(request.PUT, instance=produ)
+        if form.is_valid():
+            form.save()
+        return redirect('projects_list', pk=produ.pk)
+
+    elif request.method == 'DELETE':
+        print "dentro delete projects"
+        Projects.objects.get(pk=pk).delete()
+        return HttpResponse('../templates/admin/projects_list.html')
+    return render_to_response('../templates/admin/projects_delete.html', {'produ': produ}, context_instance=RequestContext(request)) 
+
+class Projects_edit(UpdateView):
+    model = Projects
+    form_class = ProjectsForm
+    template_name = '../templates/admin/projects_edit.html'
+    success_url=reverse_lazy('projects_list')

@@ -60,6 +60,19 @@ def view_board(request):
 		tas.save()
 
 		return redirect('board')
+
+	if request.method == "PUT":
+		#import pdb; pdb.set_trace()
+		tas = Tasks(pk=pk)
+		tas.responsible_id = request.GET['responsible']
+		tas.description = request.GET['description']
+		tas.activity_id = request.GET['activity']
+		tas.states_id = request.GET['states']
+		tas.prioritie_id = request.GET['prioritie']
+		tas.save()
+
+		return redirect('board')
+
 	return render_to_response('../templates/board.html', { 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
 
 #Listar Estados

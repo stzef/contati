@@ -1,0 +1,55 @@
+{% extends 'base_administrator.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-12 col-sm-12">
+       <h3>AGREGAR CLIENTES
+       
+      <a class="btn btn-info pull-right" href="{% url 'customers_list'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Clientes</a>
+      <input class="btn btn-primary pull-right" type="submit" value="Guardar" />
+      <a class="btn btn-default pull-right" href="{% url 'customers_list' %}">Cancelar</a></h3> 
+      
+  </div>
+</div>
+<div class="panel">
+  <div class="panel-body">
+    <form action="{% url 'add_customers' %}" method="post">{{ csrf.errors }}
+    {% csrf_token %}
+      <div class="form-group">
+          <div class="col-md-6">
+          <div class="form-group has-error">
+          <strong>{{ form.name.label }}*</strong> {{ form.name}} <br/>
+          <label class="control-label" for="inputError">{{ form.name.errors }}</label> <br/>
+          </div>
+          <div class="form-group has-error">   
+          <strong>{{ form.address.label }}*</strong> {{ form.address }} <br/>
+          <label class="control-label" for="inputError">{{ form.address.errors }}</label> <br/>
+          </div>
+          <div class="form-group has-error">
+          <strong>{{ form.telephone.label }}*</strong> {{ form.telephone }} <br/>
+          <label class="control-label" for="inputError">{{ form.telephone.errors }}</label> <br/> 
+          </div>
+          
+          
+      </div>
+        <div class="col-md-6">
+          <div class="form-group"> 
+          <strong>{{ form.contact1.label }}</strong> {{ form.contact1 }} <br/>
+          </div><br>
+          <div class="form-group">
+          <strong>{{ form.contact2.label }}</strong> {{ form.contact2 }} <br/>
+          </div><br>
+          <div class="form-group">
+          <strong>{{ form.email.label }}</strong> {{ form.email }} <br/>
+          </div>
+        
+        
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+          
+
+{% endblock %}

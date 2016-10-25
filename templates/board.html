@@ -82,7 +82,10 @@
                         <td style="width: 35%;">
                             <div id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in tareas %}
-                                <a type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >{{tarea.description}} </a>
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" > 
+                                    {{tarea.description}}   
+                                    <a id="agregar" class="btn btn-default btn-small pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true" ></i>editar</a> 
+                                </div>
                             {% endfor %}
                             </div>
                         </td>
@@ -112,6 +115,23 @@
 
           </div>
         </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
+          </div>
+          <div class="modal-body">
+
+            {% include "edit_board_tasks.html" %}
+
+          </div>
+        </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>

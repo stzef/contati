@@ -1,0 +1,56 @@
+{% extends 'base_administrator.html' %}
+
+{% block content %}
+ <script src="/static/js/jquery.min.js"></script>
+<div class="row">
+    <div class="col-lg-12 col-sm-12">
+        <h3>ACTIVIDADES</h3>
+    </div>
+    </div>
+
+<div class="panel">
+    <div class="panel-body">
+        <form>
+            {% csrf_token %} 
+            <div class="form-group col-md-12">
+                <label class="section-title-p ">Eliminar Actividad</label> <br/>
+                <label class="section-title-p "><strong> {{activi.activity}} </strong></label>
+                <input type="hidden"  id="pk" value={{activi.id}} /> 
+            </div>
+            <br /><br /><br />
+            <div class="col-md-12">         
+                <button class="btn btn-danger" type="submit" >Eliminar</button>
+                <a class="btn btn-default" href="{% url 'activities_list' %}">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="/static/js/jquery.min.js"></script>
+<script>
+
+  $("form").submit(function(event){
+         
+         console.log( "entrando ajax");
+         //console.log(pk);
+         event.preventDefault()
+         var pk = $("#pk").val();
+         console.log(pk);
+        $.ajax({
+            type: 'DELETE',
+            url: '/activities/'+pk,
+            
+            success: function() {
+          
+               
+               // alert('Object deleted!')
+            },
+            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
+        });
+
+  })          
+
+</script>
+</div>
+{% endblock %}
