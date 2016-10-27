@@ -81,16 +81,11 @@
                     <tr>
                         <td style="width: 35%;">
                             <div id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
-<<<<<<< HEAD
+
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
                                     {{tarea.description}}
-=======
-                            {% for tarea in tareas %}
-                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" > 
-                                    {{tarea.description}}   
-                                    <a id="agregar" class="pull-right" data-toggle="modal" data-target="#MyModalEdit" href="#" > <i class="fa fa-plus" aria-hidden="true" ></i>editar</a> 
->>>>>>> db82defc23eb201d39e60bfa4cfb76923d3b4a0d
+
                                 </div>
                             {% endfor %}
                             </div>
@@ -122,16 +117,112 @@
         </div>
     </div><!-- /.container -->
 
-    <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-      <div class="modal-dialog">
+    <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <ul class="nav nav-tabs pull-right">
+              <li class="active">
+                <a href="#date" data-toggle="tab">Date</a>
+              </li>
+              <li><a href="#relevance" data-toggle="tab">Relevance</a></li>
+              <li><a href="#dealership" data-toggle="tab">Dealership</a></li>
+            </ul>
             <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
           </div>
           <div class="modal-body">
 
-            {% include "add_board_tasks.html" %}
+            <div class="row-fluid">
+    <div class="tab-content">
+        <div class="tab-pane active" id="date">
+             <h3>Agregar</h3>
+            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+            <form name="contact-form" method="POST">
+            {% csrf_token %}
+                <div class="form-group">
+                    <strong>Responsable:</strong> {{ form.responsible }} <br/>
+                </div>
+                <div class="form-group has-error">
+                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
+                    <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+                </div>
+
+                <div class="form-group">
+                  <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+                </div>
+                <form  method="post">
+                  {% csrf_token %}
+                  <button type="submit" onclick="myFunction() class="btn btn-primary">Guardar</button>
+                </form>
+            </form>
+
+        <div class="tab-pane" id="relevance">
+            <h3>Agregar</h3>
+            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+            <form name="contact-form" method="POST">
+            {% csrf_token %}
+                <div class="form-group">
+                    <strong>Responsable:</strong> {{ form.responsible }} <br/>
+                </div>
+                <div class="form-group has-error">
+                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
+                    <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+                </div>
+
+                <div class="form-group">
+                  <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+                </div>
+                <form  method="post">
+                  {% csrf_token %}
+                  <button type="submit" onclick="myFunction() class="btn btn-primary">Guardar</button>
+                </form>
+            </form>
+        </div>
+        <div class="tab-pane" id="dealership">
+            <h3>Agregar</h3>
+            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+            <form name="contact-form" method="POST">
+            {% csrf_token %}
+                <div class="form-group">
+                    <strong>Responsable:</strong> {{ form.responsible }} <br/>
+                </div>
+                <div class="form-group has-error">
+                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
+                    <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
+                </div>
+                <div class="form-group">
+                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+                </div>
+
+                <div class="form-group">
+                  <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+                </div>
+                <form  method="post">
+                  {% csrf_token %}
+                  <button type="submit" onclick="myFunction() class="btn btn-primary">Guardar</button>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
 
           </div>
         </div>

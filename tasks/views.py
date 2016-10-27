@@ -46,10 +46,11 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-    #kanban =  Tasks.objects.filter(states_kanban=="En Proceso")
+    user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(states_kanban_id=1)
     kanban2 = Tasks.objects.filter(states_kanban_id=2)
-    kanban3 = Tasks.objects.filter(states_kanban_id=3)
+    kanban3 = Tasks.objects.filter(user, states_kanban_id=3)
+
     form = TasksForm(user=request.user)
 
     if request.method == "POST":
@@ -64,7 +65,6 @@ def view_board(request):
         tas.save()
         return redirect('board')
 
-<<<<<<< HEAD
 	if request.method == "PUT":
 		tas = Tasks(pk=pk)
 		tas.responsible_id = request.GET['responsible']
@@ -73,33 +73,10 @@ def view_board(request):
 		tas.states_id = request.GET['states']
 		tas.prioritie_id = request.GET['prioritie']
 		tas.save()
-=======
-	return render_to_response('../templates/board.html', { 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
 
-def edit_board(request, pk):
-	tas = get_object_or_404(Tasks, pk=pk)
-	form = TasksForm(user=request.user, instance=tas)
-	if request.method == "POST":
-		#import pdb; pdb.set_trace()
-		#tas = Tasks.objects.get(pk=Tasks_id)
-		form = TasksForm(request.POST, instance=tas)
-		if form.is_valid():
-		    form.save()
-		# tas.responsible_id = request.GET['responsible']
-		# tas.description = request.GET['description']
-		# tas.activity_id = request.GET['activity']
-		# tas.states_id = request.GET['states']
-		# tas.prioritie_id = request.GET['prioritie']
-		# tas.save()
->>>>>>> db82defc23eb201d39e60bfa4cfb76923d3b4a0d
+		return redirect('board')
 
-		return redirect('board', pk=tas.pk)
-	return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
-
-<<<<<<< HEAD
     return render_to_response('../templates/board.html', { 'form': form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
-=======
->>>>>>> db82defc23eb201d39e60bfa4cfb76923d3b4a0d
 
 #Listar Estados
 @login_required(login_url="/login")
