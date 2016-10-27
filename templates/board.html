@@ -81,9 +81,16 @@
                     <tr>
                         <td style="width: 35%;">
                             <div id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+<<<<<<< HEAD
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
                                     {{tarea.description}}
+=======
+                            {% for tarea in tareas %}
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" > 
+                                    {{tarea.description}}   
+                                    <a id="agregar" class="pull-right" data-toggle="modal" data-target="#MyModalEdit" href="#" > <i class="fa fa-plus" aria-hidden="true" ></i>editar</a> 
+>>>>>>> db82defc23eb201d39e60bfa4cfb76923d3b4a0d
                                 </div>
                             {% endfor %}
                             </div>
