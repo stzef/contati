@@ -70,15 +70,21 @@ def login(request):
 
 def authenticate(request):
 
+    role = Contributors.objects.all() 
+    administrador = Contributors.objects.filter()
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
 
         if validator.is_valid():
             username = request.POST['username']
             password = request.POST['password']
+
             auth.login(request, validator.acceso)
 
-            return HttpResponseRedirect('/')
+            if role == (administrador):
+                return render_to_response('../template/admin/admistrator', context_instance = RequestContext(request))
+            else:
+                return HttpResponseRedirect('/')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -203,7 +209,7 @@ class view_administrator(ListView):
 
 class proyect(FormView):
     model = Activities
-    template_name = '../templates/administrator.html'
+    template_name = '../templates/admin/administrator.html'
 
 def tasks(request):  
     model = Tasks

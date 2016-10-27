@@ -84,7 +84,7 @@
                             {% for tarea in tareas %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" > 
                                     {{tarea.description}}   
-                                    <a id="agregar" class="btn btn-default btn-small pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true" ></i>editar</a> 
+                                    <a id="agregar" class="pull-right" data-toggle="modal" data-target="#MyModalEdit" href="#" > <i class="fa fa-plus" aria-hidden="true" ></i>editar</a> 
                                 </div>
                             {% endfor %}
                             </div>

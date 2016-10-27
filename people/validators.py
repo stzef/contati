@@ -62,11 +62,14 @@ class FormLoginValidator(Validator):
 
         username = self._post['username']
         password = self._post['password']
-
-        self.acceso = auth.authenticate(username = username, password = password )
+        
+        self.acceso = auth.authenticate(username = username, password = password)
+                      
         if self.acceso is None:
             self._message = 'usuario o contraseña invalida'
             return False
+
+
         return True
 
 class FormChangePasswordValidator(Validator):
