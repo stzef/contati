@@ -20,6 +20,9 @@
                             <div class="form-group">
                               <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
                             </div>
+                            <div class="form-group">
+                              <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
+                            </div>
                             <form  method="post">
                               {% csrf_token %}
                               <button type="submit" onclick="myFunction() class="btn btn-primary">Enviar Mensaje</button>
