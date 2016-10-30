@@ -1,0 +1,50 @@
+{% extends 'base_administrator.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-12 col-sm-12">
+          <h3>EDITAR TAREA
+    <a class="btn btn-info pull-right" href="{% url 'tasks_list'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Tareas</a>
+    
+      <a class="btn btn-default pull-right" href="{% url 'tasks_list' %}">Cancelar</a>
+      
+      </h3>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-body">
+    <form method="post">{{ form.errors }}
+    <input class="btn btn-primary pull-right" type="submit" value="Guardar" />
+    {% csrf_token %}
+      <div class="form-group">
+        <div class="col-md-6">
+
+          
+          <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
+          <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
+          <strong>{{ form.activity.label }}</strong> {{ form.activity }} <br/> 
+          <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+          <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+          <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
+          <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/> 
+
+        
+
+        </div>
+        <div class="col-md-6"> 
+          
+          <strong>{{ form.description.label }}</strong> {{ form.description }} <br/>
+          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
+
+          <strong>{{ form.start_date.label }}</strong> {{ form.start_date }} <br/>
+          <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+
+        </div>
+      </div>
+     
+    </form>
+  </div>
+</div>
+</div>
+{% endblock %}

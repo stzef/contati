@@ -19,7 +19,7 @@ from django.utils.decorators import method_decorator
 from django.core import serializers
 from tasks.models import Tasks
 from tasks.forms import TasksForm
-from activities.models import Activities
+from activities.models import Activities, Projects
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
@@ -191,7 +191,7 @@ class deleteCustomers(DeleteView):
     success_url=reverse_lazy('list_customers')  
 
 
-class view_administrator(ListView,):
+class view_administrator(ListView):
 
     model = Contributors
     template_name = '../templates/administrator.html'
@@ -204,4 +204,55 @@ class proyect(FormView):
     template_name = '../templates/administrator.html'
 
 def tasks(request):  
-    return render_to_response('tasks.html', context_instance = RequestContext(request))    
+    model = Tasks
+    template_name = '../templates/tasks.html'    
+
+class tasks_add(CreateView):  
+    model = Tasks
+    form_class = TasksForm
+    template_name = '../templates/tasks_add.html'    
+    success_url=reverse_lazy('tasks_list')
+
+    def get_form_kwargs(self, **kwargs):
+        form_kwargs = super(tasks_add, self).get_form_kwargs(**kwargs)
+        form_kwargs["user"] = self.request.user
+        return form_kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(tasks_add, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        #context['activity'] = Activities.objects.filter(project = 'seleccion')
+        return context 
+
+class tasks_list(ListView):  
+    model = Tasks
+    template_name = '../templates/tasks_list.html'
+    success_url=reverse_lazy('tasks_list') 
+
+class tasks_edit(UpdateView):  
+    model = Tasks
+    form_class = TasksForm
+    template_name = '../templates/tasks_edit.html'
+    success_url=reverse_lazy('tasks_list') 
+
+    def get_form_kwargs(self, **kwargs):
+        form_kwargs = super(tasks_edit, self).get_form_kwargs(**kwargs)
+        form_kwargs["user"] = self.request.user
+        return form_kwargs
+
+
+    def get_context_data(self, **kwargs):
+        context = super(tasks_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
+class tasks_delete(DeleteView):  
+    model = Tasks
+    form_class = TasksForm
+    template_name = '../templates/tasks_delete.html'
+    success_url=reverse_lazy('tasks_list') 
+
+    def get_context_data(self, **kwargs):
+        context = super(tasks_delete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context

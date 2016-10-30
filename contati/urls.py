@@ -12,8 +12,11 @@ urlpatterns = [
     url(r'^administrator$', login_required(proyect.as_view()), name='proyect'),
     url(r'^admin/', admin.site.urls),
     url(r'^tasks-ad$', tasks, name='tasks_ad'),
-    #url(r'^administrator$', view_administrator, name='administrator'),
-
+    url(r'^tasks/add$', login_required(tasks_add.as_view()), name='tasks_add'),
+    url(r'^tasks_list$', login_required(tasks_list.as_view()), name='tasks_list'),
+    url(r'^tasks/(?P<pk>\d+)/edit/$', login_required(tasks_edit.as_view()), name='tasks_edit'),
+    url(r'^tasks/(?P<pk>\d+)/delete/$', login_required(tasks_delete.as_view()), name='tasks_delete'),
+    
     url(r'', include('people.urls')),
     url(r'', include('tasks.urls')),    
 	url(r'', include('activities.urls')),

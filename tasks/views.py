@@ -50,14 +50,7 @@ def view_board(request):
 	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-<<<<<<< HEAD
 		#import pdb; pdb.set_trace()
-=======
-
-		import pdb; pdb.set_trace()
-		#form = TasksForm(request.POST, user=request.user )
-		#form = TasksForm(user=request.user)
->>>>>>> 6467dd97ee938c3461e54a09008d2ca3a77f2714
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.description = request.POST['description']
@@ -65,17 +58,10 @@ def view_board(request):
 		tas.states_id = request.POST['states']
 		tas.prioritie_id = request.POST['prioritie']
 		tas.save()
-<<<<<<< HEAD
 
 		return redirect('board')
 	return render_to_response('../templates/board.html', { 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
 
-=======
-		return redirect('board')
-	return render_to_response('../templates/board.html', { 'form': form, "tareas":tareas}, context_instance=RequestContext(request) )
-
-
->>>>>>> 6467dd97ee938c3461e54a09008d2ca3a77f2714
 #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):

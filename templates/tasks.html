@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
 
-</head>
       <h3>tareas</h3>
 
       {% for tareas in user.contributors.tasks_set.all  %}
-      <td>{{ tareas.description }}</td>
+      	<tr>
+		    <td>
+		        <label class="checkbox">
+		            <input type="checkbox" value="" data-toggle="checkbox">
+		        </label>
+		    </td>
+			  	<td>{{ tareas.description }}</td>
+			  	<td class="td-actions text-right">
+				    <a href="{% url 'edit_tasks' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
+				        <i class="fa fa-edit"></i>
+				    </a>
+				    <a href="{% url 'delete_tasks' pk=tareas.pk %}" class="btn btn-danger btn-simple btn-xs">
+				        <i class="fa fa-times"></i>
+				    </a>
+				</td>
+		</tr>
+
       {% endfor %}
             
             
-          </div>
-        </div>
-      </div>
+       
 
-<body>
-
-</body>
-</html>
-
-		

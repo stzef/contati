@@ -1,0 +1,86 @@
+{% extends 'base_administrator.html' %}
+
+{% block content %}
+  <div class="row">
+  <div class="col-lg-12 col-sm-12">
+    <h3>AGREGAR TAREA
+    <a class="btn btn-info pull-right" href="{% url 'tasks_list'  %}"><i class="fa fa-tasks" aria-hidden="true"></i><br>Lista Tareas</a>
+    <a class="btn btn-default pull-right" href="{% url 'tasks_list' %}">Cancelar</a>
+    
+    </h3>
+  </div>
+</div>
+
+<div class="panel">
+
+  <div class="panel-body">
+    <form action="{% url 'tasks_add' %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-primary pull-right" type="submit" value="Guardar" />
+      <div class="form-group">
+        <div class="col-md-6">
+
+          
+          <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
+          <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
+          <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/> 
+          <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+          <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+          <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
+          <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/> 
+
+          
+
+        </div>
+        <div class="col-md-6"> 
+          <div class="form-group has-error">
+          <strong>{{ form.description.label }} *</strong> {{ form.description }}
+          <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
+          </div>  
+          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
+          <div class="form-group has-error">
+          <strong>{{ form.start_date.label }} *</strong> {{ form.start_date }}
+          <label class="control-label" for="inputError">{{ form.start_date.errors }}</label> <br/>
+          </div>
+          <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+
+        </div>
+      </div>
+     
+    </form>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<!--<script>
+  $("#id_project").change(
+    function(){
+
+       $.ajax({
+         url: '/activities'+ this.value, // la URL para la petición
+         type: 'GET', // especifica si será una petición POST o GET
+         success : function(data) { // código a ejecutar si la petición es satisfactoria;
+              $("#id_activi").html("<option value'0'>-- Escoje una actividad --</option>" );
+              for ( var i =0; i < data.length; i++){
+                $("#id_activi").append("<option value='"+ data[i].pk +"'>"+ data[i].fields.activity +"</option>" );
+              }
+          }
+        });
+  });
+</script>-->
+<script>
+$("#proy").change(function() {
+  var pk = $("#pk").val();
+   console.log(pk);
+  $.ajax({
+          //debugger,
+          url: '/tasks/add?seleccion=',    
+          success: function() {
+            alert('despliegue actividades')
+  }});
+});
+</script>
+</div>
+{% endblock %}
