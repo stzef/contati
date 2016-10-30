@@ -17,8 +17,8 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
-from tasks.models import Tasks
-from tasks.forms import TasksForm
+from tasks.models import *
+from tasks.forms import TasksForm, DepartmentsForm
 from activities.models import Activities, Projects
 
 # Create your views here. 
@@ -194,7 +194,7 @@ class deleteCustomers(DeleteView):
 class view_administrator(ListView):
 
     model = Contributors
-    template_name = '../templates/administrator.html'
+    template_name = '../templates/admin/administrator.html'
 
     def get_queryset(self):
         return super(view_administrator, self).get_queryset().order_by('user__first_name')
@@ -205,12 +205,12 @@ class proyect(FormView):
 
 def tasks(request):  
     model = Tasks
-    template_name = '../templates/tasks.html'    
+    template_name = '../templates/admin/tasks.html'    
 
 class tasks_add(CreateView):  
     model = Tasks
     form_class = TasksForm
-    template_name = '../templates/tasks_add.html'    
+    template_name = '../templates/admin/tasks_add.html'    
     success_url=reverse_lazy('tasks_list')
 
     def get_form_kwargs(self, **kwargs):
@@ -226,13 +226,13 @@ class tasks_add(CreateView):
 
 class tasks_list(ListView):  
     model = Tasks
-    template_name = '../templates/tasks_list.html'
+    template_name = '../templates/admin/tasks_list.html'
     success_url=reverse_lazy('tasks_list') 
 
 class tasks_edit(UpdateView):  
     model = Tasks
     form_class = TasksForm
-    template_name = '../templates/tasks_edit.html'
+    template_name = '../templates/admin/tasks_edit.html'
     success_url=reverse_lazy('tasks_list') 
 
     def get_form_kwargs(self, **kwargs):
@@ -249,10 +249,27 @@ class tasks_edit(UpdateView):
 class tasks_delete(DeleteView):  
     model = Tasks
     form_class = TasksForm
-    template_name = '../templates/tasks_delete.html'
+    template_name = '../templates/admin/tasks_delete.html'
     success_url=reverse_lazy('tasks_list') 
 
     def get_context_data(self, **kwargs):
         context = super(tasks_delete, self).get_context_data(**kwargs)
         context['project'] = Projects.objects.all()
         return context
+
+# class departments_list(ListView):  
+#     model = Departments
+#     form_class = DepartmentsForm
+#     template_name = '../templates/admin/departments_list.html'
+#     success_url=reverse_lazy('departments_list')
+
+@login_required(login_url="/login")
+def departments_list(request):
+    departments = Departments.objects.filter()
+    return render_to_response('../templates/admin/departments_list.html', {'departments': departments}, context_instance=RequestContext(request))
+
+class departments_add(CreateView):  
+    model = Departments
+    form_class = DepartmentsForm
+    template_name = '../templates/admin/departments_add.html'    
+    success_url=reverse_lazy('departments_list')
