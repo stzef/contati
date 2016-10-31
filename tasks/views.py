@@ -46,15 +46,17 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
+    #import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
-    kanban1 = Tasks.objects.filter(states_kanban_id=1)
-    kanban2 = Tasks.objects.filter(states_kanban_id=2)
-    kanban3 = Tasks.objects.filter(user, states_kanban_id=3)
+    kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+    kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+    kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+    #kanbas4 = kanban3.object.filter(user)
 
     form = TasksForm(user=request.user)
 
     if request.method == "POST":
-    	import pdb; pdb.set_trace()
+
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.description = request.POST['description']
