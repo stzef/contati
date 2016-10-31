@@ -51,9 +51,17 @@ def view_board(request):
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+<<<<<<< HEAD
+=======
+    #kanbas4 = kanban3.object.filter(user)
+>>>>>>> 5dd65c2af0103cb5425696ab9cea2d2c9a92cbaa
     form = TasksForm(user=request.user)
     if request.method == "POST":
+<<<<<<< HEAD
         import pdb; pdb.set_trace()
+=======
+    	# import pdb; pdb.set_trace()
+>>>>>>> 5dd65c2af0103cb5425696ab9cea2d2c9a92cbaa
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.description = request.POST['description']
