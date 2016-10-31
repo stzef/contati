@@ -53,7 +53,7 @@ def view_board(request):
 	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-		# import pdb; pdb.set_trace()
+		import pdb; pdb.set_trace()
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.activity_id = request.POST['activity']
