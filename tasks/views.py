@@ -48,35 +48,14 @@ def view_index(request):
 def view_board(request):
     #import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
-<<<<<<< HEAD
-<<<<<<< HEAD
-    # kanban1 = Tasks.objects.filter(states_kanban_id=1)
-    # kanban2 = Tasks.objects.filter(states_kanban_id=2)
-    # kanban3 = Tasks.objects.filter(user, states_kanban_id=3)
-=======
-=======
->>>>>>> 08ca5813c807fdb272d142789e4120464930eb1a
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     #kanbas4 = kanban3.object.filter(user)
-<<<<<<< HEAD
->>>>>>> 08ca5813c807fdb272d142789e4120464930eb1a
-=======
->>>>>>> 08ca5813c807fdb272d142789e4120464930eb1a
-
     form = TasksForm(user=request.user)
 
     if request.method == "POST":
-<<<<<<< HEAD
-<<<<<<< HEAD
     	# import pdb; pdb.set_trace()
-=======
-
->>>>>>> 08ca5813c807fdb272d142789e4120464930eb1a
-=======
-
->>>>>>> 08ca5813c807fdb272d142789e4120464930eb1a
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.description = request.POST['description']
