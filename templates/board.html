@@ -124,14 +124,14 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <ul class="nav nav-tabs pull-right">
               <li class="active">
-                <a href="#date" data-toggle="tab">Date</a>
+                <a href="#date" data-toggle="tab">Tarea</a>
               </li>
-              <li><a href="#relevance" data-toggle="tab">Relevance</a></li>
-              <li><a href="#dealership" data-toggle="tab">Dealership</a></li>
+              <li><a href="#relevance" data-toggle="tab">Más</a></li>
+              <li><a href="#dealership" data-toggle="tab">Respuesta</a></li>
             </ul>
             <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
           </div>
-          <div class="modal-body">
+        <div class="modal-body">
 
             <div class="row-fluid">
     <div class="tab-content">
@@ -147,11 +147,14 @@
                     <strong >{{ form.description.label }} *</strong> {{ form.description }}
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
                 </div>
-                <div class="form-group">
-                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
-                </div>
-                <div class="form-group">
-                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+
+                <div class="col col-md-12">
+                    <div class="col col-md-6 form-group">
+                        <strong>{{ form.activity.label }}</strong>{{ form.activity }} 
+                    </div>
+                    <div class="col col-md-6 form-group">
+                        <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -162,26 +165,13 @@
                   <button type="submit" onclick="myFunction() class="btn btn-primary">Guardar</button>
                 </form>
             </form>
+        </div>
 
         <div class="tab-pane" id="relevance">
             <h3>Agregar</h3>
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
             <form name="contact-form" method="POST">
             {% csrf_token %}
-                <div class="form-group">
-                    <strong>Responsable:</strong> {{ form.responsible }} <br/>
-                </div>
-                <div class="form-group has-error">
-                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
-                    <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
-                </div>
-                <div class="form-group">
-                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
-                </div>
-                <div class="form-group">
-                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
-                </div>
-
                 <div class="form-group">
                   <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
                 </div>
@@ -197,21 +187,7 @@
             <form name="contact-form" method="POST">
             {% csrf_token %}
                 <div class="form-group">
-                    <strong>Responsable:</strong> {{ form.responsible }} <br/>
-                </div>
-                <div class="form-group has-error">
-                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
-                    <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
-                </div>
-                <div class="form-group">
-                    <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/>
-                </div>
-                <div class="form-group">
-                    <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
-                </div>
-
-                <div class="form-group">
-                  <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
+                  <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
                 </div>
                 <form  method="post">
                   {% csrf_token %}

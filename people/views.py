@@ -1,3 +1,4 @@
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from django.template import loader, RequestContext
@@ -71,7 +72,7 @@ def login(request):
 def authenticate(request):
 
     role = Contributors.objects.all() 
-    administrador = Contributors.objects.filter()
+    Administrador = Contributors.objects.filter()
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
 
@@ -81,7 +82,7 @@ def authenticate(request):
 
             auth.login(request, validator.acceso)
 
-            if role == (administrador):
+            if role == (Administrador):
                 return render_to_response('../template/admin/admistrator', context_instance = RequestContext(request))
             else:
                 return HttpResponseRedirect('/')
