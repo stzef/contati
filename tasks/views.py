@@ -53,7 +53,7 @@ def view_board(request):
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
     if request.method == "POST":
-    	# import pdb; pdb.set_trace()
+    	import pdb; pdb.set_trace()
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.description = request.POST['description']
