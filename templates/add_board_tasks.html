@@ -9,6 +9,17 @@
                     <strong >{{ form.description.label }} *</strong> {{ form.description }}
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
                 </div>
+<<<<<<< HEAD
+
+                <div class="col col-md-12" id= states_kanban1>
+
+
+                        <input type="hidden" name="states_kanban" value=3>
+                    </div>
+                </div>
+
+=======
+>>>>>>> f86ca781952c2411fabd2e3530f8d423ff3e8071
                 <div class="col col-md-12">
                     <div class="col col-md-12 form-group">
                         <strong>Responsable:</strong> {{ form.responsible }} <br/>
@@ -28,15 +39,17 @@
                     <div class="col col-md-6 form-group">
                         <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
                     </div>
-                    <div class="col col-md-6 form-group">
-                        <strong>{{ form.States_kanban.label }}</strong> {{ form.States_kanban }} <br/>
-                    </div>
+
                 </div>
 
                 
                 <form  method="post">
                   {% csrf_token %}
+<<<<<<< HEAD
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+=======
                   <button type="submit" onclick="myFunction()" class="btn btn-primary">Guardar</button>
+>>>>>>> f86ca781952c2411fabd2e3530f8d423ff3e8071
                 </form>
             </form>
         </div>
@@ -86,3 +99,4 @@
         </div>
     </div>
 </div>
+<script src="../static/js/dragAndDrop.js" type="text/javascript"></script>

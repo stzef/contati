@@ -73,6 +73,7 @@ def view_board(request):
 
 	return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
 
+
 def edit_board(request, pk):
 	tas = get_object_or_404(Tasks, pk=pk)
 	form = TasksForm(user=request.user, instance=tas)

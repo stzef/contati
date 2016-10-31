@@ -1,22 +1,15 @@
 var contador =0
 function myFunction() {
     debugger
-    var demos = $("#demos").val();
-    contador += 1
-      var padre = document.getElementById('pru');
+      var padre = document.getElementById('States_kanban1');
       var hijo = document.createElement("input");
       padre.appendChild(hijo);
-      hijo.id ='ID'+contador;
-      hijo.setAttribute("type", "text");
-      hijo.setAttribute("class","form-control");
-      hijo.setAttribute("draggable","true" );
-      hijo.setAttribute( "ondragstart","star(event)");
-      hijo.setAttribute("ondragend","end(event)");
-      hijo.setAttribute("value",demos);
-      hijo.setAttribute("readonly","readonly");
+      hijo.setAttribute("type", "hidden");
+      hijo.setAttribute("name","states_kanban" );
+      hijo.setAttribute("value",3);
+
       console.log(padre);
     }
-
 function mi_funcion() {
   debugger
   var tarea = document.getElementsByName("pintar");
