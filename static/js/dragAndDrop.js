@@ -1,23 +1,40 @@
-var contador =0
-function myFunction() {
-    debugger
-      var padre = document.getElementById('States_kanban1');
-      var hijo = document.createElement("input");
-      padre.appendChild(hijo);
-      hijo.setAttribute("type", "hidden");
-      hijo.setAttribute("name","states_kanban" );
-      hijo.setAttribute("value",3);
+//function myFunction() {
+  //  debugger
+    //  var padre = document.getElementById('date.states_kanban1');
+      //var hijo = document.createElement("input");
+//      padre.appendChild(hijo);
+  //    hijo.setAttribute("type", "hidden");
+    //  hijo.setAttribute("name","states_kanban" );
+      //hijo.setAttribute("value",3);
 
-      console.log(padre);
-    }
-function mi_funcion() {
-  debugger
-  var tarea = document.getElementsByName("pintar");
-  console.log(tarea);
-
-  //var padre = document.getElementById('pru');
-  //var hijo = document.createElement("input");
-  //padre.appendChild(hijo);
+  //    console.log(padre);
+  //  }
+    function myFunction(entra) {
+        debugger
+        if (entra==1){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",1);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==2){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",2);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==3){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",3);
+          pa.appendChild(hijo);
+          console.log(pa);}
 }
 
 function star(ev) {

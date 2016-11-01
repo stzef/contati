@@ -53,20 +53,20 @@ def view_board(request):
 	form = TasksForm(user=request.user)
 
 	if request.method == "POST":
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.activity_id = request.POST['activity']
 		tas.states_id = request.POST['states']
 		tas.states_kanban_id = request.POST['states_kanban']
 		tas.prioritie_id = request.POST['prioritie']
-		tas.department_id = request.POST['department']
-		tas.Customers_id = request.POST['customers']
+		#tas.department_id = request.POST['department']
+		#tas.Customers_id = request.POST['customers']
 
 		tas.description = request.POST['description']
-		tas.answer = request.POST['answer']
-		tas.start_date_id = request.POST['start_date']
-		tas.finish_date_id = request.POST['finish_date']
+		#tas.answer = request.POST['answer']
+		#tas.start_date_id = request.POST['start_date']
+		#tas.finish_date_id = request.POST['finish_date']
 
 		tas.save()
 		return redirect('board')
