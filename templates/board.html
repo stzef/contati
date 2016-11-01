@@ -80,7 +80,7 @@
                 <tbody id="tareas">
                     <tr>
                         <td style="width: 35%;">
-                            <div id="div1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                            <div id="1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
 
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
@@ -91,7 +91,7 @@
                             </div>
                         </td>
                         <td style="width: 35%;">
-                          <div id="div2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                          <div id="2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban2 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
                                     {{tarea.description}}
@@ -100,7 +100,7 @@
                           </div>
                         </td>
                         <td style="width: 35%;">
-                          <div id="div3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                          <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban3 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
                                     {{tarea.description}}
@@ -160,6 +160,7 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
     <!--<script type="text/javascript">mi_funcion()</script>-->
+     <script src="{% static 'js/jquery.min.js' %}"></script>
 </body>
 
 </html>

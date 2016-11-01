@@ -36,6 +36,22 @@
           pa.appendChild(hijo);
           console.log(pa);}
 }
+function edit_Kanban(des, pk) {
+  debugger
+  states_kanban = des;
+  id = pk;
+  //url = '/projects/'+id;
+  console.log("states_kanban"+states_kanban);
+  console.log("id"+id);
+  //document.location.href = url;
+        $.ajax({
+            type: 'POST',
+            url: '/board/'+pk/edit,
+            success: function() {
+                alert('Object deleted!')
+            }
+          });
+}
 
 function star(ev) {
   ev.dataTransfer.effectAllowed = 'move';
@@ -58,6 +74,7 @@ function drop(ev) {
   var destino = ev.target.id
   console.log("destino: "+destino);
   console.log("objeto: "+datos);
+  edit_Kanban(destino, datos)
   ev.stopPropagation();
 }
 

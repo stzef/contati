@@ -75,9 +75,10 @@ def view_board(request):
 
 
 def edit_board(request, pk):
-	tas = get_object_or_404(Tasks, pk=pk)
-	form = TasksForm(user=request.user, instance=tas)
-	if request.method == "POST":
+    import pdb; pdb.set_trace()
+    tas = get_object_or_404(Tasks, pk=pk)
+    form = TasksForm(user=request.user, instance=tas)
+    if request.method == "POST":
 		#import pdb; pdb.set_trace()
 		#tas = Tasks.objects.get(pk=Tasks_id)
 		form = TasksForm(request.POST, instance=tas)
@@ -91,7 +92,7 @@ def edit_board(request, pk):
 		# tas.save()
 
 		return redirect('board', pk=tas.pk)
-	return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
+    return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
 
 
 #Listar Estados
