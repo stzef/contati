@@ -515,3 +515,11 @@ class Projects_edit(UpdateView):
     form_class = ProjectsForm
     template_name = '../templates/admin/projects_edit.html'
     success_url=reverse_lazy('projects_list')
+
+def configuration(request):   
+    project = Projects.objects.filter()
+    return render_to_response('../templates/admin/configuration.html', {'project': project}, context_instance=RequestContext(request))  
+
+def reports(request):
+    #activi = Activities.objects.filter()
+    return render_to_response('../templates/admin/reports.html', context_instance=RequestContext(request))  

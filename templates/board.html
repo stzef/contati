@@ -84,7 +84,7 @@
 
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
-                                    {{tarea.description}}
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
 
                                 </div>
                             {% endfor %}
@@ -140,14 +140,21 @@
        </div>
     </div>
 
-    <div class="modal fade" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-      <div class="modal-dialog">
+    <div class="modal fade bd-example-modal-lg" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <ul class="nav nav-tabs pull-right">
+              <li class="active">
+                <a href="#date1" data-toggle="tab">Tarea</a>
+              </li>
+              <li><a href="#relevance1" data-toggle="tab">Más</a></li>
+              <li><a href="#dealership1" data-toggle="tab">Respuesta</a></li>
+            </ul>
             <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
           </div>
-          <div class="modal-body">
+        <div class="modal-body">
 
             {% include "edit_board_tasks.html" %}
 
