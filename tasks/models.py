@@ -17,7 +17,7 @@ class States_kanban(models.Model):
 
 class Priorities(models.Model):
 	name_prioritie = models.CharField(max_length=45)
-	order = models.CharField(max_length=45)	
+	order = models.CharField(max_length=45)
 
 	def __str__(self):
 		return '{}'.format(self.name_prioritie)
@@ -33,7 +33,7 @@ class Tasks(models.Model):
 	answer = models.CharField(max_length=50, blank=True, null = True)
 	responsible =  models.ForeignKey('people.Contributors', blank=True, null = True)
 	department =  models.ForeignKey('departments', blank=True, null = True)
-	prioritie =  models.ForeignKey('priorities', blank=True, null = True)	
+	prioritie =  models.ForeignKey('priorities', blank=True, null = True)
 	states =  models.ForeignKey('states', blank=True, null = True)
 	start_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
 	finish_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
@@ -43,4 +43,4 @@ class Tasks(models.Model):
 
 	def finish(self):
 		self.finish_date = timezone.now()
-		self.save()			
+		self.save()
