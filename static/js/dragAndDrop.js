@@ -9,7 +9,7 @@
 
   //    console.log(padre);
   //  }
-    function myFunction(entra) {        
+    function myFunction(entra) {
         if (entra==1){
           var pa = document.getElementById("states_kanban1")
           var hijo = document.createElement("input");
@@ -35,8 +35,7 @@
           pa.appendChild(hijo);
           console.log(pa);}
 }
-function edit_Kanban(des, pk) {
-  //debugger
+function edit_Kanban(des, pk) {  
   states_kanban = des;
   id = pk;
   //url = '/projects/'+id;
@@ -44,8 +43,9 @@ function edit_Kanban(des, pk) {
   console.log("id"+id);
   //document.location.href = url;
         $.ajax({
-            //type: 'POST',
-            url: '/projects/'+pk,
+            type: 'POST',
+            url: 'board/'+pk+'/edit/',
+            data : { pos : des },
             success: function() {
                 alert('Object deleted!')
             }

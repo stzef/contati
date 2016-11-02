@@ -18,31 +18,31 @@ def add_projects(request):
 		form = ProjectsForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('list_projects') 
+			return redirect('list_projects')
 	else:
 		form =	ProjectsForm()
-	return render_to_response('../templates/projects_fo.html', {'form':form}, context_instance=RequestContext(request)) 
+	return render_to_response('../templates/projects_fo.html', {'form':form}, context_instance=RequestContext(request))
 
 @csrf_exempt
 def list_activities(request):
 	activi = Activities.objects.filter()
-	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))  
+	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))
 
 def add_activity(request):
 	if request.method == 'POST':
 		form = ActivitiesForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('list_activities') 
+			return redirect('list_activities')
 	else:
 		form =	ActivitiesForm()
-	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))  
-     
+	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))
+
 
 @csrf_exempt
 def action_activity(request, pk):
 
-	
+
   	print (request)
   	activi = get_object_or_404(Activities, pk=pk)
 
@@ -52,20 +52,20 @@ def action_activity(request, pk):
 		    form.save()
 		return redirect('list_activities', pk=activi.pk)
 
-	elif request.method == 'DELETE':		
+	elif request.method == 'DELETE':
 		Activities.objects.get(pk=pk).delete()
 		return HttpResponse('../templates/activities.html')
   	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
-def list_projects(request):
+def list_projects(request):	
 	project = Projects.objects.filter()
-	return render_to_response('../templates/projects.html', {'project': project}, context_instance=RequestContext(request))  
+	return render_to_response('../templates/projects.html', {'project': project}, context_instance=RequestContext(request))
 
 
 @csrf_exempt
 def action_projects(request, pk):
     	print ("fucion action")
-  	produ = get_object_or_404(Projects, pk=pk)  	
+  	produ = get_object_or_404(Projects, pk=pk)
   	if request.method == 'PUT':
    		form = Projectsform(request.PUT, instance=produ)
 		if form.is_valid():
@@ -78,13 +78,13 @@ def action_projects(request, pk):
 		return HttpResponse('../templates/proyects.html')
 	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
 
-def list_config(request):	
+def list_config(request):
 	project = Projects.objects.filter()
-	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))  
+	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
 def list_reportes(request):
 	#activi = Activities.objects.filter()
-	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))  
+	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 class editProjects(UpdateView):
 	model = Projects
@@ -97,4 +97,3 @@ class editActivity(UpdateView):
 	form_class = ActivitiesForm
 	template_name = '../templates/edit_activity.html'
 	success_url=reverse_lazy('list_activities')
-	
