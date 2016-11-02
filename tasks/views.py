@@ -60,6 +60,7 @@ def view_board(request):
 		tas.states_id = request.POST['states']
 		tas.states_kanban_id = request.POST['states_kanban']
 		tas.prioritie_id = request.POST['prioritie']
+<<<<<<< HEAD
 		tas.department_id = request.POST.get('department')
 		tas.Customers_id = request.POST.get('customers')
 
@@ -67,6 +68,15 @@ def view_board(request):
 		tas.answer = request.POST.get('answer', False)
 		tas.start_date_id = request.POST.get('start_date', False)
 		tas.finish_date_id = request.POST.get('finish_date', False)
+=======
+		#tas.department_id = request.POST['department']
+		#tas.Customers_id = request.POST['customers']
+
+		tas.description = request.POST['description']
+		#tas.answer = request.POST['answer']
+		#tas.start_date_id = request.POST['start_date']
+		#tas.finish_date_id = request.POST['finish_date']
+>>>>>>> d6411da244e97f6b7a53ad2dfb5040da9879e5f7
 
 		tas.save()
 		return redirect('board')
@@ -75,9 +85,10 @@ def view_board(request):
 
 
 def edit_board(request, pk):
-	tas = get_object_or_404(Tasks, pk=pk)
-	form = TasksForm(user=request.user, instance=tas)
-	if request.method == "POST":
+    import pdb; pdb.set_trace()
+    tas = get_object_or_404(Tasks, pk=pk)
+    form = TasksForm(user=request.user, instance=tas)
+    if request.method == "POST":
 		#import pdb; pdb.set_trace()
 		#tas = Tasks.objects.get(pk=Tasks_id)
 		form = TasksForm(request.POST, instance=tas)
@@ -91,7 +102,7 @@ def edit_board(request, pk):
 		# tas.save()
 
 		return redirect('board', pk=tas.pk)
-	return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
+    return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
 
 
 #Listar Estados

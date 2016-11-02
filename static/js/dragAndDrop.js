@@ -1,23 +1,56 @@
-var contador =0
-function myFunction() {
-    debugger
-      var padre = document.getElementById('States_kanban1');
-      var hijo = document.createElement("input");
-      padre.appendChild(hijo);
-      hijo.setAttribute("type", "hidden");
-      hijo.setAttribute("name","states_kanban" );
-      hijo.setAttribute("value",3);
+//function myFunction() {
+  //  debugger
+    //  var padre = document.getElementById('date.states_kanban1');
+      //var hijo = document.createElement("input");
+//      padre.appendChild(hijo);
+  //    hijo.setAttribute("type", "hidden");
+    //  hijo.setAttribute("name","states_kanban" );
+      //hijo.setAttribute("value",3);
 
-      console.log(padre);
-    }
-function mi_funcion() {
+  //    console.log(padre);
+  //  }
+    function myFunction(entra) {
+        debugger
+        if (entra==1){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",1);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==2){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",2);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==3){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",3);
+          pa.appendChild(hijo);
+          console.log(pa);}
+}
+function edit_Kanban(des, pk) {
   debugger
-  var tarea = document.getElementsByName("pintar");
-  console.log(tarea);
-
-  //var padre = document.getElementById('pru');
-  //var hijo = document.createElement("input");
-  //padre.appendChild(hijo);
+  states_kanban = des;
+  id = pk;
+  //url = '/projects/'+id;
+  console.log("states_kanban"+states_kanban);
+  console.log("id"+id);
+  //document.location.href = url;
+        $.ajax({
+            type: 'POST',
+            url: '/board/'+pk/edit,
+            success: function() {
+                alert('Object deleted!')
+            }
+          });
 }
 
 function star(ev) {
@@ -41,6 +74,7 @@ function drop(ev) {
   var destino = ev.target.id
   console.log("destino: "+destino);
   console.log("objeto: "+datos);
+  edit_Kanban(destino, datos)
   ev.stopPropagation();
 }
 
