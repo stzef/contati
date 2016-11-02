@@ -12,7 +12,7 @@ from .validators import FormRegistroValidator, FormLoginValidator, Validator, Fo
 from django.contrib.auth.hashers import make_password
 from .models import user, Contributors, Customers
 from people.forms import CustomersForm, ContributorsForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic.edit import UpdateView
 from django.core.urlresolvers import reverse, reverse_lazy 
 from django.views.decorators.csrf import csrf_exempt
@@ -68,6 +68,8 @@ def register_user(request):
 
 def login(request):
     return render_to_response('login.html', context_instance = RequestContext(request))
+
+
 
 def authenticate(request):
 
@@ -215,6 +217,7 @@ class proyect(FormView):
 def tasks(request):  
     model = Tasks
     template_name = '../templates/admin/tasks.html'    
+    
 
 # <----------- View tasks administrator ------------------>
 
