@@ -74,48 +74,16 @@ def view_board(request):
 
 	return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
 
-    if request.method == "POST":
-    	#import pdb; pdb.set_trace()
-    	tas = Tasks()
-    	tas.responsible_id = request.POST['responsible']
-    	tas.activity_id = request.POST['activity']
-    	tas.states_id = request.POST['states']
-    	tas.states_kanban_id = request.POST['states_kanban']
-    	tas.prioritie_id = request.POST['prioritie']
-    	#tas.department_id = request.POST['department']
-    	#tas.Customers_id = request.POST['customers']
-
-    	tas.description = request.POST['description']
-    	#tas.answer = request.POST['answer']
-    	#tas.start_date_id = request.POST['start_date']
-    	#tas.finish_date_id = request.POST['finish_date']
-
-    	tas.save()
-    	return redirect('board')
-
-    return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
-
 @csrf_exempt
 def edit_board(request, pk):
     import pdb; pdb.set_trace()
-    q = request.POST.get('pos')
-    print q
+    states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
-    #form = TasksForm(user=request.user, instance=tas)
     if request.method == "POST":
-        #tas = Tasks.objects.get(pk=Tasks_id)
-        tas.states_kanban_id = q
+        tas.states_kanban_id = states_kanban
         tas.save()
-		# tas.responsible_id = request.GET['responsible']
-		# tas.description = request.GET['description']
-		# tas.activity_id = request.GET['activity']
-		# tas.states_id = request.GET['states']
-		# tas.prioritie_id = request.GET['prioritie']
-		# tas.save()
-
         return redirect('board', pk=tas.pk)
     return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
-
 
 #Listar Estados
 @login_required(login_url="/login")
