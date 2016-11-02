@@ -60,7 +60,6 @@ def view_board(request):
 		tas.states_id = request.POST['states']
 		tas.states_kanban_id = request.POST['states_kanban']
 		tas.prioritie_id = request.POST['prioritie']
-<<<<<<< HEAD
 		tas.department_id = request.POST.get('department')
 		tas.Customers_id = request.POST.get('customers')
 
@@ -68,15 +67,6 @@ def view_board(request):
 		tas.answer = request.POST.get('answer', False)
 		tas.start_date_id = request.POST.get('start_date', False)
 		tas.finish_date_id = request.POST.get('finish_date', False)
-=======
-		#tas.department_id = request.POST['department']
-		#tas.Customers_id = request.POST['customers']
-
-		tas.description = request.POST['description']
-		#tas.answer = request.POST['answer']
-		#tas.start_date_id = request.POST['start_date']
-		#tas.finish_date_id = request.POST['finish_date']
->>>>>>> d6411da244e97f6b7a53ad2dfb5040da9879e5f7
 
 		tas.save()
 		return redirect('board')
