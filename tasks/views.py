@@ -76,7 +76,6 @@ def view_board(request):
 
 @csrf_exempt
 def edit_board(request, pk):
-    import pdb; pdb.set_trace()
     states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
     if request.method == "POST":
@@ -124,12 +123,10 @@ class editTasks(UpdateView):
 		form_kwargs["user"] = self.request.user
 		return form_kwargs
 
-
 	def get_context_data(self, **kwargs):
 		context = super(editTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
 		return context
-
 
 class deleteTasks(DeleteView):
 	model = Tasks

@@ -2,7 +2,7 @@
     <div class="tab-content">
         <div class="tab-pane active" id="date1">
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
+            <form name="contact-form" method="PUT">
             {% csrf_token %}
 
                 <div class="form-group has-error">
@@ -46,7 +46,7 @@
 
         <div class="tab-pane" id="relevance1">
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
+            <form name="contact-form" method="PUT">
             {% csrf_token %}
 
                 <div class="col col-md-12">
@@ -76,7 +76,7 @@
         
         <div class="tab-pane" id="dealership1">
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
+            <form name="contact-form" method="PUT">
             {% csrf_token %}
                 <div class="form-group">
                   <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
@@ -92,3 +92,27 @@
 </div>
 
 <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+<script>
+
+  $("form").submit(function(event){
+         
+         console.log( "entrando ajax");
+         //console.log(pk);
+         event.preventDefault()
+         var pk = $("#pk").val();
+         console.log(pk);
+        $.ajax({
+            type: 'PUT',
+            url: '/projects/'+pk,
+            
+            success: function() {
+
+           
+                //alert('Object deleted!')
+            },
+            //headers: { 'X_METHODOVERRIDE': 'DELETE' }
+        });
+
+  })          
+
+</script>
