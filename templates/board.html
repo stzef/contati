@@ -94,7 +94,7 @@
                           <div id="2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban2 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
-                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="{% url 'edit_board_tasks' pk=tas.pk %}" data-target="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
                                 </div>
                             {% endfor %}
                           </div>
