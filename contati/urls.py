@@ -56,6 +56,9 @@ urlpatterns = [
     url(r'^projects-ad/edit/(?P<pk>\d+)/$',login_required(Projects_edit.as_view()), name='projects_edit'),#PUT
     url(r'^projects-ad/delete/(?P<pk>\d+)/$',login_required(projects_delete), name='projects_delete'),#DELETE
 
+    url(r'^reports$',login_required(reports), name='reports'),    
+    url(r'^configuration$',login_required(configuration), name='configuration'),
+
     url(r'', include('people.urls')),
     url(r'', include('tasks.urls')),    
 	url(r'', include('activities.urls')),

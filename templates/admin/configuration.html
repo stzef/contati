@@ -1,0 +1,30 @@
+{% extends 'base_administrator.html' %}
+
+{% block content %}
+
+<div class="row">
+      <div class="col-lg-12 col-sm-12">
+      <H3>CONFIGURACIÓN</H3>
+      </div>
+</div>
+
+<div class="panel">
+      <div class="panel-body">
+            <div class="table-responsive">
+
+                  <a class="btn btn-default" href="{% url 'projects_list' %}"><li class="fa fa-building-o"></li>Proyectos     </a>
+                  <a class="btn btn-default" href="{% url 'activities_list' %}"><li class="fa fa-tasks"></li>Actividades   </a><br><br>
+                  <a class="btn btn-default" href="{% url 'customers_list' %}"><li class="fa fa-users"></li>Clientes      </a>
+                  <a class="btn btn-default" href="{% url 'states_list' %}"><li class="fa fa-tag"></li>Estados       </a><br><br>
+                  <a class="btn btn-default" href="{% url 'states_kanban_list' %}"><li class="fa fa-tags"></li>Estados Kanban</a>
+                  <a class="btn btn-default" href="{% url 'priorities_list' %}"><li class="fa fa-check"></li>Prioridades   </a><br><br>
+                  <a class="btn btn-default" href="{% url 'departments_list' %}"><li class="fa fa-university"></li>Departamentos </a><br><br>
+            
+            </div>
+      </div>        
+</div>
+
+<a href="https://mail.google.com/mail/#inbox">Gmail</a> 
+</div>      
+
+{% endblock %}

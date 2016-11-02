@@ -1,7 +1,7 @@
 
       <h3>tareas</h3>
 
-      {% for tareas in user.contributors.tasks_set.all  %}
+      	{% for  tareas in user.contributors.tasks.set_all %}
       	<tr>
 		    <td>
 		        <label class="checkbox">
@@ -18,10 +18,9 @@
 				    </a>
 				</td>
 		</tr>
-		{{ form.responsible }}
-       	{{ form.description }}
-
-      {% endfor %}
+	
+		
+    	{% endfor %}
        
 
             
