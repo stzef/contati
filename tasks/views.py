@@ -73,7 +73,7 @@ def view_board(request):
 		return redirect('board')
 
 	return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
-
+	
 @csrf_exempt
 def edit_board(request, pk):
     states_kanban = request.POST.get('pos')

@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 class States(models.Model):
 	name_states = models.CharField(max_length=45)
@@ -35,12 +34,9 @@ class Tasks(models.Model):
 	department =  models.ForeignKey('departments', blank=True, null = True)
 	prioritie =  models.ForeignKey('priorities', blank=True, null = True)
 	states =  models.ForeignKey('states', blank=True, null = True)
-	start_date = models.TimeField( blank=True, null=True)
-	finish_date = models.TimeField( blank=True, null=True)
+	start_date = models.IntegerField( blank=True, null=True)
+	finish_date = models.IntegerField( blank=True, null=True)
 	states_kanban =  models.ForeignKey('states_kanban', blank=True, null = True)
 	activity = models.ForeignKey('activities.Activities', blank=True, null = True)
 	Customers =  models.ForeignKey('people.Customers', blank=True, null = True)
 
-	def finish(self):
-		self.finish_date = timezone.now()
-		self.save()
