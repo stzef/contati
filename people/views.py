@@ -73,8 +73,6 @@ def login(request):
 
 def authenticate(request):
 
-    role = Contributors.objects.all() 
-    Administrador = Contributors.objects.filter()
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
 
@@ -83,11 +81,7 @@ def authenticate(request):
             password = request.POST['password']
 
             auth.login(request, validator.acceso)
-
-            if role == (Administrador):
-                return render_to_response('../template/admin/admistrator', context_instance = RequestContext(request))
-            else:
-                return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
@@ -214,9 +208,15 @@ class proyect(FormView):
     model = Activities
     template_name = '../templates/admin/administrator.html'
 
-def tasks(request):  
-    model = Tasks
-    template_name = '../templates/admin/tasks.html'    
+def tasks(request): 
+    tareas = request.POST['responsible']
+    usuario = request.POST['first_name']
+    user = User.objects.all() 
+    user.save()
+    return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas}, context_instance=RequestContext(request))           
+   
+       
+       
     
 
 # <----------- View tasks administrator ------------------>

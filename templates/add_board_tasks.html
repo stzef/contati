@@ -34,7 +34,12 @@
                     <div class="col col-md-6 form-group">
                         <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
                     </div>
-
+                    <div class="col col-md-3 form-group">
+                            <strong>{{ form.start_date.label }}</strong>{{ form.start_date }}
+                        </div>
+                    <div class="col col-md-3 form-group">
+                      <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
@@ -55,11 +60,8 @@
                 </div>
 
                 <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <strong>{{ form.start_date.label }}</strong>{{ form.start_date }}
-                        </div>
-                    <div class="col col-md-6 form-group">
-                      <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+                    <div class="form-group">
+                        <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
                     </div>
                 </div>
 
@@ -69,20 +71,7 @@
                 </form>
             </form>
         </div>
-
-        <div class="tab-pane" id="dealership">
-            <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
-            {% csrf_token %}
-                <div class="form-group">
-                  <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
-                </div>
-                <form  method="post">
-                  {% csrf_token %}
-                  <button type="submit"  class="btn btn-primary">Guardar</button>
-                </form>
-            </form>
-        </div>
+        
     </div>
 </div>
 

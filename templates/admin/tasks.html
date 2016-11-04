@@ -1,14 +1,14 @@
 
       <h3>tareas</h3>
 
-      	{% for  tareas in user.contributors.tasks.set_all %}
+      	{% for  tareas in tasks %}
       	<tr>
 		    <td>
 		        <label class="checkbox">
 		            <input type="checkbox" value="" data-toggle="checkbox">
 		        </label>
 		    </td>
-			  	<td>{{ tareas.description }}</td>
+			  	<td>{{ tareas.description}}</td>
 			  	<td class="td-actions text-right">
 				    <a href="{% url 'tasks_edit' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
 				        <i class="fa fa-edit"></i>
