@@ -35,7 +35,7 @@
           pa.appendChild(hijo);
           console.log(pa);}
 }
-function edit_Kanban(des, pk) {  
+function edit_Kanban(des, pk) {
   states_kanban = des;
   id = pk;
   //url = '/projects/'+id;
@@ -47,7 +47,7 @@ function edit_Kanban(des, pk) {
             url: 'board/'+pk+'/edit/',
             data : { pos : des },
             success: function() {
-                alert('Object deleted!')
+            
             }
           });
 }

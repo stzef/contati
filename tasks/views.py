@@ -39,10 +39,13 @@ class AjaxableResponseMixin(object):
 
 @login_required(login_url="/login")
 def view_index(request):
-	project = Projects.objects.filter()
-	user = User.objects.get( id = request.user.id )
-	tareas = Tasks.objects.filter()
-	return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas }, context_instance = RequestContext(request))
+    p = 12
+    e = 25
+    t = 2
+    project = Projects.objects.filter()
+    user = User.objects.get( id = request.user.id )
+    tareas = Tasks.objects.filter()
+    return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
 @login_required(login_url="/login")
 def view_board(request):
@@ -81,7 +84,7 @@ def edit_board(request, pk):
     if request.method == "POST":
         tas.states_kanban_id = states_kanban
         tas.save()
-        return redirect('board', pk=tas.pk)
+        return redirect('board')
     return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
 
 #Listar Estados
