@@ -76,12 +76,13 @@ def view_board(request):
 
 @csrf_exempt
 def edit_board(request, pk):
+    #import pdb; pdb.set_trace()
     states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
     if request.method == "POST":
         tas.states_kanban_id = states_kanban
         tas.save()
-        return redirect('board', pk=tas.pk)
+        return redirect('board')
     return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
 
 #Listar Estados
