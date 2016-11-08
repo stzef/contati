@@ -72,6 +72,8 @@ def login(request):
 
 
 def authenticate(request):
+    user = User.objects.get( id = request.user.id )
+    contri = Contributors.objects.get(user=user) 
 
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
@@ -82,7 +84,7 @@ def authenticate(request):
 
             auth.login(request, validator.acceso)
             
-            if role == Adminitrador:
+            if contri.role == Administrador:
                 return render_to_response('administrator.html', context_instance = RequestContext(request))
             else:
                 return HttpResponseRedirect('/')
