@@ -69,8 +69,8 @@ def view_board(request):
 
 		tas.description = request.POST['description']
 		tas.answer = request.POST.get('answer', False)
-		tas.start_date_id = request.POST.get('start_date', False)
-		tas.finish_date_id = request.POST.get('finish_date', False)
+		tas.start_date = request.POST['start_date']
+		tas.finish_date = request.POST['finish_date']
 
 		tas.save()
 		return redirect('board')
