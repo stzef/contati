@@ -72,8 +72,7 @@ def login(request):
 
 
 def authenticate(request):
-    # user = User.objects.get( id = request.user.id )
-    contri = Contributors.objects.get() 
+    
     Administrador = None
 
     if request.method == 'POST':
@@ -84,7 +83,9 @@ def authenticate(request):
             password = request.POST['password']
 
             auth.login(request, validator.acceso)
-            
+
+            user = User.objects.get( id = request.user.id )
+            contri = Contributors.objects.get(user=user) 
             if contri.role == Administrador:
                 return render_to_response('administrator.html', context_instance = RequestContext(request))
             else:
