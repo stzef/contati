@@ -5,6 +5,11 @@ body {
 	background: none;
 }
 
+h1, .h1 {
+    margin-top: 5px;
+    font-size: 25px;
+}
+
 .full {
   background-color: #444444;
 }
@@ -31,3 +36,5 @@ body {
 .well-lg {
     padding: 20px;
 }
+
+

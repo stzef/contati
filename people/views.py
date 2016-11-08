@@ -81,12 +81,16 @@ def authenticate(request):
             password = request.POST['password']
 
             auth.login(request, validator.acceso)
-            return HttpResponseRedirect('/')
+            
+            if role == Adminitrador:
+                return render_to_response('administrator.html', context_instance = RequestContext(request))
+            else:
+                return HttpResponseRedirect('/')
         else:
             return render_to_response('login.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
 
     return render_to_response('login.html', context_instance = RequestContext(request))
-("/")
+
 
 def logout(request):
     auth.logout(request)
