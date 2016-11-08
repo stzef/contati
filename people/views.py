@@ -72,8 +72,9 @@ def login(request):
 
 
 def authenticate(request):
-    user = User.objects.get( id = request.user.id )
-    contri = Contributors.objects.get(user=user) 
+    # user = User.objects.get( id = request.user.id )
+    contri = Contributors.objects.get() 
+    Administrador = None
 
     if request.method == 'POST':
         validator = FormLoginValidator(request.POST)
