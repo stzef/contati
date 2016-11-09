@@ -39,12 +39,26 @@ class AjaxableResponseMixin(object):
 
 @login_required(login_url="/login")
 def view_index(request):
-    p = 12
-    e = 25
-    t = 2
+    #import pdb; pdb.set_trace()
+    p = 0
+    e = 0
+    t = 0
     project = Projects.objects.filter()
     user = User.objects.get( id = request.user.id )
     tareas = Tasks.objects.filter()
+    tar = Tasks.objects.filter(responsible_id=user.id)
+    for i in tar:
+        #print (i.responsible_id)
+        #print (i.responsible)
+        if (i.states_kanban_id==1):
+            p=p+1
+        if (i.states_kanban_id==2):
+            e=e+1
+        if (i.states_kanban_id==3):
+            t=t+1
+        else:
+            print ("usuario nuevo")
+
     return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
 @login_required(login_url="/login")
@@ -76,7 +90,7 @@ def view_board(request):
 		return redirect('board')
 
 	return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
-	
+
 @csrf_exempt
 def edit_board(request, pk):
     states_kanban = request.POST.get('pos')
