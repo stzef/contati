@@ -86,8 +86,9 @@ def authenticate(request):
 
             user = User.objects.get( id = request.user.id )
             contri = Contributors.objects.get(user=user) 
+            
             if contri.role == Administrador:
-                return render_to_response('administrator.html', context_instance = RequestContext(request))
+                return render_to_response('admin/administrator.html', context_instance = RequestContext(request))
             else:
                 return HttpResponseRedirect('/')
         else:

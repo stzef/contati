@@ -32,13 +32,13 @@
 
                 <div class="col col-md-12">
                     <div class="col col-md-6 form-group">
-                        <strong>{{ form.states.label }}</strong> {{ form.states }} H<br/>
+                        <strong>{{ form.states.label }}</strong>{{ form.states }} <br/>
                     </div>
                     <div class="col col-md-3 form-group">
-                            <strong>{{ form.start_date.label }}</strong>{{ form.start_date }}
-                        </div>
+                        <div class="col col-md-12"><strong>{{ form.start_date.label }}</strong></div> <div class="col col-md-6">{{ form.start_date }} </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
+                    </div>
                     <div class="col col-md-3 form-group">
-                      <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} H<br/>
+                      <div class="col col-md-12"><strong>{{ form.finish_date.label }}</strong></div> <div class="col col-md-6"> {{ form.finish_date }} </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
