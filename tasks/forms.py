@@ -14,11 +14,9 @@ class StatesKanbanForm(forms.ModelForm):
 
     class Meta:
         model = States_kanban
-        fields = ['name_states', 'color']
-        labels = {'name_states': 'Nombre Estado',
-                   'color' : 'Color'}
-        widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'}),
-                    'color' : forms.TextInput(attrs={'class':'form-control'})}
+        fields = ['name_states']
+        labels = {'name_states': 'Nombre Estado'}
+        widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'})}
 
 class PrioritiesForm(forms.ModelForm):
 
