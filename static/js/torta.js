@@ -2,7 +2,6 @@
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
-  //debugger
   var valor = document.getElementById('hidden')
   var dos = parseInt(valor.value)
   console.log(valor);
