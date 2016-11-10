@@ -18,28 +18,21 @@
 
 	</div>
 </div>
-	 
-	<div id="chart_div" style="width:500; height:300"></div>
+	<input type="hidden" name="invi" value="{{ 1 }}" id="hidden" >
+	<input type="hidden" name="invi" value="{{ 2 }}" id="hidden1" >
+	<input type="hidden" name="invi" value="{{ 3 }}" id="hidden2">
+
+
+	<div id="Barchart" style="width: 100%; height: 600px;"></div>
 </div>
 
 
 {% endblock %}
 
 {% block javascript %}
-	<script type="text/javascript">
-		$(function () {
-			$('#datetimepicker1').datetimepicker();
-		});
-	</script>
-	<script type="text/javascript">
-		$(function () {
-			$('#datetimepicker_start_time').datetimepicker();
-			startDate:'+1971/05/01'//or 1986/12/08
-		});
-	</script>
 
 
-	
+
 
 	<!--Load the AJAX API-->
 	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
@@ -87,6 +80,11 @@
 		var value = data.getValue(selectedItem.row, 0);
 		alert('The user selected ' + value);
 	  }
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			<script type="text/javascript" src="../static/js/barras.js"></script>
+			<script type="text/javascript">drawChart()</script>
+			<div id="Barchart" style="width: 100%; height: 100%;"></div>
 
 	</script>
 
