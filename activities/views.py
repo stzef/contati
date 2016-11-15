@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from.models import *
+from tasks.models import *
 from forms import ActivitiesForm, ProjectsForm
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
@@ -57,7 +58,7 @@ def action_activity(request, pk):
 		return HttpResponse('../templates/activities.html')
   	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
 
-def list_projects(request):	
+def list_projects(request):
 	project = Projects.objects.filter()
 	return render_to_response('../templates/projects.html', {'project': project}, context_instance=RequestContext(request))
 
@@ -83,8 +84,15 @@ def list_config(request):
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
 def list_reportes(request):
-	#activi = Activities.objects.filter()
-	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
+	totalh=0
+	tareas = Tasks.objects.filter(responsible_id=request.user.id)
+	for t in tareas:
+		print(t.description)
+		print(t.total_time)
+		totalh=totalh+t.total_time
+	print (totalh)
+
+	return render_to_response('../templates/reportes.html', {'tareas':tareas}, context_instance=RequestContext(request))
 
 class editProjects(UpdateView):
 	model = Projects

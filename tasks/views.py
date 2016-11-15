@@ -56,38 +56,38 @@ def view_index(request):
             e=e+1
         if (i.states_kanban_id==3):
             t=t+1
-        
+
     return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
 @login_required(login_url="/login")
 def view_board(request):
+    #import pdb; pdb.set_trace()
+    project = Projects.objects.filter ()
+    user = User.objects.get(id = request.user.id )
+    kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+    kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+    kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+    form = TasksForm(user=request.user)
 
-	user = User.objects.get(id = request.user.id )
-	kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
-	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
-	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
-	form = TasksForm(user=request.user)
+    if request.method == "POST":
+    	#import pdb; pdb.set_trace()
+    	tas = Tasks()
+    	tas.responsible_id = request.POST['responsible']
+    	tas.activity_id = request.POST['activity']
+    	tas.states_id = request.POST['states']
+    	tas.states_kanban_id = request.POST['states_kanban']
+    	tas.prioritie_id = request.POST['prioritie']
+    	tas.department_id = request.POST.get('department')
+    	tas.Customers_id = request.POST.get('customers')
 
-	if request.method == "POST":
-		#import pdb; pdb.set_trace()
-		tas = Tasks()
-		tas.responsible_id = request.POST['responsible']
-		tas.activity_id = request.POST['activity']
-		tas.states_id = request.POST['states']
-		tas.states_kanban_id = request.POST['states_kanban']
-		tas.prioritie_id = request.POST['prioritie']
-		tas.department_id = request.POST.get('department')
-		tas.Customers_id = request.POST.get('customers')
+    	tas.description = request.POST['description']
+    	tas.answer = request.POST.get('answer', False)
+    	tas.start_date = request.POST['start_date']
+    	tas.finish_date = request.POST['finish_date']
 
-		tas.description = request.POST['description']
-		tas.answer = request.POST.get('answer', False)
-		tas.estimated_time = request.POST['estimated_time']
-		tas.total_time = request.POST['total_time']
-
-		tas.save()
-		return redirect('board')
-
-	return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3 }, context_instance=RequestContext(request) )
+    	tas.save()
+    	return redirect('board')
+    return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project }, context_instance=RequestContext(request) )
 
 @csrf_exempt
 def edit_board(request, pk):
@@ -282,3 +282,8 @@ class deleteDepartments(DeleteView):
 	form_class = DepartmentsForm
 	template_name = '../templates/delete_departments.html'
 	success_url=reverse_lazy('list_departments')
+
+def generaActividad(request):
+    import pdb; pdb.set_trace()
+    #actividad= Activities.object.filter(project_id=)
+    return render_to_response('../templates/list_departments.html')

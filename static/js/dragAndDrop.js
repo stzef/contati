@@ -47,7 +47,7 @@ function edit_Kanban(des, pk) {
             url: 'board/'+pk+'/edit/',
             data : { pos : des },
             success: function() {
-            
+
             }
           });
 }
@@ -80,3 +80,17 @@ function drop(ev) {
 function end(ev) {
 ev.dataTransfer.clearData("text");
 }
+
+function actividad1() {
+  debugger
+  var pro = getElementById("proyecto")
+  console.log(pro);
+  $.ajax({
+       url: '/generaActividad',
+       type: 'GET',
+       success : function(data) {
+
+       }
+
+});
+};

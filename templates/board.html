@@ -15,6 +15,7 @@
     <!-- Custom CSS -->
     <link href="{% static 'board/css/the-big-picture.css' %}" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
 
 </head>
 
@@ -45,8 +46,20 @@
                         <a href="#"><i class="fa fa-cog"></i> Administración</a>
                     </li>
                     <li>
-                        <a href="#">option</a>
+                        <select id="proyecto" name="pro" onchange="actividad1(pro)"  type="text" class="form-control" >
+
+                        <option value="0" >Proyecto</option>
+                        <br>
+
+                        {% for row in project %}
+                          <option value="{{ row.id }}">{{ row.project }}
+                          </option>
+                        {% endfor %}
+
+
+                      </select>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
