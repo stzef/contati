@@ -84,7 +84,7 @@
 
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
-                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                                 </div>
                             {% endfor %}
@@ -94,7 +94,7 @@
                           <div id="2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban2 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
-                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}
                           </div>
@@ -103,7 +103,7 @@
                           <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban3 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
-                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-plus" aria-hidden="true"></i>Editar</a>
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}
                           </div>
@@ -146,10 +146,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <ul class="nav nav-tabs pull-right">
               <li class="active">
-                <a href="#date1" data-toggle="tab">Tarea</a>
+                <a href="#date" data-toggle="tab">Tarea</a>
               </li>
-              <li><a href="#relevance1" data-toggle="tab">Más</a></li>
-              <li><a href="#dealership1" data-toggle="tab">Respuesta</a></li>
+              <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
             </ul>
             <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
           </div>
