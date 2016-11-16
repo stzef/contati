@@ -81,14 +81,19 @@ function end(ev) {
 ev.dataTransfer.clearData("text");
 }
 
-function actividad1() {
-  debugger
-  var pro = getElementById("proyecto")
-  console.log(pro);
+function actividad1(pro) {
+  //debugger
+  var pk = pro.value;
+  //var pro = getElementById("proyecto")
+  console.log(pk);
   $.ajax({
-       url: '/generaActividad',
+       url: '/generaActividad/'+pk,
        type: 'GET',
-       success : function(data) {
+       success : function(data){
+                    $("#proyecto").html("<option value'0'>-- Indica de que ciudad eres --</option>" );
+                    for ( var i =0; i < data.length; i++){
+                      $("#proyecto").append("option value='"+ data[i].pk +"'>"+data[i].fields.nombre+"</option");
+                    }
 
        }
 

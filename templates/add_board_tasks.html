@@ -22,9 +22,17 @@
                 </div>
 
                 <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <strong>{{ form.activity.label }}</strong>{{ form.activity }}
-                        </div>
+
+                    <div class="form-group">
+                      <label>actividad</label>
+                      <select name="actividad" id="id_actividad" class="form-control" >
+                        <option value="0"  >-- Seleccina una actividad --</option>
+                          {% for activi in actividad %}
+                            <option  value="{{ activi.id }}" >{{ activi.nombre }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+
                     <div class="col col-md-6 form-group">
                       <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
                     </div>
@@ -71,7 +79,7 @@
                 </form>
             </form>
         </div>
-        
+
     </div>
 </div>
 

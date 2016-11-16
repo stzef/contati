@@ -29,7 +29,7 @@ urlpatterns = [
 	url(r'^departments/(?P<pk>\d+)/edit/$', login_required(views.editDepartments.as_view()), name='edit_departments'),
 	url(r'^departments/(?P<pk>\d+)/delete/$', login_required(views.deleteDepartments.as_view()), name='delete_departments'),
 
-	url(r'^generaActividad$', views.generaActividad, name='generaActividad'),
+	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
 
 
 ]

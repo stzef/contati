@@ -48,8 +48,6 @@ def view_index(request):
     tareas = Tasks.objects.filter()
     tar = Tasks.objects.filter(responsible_id=user.id)
     for i in tar:
-        #print (i.responsible_id)
-        #print (i.responsible)
         if (i.states_kanban_id==1):
             p=p+1
         if (i.states_kanban_id==2):
@@ -70,7 +68,6 @@ def view_board(request):
     form = TasksForm(user=request.user)
 
     if request.method == "POST":
-    	#import pdb; pdb.set_trace()
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.activity_id = request.POST['activity']
@@ -283,7 +280,8 @@ class deleteDepartments(DeleteView):
 	template_name = '../templates/delete_departments.html'
 	success_url=reverse_lazy('list_departments')
 
-def generaActividad(request):
-    import pdb; pdb.set_trace()
-    #actividad= Activities.object.filter(project_id=)
-    return render_to_response('../templates/list_departments.html')
+def generaActividad(request, pk):
+    id = pk
+    actividad= Activities.objects.filter(project_id=id)
+    data = serializers.serialize('json', actividad, fields=('id','nombre'))
+    return HttpResponse( data , content_type ='application/json' )
