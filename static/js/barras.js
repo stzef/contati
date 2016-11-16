@@ -2,7 +2,6 @@
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
-  debugger
   var valor = document.getElementById('hidden')
   var cap = parseInt(valor.value)
   console.log(valor);

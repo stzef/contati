@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     'people.apps.PeopleConfig',
     'tasks.apps.TasksConfig',
     'activities',
-    
+
     # Third-party apps
-   
-    
+
+
 ]
 
-    
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,7 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'activities.middleware.HttpPostTunnelingMiddleware',
-    
+
 
 ]
 
@@ -80,7 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
             ],
         },
     },
@@ -185,4 +185,4 @@ MEDIA_ROOT = BASE_DIR + '/media'
 
 MEDIA_URL = '/media/' # verificar URL's en urls.py
 
-#LOGIN_REDIRECT_URL = reverse_lazy('index.html') 
+#LOGIN_REDIRECT_URL = reverse_lazy('index.html')
