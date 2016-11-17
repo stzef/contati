@@ -68,9 +68,10 @@ def view_board(request):
     form = TasksForm(user=request.user)
 
     if request.method == "POST":
+        import pdb; pdb.set_trace()
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
-    	tas.activity_id = request.POST['activity']
+    	tas.activity_id = request.POST['actividad']
     	tas.states_id = request.POST['states']
     	tas.states_kanban_id = request.POST['states_kanban']
     	tas.prioritie_id = request.POST['prioritie']
