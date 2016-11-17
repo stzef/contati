@@ -281,7 +281,8 @@ class deleteDepartments(DeleteView):
 	success_url=reverse_lazy('list_departments')
 
 def generaActividad(request, pk):
+    #import pdb; pdb.set_trace()
     id = pk
     actividad= Activities.objects.filter(project_id=id)
-    data = serializers.serialize('json', actividad, fields=('id','nombre'))
+    data = serializers.serialize('json', actividad)
     return HttpResponse( data , content_type ='application/json' )

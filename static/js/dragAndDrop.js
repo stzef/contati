@@ -90,12 +90,12 @@ function actividad1(pro) {
        url: '/generaActividad/'+pk,
        type: 'GET',
        success : function(data){
-                    $("#proyecto").html("<option value'0'>-- Indica de que ciudad eres --</option>" );
+                    console.info(data)
+                    $("#id_actividad").html("option value='0'>-- Indica actividad --</option>");
                     for ( var i =0; i < data.length; i++){
-                      $("#proyecto").append("option value='"+ data[i].pk +"'>"+data[i].fields.nombre+"</option");
+                      $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
                     }
 
        }
-
 });
 };
