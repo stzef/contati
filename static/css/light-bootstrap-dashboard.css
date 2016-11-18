@@ -1886,7 +1886,6 @@ body > .navbar-collapse[data-color="purple"]:after {
 .card label {
   font-size: 12px;
   margin-bottom: 5px;
-  text-transform: uppercase;
 }
 .card .title {
   margin: 0;
