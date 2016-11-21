@@ -35,7 +35,7 @@ class Departments(models.Model):
 
 class Tasks(models.Model):
 	description = models.CharField(max_length=100)
-	answer = models.CharField(max_length=50, blank=True, null = True)
+	answer = models.ForeignKey('Answer', blank=True, null = True)
 	responsible =  models.ForeignKey('people.Contributors', blank=True, null = True)
 	department =  models.ForeignKey('departments', blank=True, null = True)
 	prioritie =  models.ForeignKey('priorities', blank=True, null = True)
@@ -47,3 +47,6 @@ class Tasks(models.Model):
 	states_kanban =  models.ForeignKey('states_kanban', blank=True, null = True)
 	activity = models.ForeignKey('activities.Activities', blank=True, null = True)
 	Customers =  models.ForeignKey('people.Customers', blank=True, null = True)
+
+class Answer(models.Model):
+	description = models.TextField(null=True)

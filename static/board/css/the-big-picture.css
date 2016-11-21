@@ -2,7 +2,7 @@
 body {
 	margin-top: 20px;
 	margin-bottom: 50px;
-	background: none;
+	background: #73bfd6;
 }
 
 h1, .h1 {
@@ -10,8 +10,22 @@ h1, .h1 {
     font-size: 25px;
 }
 
+.navbar {
+    position: fixed;
+    min-height: 50px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+}
+
+@media (min-width: 768px){
+    .navbar {
+        border-radius: 0px;
+    }
+}
+
 .full {
-  background-color: #444444;
+  background-color: #73bfd6;
 }
 .formasCss{
     display: block;
@@ -35,6 +49,10 @@ h1, .h1 {
 }
 .well-lg {
     padding: 20px;
+}
+
+.panel {
+    margin-top: 70px;
 }
 
 

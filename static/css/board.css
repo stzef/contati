@@ -60,7 +60,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 }
 
 h1, .h1 {
-  font-size: 52px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 h2, .h2 {
@@ -73,7 +74,6 @@ h3, .h3 {
 }
 
 h4, .h4 {
-  font-size: 22px;
   line-height: 30px;
 }
 
@@ -1886,6 +1886,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 .card label {
   font-size: 12px;
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 .card .title {
   margin: 0;
@@ -2717,7 +2718,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   left: 0;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1992px) {
   .navbar-form {
     margin-top: 21px;
     margin-bottom: 21px;
@@ -2802,7 +2803,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   }
 }
 /*          Changes for small display      */
-@media (max-width: 991px) {
+@media (max-width: 1991px) {
   .sidebar {
     display: none;
   }

@@ -24,7 +24,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed" role="navigation">
         <div class="container" onload="mi_funcion()">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -98,6 +98,7 @@
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
                                     {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <img class="avatar border-gray" src="{{ us.photo }}" alt="foto">
 
                                 </div>
                             {% endfor %}
