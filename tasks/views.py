@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from .models import States, States_kanban, Priorities, Departments, Tasks
 from activities.models import Projects, Activities
+from people.models import Contributors
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -59,13 +60,16 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-    #import pdb; pdb.set_trace()
+    
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
+    import pdb; pdb.set_trace()
+    us = Contributors.objects.filter(user=user).values()
+    us2 = us.image_2
 
     if request.method == "POST":        
     	tas = Tasks()
@@ -84,7 +88,7 @@ def view_board(request):
 
     	tas.save()
     	return redirect('board')
-    return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project }, context_instance=RequestContext(request) )
+    return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
 
 @csrf_exempt
 def edit_board(request, pk):
