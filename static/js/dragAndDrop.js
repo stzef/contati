@@ -99,3 +99,12 @@ function actividad1(pro) {
        }
 });
 };
+function validacion() {  
+  activi = document.getElementById('id_actividad').selectedIndex;
+  console.log('activi',activi);
+  if (activi==" ") {
+    // Si no se cumple la condicion...
+    alert('[ERROR] El campo debe tener un valor de...');
+    return false;
+  }
+};

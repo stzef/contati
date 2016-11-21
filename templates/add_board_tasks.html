@@ -2,10 +2,10 @@
     <div class="tab-content">
         <div class="tab-pane active" id="date">
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form name="contact-form" method="POST">
+            <form name="contact-form" method="POST" onsubmit="return validacion()">
             {% csrf_token %}
 
-                <div class="form-group has-error">
+                <div class="form-group has-error" >
                     <strong >{{ form.description.label }} *</strong> {{ form.description }}
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
                 </div>
