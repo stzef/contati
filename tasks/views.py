@@ -67,9 +67,9 @@ def view_board(request):
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     us = Contributors.objects.filter(user=user).values()
-    us2 = us.image_2
+    # us2 = us.image_2
 
     if request.method == "POST":        
     	tas = Tasks()
@@ -82,7 +82,7 @@ def view_board(request):
     	tas.Customers_id = request.POST.get('customers')
 
     	tas.description = request.POST['description']
-    	tas.answer = request.POST.get('answer', False)
+    	tas.answer = request.POST.get('answer')
     	tas.estimated_time = request.POST['estimated_time']
     	tas.total_time = request.POST['total_time']
 
@@ -100,7 +100,71 @@ def edit_board(request, pk):
         return redirect('board')
     return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
 
-#Listar Estados
+@login_required(login_url="/login")
+def view_boardx4(request):
+	project = Projects.objects.filter ()
+	user = User.objects.get(id = request.user.id )
+	kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+	form = TasksForm(user=request.user)
+	# import pdb; pdb.set_trace()
+	us = Contributors.objects.filter(user=user).values()
+	# us2 = us.image_2
+
+	if request.method == "POST":        
+		tas = Tasks()
+		tas.responsible_id = request.POST['responsible']
+		tas.activity_id = request.POST['actividad']
+		tas.states_id = request.POST['states']
+		tas.states_kanban_id = request.POST['states_kanban']
+		tas.prioritie_id = request.POST['prioritie']
+		tas.department_id = request.POST.get('department')
+		tas.Customers_id = request.POST.get('customers')
+
+		tas.description = request.POST['description']
+		tas.answer = request.POST.get('answer')
+		tas.estimated_time = request.POST['estimated_time']
+		tas.total_time = request.POST['total_time']
+
+		tas.save()
+		return redirect('board')
+	return render_to_response('../templates/boardx4.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+
+@login_required(login_url="/login")
+def view_boardx5(request):
+	project = Projects.objects.filter ()
+	user = User.objects.get(id = request.user.id )
+	kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+	form = TasksForm(user=request.user)
+	# import pdb; pdb.set_trace()
+	us = Contributors.objects.filter(user=user).values()
+	# us2 = us.image_2
+
+	if request.method == "POST":        
+		tas = Tasks()
+		tas.responsible_id = request.POST['responsible']
+		tas.activity_id = request.POST['actividad']
+		tas.states_id = request.POST['states']
+		tas.states_kanban_id = request.POST['states_kanban']
+		tas.prioritie_id = request.POST['prioritie']
+		tas.department_id = request.POST.get('department')
+		tas.Customers_id = request.POST.get('customers')
+
+		tas.description = request.POST['description']
+		tas.answer = request.POST.get('answer')
+		tas.estimated_time = request.POST['estimated_time']
+		tas.total_time = request.POST['total_time']
+
+		tas.save()
+		return redirect('board')
+	return render_to_response('../templates/boardx5.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+
+
+
+ #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
 	selected_option = request.POST.get('row.proje', None)

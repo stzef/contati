@@ -1,0 +1,198 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="full" lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Board - Contati</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'board/css/the-big-picture.css' %}" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+
+</head>
+
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed" role="navigation">
+        <div class="container" onload="mi_funcion()">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'index' %}">Inicio</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#"><i class="fa fa-users"></i> Tableros Usuarios</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-cog"></i> Administración</a>
+                    </li>
+                    <li>
+                        <select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
+
+                        <option value="0" >Proyecto</option>
+                        <br>
+
+                        {% for row in project %}
+                          <option value="{{ row.id }}">{{ row.project }}
+                          </option>
+                        {% endfor %}
+
+
+                      </select>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" onload="mi_funcion()">
+
+        <div class="panel">
+            <div class="panel-body">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th><a id="agregar1" onclick="myFunction(1)" class="btn btn-primary pull-right"  data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+                      <h1>Por Hacer</h1>
+                    </th>
+
+                    <th><a id="agregar2" onclick="myFunction(2)" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+                    <h1>En Proceso</h1>
+                    </th>
+                    <th><a id="agregar4" onclick="myFunction(4)" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+
+                    <h1>Para Hoy</h1>
+                    </th>
+                    <th><a id="agregar3" onclick="myFunction(3)" class="btn btn-primary pull-right" data-toggle="modal" href="#MyModal"><i class="fa fa-plus" aria-hidden="true"></i><br></a></h3>
+
+                    <h1>Finalizado</h1>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody id="tareas">
+                    <tr>
+                        <td style="width: 25%;">
+                            <div id="1" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+
+                            {% for tarea in kanban1 %}
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <img class="avatar border-gray" src="{{ us.contributors.photo }}" alt="foto">
+
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </td>
+                        <td style="width: 25%;">
+                          <div id="2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                            {% for tarea in kanban2 %}
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                </div>
+                            {% endfor %}
+                          </div>
+                        </td>
+                        <td style="width: 25%;">
+                          <div id="4" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                            {% for tarea in kanban3 %}
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                </div>
+                            {% endfor %}
+                          </div>
+                        </td>
+                        <td style="width: 25%;">
+                          <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
+                            {% for tarea in kanban3 %}
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
+                                    {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                </div>
+                            {% endfor %}
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            </div>
+            </div>
+        </div>
+    </div><!-- /.container -->
+
+    <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <ul class="nav nav-tabs pull-right">
+              <li class="active">
+                <a href="#date" data-toggle="tab">Tarea</a>
+              </li>
+              <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
+            </ul>
+            <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
+          </div>
+        <div class="modal-body">
+
+            {% include "add_board_tasks.html" %}
+
+        </div>
+        </div>
+       </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <ul class="nav nav-tabs pull-right">
+              <li class="active">
+                <a href="#date" data-toggle="tab">Tarea</a>
+              </li>
+              <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
+            </ul>
+            <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
+          </div>
+        <div class="modal-body">
+
+            {% include "edit_board_tasks.html" %}
+
+          </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+    <!--<script type="text/javascript">mi_funcion()</script>-->
+     <script src="{% static 'js/jquery.min.js' %}"></script>
+</body>
+
+</html>

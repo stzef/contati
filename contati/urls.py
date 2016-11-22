@@ -1,12 +1,14 @@
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from people.views import *
-from tasks.views import view_index, view_board, edit_board
+from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
 	url(r'^$', login_required(view_index), name='index'),
-	url(r'^board$', view_board, name='board'),
+	url(r'^board$', view_board, name='board'), 
+    url(r'^boardx4$', view_boardx4, name='boardx4'),
+    url(r'^boardx5$', view_boardx5, name='boardx5'),
 	url(r'^board/(?P<pk>\d+)/edit/$', edit_board , name='edit_board_tasks'),
 	
 	url(r'^administrator$', login_required(view_administrator.as_view()), name='administrator'),	
