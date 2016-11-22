@@ -87,6 +87,7 @@ def list_reportes(request):
 	totalh=0
 	tareas = Tasks.objects.filter(responsible_id=request.user.id)
 	for t in tareas:
+		print("actividad",t.activity_id)
 		print(t.description)
 		print(t.total_time)
 		totalh=totalh+t.total_time
