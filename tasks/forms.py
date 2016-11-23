@@ -1,5 +1,5 @@
 from django import forms
-from .models import States, States_kanban, Priorities, Departments, Tasks
+from .models import States, States_kanban, Priorities, Departments, Tasks, Color
 from people.models import Contributors
 
 class StatesForm(forms.ModelForm):
@@ -17,6 +17,16 @@ class StatesKanbanForm(forms.ModelForm):
         fields = ['name_states']
         labels = {'name_states': 'Nombre Estado'}
         widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'})}
+
+class ColorForm(forms.ModelForm):
+
+    class Meta:
+        model = Color
+        fields = ['name_color', 'hexadecimal']
+        labels = {'name_color': 'Color', 'hexadecimal': 'Hexadecimal'}
+        widgets = {'name_color': forms.TextInput(attrs={'class':'form-control'}),
+                    'hexadecimal': forms.TextInput(attrs={'class':'form-control'})
+                  }
 
 class PrioritiesForm(forms.ModelForm):
 

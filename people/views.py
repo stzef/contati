@@ -22,6 +22,7 @@ from tasks.models import *
 from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm
 from activities.models import Activities, Projects
 from activities.forms import ActivitiesForm, ProjectsForm
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 # Create your views here. 
@@ -126,19 +127,26 @@ def profile(request):
         user_cont.save()
 
     return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
-
+   
 @login_required(login_url="/login")
 def change_image(request):
-    user = User.objects.get( id = request.user.id )
-    save = False
-    if request.method == 'POST':
-        
-        us = User.objects.get( id = request.user.id )
-        profile = Contributors.objects.get( user= us)
-        profile.image_2  = request.FILES['image']
-        profile.save()
-    return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
+    try:
+        user = User.objects.get( id = request.user.id )
+        save = False
+        if request.method == 'POST':
+            
+            us = User.objects.get( id = request.user.id )
+            profile = Contributors.objects.get( user= us)
+            profile.image_2  = request.FILES['image']
+            profile.save()
+        return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
+    except MultiValueDictKeyError:
+         return HttpResponse("Favor seleccionar una imagen, antes de dar click en Actualizar Imagen."
+           )
 
+    except NameError:
+        return HttpResponse("Favor seleccionar una imagen, antes de dar click en Actualizar Imagen."
+        )
 
 @login_required(login_url="/login")
 def change_password(request):    
@@ -224,8 +232,7 @@ def tasks(request):
     user.save()
     return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas}, context_instance=RequestContext(request))           
    
-       
-       
+
     
 
 # <----------- View tasks administrator ------------------>
