@@ -82,7 +82,75 @@ ev.dataTransfer.clearData("text");
 }
 
 function actividad1(pro) {
-  //debugger
+  var pk = pro.value;
+  console.log(pk);
+  $.ajax({
+       url: '/view_task_board/'+pk,
+       type: 'get',
+       success : function(data){
+         for (property in data){
+          console.log(property)
+          data[property] = JSON.parse(data[property])
+        }
+
+
+console.log(data);
+         var html = ""
+         var template = ""
+         var avatar = data.imagen
+         var avatar1 = people.contributors.pk        
+         console.log(avatar);
+         data.por_hacer.forEach(task => {
+         	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
+         	    '::descripcionTarea::'+
+         	    '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+         	    '<img class="avatar border-gray" src="::fotoImagen::" alt="foto">'+
+         	'</div>'
+
+         	template = template.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",task.fields.imagen_2)
+         	html += template
+         })
+         $("#1").html(html)
+         //document.getElementById.innerHTML = html
+
+         var html1 = ""
+         var template1 = ""
+         data.en_proceso.forEach(task => {
+           template1 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
+               '::descripcionTarea::'+
+               '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+               '<img class="avatar border-gray" src="::fotoImagen::" alt="foto">'+
+           '</div>'
+
+           template1 = template1.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",task.fields.imagen_2)
+           html1 += template1
+         })
+         $("#2").html(html1)
+         //document.getElementById.innerHTML = html
+
+         var html2 = ""
+         var template2 = ""
+         data.terminado.forEach(task => {
+           template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
+               '::descripcionTarea::'+
+               '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+               '<img class="avatar border-gray" src="::fotoImagen::" alt="foto">'+
+           '</div>'
+
+           template2 = template2.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",task.fields.imagen_2)
+           html2 += template2
+         })
+         $("#3").html(html2)
+         //document.getElementById.innerHTML = html
+
+
+                  }
+
+
+});
+};
+function activi(pro) {
+  debugger
   var pk = pro.value;
   //var pro = getElementById("proyecto")
   console.log(pk);
@@ -99,7 +167,8 @@ function actividad1(pro) {
        }
 });
 };
-function validacion() {  
+
+function validacion() {
   activi = document.getElementById('id_actividad').selectedIndex;
   console.log('activi',activi);
   if (activi==" ") {

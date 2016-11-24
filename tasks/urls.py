@@ -30,6 +30,6 @@ urlpatterns = [
 	url(r'^departments/(?P<pk>\d+)/delete/$', login_required(views.deleteDepartments.as_view()), name='delete_departments'),
 
 	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
-
+    url(r'^view_task_board/(?P<pk>\d+)/$', views.view_task_board, name='view_task_board'),
 
 ]

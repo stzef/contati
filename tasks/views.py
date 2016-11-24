@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
+from django.http import JsonResponse
+
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from .models import States, States_kanban, Priorities, Departments, Tasks
 from activities.models import Projects, Activities
@@ -60,18 +62,21 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
-    
+    project = Projects.objects.filter ()
+    form = TasksForm(user=request.user)
+    return render_to_response('../templates/board.html', {'project':project, 'form':form}, context_instance=RequestContext(request) )
+
+@login_required(login_url="/login")
+def view_task_board(request, pk):    
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
-    # import pdb; pdb.set_trace()
-    us = Contributors.objects.filter(user=user).values()
-    # us2 = us.image_2
+    us = Contributors.objects.filter(user=user)
 
-    if request.method == "POST":        
+    if request.method == "POST":
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.activity_id = request.POST['actividad']
@@ -88,7 +93,14 @@ def view_board(request):
 
     	tas.save()
     	return redirect('board')
-    return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+    kanban1 = serializers.serialize('json', kanban1)
+    kanban2 = serializers.serialize('json', kanban2)
+    kanban3 = serializers.serialize('json', kanban3)
+    us = serializers.serialize('json', us)
+
+    return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us} )
+    #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+
 
 @csrf_exempt
 def edit_board(request, pk):
@@ -112,7 +124,7 @@ def view_boardx4(request):
 	us = Contributors.objects.filter(user=user).values()
 	# us2 = us.image_2
 
-	if request.method == "POST":        
+	if request.method == "POST":
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.activity_id = request.POST['actividad']
@@ -143,7 +155,7 @@ def view_boardx5(request):
 	us = Contributors.objects.filter(user=user).values()
 	# us2 = us.image_2
 
-	if request.method == "POST":        
+	if request.method == "POST":
 		tas = Tasks()
 		tas.responsible_id = request.POST['responsible']
 		tas.activity_id = request.POST['actividad']
@@ -349,7 +361,6 @@ class deleteDepartments(DeleteView):
 	success_url=reverse_lazy('list_departments')
 
 def generaActividad(request, pk):
-    #import pdb; pdb.set_trace()
     id = pk
     actividad= Activities.objects.filter(project_id=id)
     data = serializers.serialize('json', actividad)
