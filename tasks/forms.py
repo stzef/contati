@@ -19,7 +19,7 @@ class StatesKanbanForm(forms.ModelForm):
         widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'})}
 
 class ColorForm(forms.ModelForm):
-# http://stackoverflow.com/questions/19542798/customizing-select-in-django
+    
     class Meta:
         model = Color
         fields = ['name_color', 'hexadecimal']
