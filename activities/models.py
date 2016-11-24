@@ -2,7 +2,8 @@ from django.db import models
 from django.utils import timezone
 
 class Projects(models.Model):
-	project = models.CharField(max_length=45)	
+	project = models.CharField(max_length=45)
+	color = models.ForeignKey('tasks.Color', null=False)	
 	
 	def __str__(self):
 		return '{}'.format(self.project)
@@ -20,8 +21,6 @@ class Activities(models.Model):
 # 	finish_date = models.DateTimeField(default=timezone.now)
 # 	states = models.ForeignKey('tasks.States_kanban')
 
-	def finish(self):
-		self.finish_date = timezone.now()
-		self.save()		
-		
+
+
 
