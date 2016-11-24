@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     
     url(r'^tasks-ad$', tasks, name='tasks_ad'),
+    
 
     url(r'^tasks-ad/add$', login_required(tasks_add.as_view()), name='tasks_add'),
     url(r'^tasks_list$', login_required(tasks_list.as_view()), name='tasks_list'),

@@ -1,0 +1,35 @@
+{% extends 'base_templates.html' %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">            
+            <h3>COLORES
+                 <a class="btn btn-primary pull-right" href="{% url 'add_color'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+  	<div class="panel-body">
+      <div class="table-responsive">
+  	<table class="table table-bordered table-hover table-striped">
+          <thead>
+          <tr>
+            <th>Departamento</th>
+            <th>Funciones</th>
+          </tr>  
+          </thead>  	
+            {% for state in color %}
+            <tbody>
+		<tr>
+		<td>{{ state.name_color }} | #{{ state.hexadecimal }}</td>
+		<td><a class="btn btn-primary" href="{% url 'edit_color' pk=state.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_color' pk=state.pk %}">Borrar</a></td> 
+              </tr>
+            </tbody>
+            {% endfor %}
+      </table>
+      </div>
+      </div>	      
+  </div>
+</div>
+{% endblock %}

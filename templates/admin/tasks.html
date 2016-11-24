@@ -1,8 +1,7 @@
 
       <h3>tareas</h3>
 		
-      	{% for  tareas in tasks %}
-      	<tr>
+      	{% for tareas in user.contributors.tasks_set.all %}<tr>
 		    <td>
 		        <label class="checkbox">
 		            <input type="checkbox" value="" data-toggle="checkbox">
@@ -25,7 +24,6 @@
     	{% endfor %}
        
 
-            
             
        
 

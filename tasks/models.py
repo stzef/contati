@@ -16,6 +16,7 @@ class States_kanban(models.Model):
 
 class Color(models.Model):
 	name_color = models.CharField(max_length=45)
+	hexadecimal = models.CharField(max_length=45)
 
 	def __str__(self):
 		return '{}'.format(self.name_color)

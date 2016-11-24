@@ -25,11 +25,13 @@ class ProjectsForm(forms.ModelForm):
         model = Projects
         
         fields = [
-        'project'
+        'project', 'color'
         ]
         labels = {
-        'project': 'projects'
+        'project': 'projects',
+        'color': 'Color',
         }
         widgets = {
-        'project': forms.TextInput(attrs={'class':'form-control'})
+        'project': forms.TextInput(attrs={'class':'form-control'}),
+        'color': forms.Select(attrs={'class':'form-control'})
         }

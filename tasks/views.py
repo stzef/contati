@@ -3,11 +3,11 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States, States_kanban, Priorities, Departments, Tasks
+from .models import States, States_kanban, Priorities, Departments, Tasks, Color
 from activities.models import Projects, Activities
 from people.models import Contributors
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
-from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm
+from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm, ColorForm
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -359,6 +359,35 @@ class deleteDepartments(DeleteView):
 	form_class = DepartmentsForm
 	template_name = '../templates/delete_departments.html'
 	success_url=reverse_lazy('list_departments')
+
+# <----------- View Color ------------------>
+
+@login_required(login_url="/login")
+def list_color(request):
+	color = Color.objects.filter()
+	return render_to_response('../templates/list_color.html', {'color': color}, context_instance=RequestContext(request))
+
+class createColor(CreateView):
+	model = Color
+	form_class = ColorForm
+	template_name = '../templates/add_color.html'
+
+	def get_success_url(self):
+		return reverse('list_color')
+
+class editColor(UpdateView):
+	model = Color
+	form_class = ColorForm
+	template_name = '../templates/edit_color.html'
+	success_url=reverse_lazy('list_color')
+
+
+class deleteColor(DeleteView):
+	model = Color
+	form_class = ColorForm
+	template_name = '../templates/delete_color.html'
+	success_url=reverse_lazy('list_color')
+
 
 def generaActividad(request, pk):
     id = pk

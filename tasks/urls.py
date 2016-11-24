@@ -29,6 +29,12 @@ urlpatterns = [
 	url(r'^departments/(?P<pk>\d+)/edit/$', login_required(views.editDepartments.as_view()), name='edit_departments'),
 	url(r'^departments/(?P<pk>\d+)/delete/$', login_required(views.deleteDepartments.as_view()), name='delete_departments'),
 
+	url(r'^color$', views.list_color, name='list_color'),
+	url(r'^color/add$', login_required(views.createColor.as_view()), name='add_color'),
+	url(r'^color/(?P<pk>\d+)/edit/$', login_required(views.editColor.as_view()), name='edit_color'),
+	url(r'^color/(?P<pk>\d+)/delete/$', login_required(views.deleteColor.as_view()), name='delete_color'),
+
+
 	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
     url(r'^view_task_board/(?P<pk>\d+)/$', views.view_task_board, name='view_task_board'),
 
