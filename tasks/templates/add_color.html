@@ -12,9 +12,23 @@
     <form action="{% url 'add_color' %}" method="post">{% csrf_token %}
     {% csrf_token %}
       <div class="form-group">
-        <label class="section-title-p col-md-4"><strong>Agregar un nuevo color:</strong></label>
+        <h4 class="section-title-p col-md-12">
+        <p>El color en hexadecimal se debe guardar únicamente su valor
+        , ejemplo: <br />
+        Nombre: Blanco <br />
+        Hexa: FFFFFF </p>
+        </h4>
+        <br />
+        <br />
+        <br />
+        <br />
+        <label class="section-title-p col-md-4"><strong>Color:</strong></label>
         <div class="col-md-7">
-          {{ form.name_color }}<br/>
+          {{ form.name_color }}<br/> 
+        </div>
+
+        <label class="section-title-p col-md-4"><strong>Hexadecimal:</strong></label>
+        <div class="col-md-7">
           {{ form.hexadecimal }}<br/>
           <input class="btn btn-primary" type="submit" value="Guardar" />
           <a class="btn btn-default" href="{% url 'list_color' %}">Cancelar</a> 
