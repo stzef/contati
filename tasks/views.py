@@ -67,7 +67,7 @@ def view_board(request):
     return render_to_response('../templates/board.html', {'project':project, 'form':form}, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
-def view_task_board(request, pk):    
+def view_task_board(request, pk):
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
@@ -75,7 +75,14 @@ def view_task_board(request, pk):
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
     us = Contributors.objects.filter(user=user)
+    kanban1 = serializers.serialize('json', kanban1)
+    kanban2 = serializers.serialize('json', kanban2)
+    kanban3 = serializers.serialize('json', kanban3)
+    us = serializers.serialize('json', us)
 
+    return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us} )
+    #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+def save_task(request):
     if request.method == "POST":
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
@@ -93,14 +100,6 @@ def view_task_board(request, pk):
 
     	tas.save()
     	return redirect('board')
-    kanban1 = serializers.serialize('json', kanban1)
-    kanban2 = serializers.serialize('json', kanban2)
-    kanban3 = serializers.serialize('json', kanban3)
-    us = serializers.serialize('json', us)
-
-    return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us} )
-    #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
-
 
 @csrf_exempt
 def edit_board(request, pk):

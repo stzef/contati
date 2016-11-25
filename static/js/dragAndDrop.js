@@ -10,6 +10,8 @@
   //    console.log(padre);
   //  }
     function myFunction(entra) {
+        debugger
+        ActividesProducto()
         if (entra==1){
           var pa = document.getElementById("states_kanban1")
           var hijo = document.createElement("input");
@@ -98,7 +100,7 @@ console.log(data);
          var html = ""
          var template = ""
          var avatar = data.imagen
-         var avatar1 = people.contributors.pk        
+         //var avatar1 = people.contributors.pk
          console.log(avatar);
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
@@ -149,17 +151,16 @@ console.log(data);
 
 });
 };
-function activi(pro) {
-  debugger
-  var pk = pro.value;
-  //var pro = getElementById("proyecto")
+function ActividesProducto() {
+  var pk = document.getElementById("proyecto").value;
+  //var pk1 = pk.value
   console.log(pk);
   $.ajax({
        url: '/generaActividad/'+pk,
        type: 'GET',
        success : function(data){
                     console.info(data)
-                    $("#id_actividad").html("option value='0'>-- Indica actividad --</option>");
+                    $("#id_actividad").append("option value='0'>-- Indica actividad --</option>");
                     for ( var i =0; i < data.length; i++){
                       $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
                     }
