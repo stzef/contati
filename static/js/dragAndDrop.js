@@ -96,12 +96,12 @@ function actividad1(pro) {
         }
 
 
-console.log(data);
+console.log(data);        
          var html = ""
          var template = ""
          var avatar = data.imagen
          //var avatar1 = people.contributors.pk
-         console.log(avatar);
+         console.log("avatar-----------------",avatar);
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
          	    '::descripcionTarea::'+
@@ -133,7 +133,7 @@ console.log(data);
          var html2 = ""
          var template2 = ""
          data.terminado.forEach(task => {
-           template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
+           template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #ffff ">'+
                '::descripcionTarea::'+
                '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '<img class="avatar border-gray" src="::fotoImagen::" alt="foto">'+
@@ -152,6 +152,7 @@ console.log(data);
 });
 };
 function ActividesProducto() {
+
   var pk = document.getElementById("proyecto").value;
   //var pk1 = pk.value
   console.log(pk);
