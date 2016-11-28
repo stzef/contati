@@ -36,6 +36,7 @@ urlpatterns = [
 
 
 	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
-
+    url(r'^view_task_board/(?P<pk>\d+)/$', views.view_task_board, name='view_task_board'),
+    url(r'^save_task/$', views.save_task, name='save_task'),
 
 ]
