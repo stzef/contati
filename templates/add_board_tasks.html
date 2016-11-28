@@ -6,7 +6,7 @@
             {% csrf_token %}
 
                 <div class="form-group has-error" >
-                    <strong >{{ form.description.label }} *</strong> {{ form.description }}
+                    <strong >{{ form.description.label }} *</strong> <div style="overflow-y: auto;height:100px;width:400px;"> {{ form.description }}</div>
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
                 </div>
 
@@ -69,7 +69,7 @@
 
                 <div class="col col-md-12">
                     <div class="form-group">
-                        <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
+                        <strong>{{ form.answer.label }}</strong><div style="overflow-y: auto;height:100px;width:400px;"> {{ form.answer }}</div> <br/>
                     </div>
                 </div>
 
