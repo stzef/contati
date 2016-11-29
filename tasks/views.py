@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from django.http import HttpResponse
 from django.http import JsonResponse
 
@@ -71,10 +72,12 @@ def view_board(request):
     return render_to_response('../templates/board.html', {'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3}, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
-def view_task_board(request, pk):    
+def view_task_board(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades)
-    project = Projects.objects.filter ()
+    project = Projects.objects.get(pk=pk)
+    #import pdb; pdb.set_trace()
+    color = Color.objects.filter(pk=project.color_id)
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1, activity__in = actividades)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2, activity__in = actividades)
@@ -82,13 +85,14 @@ def view_task_board(request, pk):
     form = TasksForm(user=request.user)
     us1 = Contributors.objects.filter(user=user).values('image_2')
     us = Contributors.objects.filter(image_2=us1.values('image_2'))
+    user = User.objects.get( id = request.user.id )
+    kanban1 = json.loads(serializers.serialize('json', kanban1))
+    kanban2 = json.loads(serializers.serialize('json', kanban2))
+    kanban3 = json.loads(serializers.serialize('json', kanban3))
+    us = json.loads(serializers.serialize('json', us))[0]
+    color = json.loads(serializers.serialize('json', color))[0]
 
-    kanban1 = serializers.serialize('json', kanban1)
-    kanban2 = serializers.serialize('json', kanban2)
-    kanban3 = serializers.serialize('json', kanban3)
-    us = serializers.serialize('json', us)
-
-    return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us } )
+    return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us, "col":color } )
     #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
 def save_task(request):
     if request.method == "POST":
