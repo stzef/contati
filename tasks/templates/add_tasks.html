@@ -32,12 +32,17 @@
           
 
         </div>
-        <div class="col-md-6"> 
-          <div class="form-group has-error">
-          <strong>{{ form.description.label }} *</strong> {{ form.description }}
-          <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
-          </div>  
-          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
+        <div class="col-md-6">
+
+          
+          <div class="form-group has-error"  >
+          
+          <strong>{{ form.description.label }} *</strong> <div style="overflow-y: auto;height:100px;width:428px;">{{ form.description }}</div>
+          <label class="control-label" for="inputError" >{{ form.description.errors }}</label> <br/>
+          </div> 
+          
+
+          <strong>{{ form.answer.label }}</strong> <div style="overflow-y: auto;height:100px;width:428px;"> {{ form.answer }}</div> <br/> 
           <div class="form-group has-error">
           <strong>{{ form.estimated_time.label }} *</strong> {{ form.estimated_time }}
           <label class="control-label" for="inputError">{{ form.estimated_time.errors }}</label> <br/>

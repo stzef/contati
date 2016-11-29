@@ -181,13 +181,13 @@
 
       <ul>
 
-        <li id="open" class="fa fa-pencil"> Open</li>
+        <li id='Abrir'><i class="fa fa-folder-open" aria-hidden="true"></i> Abrir</li>
 
-        <li id="email" class="fa fa-pencil"> Email</li>
+        <li><i id="save" class="fa fa-pencil"></i> Editar</li>
 
-        <li id="save" class="fa fa-pencil"> Save</li>
+        <li><i class="fa fa-arrows" aria-hidden="true"></i> Mover</li>
 
-        <li id="close" class="fa fa-pencil"> Close</li>
+        <li><i class="fa fa-trash" aria-hidden="true"></i> Borrar</li>
 
       </ul>
 
@@ -203,19 +203,19 @@
         $('#1').contextMenu('myMenu1', {
           bindings: {
 
-            'open': function(t) {
+            'Abrir': function(t) {
               alert('Trigger was '+t.id+'\nAction was Open');
             },
 
-            'email': function(t) {
+            'Editar': function(t) {
               alert('Trigger was '+t.id+'\nAction was Email');
             },
 
-            'save': function(t) {
+            'Mover': function(t) {
               alert('Trigger was '+t.id+'\nAction was Save');
             },
 
-            'delete': function(t) {
+            'Borrar': function(t) {
               alert('Trigger was '+t.id+'\nAction was Delete');
             }
           }
