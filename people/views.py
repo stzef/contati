@@ -231,7 +231,7 @@ def tasks(request):
     user = User.objects.all() 
     user.save()
     return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas}, context_instance=RequestContext(request))           
-   
+
 
     
 
