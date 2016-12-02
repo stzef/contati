@@ -9,7 +9,7 @@
 
 		    </td>
 		    	
-			  	<td>{{ tareas.description}}</td>
+			  	<td>{{ tareas.activity.project.tasks.desciption}}</td>
 			  	<td class="td-actions text-right">
 				    <a href="{% url 'tasks_edit' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
 				        <i class="fa fa-edit"></i>
