@@ -61,66 +61,29 @@
                             <table class="table">
                                 <tbody>
 
-
-                                {% for tareas in kanban2 %}
-
-                                    <tr>
+                              
+                            {% for tarea in kanban2 %}
+                            <tr>
                                         <td>
                                             <label class="checkbox">
                                                 <input type="checkbox" value="" data-toggle="checkbox">
                                             </label>
                                         </td>
-                                        <td>{{tareas.description}}</td>
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
+                                        <td>{{tarea.description}}</td>
                                         <td class="td-actions text-right">
-                                            <a href="{% url 'edit_tasks' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
+                                            <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="{% url 'delete_tasks' pk=tareas.pk %}" class="btn btn-danger btn-simple btn-xs">
+                                            <a href="{% url 'delete_tasks' pk=tarea.pk %}" class="btn btn-danger btn-simple btn-xs">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                {% endfor %}
-                                
+                                    </div>
+                                {% endfor %}                                            
 
-                                {% for tareas in kanban2 %}
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-                                        <td>{{tareas.description}}</td>
-                                        <td class="td-actions text-right">
-                                            <a href="{% url 'edit_tasks' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="{% url 'delete_tasks' pk=tareas.pk %}" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                
-
-                                {% for tareas in kanban3 %}
-                                    <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-                                        <td>{{tareas.description}}</td>
-                                        <td class="td-actions text-right">
-                                            <a href="{% url 'edit_tasks' pk=tareas.pk %}" class="btn btn-info btn-simple btn-xs">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="{% url 'delete_tasks' pk=tareas.pk %}" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                               
                                 </tbody>
                             </table>
                         </div>

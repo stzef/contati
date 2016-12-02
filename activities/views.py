@@ -15,6 +15,7 @@ from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from django.core.urlresolvers import reverse, reverse_lazy
 
 def add_projects(request):
+	project = Projects.objects.filter()
 	if request.method == 'POST':
 		form = ProjectsForm(request.POST)
 		if form.is_valid():
@@ -22,14 +23,17 @@ def add_projects(request):
 			return redirect('list_projects')
 	else:
 		form =	ProjectsForm()
-	return render_to_response('../templates/projects_fo.html', {'form':form}, context_instance=RequestContext(request))
+	return render_to_response('../templates/projects_fo.html', {'project': project,
+		'form':form}, context_instance=RequestContext(request))
 
 @csrf_exempt
 def list_activities(request):
+	project = Projects.objects.filter()
 	activi = Activities.objects.filter()
-	return render_to_response('../templates/activities.html', {'activi': activi}, context_instance=RequestContext(request))
+	return render_to_response('../templates/activities.html', {'project': project, 'activi': activi}, context_instance=RequestContext(request))
 
 def add_activity(request):
+	project = Projects.objects.filter ()
 	if request.method == 'POST':
 		form = ActivitiesForm(request.POST)
 		if form.is_valid():
@@ -37,7 +41,7 @@ def add_activity(request):
 			return redirect('list_activities')
 	else:
 		form =	ActivitiesForm()
-	return render(request, '../templates/activity_form.html', {'form':form}, context_instance=RequestContext(request))
+	return render(request, '../templates/activity_form.html', {'project': project,'form':form}, context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -45,6 +49,7 @@ def action_activity(request, pk):
 
 
   	print (request)
+  	project = Projects.objects.filter()
   	activi = get_object_or_404(Activities, pk=pk)
 
   	if request.method == 'PUT':
@@ -56,7 +61,7 @@ def action_activity(request, pk):
 	elif request.method == 'DELETE':
 		Activities.objects.get(pk=pk).delete()
 		return HttpResponse('../templates/activities.html')
-  	return render_to_response('../templates/delete_activity.html', {'activi': activi}, context_instance=RequestContext(request))
+  	return render_to_response('../templates/delete_activity.html', {'project': project,'activi': activi}, context_instance=RequestContext(request))
 
 def list_projects(request):
 	project = Projects.objects.filter()
@@ -106,3 +111,8 @@ class editActivity(UpdateView):
 	form_class = ActivitiesForm
 	template_name = '../templates/edit_activity.html'
 	success_url=reverse_lazy('list_activities')
+
+	def get_context_data(self, **kwargs):
+		context = super(editActivity, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		return context

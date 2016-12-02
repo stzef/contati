@@ -179,6 +179,7 @@ def change_password(request):
 
 @login_required(login_url="/login")
 def add_Customers(request):
+    project = Projects.objects.filter ()
     if request.method == "POST":
         form = CustomersForm(request.POST)
         if form.is_valid():
@@ -186,13 +187,15 @@ def add_Customers(request):
         return redirect('list_customers') 
     else:
         form = CustomersForm()
+    
 
-    return render_to_response('../templates/add_customers.html', {'form': form}, context_instance=RequestContext(request))              
+    return render_to_response('../templates/add_customers.html', {'project': project, 'form': form}, context_instance=RequestContext(request))              
 
 @login_required(login_url="/login")
 def list_Customers(request):
+    project = Projects.objects.filter ()
     customers = Customers.objects.all().order_by('name')
-    return render_to_response('../templates/list_customers.html', {'customers': customers}, context_instance=RequestContext(request))           
+    return render_to_response('../templates/list_customers.html', {'project': project, 'customers': customers}, context_instance=RequestContext(request))           
 
 class createCustomers(CreateView):
     model = Customers
@@ -206,11 +209,22 @@ class editCustomers(UpdateView):
     template_name = '../templates/edit_customers.html'
     success_url=reverse_lazy('list_customers') 
 
+    def get_context_data(self, **kwargs):
+        context = super(editCustomers, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 class deleteCustomers(DeleteView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/delete_customers.html'
-    success_url=reverse_lazy('list_customers')  
+    success_url=reverse_lazy('list_customers') 
+
+
+    def get_context_data(self, **kwargs):
+        context = super(deleteCustomers, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context 
 
 
 class view_administrator(ListView):
@@ -221,16 +235,32 @@ class view_administrator(ListView):
     def get_queryset(self):
         return super(view_administrator, self).get_queryset().order_by('user__first_name')
 
+    def get_context_data(self, **kwargs):
+        context = super(view_administrator, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
+# @login_required(login_url="/login")
+# def administrator(request):
+#     selected_option = request.POST.get('row.proje', None)
+#     print (selected_option)
+#     project = Projects.objects.filter()
+#     state1 = Tasks.objects.filter()
+#     contributors = Contributors.objects.all().order_by('name')
+#     return render_to_response('../templates/admin/administrator.html', {'contributors':contributors, 'state1': state1, 'project': project}, context_instance=RequestContext(request))
+
 class proyect(FormView):
     model = Activities
     template_name = '../templates/admin/administrator.html'
+    success_url=reverse_lazy('administrator') 
 
 def tasks(request): 
+    project = Projects.objects.filter ()
+    user = User.objects.get(id = request.user.id )
     tareas = request.POST['responsible']
     usuario = request.POST['first_name']
-    user = User.objects.all() 
     user.save()
-    return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas}, context_instance=RequestContext(request))           
+    return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas, 'project':project }, context_instance=RequestContext(request))           
 
 
     
@@ -258,6 +288,11 @@ class tasks_list(ListView):
     model = Tasks
     template_name = '../templates/admin/tasks_list.html'
     success_url=reverse_lazy('tasks_list') 
+
+    def get_context_data(self, **kwargs):
+        context = super(tasks_list, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
 class tasks_edit(UpdateView):  
     model = Tasks
@@ -306,17 +341,32 @@ class departments_add(CreateView):
     template_name = '../templates/admin/departments_add.html'    
     success_url=reverse_lazy('departments_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(departments_add, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 class departments_edit(UpdateView):
     model = Departments
     form_class = DepartmentsForm
     template_name = '../templates/admin/departments_edit.html'    
     success_url=reverse_lazy('departments_list')
+
+    def get_context_data(self, **kwargs):
+        context = super(departments_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
  
 class departments_delete(DeleteView):
     model = Departments
     form_class = DepartmentsForm
     template_name = '../templates/admin/departments_delete.html'    
     success_url=reverse_lazy('departments_list')
+
+    def get_context_data(self, **kwargs):
+        context = super(departments_delete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
 # <----------- View States Kanban administrator ------------------>
 
@@ -330,6 +380,11 @@ class StatesKanbanCreate(CreateView):
     form_class = StatesKanbanForm
     template_name = '../templates/admin/kanban_add.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(StatesKanbanCreate, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
     def get_success_url(self):
         return reverse('states_kanban_list')
 
@@ -338,6 +393,11 @@ class StatesKanbanEdit(UpdateView):
     form_class = StatesKanbanForm
     template_name = '../templates/admin/kanban_edit.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(StatesKanbanEdit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
     def get_success_url(self):
         return reverse('states_kanban_list')
 
@@ -345,6 +405,11 @@ class StatesKanbanDelete(DeleteView):
     model = States_kanban
     form_class = StatesKanbanForm
     template_name = '../templates/admin/kanban_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(StatesKanbanDelete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
     def get_success_url(self):
         return reverse('states_kanban_list')

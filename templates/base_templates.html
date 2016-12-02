@@ -153,27 +153,20 @@
 							  <li>
 								<form method="post">  
            					   		{% csrf_token %}
-           					   		
-           					   	                 
-										<select id="proy" name="seleccion" type="text" class="form-control" id="project">
+           					   		<select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
 
-											<option value="0" >Proyecto</option>						
-											<br>	
+				                        <option value="0" >Proyecto</option>
+				                        <br>       					   	     
+				                        {% for row in project %}
+                          				<option value="{{ row.id }}" style="background-color: #{{ row.color.hexadecimal }}" >{{ row.project }}
+                          				</option>
+                        				{% endfor %}							
 
-											{% for row in project %}                                                                                                                                                                            
-												<option value="{{ row.id }}">{{ row.project }}	
-												</option>
-											{% endfor %}
-										
-					                        
-										</select>						
+										</select>
 					                      																					
 								 </form>	
-							  </li>
-
-											   
+							  </li>								   
 						</li>
-
 					</ul>
 					<ul>
 						<li>
