@@ -10,32 +10,39 @@
   //    console.log(padre);
   //  }
     function myFunction(entra) {
-        debugger
-        ActividesProducto()
-        if (entra==1){
-          var pa = document.getElementById("states_kanban1")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",1);
-          pa.appendChild(hijo);
-          console.log(pa);}
-        if (entra==2){
-          var pa = document.getElementById("states_kanban1")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",2);
-          pa.appendChild(hijo);
-          console.log(pa);}
-        if (entra==3){
-          var pa = document.getElementById("states_kanban1")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",3);
-          pa.appendChild(hijo);
-          console.log(pa);}
+      debugger
+      var w = document.getElementById("proyecto").selectedIndex;
+      console.log(w);
+      if (w!=0) {
+            ActividesProducto()
+            if (entra==1){
+              var pa = document.getElementById("states_kanban1")
+              var hijo = document.createElement("input");
+              hijo.setAttribute("type", "hidden");
+              hijo.setAttribute("name","states_kanban" );
+              hijo.setAttribute("value",1);
+              pa.appendChild(hijo);
+              console.log(pa);}
+            if (entra==2){
+              var pa = document.getElementById("states_kanban1")
+              var hijo = document.createElement("input");
+              hijo.setAttribute("type", "hidden");
+              hijo.setAttribute("name","states_kanban" );
+              hijo.setAttribute("value",2);
+              pa.appendChild(hijo);
+              console.log(pa);}
+            if (entra==3){
+              var pa = document.getElementById("states_kanban1")
+              var hijo = document.createElement("input");
+              hijo.setAttribute("type", "hidden");
+              hijo.setAttribute("name","states_kanban" );
+              hijo.setAttribute("value",3);
+              pa.appendChild(hijo);
+              console.log(pa);}
+      }else {
+        $("#id_error1").append("<p>*Selecione un proyecto</p>");
+       return false;
+      }
 }
 function edit_Kanban(des, pk) {
   states_kanban = des;
@@ -123,7 +130,7 @@ function actividad1(pro) {
          var template2 = ""
          data.terminado.forEach(task => {
            template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)"  style="background-color: #::hexadecimal::">'+
-               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+ 
+               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+
                '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '::descripcionTarea::'+
            '</div>'
@@ -158,7 +165,8 @@ function validacion() {
   console.log('activi',activi);
   if (activi==" ") {
     // Si no se cumple la condicion...
-    alert('[ERROR] El campo debe tener un valor de...');
+    $("#id_error").append("<p>*Debe selecionar una actividad</p>");
     return false;
+
   }
 };
