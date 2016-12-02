@@ -63,13 +63,14 @@ def view_index(request):
 
 @login_required(login_url="/login")
 def view_board(request):
+    error = False
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
-    return render_to_response('../templates/board.html', {'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3}, context_instance=RequestContext(request) )
+    return render_to_response('../templates/board.html', {'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3,'error':error}, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_task_board(request, pk):

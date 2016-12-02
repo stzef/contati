@@ -13,35 +13,37 @@
       debugger
       var w = document.getElementById("proyecto").selectedIndex;
       console.log(w);
-      if (w!=0) {
-            ActividesProducto()
-            if (entra==1){
-              var pa = document.getElementById("states_kanban1")
-              var hijo = document.createElement("input");
-              hijo.setAttribute("type", "hidden");
-              hijo.setAttribute("name","states_kanban" );
-              hijo.setAttribute("value",1);
-              pa.appendChild(hijo);
-              console.log(pa);}
-            if (entra==2){
-              var pa = document.getElementById("states_kanban1")
-              var hijo = document.createElement("input");
-              hijo.setAttribute("type", "hidden");
-              hijo.setAttribute("name","states_kanban" );
-              hijo.setAttribute("value",2);
-              pa.appendChild(hijo);
-              console.log(pa);}
-            if (entra==3){
-              var pa = document.getElementById("states_kanban1")
-              var hijo = document.createElement("input");
-              hijo.setAttribute("type", "hidden");
-              hijo.setAttribute("name","states_kanban" );
-              hijo.setAttribute("value",3);
-              pa.appendChild(hijo);
-              console.log(pa);}
-      }else {
+      if (w==0) {
         $("#id_error1").append("<p>*Selecione un proyecto</p>");
-       return false;
+        var error = false
+        return error;
+
+      }else {
+        ActividesProducto()
+        if (entra==1){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",1);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==2){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",2);
+          pa.appendChild(hijo);
+          console.log(pa);}
+        if (entra==3){
+          var pa = document.getElementById("states_kanban1")
+          var hijo = document.createElement("input");
+          hijo.setAttribute("type", "hidden");
+          hijo.setAttribute("name","states_kanban" );
+          hijo.setAttribute("value",3);
+          pa.appendChild(hijo);
+          console.log(pa);}
       }
 }
 function edit_Kanban(des, pk) {
@@ -101,6 +103,7 @@ function actividad1(pro) {
          var template = ""
          var color = data.col.fields.hexadecimal
          var avatar = data.imagen.fields.image_2
+         var error = true
          console.log(avatar);
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
@@ -139,8 +142,9 @@ function actividad1(pro) {
            html2 += template2
          })
          $("#3").html(html2)
-                  }
+       }
 });
+  return error;
 };
 function ActividesProducto() {
 
