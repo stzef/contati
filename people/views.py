@@ -202,6 +202,11 @@ class createCustomers(CreateView):
     form_class = CustomersForm
     template_name = '../templates/add_customers.html'
     success_url=reverse_lazy('list_customers')
+
+    def get_context_data(self, **kwargs):
+        context = super(createCustomers, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
     
 class editCustomers(UpdateView):
     model = Customers
@@ -253,6 +258,12 @@ class proyect(FormView):
     model = Activities
     template_name = '../templates/admin/administrator.html'
     success_url=reverse_lazy('administrator') 
+
+    def get_context_data(self, **kwargs):
+        context = super(proyect, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 
 def tasks(request): 
     project = Projects.objects.filter ()
@@ -332,8 +343,9 @@ class tasks_delete(DeleteView):
 
 @login_required(login_url="/login")
 def departments_list(request):
+    project = Projects.objects.filter ()
     departments = Departments.objects.filter()
-    return render_to_response('../templates/admin/departments_list.html', {'departments': departments}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/departments_list.html', {'project':project, 'departments': departments}, context_instance=RequestContext(request))
 
 class departments_add(CreateView):  
     model = Departments
@@ -372,8 +384,9 @@ class departments_delete(DeleteView):
 
 @login_required(login_url="/login")
 def states_kanban_list(request):
+    project = Projects.objects.filter ()
     state1 = States_kanban.objects.filter()
-    return render_to_response('../templates/admin/kanban_list.html', {'state1': state1}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/kanban_list.html', {'project':project, 'state1': state1}, context_instance=RequestContext(request))
 
 class StatesKanbanCreate(CreateView):
     model = States_kanban
@@ -418,7 +431,9 @@ class StatesKanbanDelete(DeleteView):
 
 
 @login_required(login_url="/login")
+
 def states_add(request):
+    project = Projects.objects.filter ()
     if request.method == "POST":
         form = StatesForm(request.POST)
         if form.is_valid():
@@ -427,17 +442,24 @@ def states_add(request):
     else:
         form = StatesForm()
 
-    return render_to_response('../templates/admin/states_add.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/states_add.html', {'project':project, 'form': form}, context_instance=RequestContext(request))
 
 @login_required(login_url="/login")
 def states_list(request):
+    project = Projects.objects.filter ()
     state1 = States.objects.filter()
-    return render_to_response('../templates/admin/states_list.html', {'state1': state1}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/states_list.html', {'project':project, 'state1': state1}, context_instance=RequestContext(request))
 
 class States_edit(UpdateView):
     model = States
     form_class = StatesForm
     template_name = '../templates/admin/states_edit.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(States_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
     def get_success_url(self):
         return reverse('states_list')
@@ -448,6 +470,12 @@ class States_delete(DeleteView):
     form_class = StatesForm
     template_name = '../templates/admin/states_delete.html'
 
+
+    def get_context_data(self, **kwargs):
+        context = super(States_delete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
     def get_success_url(self):
         return reverse('states_list')
 
@@ -455,13 +483,19 @@ class States_delete(DeleteView):
 
 @login_required(login_url="/login")
 def priorities_list(request):
+    project = Projects.objects.filter ()
     priorities = Priorities.objects.filter()
-    return render_to_response('../templates/admin/priorities_list.html', {'prioritie': priorities}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/priorities_list.html', {'project':project, 'prioritie': priorities}, context_instance=RequestContext(request))
 
 class Priorities_create(CreateView):
     model = Priorities
     form_class = PrioritiesForm
     template_name = '../templates/admin/priorities_add.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Priorities_create, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
     def get_success_url(self):
         return reverse('priorities_list')
@@ -472,35 +506,48 @@ class Priorities_edit(UpdateView):
     template_name = '../templates/admin/priorities_edit.html'
     success_url=reverse_lazy('priorities_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(Priorities_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 class Priorities_delete(DeleteView):
     model = Priorities
     form_class = PrioritiesForm
     template_name = '../templates/admin/priorities_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Priorities_delete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
 
     def get_success_url(self):
         return reverse('priorities_list')
 # <----------- View activities administrator ------------------>
     
 def activities_list(request):
+    project = Projects.objects.filter ()
     activi = Activities.objects.filter()
-    return render_to_response('../templates/admin/activities_list.html', {'activi': activi}, context_instance=RequestContext(request))  
+    return render_to_response('../templates/admin/activities_list.html', {'project':project, 'activi': activi}, context_instance=RequestContext(request))  
 
 
 def activity_add(request):
+    project = Projects.objects.filter ()
     if request.method == 'POST':
+        
         form = ActivitiesForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('activities_list') 
     else:
         form =  ActivitiesForm()
-    return render(request, '../templates/admin/activities_add.html', {'form':form}, context_instance=RequestContext(request))  
+    return render(request, '../templates/admin/activities_add.html', {'project':project, 'form':form}, context_instance=RequestContext(request))  
      
 
 @csrf_exempt
 def activity_delete(request, pk):
 
-    
+    project = Projects.objects.filter ()
     print (request)
     activi = get_object_or_404(Activities, pk=pk)
 
@@ -513,7 +560,7 @@ def activity_delete(request, pk):
     elif request.method == 'DELETE':        
         Activities.objects.get(pk=pk).delete()
         return HttpResponse('../templates/admin/activities_list.html')
-    return render_to_response('../templates/admin/activities_delete.html', {'activi': activi}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/activities_delete.html', {'project':project, 'activi': activi}, context_instance=RequestContext(request))
 
 
 class Activity_edit(UpdateView):
@@ -522,12 +569,18 @@ class Activity_edit(UpdateView):
     template_name = '../templates/admin/activities_edit.html'
     success_url=reverse_lazy('activities_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(Activity_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 #<------------ view Customers administrator --------------->  
 
 
 
 @login_required(login_url="/login")
 def Customers_add(request):
+    project = Projects.objects.filter ()
     if request.method == "POST":
         form = CustomersForm(request.POST)
         if form.is_valid():
@@ -536,18 +589,24 @@ def Customers_add(request):
     else:
         form = CustomersForm()
 
-    return render_to_response('../templates/admin/customers_add.html', {'form': form}, context_instance=RequestContext(request))              
+    return render_to_response('../templates/admin/customers_add.html', {'project':project, 'form': form}, context_instance=RequestContext(request))              
 
 @login_required(login_url="/login")
 def Customers_list(request):
+    project = Projects.objects.filter ()
     customers = Customers.objects.all().order_by('name')
-    return render_to_response('../templates/admin/customers_list.html', {'customers': customers}, context_instance=RequestContext(request))           
+    return render_to_response('../templates/admin/customers_list.html', {'project':project, 'customers': customers}, context_instance=RequestContext(request))           
 
 class Customers_add(CreateView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/admin/customers_add.html'
     success_url=reverse_lazy('customers_list')
+
+    def get_context_data(self, **kwargs):
+        context = super(Customers_add, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
     
 class Customers_edit(UpdateView):
     model = Customers
@@ -555,16 +614,27 @@ class Customers_edit(UpdateView):
     template_name = '../templates/admin/customers_edit.html'
     success_url=reverse_lazy('customers_list') 
 
+    def get_context_data(self, **kwargs):
+        context = super(Customers_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 class Customers_delete(DeleteView):
     model = Customers
     form_class = CustomersForm
     template_name = '../templates/admin/customers_delete.html'
     success_url=reverse_lazy('customers_list')  
 
+    def get_context_data(self, **kwargs):
+        context = super(Customers_delete, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 #<------------ view Customers administrator --------------->  
 
 
 def projects_add(request):
+    project = Projects.objects.filter ()
     if request.method == 'POST':
         form = ProjectsForm(request.POST)
         if form.is_valid():
@@ -572,7 +642,7 @@ def projects_add(request):
             return redirect('projects_list') 
     else:
         form =  ProjectsForm()
-    return render_to_response('../templates/admin/projects_add.html', {'form':form}, context_instance=RequestContext(request))
+    return render_to_response('../templates/admin/projects_add.html', {'project':project, 'form':form}, context_instance=RequestContext(request))
 
 def projects_list(request):
     project = Projects.objects.filter()
@@ -580,6 +650,7 @@ def projects_list(request):
 
 
 def projects_delete(request, pk):
+    project = Projects.objects.filter ()
     print ("fucion action")
     produ = get_object_or_404(Projects, pk=pk)      
     if request.method == 'PUT':
@@ -592,7 +663,7 @@ def projects_delete(request, pk):
         print "dentro delete projects"
         Projects.objects.get(pk=pk).delete()
         return HttpResponse('../templates/admin/projects_list.html')
-    return render_to_response('../templates/admin/projects_delete.html', {'produ': produ}, context_instance=RequestContext(request)) 
+    return render_to_response('../templates/admin/projects_delete.html', {'project': project, 'produ': produ}, context_instance=RequestContext(request)) 
 
 class Projects_edit(UpdateView):
     model = Projects
@@ -600,10 +671,16 @@ class Projects_edit(UpdateView):
     template_name = '../templates/admin/projects_edit.html'
     success_url=reverse_lazy('projects_list')
 
+    def get_context_data(self, **kwargs):
+        context = super(Projects_edit, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context
+
 def configuration(request):   
     project = Projects.objects.filter()
     return render_to_response('../templates/admin/configuration.html', {'project': project}, context_instance=RequestContext(request))  
 
 def reports(request):
+    project = Projects.objects.filter()
     #activi = Activities.objects.filter()
-    return render_to_response('../templates/admin/reports.html', context_instance=RequestContext(request))  
+    return render_to_response('../templates/admin/reports.html', {'project': project}, context_instance=RequestContext(request))  

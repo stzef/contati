@@ -12,39 +12,50 @@
       <div class="panel-body">
             <div class="table-responsive">
       
-                  <div>
+                  
+            <div class="row">
+
+                  <div class="col-md-6">
+                  <i class="pe-7s-note fa-2x"></i>                  
+                  <a class="btn btn-primary"  href="{% url 'list_activities' %}">Actividades</a>
+                  </div>
+
+                  
+                  <div class="col-md-6">
                    <i class="pe-7s-folder fa-2x"></i>
                    <a class="btn btn-primary"  href="{% url 'list_projects' %}">Proyecto</a>
                   </div>
-                  <div>
-                  <i class="pe-7s-note fa-2x"></i>
-                  <a class="btn btn-primary"  href="{% url 'list_activities' %}">Actividades</a>
-                  </div>
-                  <div>
-                   <i class="pe-7s-notebook fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_customers' %}">Clientes</a>
-                  </div>
-                  <div>
-                   <i class="pe-7s-ticket fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_states' %}">Estados </a>
-                  </div>
-                  <div>
-                   <i class="pe-7s-ticket fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_states_kanban' %}">Estados Kanban </a>
-                  </div>
-                  <div>
+
+                  <div class="col-md-6">
                    <i class="pe-7s-edit fa-2x"></i>
                    <a class="btn btn-primary"  href="{% url 'list_priorities' %}">Prioridades</a>
                   </div>
-                  <div>
-                   <i class="pe-7s-network fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_departments' %}">Departamentos</a>
+                  
+                  <div class="col-md-6">
+                   <i class="pe-7s-ticket fa-2x"></i>
+                   <a class="btn btn-primary"  href="{% url 'list_states' %}">Estados </a>
                   </div>
-                 <div>
+
+                  <div class="col-md-6">
+                   <i class="pe-7s-network fa-2x"></i>
+                   <a class="btn btn-primary"  href="{% url 'list_departments' %}">Departamentos </a>
+                  </div>
+                 
+                  <div class="col-md-6">
+                   <i class="pe-7s-notebook fa-2x"></i>
+                   <a class="btn btn-primary"  href="{% url 'list_customers' %}">Clientes</a>
+                  </div>
+
+                   <div class="col-md-6">
+                   <i class="pe-7s-ticket fa-2x"></i>
+                   <a class="btn btn-primary"  href="{% url 'list_states_kanban' %}">Estados Kanban </a>
+                  </div>                  
+                  
+                  <div class="col-md-6">
                    <i class="pe-7s-paint fa-2x"></i>
                    <a class="btn btn-primary"  href="{% url 'list_color' %}">Color </a>
                   </div>
-                  
+            </div>  
 
             </div>
       </div>        
