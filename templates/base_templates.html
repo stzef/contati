@@ -72,45 +72,34 @@
                             <ul id="Otros" class="collapse nav nav-second-level">
                                 <li>
                                     <a href="{% url 'list_config' %}">
-									<i class="pe-7s-science"></i>Configuracion</a>
+									<i class="pe-7s-config"></i>Configuracion</a>
                                 </li>
+
                                 <li>
                                     <a href="{% url 'list_customers' %}">
                                     <i class="pe-7s-notebook"></i>Clientes</a>
                                 </li>
+
                                 <li>
                                     <a href="{% url 'list_projects' %}">
                                     <i class="pe-7s-folder"></i>Proyectos</a>
                                 </li>
+                               
                                 <li>
-                                    <a href="{% url 'list_color' %}">
-                                    <i class="pe-7s-folder"></i>Color</a>
-                                </li>
-                                <li>
+
                                     <a href="{% url 'list_departments' %}">
-                                    <i class="pe-7s-culture"></i>Departamentos</a>
+                                    <i class="pe-7s-network"></i>Departamentos</a>
                                 </li>
-                                <li>
-                                    <a href="{% url 'list_states' %}">
-                                    <i class="pe-7s-ticket"></i>Estado</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'list_states_kanban' %}">
-                                    <i class="pe-7s-ticket"></i>Estado Kanban</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'list_priorities' %}">
-                                    <i class="pe-7s-check"></i>Prioridad</a>
-                                </li>
+                                
+
                                 <li>
                                     <a href="{% url 'list_reportes' %}">
-									<i class="pe-7s-map-marker"></i>Reportes</a>
+									<i class="pe-7s-graph2"></i>Reportes</a>
                                 </li>
                             </ul>
                         </li>
 
                     </ul>
-
 
 
 				<li class="active-pro">
@@ -153,6 +142,7 @@
 							  <li>
 								<form method="post">
            					   		{% csrf_token %}
+<<<<<<< HEAD
 
 
 
@@ -175,9 +165,29 @@
 					</ul>
 					<ul>
 						<li>
+=======
+
+
+           					   		<select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
+
+				                        <option value="0" >Proyecto</option>
+				                        <br>       					   	     
+				                        {% for row in project %}
+                          				<option value="{{ row.id }}" style="background-color: #{{ row.color.hexadecimal }}" >{{ row.project }}
+                          				</option>
+                        				{% endfor %}							
+
+										</select>
+					                      																					
+								 </form>	
+							  </li>
+							 <li>
+>>>>>>> c90620c2d9be574642aadd5c36b9c09727449e41
 							 <a href="{% url 'add_projects'  %}">
 							 <i class="fa fa-plus" aria-hidden="true"></i>Agregar</a>
+							</li>								   
 						</li>
+											
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -199,6 +209,7 @@
 			</div>
 		</nav>
 
+
 <div class="content">
 	<div class="container-fluid">
 
@@ -218,7 +229,7 @@
 					</ul>
 				</nav>
 				<p class="copyright pull-right">
-					&copy; 2016 <a href="#">SistematizarEF</a>
+					&copy; 2016 <a href=http://www.sistematizar.co/>SistematizarEF</a>
 				</p>
 			</div>
 		</footer>
@@ -234,7 +245,8 @@
 	<!--<script type="text/javascript" src="{% static 'js/transition.js' %}"></script>-->
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="{% static 'js/bootstrap-checkbox-radio-switch.js' %}"></script>
-  <script src="../static/js/tareas_proyecto.js" type="text/javascript"></script>
+	<script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
+  	<script src="../static/js/tareas_proyecto.js" type="text/javascript"></script>
 	<!--  Charts Plugin -->
 	<script src="{% static 'js/chartist.min.js' %}"></script>
 

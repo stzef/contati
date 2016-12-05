@@ -70,6 +70,8 @@ def list_projects(request):
 
 @csrf_exempt
 def action_projects(request, pk):
+
+	project = Projects.objects.filter()
     	print ("fucion action")
   	produ = get_object_or_404(Projects, pk=pk)
   	if request.method == 'PUT':
@@ -82,7 +84,7 @@ def action_projects(request, pk):
 		print "dentro delete projects"
 		Projects.objects.get(pk=pk).delete()
 		return HttpResponse('../templates/proyects.html')
-	return render_to_response('../templates/delete_projects.html', {'produ': produ}, context_instance=RequestContext(request))
+	return render_to_response('../templates/delete_projects.html', {'project': project, 'produ': produ}, context_instance=RequestContext(request))
 
 def list_config(request):
 	project = Projects.objects.filter()

@@ -23,7 +23,10 @@
           
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
-          <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/> 
+          <div class="form-group has-error"  >
+          <strong>{{ form.activity.label }} *</strong>{{ form.activity }}
+          <label class="control-label" for="inputError" >{{ form.activity.errors }}</label> <br/>
+          </div>
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
           <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>

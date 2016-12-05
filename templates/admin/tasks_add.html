@@ -23,7 +23,10 @@
           
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
-          <strong>{{ form.activity.label }}</strong>{{ form.activity }} <br/> 
+          <div class="form-group has-error"  >
+          <strong>{{ form.activity.label }} *</strong>{{ form.activity }}
+          <label class="control-label" for="inputError" >{{ form.activity.errors }}</label> <br/>
+          </div> 
           <strong>{{ form.prioritie.label }}</strong> {{ form.prioritie }} <br/>
           <strong>{{ form.states.label }}</strong> {{ form.states }} <br/>
           <strong>{{ form.states_kanban.label }}</strong> {{ form.states_kanban }} <br/>
@@ -32,17 +35,22 @@
           
 
         </div>
-        <div class="col-md-6"> 
+        <div class="col-md-6">
+
+          
+          <div class="form-group has-error"  >
+          
+          <strong>{{ form.description.label }} *</strong> <div style="overflow-y: auto;height:100px;width:428px;">{{ form.description }}</div>
+          <label class="control-label" for="inputError" >{{ form.description.errors }}</label> <br/>
+          </div> 
+          
+
+          <strong>{{ form.answer.label }}</strong> <div style="overflow-y: auto;height:100px;width:428px;"> {{ form.answer }}</div> <br/> 
           <div class="form-group has-error">
-          <strong>{{ form.description.label }} *</strong> {{ form.description }}
-          <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
-          </div>  
-          <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/> 
-          <div class="form-group has-error">
-          <strong>{{ form.start_date.label }} *</strong> {{ form.start_date }}
-          <label class="control-label" for="inputError">{{ form.start_date.errors }}</label> <br/>
+          <strong>{{ form.estimated_time.label }} *</strong> {{ form.estimated_time }}
+          <label class="control-label" for="inputError">{{ form.estimated_time.errors }}</label> <br/>
           </div>
-          <strong>{{ form.finish_date.label }}</strong> {{ form.finish_date }} <br/>
+          <strong>{{ form.total_time.label }}</strong> {{ form.total_time }} <br/>
 
         </div>
       </div>

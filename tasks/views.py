@@ -102,6 +102,27 @@ def view_task_board(request, pk):
     color = json.loads(serializers.serialize('json', color))[0]
 
     return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us, "col":color } )
+<<<<<<< HEAD
+=======
+    #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+
+@login_required(login_url="/login")
+def tasks_project(request, pk):
+	actividades =  Activities.objects.filter(project=pk)
+	tareas = Tasks.objects.filter(activity__in = actividades)
+	project = Projects.objects.get(pk=pk)
+	color = Color.objects.filter(pk=project.color_id)
+	user = User.objects.get(id = request.user.id )
+	kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1, activity__in = actividades)
+	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2, activity__in = actividades)
+	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3, activity__in = actividades)
+	kanban1 = json.loads(serializers.serialize('json', kanban1))
+	kanban2 = json.loads(serializers.serialize('json', kanban2))
+	kanban3 = json.loads(serializers.serialize('json', kanban3))
+
+	return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3 } )
+
+>>>>>>> c90620c2d9be574642aadd5c36b9c09727449e41
 
 def save_task(request):
     if request.method == "POST":
