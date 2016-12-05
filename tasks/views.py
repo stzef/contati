@@ -43,22 +43,13 @@ class AjaxableResponseMixin(object):
 
 @login_required(login_url="/login")
 def view_index(request):
-    
     p = 0
     e = 0
     t = 0
-       
     project = Projects.objects.filter()
     user = User.objects.get( id = request.user.id )
     tareas = Tasks.objects.filter()
     tar = Tasks.objects.filter(responsible_id=user.id)
-    form = TasksForm(user=request.user)
-    us = Contributors.objects.filter(user=user).values()
-    kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
-    kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
-    kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
-		
-    
     for i in tar:
         if (i.states_kanban_id==1):
             p=p+1
@@ -67,7 +58,17 @@ def view_index(request):
         if (i.states_kanban_id==3):
             t=t+1
 
-    return render_to_response('../templates/index.html', { "project": project, 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3,"user": user,  "tareas":tareas, "p":p, "e":e, "t":t, 'us ': us }, context_instance = RequestContext(request))
+    return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
+
+def tareas_index(request, pk):
+    #import pdb; pdb.set_trace()
+    user = User.objects.get(id = request.user.id )
+    actividades =  Activities.objects.filter(project=pk)
+    tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
+    tareas = json.loads(serializers.serialize('json', tareas))
+    a = pk
+
+    return JsonResponse( {"tareas":tareas} )
 
 @login_required(login_url="/login")
 def view_board(request):
@@ -85,7 +86,6 @@ def view_task_board(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades)
     project = Projects.objects.get(pk=pk)
-    #import pdb; pdb.set_trace()
     color = Color.objects.filter(pk=project.color_id)
     user = User.objects.get(id = request.user.id )
     kanban1 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1, activity__in = actividades)
@@ -95,7 +95,6 @@ def view_task_board(request, pk):
     us1 = Contributors.objects.filter(user=user).values('image_2')
     us = Contributors.objects.filter(image_2=us1.values('image_2'))
     user = User.objects.get( id = request.user.id )
-    
     kanban1 = json.loads(serializers.serialize('json', kanban1))
     kanban2 = json.loads(serializers.serialize('json', kanban2))
     kanban3 = json.loads(serializers.serialize('json', kanban3))
@@ -103,7 +102,7 @@ def view_task_board(request, pk):
     color = json.loads(serializers.serialize('json', color))[0]
 
     return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3, "imagen":us, "col":color } )
-    #return render_to_response('../templates/board.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
+
 def save_task(request):
     if request.method == "POST":
     	tas = Tasks()
@@ -141,9 +140,7 @@ def view_boardx4(request):
 	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
 	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
 	form = TasksForm(user=request.user)
-	# import pdb; pdb.set_trace()
 	us = Contributors.objects.filter(user=user).values()
-	# us2 = us.image_2
 
 	if request.method == "POST":
 		tas = Tasks()
@@ -172,9 +169,7 @@ def view_boardx5(request):
 	kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
 	kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
 	form = TasksForm(user=request.user)
-	# import pdb; pdb.set_trace()
 	us = Contributors.objects.filter(user=user).values()
-	# us2 = us.image_2
 
 	if request.method == "POST":
 		tas = Tasks()
@@ -194,8 +189,6 @@ def view_boardx5(request):
 		tas.save()
 		return redirect('board')
 	return render_to_response('../templates/boardx5.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
-
-
 
  #Listar Estados
 @login_required(login_url="/login")
@@ -258,7 +251,6 @@ class deleteTasks(DeleteView):
 
 @login_required(login_url="/login")
 def add_states(request):
-	project = Projects.objects.filter ()
 	if request.method == "POST":
 		form = StatesForm(request.POST)
 		if form.is_valid():
@@ -267,24 +259,18 @@ def add_states(request):
 	else:
 		form = StatesForm()
 
-	return render_to_response('../templates/add_states.html', {'project': project, 'form': form}, context_instance=RequestContext(request))
+	return render_to_response('../templates/add_states.html', {'form': form}, context_instance=RequestContext(request))
 
 #Listar Estados
 @login_required(login_url="/login")
 def list_states(request):
-	project = Projects.objects.filter ()
 	state1 = States.objects.filter()
-	return render_to_response('../templates/list_states.html', {'project': project, 'state1': state1}, context_instance=RequestContext(request))
+	return render_to_response('../templates/list_states.html', {'state1': state1}, context_instance=RequestContext(request))
 
 class editStates(UpdateView):
 	model = States
 	form_class = StatesForm
 	template_name = '../templates/edit_states.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(editStates, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 	def get_success_url(self):
 		return reverse('list_states')
@@ -295,11 +281,6 @@ class deleteStates(DeleteView):
 	form_class = StatesForm
 	template_name = '../templates/delete_states.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(deleteStates, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 	def get_success_url(self):
 		return reverse('list_states')
 
@@ -308,19 +289,12 @@ class deleteStates(DeleteView):
 @login_required(login_url="/login")
 def list_states_kanban(request):
 	state1 = States_kanban.objects.filter()
-	project = Projects.objects.filter ()
-	return render_to_response('../templates/list_kanban.html', {'project': project, 'state1': state1}, context_instance=RequestContext(request))
+	return render_to_response('../templates/list_kanban.html', {'state1': state1}, context_instance=RequestContext(request))
 
 class createStatesKanban(CreateView):
 	model = States_kanban
 	form_class = StatesKanbanForm
 	template_name = '../templates/add_kanban.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(createStatesKanban, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 
 	def get_success_url(self):
 		return reverse('list_states_kanban')
@@ -330,12 +304,6 @@ class editStatesKanban(UpdateView):
 	form_class = StatesKanbanForm
 	template_name = '../templates/edit_kanban.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(editStatesKanban, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
-
 	def get_success_url(self):
 		return reverse('list_states_kanban')
 
@@ -344,34 +312,20 @@ class deleteStatesKanban(DeleteView):
 	form_class = StatesKanbanForm
 	template_name = '../templates/delete_kanban.html'
 
-	def get_context_data(self, **kwargs):
-		context = super(deleteStatesKanban, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
-
 	def get_success_url(self):
 		return reverse('list_states_kanban')
-
-
 
 # <----------- View Priorities ------------------>
 
 @login_required(login_url="/login")
 def list_priorities(request):
-	project = Projects.objects.filter ()
 	priorities = Priorities.objects.filter()
-	return render_to_response('../templates/list_priorities.html', {'project': project, 'prioritie': priorities}, context_instance=RequestContext(request))
+	return render_to_response('../templates/list_priorities.html', {'prioritie': priorities}, context_instance=RequestContext(request))
 
 class createPriorities(CreateView):
 	model = Priorities
 	form_class = PrioritiesForm
 	template_name = '../templates/add_priorities.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(createPriorities, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 	def get_success_url(self):
 		return reverse('list_priorities')
@@ -382,20 +336,10 @@ class editPriorities(UpdateView):
 	template_name = '../templates/edit_priorities.html'
 	success_url=reverse_lazy('list_priorities')
 
-	def get_context_data(self, **kwargs):
-		context = super(editPriorities, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 class deletePriorities(DeleteView):
 	model = Priorities
 	form_class = PrioritiesForm
 	template_name = '../templates/delete_priorities.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(deletePriorities, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 	def get_success_url(self):
 		return reverse('list_priorities')
@@ -404,19 +348,13 @@ class deletePriorities(DeleteView):
 
 @login_required(login_url="/login")
 def list_departments(request):
-	project = Projects.objects.filter ()
 	departments = Departments.objects.filter()
-	return render_to_response('../templates/list_departments.html', {'project': project, 'departments': departments}, context_instance=RequestContext(request))
+	return render_to_response('../templates/list_departments.html', {'departments': departments}, context_instance=RequestContext(request))
 
 class createDepartments(CreateView):
 	model = Departments
 	form_class = DepartmentsForm
 	template_name = '../templates/add_departments.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(createDepartments, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 	def get_success_url(self):
 		return reverse('list_departments')
@@ -427,11 +365,6 @@ class editDepartments(UpdateView):
 	template_name = '../templates/edit_departments.html'
 	success_url=reverse_lazy('list_departments')
 
-	def get_context_data(self, **kwargs):
-		context = super(editDepartments, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 
 class deleteDepartments(DeleteView):
 	model = Departments
@@ -439,28 +372,17 @@ class deleteDepartments(DeleteView):
 	template_name = '../templates/delete_departments.html'
 	success_url=reverse_lazy('list_departments')
 
-	def get_context_data(self, **kwargs):
-		context = super(deleteDepartments, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 # <----------- View Color ------------------>
 
 @login_required(login_url="/login")
 def list_color(request):
-	project = Projects.objects.filter ()
 	color = Color.objects.filter()
-	return render_to_response('../templates/list_color.html', {'project': project,'color': color}, context_instance=RequestContext(request))
+	return render_to_response('../templates/list_color.html', {'color': color}, context_instance=RequestContext(request))
 
 class createColor(CreateView):
 	model = Color
 	form_class = ColorForm
 	template_name = '../templates/add_color.html'
-
-	def get_context_data(self, **kwargs):
-		context = super(createColor, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 	def get_success_url(self):
 		return reverse('list_color')
@@ -471,11 +393,6 @@ class editColor(UpdateView):
 	template_name = '../templates/edit_color.html'
 	success_url=reverse_lazy('list_color')
 
-	def get_context_data(self, **kwargs):
-		context = super(editColor, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
-
 
 class deleteColor(DeleteView):
 	model = Color
@@ -483,10 +400,6 @@ class deleteColor(DeleteView):
 	template_name = '../templates/delete_color.html'
 	success_url=reverse_lazy('list_color')
 
-	def get_context_data(self, **kwargs):
-		context = super(deleteColor, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
 
 def generaActividad(request, pk):
     id = pk
