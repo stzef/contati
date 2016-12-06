@@ -37,12 +37,9 @@ urlpatterns = [
 
 	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
     url(r'^view_task_board/(?P<pk>\d+)/$', views.view_task_board, name='view_task_board'),
-<<<<<<< HEAD
+
     url(r'^save_task/$', views.save_task, name='save_task'),	
-=======
-    url(r'^save_task/$', views.save_task, name='save_task'),
 
    
 
->>>>>>> c90620c2d9be574642aadd5c36b9c09727449e41
 ]

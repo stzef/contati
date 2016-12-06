@@ -1,7 +1,7 @@
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from people.views import *
-from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index
+from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index, tasks_project
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
