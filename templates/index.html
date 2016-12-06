@@ -34,7 +34,7 @@
                                       </div>
                                       <div class="content">
                                         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                          <script type="text/javascript" src="../static/js/torta.js"></script>                                          
+                                          <script type="text/javascript" src="../static/js/torta.js"></script>
                                           <script type="text/javascript">drawChart()</script>
 
                                         <div id="piechart" style="width: 100%; height: 100%;"></div>
@@ -58,10 +58,10 @@
                     </div>
                     <div class="content">
                         <div class="table-full-width">
-                            <table class="table">
+                            <table class="table" id="id_tabla">
                                 <tbody>
 
-                              
+
                             {% for tarea in kanban2 %}
                             <tr>
                                         <td>
@@ -69,7 +69,7 @@
                                                 <input type="checkbox" value="" data-toggle="checkbox">
                                             </label>
                                         </td>
-                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
+
                                         <td>{{tarea.description}}</td>
                                         <td class="td-actions text-right">
                                             <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
@@ -81,9 +81,9 @@
                                         </td>
                                     </tr>
                                     </div>
-                                {% endfor %}                                            
+                                {% endfor %}
 
-                               
+
                                 </tbody>
                             </table>
                         </div>

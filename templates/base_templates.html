@@ -142,6 +142,30 @@
 							  <li>
 								<form method="post">
            					   		{% csrf_token %}
+<<<<<<< HEAD
+
+
+
+										<select id="proy" name="seleccion" onchange="seleccionTareas(seleccion)"  type="text" class="form-control" id="project">
+
+											<option value="0" >Proyecto</option>
+											<br>
+
+											{% for row in project %}
+												<option value="{{ row.id }}">{{ row.project }}
+												</option>
+											{% endfor %}
+
+
+										</select>
+
+								 </form>
+							  </li>
+						</li>
+					</ul>
+					<ul>
+						<li>
+=======
 
 
            					   		<select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
@@ -158,6 +182,7 @@
 								 </form>	
 							  </li>
 							 <li>
+>>>>>>> c90620c2d9be574642aadd5c36b9c09727449e41
 							 <a href="{% url 'add_projects'  %}">
 							 <i class="fa fa-plus" aria-hidden="true"></i>Agregar</a>
 							</li>								   
