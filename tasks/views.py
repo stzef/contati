@@ -231,7 +231,7 @@ class createTasks(CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		#context['activity'] = Activities.objects.filter(project = 'seleccion')
+		
 		return context
 
 class editTasks(UpdateView):
