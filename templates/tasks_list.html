@@ -20,7 +20,7 @@
                 </tr>  
                 </thead>  	
                
-                  {% for tasks in user.contributors.tasks_set.all %}
+                  {% for tasks in user.name_task.tasks_set.all %}
                   <tbody>
 					<tr>
 					<td>{{ tasks.description }}</td>

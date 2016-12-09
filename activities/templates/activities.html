@@ -26,7 +26,7 @@
                             <tbody>   {% for activity in activi %} 
    
                                 <tr>                                    
-                                    <td>{{ activity.activity }} </td> 
+                                    <td>{{ activity.activity }} | {{ activity.project }}</td> 
 
                                     <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}">Borrar</a></td> 
 
@@ -37,6 +37,6 @@
                         </div>
                         </div>        
             </div>
-            <a href="https://mail.google.com/mail/#inbox">Gmail</a>
+            
 </div>              
 {% endblock %}

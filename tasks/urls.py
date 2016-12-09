@@ -34,9 +34,12 @@ urlpatterns = [
 	url(r'^color/(?P<pk>\d+)/edit/$', login_required(views.editColor.as_view()), name='edit_color'),
 	url(r'^color/(?P<pk>\d+)/delete/$', login_required(views.deleteColor.as_view()), name='delete_color'),
 
+	url(r'^tasks/(?P<pk>\d+)/comment/$', views.add_comment_task, name='add_comment'),
+    #url(r'^comment/(?P<pk>\d+)/remove/$', comment_remove_task, name='comment_remove'),
 
 	url(r'^generaActividad/(?P<pk>\d+)/$', views.generaActividad, name='generaActividad'),
     url(r'^view_task_board/(?P<pk>\d+)/$', views.view_task_board, name='view_task_board'),
+<<<<<<< HEAD
 
 
     url(r'^save_task/$', views.save_task, name='save_task'),
@@ -44,4 +47,9 @@ urlpatterns = [
 
 
 
+=======
+
+    url(r'^save_task/$', views.save_task, name='save_task'),
+
+>>>>>>> 931b69f066c84447ad03176d13aead7bbd41db08
 ]
