@@ -5,7 +5,7 @@ from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
-    url(r'^tasks_project/(?P<pk>\d+)/$', tasks_project, name='tasks_project'),
+    #url(r'^tasks_project/(?P<pk>\d+)/$', tasks_project, name='tasks_project'),
 
 	url(r'^$', login_required(view_index), name='index'),
 	url(r'^tareas_index/(?P<pk>\d+)/$',tareas_index, name='tareas_index'),

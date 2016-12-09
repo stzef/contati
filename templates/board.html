@@ -99,7 +99,7 @@
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
                                     <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
                                     {{tarea.description}} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    
+
 
                                 </div>
                             {% endfor %}
@@ -133,7 +133,7 @@
             </div>
         </div>
     </div><!-- /.container -->
-    {% if error %}
+
     <div class="modal fade bd-example-modal-lg" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 
           <div class="modal-dialog modal-lg">
@@ -156,7 +156,7 @@
             </div>
            </div>
         </div>
-    {% endif %}
+  
     <div class="modal fade bd-example-modal-lg" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -200,7 +200,7 @@
     <script src="../static/js/clickDerecho.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        
+
         $('#1').contextMenu('myMenu1', {
           bindings: {
 
@@ -225,7 +225,7 @@
 
     </script>
 
-    
+
 
      <script src="{% static 'js/jquery.min.js' %}"></script>
 </body>

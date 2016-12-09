@@ -119,8 +119,12 @@ def tasks_project(request, pk):
 
 	return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3 } )
 
+@csrf_exempt
 def save_task(request):
+    import pdb; pdb.set_trace()
     if request.method == "POST":
+        #data = request.POST
+        #data = json.loads(serializers.serialize('json', data))
     	tas = Tasks()
     	tas.responsible_id = request.POST['responsible']
     	tas.activity_id = request.POST['actividad']
@@ -129,14 +133,13 @@ def save_task(request):
     	tas.prioritie_id = request.POST['prioritie']
     	tas.department_id = request.POST.get('department')
     	tas.Customers_id = request.POST.get('customers')
-
     	tas.description = request.POST['description']
     	tas.answer = request.POST.get('answer')
     	tas.estimated_time = request.POST['estimated_time']
     	tas.total_time = request.POST['total_time']
 
     	tas.save()
-    	return redirect('board')
+    	return HttpResponse('board')
 
 @csrf_exempt
 def edit_board(request, pk):
