@@ -120,11 +120,12 @@ def tasks_project(request, pk):
 
 @csrf_exempt
 def save_task(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     if request.method == "POST":
         #data = request.POST
         #data = json.loads(serializers.serialize('json', data))
     	tas = Tasks()
+    	tas.name_task = request.POST['name_task']
     	tas.responsible_id = request.POST['responsible']
     	tas.activity_id = request.POST['actividad']
     	tas.states_id = request.POST['states']
@@ -132,6 +133,7 @@ def save_task(request):
     	tas.prioritie_id = request.POST['prioritie']
     	tas.department_id = request.POST.get('department')
     	tas.Customers_id = request.POST.get('customers')
+
     	tas.description = request.POST['description']
     	tas.answer = request.POST.get('answer')
     	tas.estimated_time = request.POST['estimated_time']
@@ -225,16 +227,18 @@ class createTasks(CreateView):
     template_name = '../templates/add_tasks.html'
     success_url=reverse_lazy('list_tasks')
 
+    def get_context_data(self, **kwargs):
+		context = super(createTasks, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		
+		return context
+
     def get_form_kwargs(self, **kwargs):
         form_kwargs = super(createTasks, self).get_form_kwargs(**kwargs)
         form_kwargs["user"] = self.request.user
         return form_kwargs
 
-	def get_context_data(self, **kwargs):
-		context = super(createTasks, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		
-		return context
+	
 
 class editTasks(UpdateView):
 	model = Tasks

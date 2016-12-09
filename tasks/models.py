@@ -50,6 +50,7 @@ class Tasks(models.Model):
 	states_kanban =  models.ForeignKey('states_kanban', blank=True ) # Obligatorio
 	activity = models.ForeignKey('activities.Activities', blank=True) # Obligatorio
 	Customers =  models.ForeignKey('people.Customers', blank=True, null = True)
-	date_time = timestamp
+	date_time = models.DateTimeField(default=timezone.now)
+
 class Answer(models.Model):
 	description = models.TextField(null=True)

@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class Projects(models.Model):
 	project = models.CharField(max_length=45)
-	color = models.ForeignKey('tasks.Color', null=False)	
+	color = models.ForeignKey('tasks.Color', null=True)	
 	
 	def __str__(self):
 		return '{}'.format(self.project)
@@ -11,7 +11,7 @@ class Projects(models.Model):
 
 class Activities(models.Model):
 	activity = models.CharField(max_length=45)
-	project =  models.ForeignKey(Projects)
+	project =  models.ForeignKey(Projects, null=True)
 
 	def __str__(self):
 		return '{}'.format(self.activity)
