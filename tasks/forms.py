@@ -58,6 +58,7 @@ class TasksForm(forms.ModelForm):
     class Meta:
         model = Tasks
         fields = {
+                'name_task',
                 'description',
                 'answer',
                 'responsible',
@@ -71,6 +72,7 @@ class TasksForm(forms.ModelForm):
                 'Customers',
         }
         labels = {
+                'name_task': 'Nombre de la Tarea',
                 'description' : 'Descripcion',
                 'answer' : 'Respuesta',
                 'responsible' : 'Responsable' ,
@@ -84,6 +86,7 @@ class TasksForm(forms.ModelForm):
                 'Customers' : 'Cliente',
         }
         widgets = {
+                'name_task': forms.TextInput(attrs={'class':'form-control'}),
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
                 'description' : forms.Textarea(attrs={'class':'form-control', 'id':'demos', 'name':'description'}),
                 'answer' : forms.Textarea(attrs={'class':'form-control', 'name':'answer'}),

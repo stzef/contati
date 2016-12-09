@@ -35,7 +35,8 @@ class Departments(models.Model):
 		return '{}'.format(self.name_department)
 
 class Tasks(models.Model):
-	description = models.CharField(max_length=100)
+	name_task = models.CharField(max_length = 50) # Obligatorio (Nombre de la tarea)
+	description = models.TextField() # Obligatorio (Descripcion de la tarea)
 	answer = models.ForeignKey('Answer', blank=True, null = True)
 	responsible =  models.ForeignKey('people.Contributors', blank=True, null = True)
 	department =  models.ForeignKey('departments', blank=True, null = True)
@@ -45,8 +46,8 @@ class Tasks(models.Model):
 	total_time = models.IntegerField( default=0, blank=True, null=True)
 	date_start = models.DateTimeField(blank=True, null=True)
 	date_finish = models.DateTimeField(blank=True, null=True)
-	states_kanban =  models.ForeignKey('states_kanban', blank=True, null = True)
-	activity = models.ForeignKey('activities.Activities', blank=True, null = True)
+	states_kanban =  models.ForeignKey('states_kanban', blank=True ) # Obligatorio
+	activity = models.ForeignKey('activities.Activities', blank=True) # Obligatorio
 	Customers =  models.ForeignKey('people.Customers', blank=True, null = True)
 
 class Answer(models.Model):
