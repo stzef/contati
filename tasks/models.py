@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import timestamp
 
 class States(models.Model):
 	name_states = models.CharField(max_length=45)
@@ -49,6 +50,6 @@ class Tasks(models.Model):
 	states_kanban =  models.ForeignKey('states_kanban', blank=True ) # Obligatorio
 	activity = models.ForeignKey('activities.Activities', blank=True) # Obligatorio
 	Customers =  models.ForeignKey('people.Customers', blank=True, null = True)
-
+	date_time = timestamp
 class Answer(models.Model):
 	description = models.TextField(null=True)

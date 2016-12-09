@@ -20,7 +20,8 @@
       <div class="form-group">
         <div class="col-md-6">
 
-          
+          <div class="form-group has-error"  >
+          <strong>{{ form.name_task.label }} *</strong>{{ form.name_task  }}</div><label class="control-label" for="inputError" >{{ form.name_task.errors }}</label>  <br>
           <strong>{{ form.responsible.label }}</strong> {{ form.responsible }} <br/>
           <strong>{{ form.department.label }}</strong> {{ form.department }} <br/>
           <div class="form-group has-error"  >

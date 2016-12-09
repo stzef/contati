@@ -5,6 +5,9 @@
             <form name="contact-form" method="POST">
             {% csrf_token %}
 
+                <div class="form-group has-error"  >
+                    <strong>{{ form.name_task.label }} *</strong>{{ form.name_task  }}</div><label class="control-label" for="inputError" >{{ form.name_task.errors }}</label>  <br>
+
                 <div class="form-group has-error">
                     <strong >{{ form.description.label }} *</strong> {{ form.description }}
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
