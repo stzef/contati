@@ -38,7 +38,7 @@ class Departments(models.Model):
 class Tasks(models.Model):
 	name_task = models.CharField(max_length = 50) # Obligatorio (Nombre de la tarea)
 	description = models.TextField() # Obligatorio (Descripcion de la tarea)
-	answer = models.ForeignKey('Answer', blank=True, null = True)
+	# answer = models.ForeignKey('Answer', blank=True, null = True)
 	responsible =  models.ForeignKey('people.Contributors', blank=True, null = True)
 	department =  models.ForeignKey('departments', blank=True, null = True)
 	prioritie =  models.ForeignKey('priorities', blank=True, null = True)
@@ -53,4 +53,6 @@ class Tasks(models.Model):
 	date_time = models.DateTimeField(default=timezone.now)
 
 class Answer(models.Model):
-	description = models.TextField(null=True)
+	description = models.TextField()
+	user =  models.ForeignKey('people.Contributors', null = True) #Usuario quien hara el comentario
+	task =  models.ForeignKey('Tasks', null = True) #Tarea a la que se hara el comentario

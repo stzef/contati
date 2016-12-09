@@ -3,11 +3,11 @@ import json
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from .models import States, States_kanban, Priorities, Departments, Tasks, Color
+from .models import States, States_kanban, Priorities, Departments, Tasks, Color, Answer
 from activities.models import Projects, Activities
 from people.models import Contributors
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
-from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm, ColorForm
+from .forms import StatesForm, StatesKanbanForm, PrioritiesForm, DepartmentsForm, TasksForm, ColorForm, AnswerForm
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -135,7 +135,6 @@ def save_task(request):
     	tas.Customers_id = request.POST.get('customers')
 
     	tas.description = request.POST['description']
-    	tas.answer = request.POST.get('answer')
     	tas.estimated_time = request.POST['estimated_time']
     	tas.total_time = request.POST['total_time']
 
@@ -173,7 +172,6 @@ def view_boardx4(request):
 		tas.Customers_id = request.POST.get('customers')
 
 		tas.description = request.POST['description']
-		tas.answer = request.POST.get('answer')
 		tas.estimated_time = request.POST['estimated_time']
 		tas.total_time = request.POST['total_time']
 
@@ -202,7 +200,6 @@ def view_boardx5(request):
 		tas.Customers_id = request.POST.get('customers')
 
 		tas.description = request.POST['description']
-		tas.answer = request.POST.get('answer')
 		tas.estimated_time = request.POST['estimated_time']
 		tas.total_time = request.POST['total_time']
 
@@ -422,9 +419,36 @@ class deleteColor(DeleteView):
 	template_name = '../templates/delete_color.html'
 	success_url=reverse_lazy('list_color')
 
+# <-------------- Comentarios ----------- >
+
+@login_required(login_url="/")
+def add_comment_task(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    usu = request.user
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user_id = usu.id
+            comment.task_id = tarea.id
+            comment.save()
+            return redirect('add_comment', pk=tarea.pk)
+    else:
+        form = AnswerForm()
+    return render_to_response('../templates/answer.html', {'form': form, 'usu':usu, 'tarea':tarea}, context_instance=RequestContext(request))    
+
+@login_required(login_url="/")
+def comment_remove_task(request, pk):
+    comment = get_object_or_404(Answer, pk=pk)
+    tarea_id = comment.task.id
+    comment.delete()
+    return redirect('add_comment', pk=tarea_id) 
+
+# <--------------------
 
 def generaActividad(request, pk):
     id = pk
     actividad= Activities.objects.filter(project_id=id)
     data = serializers.serialize('json', actividad)
     return HttpResponse( data , content_type ='application/json' )
+

@@ -1,5 +1,5 @@
 from django import forms
-from .models import States, States_kanban, Priorities, Departments, Tasks, Color
+from .models import States, States_kanban, Priorities, Departments, Tasks, Color, Answer
 from people.models import Contributors
 
 class StatesForm(forms.ModelForm):
@@ -60,7 +60,7 @@ class TasksForm(forms.ModelForm):
         fields = {
                 'name_task',
                 'description',
-                'answer',
+                
                 'responsible',
                 'department',
                 'prioritie',
@@ -74,7 +74,7 @@ class TasksForm(forms.ModelForm):
         labels = {
                 'name_task': 'Nombre de la Tarea',
                 'description' : 'Descripcion',
-                'answer' : 'Respuesta',
+                
                 'responsible' : 'Responsable' ,
                 'department' : 'Departamento' ,
                 'prioritie' : 'Prioridad' ,
@@ -89,7 +89,7 @@ class TasksForm(forms.ModelForm):
                 'name_task': forms.TextInput(attrs={'class':'form-control'}),
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
                 'description' : forms.Textarea(attrs={'class':'form-control', 'id':'demos', 'name':'description'}),
-                'answer' : forms.Textarea(attrs={'class':'form-control', 'name':'answer'}),
+                
                 'department' : forms.Select(attrs={'class':'form-control', 'name':'department'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control', 'name':'prioritie'}) ,
                 'states' : forms.Select(attrs={'class':'form-control', 'name':'states'}),
@@ -99,3 +99,11 @@ class TasksForm(forms.ModelForm):
                 'activity' : forms.Select(attrs={'name':'activity', 'class':'form-control', 'id':'id_activi', 'value' : '{{ object.activity }}' }),
                 'Customers' : forms.Select(attrs={'name':'customers', 'class':'form-control'}),
         }
+
+class AnswerForm(forms.ModelForm):
+
+    class Meta:
+        model = Answer
+        fields = ('description',)
+        labels = {'description':'Comentario'}
+        widgets = { 'description': forms.Textarea(attrs={'class':'form-control'})}
