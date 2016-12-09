@@ -140,7 +140,7 @@ def save_task(request):
     	tas.total_time = request.POST['total_time']
 
     	tas.save()
-    	return HttpResponse('board')
+    	return redirect('board')
 
 @csrf_exempt
 def edit_board(request, pk):

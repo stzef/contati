@@ -25,6 +25,15 @@
                 </div>
 
                 <div class="col col-md-12">
+                    <div class="col col-md-6 form-group">
+                            <strong>{{ form.department.label }}</strong>{{ form.department }}
+                        </div>
+                    <div class="col col-md-6 form-group">
+                      <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/>
+                    </div>
+                </div>
+
+                <div class="col col-md-12">
 
                     <div class="col col-md-6 form-group">
                       <label>Actividad</label>
@@ -64,15 +73,6 @@
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
             <form name="contact-form" method="POST">
             {% csrf_token %}
-
-                <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <strong>{{ form.department.label }}</strong>{{ form.department }}
-                        </div>
-                    <div class="col col-md-6 form-group">
-                      <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/>
-                    </div>
-                </div>
 
                 <div class="col col-md-12">
                     <div class="form-group">
