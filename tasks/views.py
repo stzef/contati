@@ -2,7 +2,6 @@
 import json
 from django.http import HttpResponse
 from django.http import JsonResponse
-
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from .models import States, States_kanban, Priorities, Departments, Tasks, Color
 from activities.models import Projects, Activities
@@ -234,7 +233,7 @@ class createTasks(CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		#context['activity'] = Activities.objects.filter(project = 'seleccion')
+		
 		return context
 
 class editTasks(UpdateView):

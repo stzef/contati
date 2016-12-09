@@ -149,24 +149,30 @@
 											<br>
 
 											{% for row in project %}
-												<option value="{{ row.id }}">{{ row.project }}
-												</option>
+												<option value="{{ row.id }}" style="background-color: #{{ row.color.hexadecimal }}" >{{ row.project }}
+                          						</option>
 											{% endfor %}
-
 
 										</select>
 
 								 </form>
 							  </li>
+<<<<<<< HEAD
 						</li>
 					</ul>
 					<ul>
 						<li>
+=======
+							  <li>
+>>>>>>> 1be80db09a7a02e74bd7597ea9e25100f2a06ef4
 							 <a href="{% url 'add_projects'  %}">
 							 <i class="fa fa-plus" aria-hidden="true"></i>Agregar</a>
 							</li>
 						</li>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1be80db09a7a02e74bd7597ea9e25100f2a06ef4
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
