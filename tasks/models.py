@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-import timestamp
+#import timestamp
 
 class States(models.Model):
 	name_states = models.CharField(max_length=45)
