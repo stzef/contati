@@ -52,12 +52,13 @@
                         <br>
 
                         {% for row in project %}
-                          <option value="{{ row.id }}">{{ row.project }}
+                          <option value="{{ row.id }}" style="background-color: #{{ row.color.hexadecimal }}" >{{ row.project }}
                           </option>
                         {% endfor %}
 
 
                       </select>
+                      <p id="id_error1" style="color: red"></p>
                     </li>
 
                 </ul>
@@ -142,12 +143,14 @@
                         <td style="width: 15%;">
                           <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban3 %}
-                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" >
+                                <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
                                     {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}
                           </div>
                         </td>
+                        
                     </tr>
                 </tbody>
 

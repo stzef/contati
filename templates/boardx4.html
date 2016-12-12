@@ -52,12 +52,13 @@
                         <br>
 
                         {% for row in project %}
-                          <option value="{{ row.id }}">{{ row.project }}
+                          <option value="{{ row.id }}" style="background-color: #{{ row.color.hexadecimal }}" >{{ row.project }}
                           </option>
                         {% endfor %}
 
 
                       </select>
+                      <p id="id_error1" style="color: red"></p>
                     </li>
 
                 </ul>

@@ -55,4 +55,4 @@ class Tasks(models.Model):
 class Answer(models.Model):
 	description = models.TextField()
 	user =  models.ForeignKey('people.Contributors', null = True) #Usuario quien hara el comentario
-	task =  models.ForeignKey('Tasks', null = True) #Tarea a la que se hara el comentario
+	task =  models.ForeignKey('Tasks', null = True, related_name='comments') #Tarea a la que se hara el comentario
