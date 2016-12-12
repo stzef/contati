@@ -119,17 +119,16 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-left">
 						<li class="dropdown">
-							  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-globe"></i>
-									<b class="caret"></b>
-									<span class="notification">5</span>
+							  	<b class="caret"></b>
+									<span class="notification">{{ user.contributors.answer_set.count }}</span>
 							  </a>
 							  <ul class="dropdown-menu">
-								<li><a href="#">Notificacion Email 1</a></li>
-								<li><a href="#">Cambiar Botones</a></li>
-								<li><a href="#">Ajustar cambios template</a></li>
-								<li><a href="#">Siacol Web</a></li>
-								<li><a href="#">Otras Notificaciones</a></li>
+							  {% for row in user.contributors.answer_set.all|dictsortreversed:"id"|slice:":4" %}
+								<li><small style="color: #1f9dbe;"> {{ row.task.name_task }}</small><a href="{% url 'comment' pk=row.task.id %}">{{ row.description|slice:":30" }}</a></li>
+
+								{% empty %}
+             						<p>No hay respuestas aun</p>
+							  {% endfor %}
 							  </ul>
 							  <li>
 								<form method="post">  
