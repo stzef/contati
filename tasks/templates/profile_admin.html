@@ -1,0 +1,153 @@
+{% extends 'base_administrator.html' %}
+{% block content %}
+{% load staticfiles %}
+<!-- <meta http-equiv="refresh" content="10"> -->
+<div class="content">
+            <div class="container-fluid">
+
+            {% if error %}
+              <div class="alert alert-danger"> {{ error }} </div>
+            {% endif %}
+            {% if success %}
+              <div class="alert alert-success"> Se realizaron los cambios con exito </div>
+            {% endif %}
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Editar Perfil</h4>
+                            </div>
+                            <div id="recargado" class="content">
+                                <form method="post" action="{% url 'profile_admin' %}" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Empresa</label>
+                                                <input type="text" class="form-control" disabled placeholder="Company" value="SistemarizarEF.">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Usuario</label>
+                                                <input type="text" class="form-control" placeholder="Usuario" value="{{ user.username }}" name="username" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" placeholder="email" value="{{ user.email }}" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" placeholder="Nombre" value="{{ user.first_name }}" name="first_name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Apellido</label>
+                                                <input type="text" class="form-control" placeholder="Apellido" value="{{ user.last_name }}" name="last_name">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Rol</label>
+                                                <input type="text" class="form-control" placeholder="Rol" value="{{ user.contributors.role }}" name="role">
+                                            </div>
+                                        </div>
+                                  
+
+                                    <button  type="submit"  class="btn btn-info btn-fill pull-right">Actualizar Perfil</button>
+                                        <div class="clearfix"></div>
+
+                                </form>
+                                <hr>
+                                <div class="header">
+                                    <h4 class="title">Cambiar Imagen</h4>
+                                </div>
+                                <div class="content">
+                                <form method="post" action="{% url 'change-image_admin' %}" enctype="multipart/form-data">
+                                {% csrf_token %} 
+                                    <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Cambiar Imagen</label>
+                                                    <input type="file" name="image"  class="filestyle" data-buttonText="Select a File">
+                                                </div>
+                                            </div>
+                                    </div>   
+                                </div>
+                                <button type="submit" id="miboton" class="btn btn-info btn-fill pull-right">Actualizar Imagen</button>
+                                    <div class="clearfix"></div>
+                                </form>
+
+                            <hr>
+                            <div class="header">
+                                <h4 class="title">Cambiar Contraseña</h4>
+                            </div>
+                            <div class="content">
+                                <form method="post" action="{% url 'change-password_admin' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Contraseña</label>
+                                                <input type="password" class="form-control" name="password1"  placeholder="Contraseña" value="" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Confirmar Contraseña</label>
+                                                <input type="password" name='password2' class="form-control"  placeholder="Confirmar Contraseña">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" id="miboton" class="btn btn-info btn-fill pull-right">Actualizar Contraseña</button>
+                                    <a href="{% url 'profile_admin' %}" class="btn btn-default" type="submit">Cancelar</a>
+                                    <div class="clearfix"></div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="../static/img/sidebar-5.jpg" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo}}"   alt="foto" >
+                                      <h4 class="title">{{ user.first_name }}<br />
+                                         <small>{{ user.username }}</small>
+                                      </h4>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="{{ user.email }}" class="btn btn-simple"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
