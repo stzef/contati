@@ -94,8 +94,6 @@ def list_config(request):
 def list_reportes(request):
 
 	totalh=0
-<<<<<<< HEAD
-
 	user = User.objects.get(id = request.user.id )
 	project = Projects.objects.all()
 	actividades =  Activities.objects.all()
@@ -141,18 +139,7 @@ def list_reportes(request):
 	#	total += suma[i]
 	activi = Activities.objects.filter()
 	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi,'suma':suma}, context_instance=RequestContext(request))
-=======
-	project = Projects.objects.filter()
-	tareas = Tasks.objects.filter(responsible_id=request.user.id)
-	for t in tareas:
-		print("actividad",t.activity_id)
-		print(t.description)
-		print(t.total_time)
-		totalh=totalh+t.total_time
-	print (totalh)
 
-	return render_to_response('../templates/reportes.html', {'project': project, 'tareas':tareas}, context_instance=RequestContext(request))
->>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62
 
 class editProjects(UpdateView):
 	model = Projects
