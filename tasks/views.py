@@ -153,6 +153,7 @@ def edit_board(request, pk):
         if form.is_valid():
                 tas = form.save(commit=False)
                 tas.states_kanban_id = states_kanban
+                tas.activity.project_id = project
                 tas.responsible_id = user
                 tas.save()
                 return redirect('board', pk=tas.pk)
