@@ -50,9 +50,8 @@ function ActividesProducto() {
 };
 //funcion cambia en la base de datos el estado kamban cuando la tarea cambia de sitio en el tablero
 function edit_Kanban(des, pk) {
-  debugger
   states_kanban = des;
-  id = pk;  
+  id = pk;
   console.log("states_kanban"+states_kanban);
   console.log("id"+id);
   //document.location.href = url;
