@@ -424,7 +424,7 @@ class deleteColor(DeleteView):
 @login_required(login_url="/")
 def comment_task(request, pk):
 	tarea = get_object_or_404(Tasks, pk=pk)
-	return render_to_response('../templates/answer_template.html', {'tarea':tarea}, context_instance=RequestContext(request))  
+	return render_to_response('../templates/answer_template.html', {'tarea':tarea}, context_instance=RequestContext(request))
 
 @login_required(login_url="/")
 def add_comment_task(request, pk):
@@ -447,11 +447,7 @@ def comment_remove_task(request, pk):
     comment = get_object_or_404(Answer, pk=pk)
     tarea_id = comment.task.id
     comment.delete()
-<<<<<<< HEAD
-    return redirect('add_comment', pk=tarea_id)
-=======
-    return redirect('comment', pk=tarea_id) 
->>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62
+    return redirect('comment', pk=tarea_id)
 
 # <--------------------
 
