@@ -37,7 +37,7 @@
 
                     <div class="col col-md-6 form-group">
                       <label>Actividad</label>
-                      <select name="actividad" id="id_actividad" class="form-control">
+                      <select name="actividad" id="id_actividad" onchange="aviso_valida()" class="form-control">
                         <option value="0">-- Seleccina una actividad --</option>
                           {% for activi in actividad %}
                             <option  value="{{ activi.id }}" >{{ activi.nombre }}</option>
