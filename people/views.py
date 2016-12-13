@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
 from tasks.models import *
-from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm
+from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm, AnswerForm
 from activities.models import Activities, Projects
 from activities.forms import ActivitiesForm, ProjectsForm
 from django.utils.datastructures import MultiValueDictKeyError
@@ -757,11 +757,41 @@ class Projects_edit(UpdateView):
         context['project'] = Projects.objects.all()
         return context
 
+@login_required(login_url="/")
 def configuration(request):   
     project = Projects.objects.filter()
     return render_to_response('../templates/admin/configuration.html', {'project': project}, context_instance=RequestContext(request))  
 
+@login_required(login_url="/")
 def reports(request):
     project = Projects.objects.filter()
     #activi = Activities.objects.filter()
     return render_to_response('../templates/admin/reports.html', {'project': project}, context_instance=RequestContext(request))  
+
+@login_required(login_url="/")
+def comment_task_admin(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    return render_to_response('../templates/admin/answer_template_admin.html', {'tarea':tarea}, context_instance=RequestContext(request))  
+
+@login_required(login_url="/")
+def add_comment_task_admin(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    usu = request.user
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user_id = usu.id
+            comment.task_id = tarea.id
+            comment.save()
+            return redirect('comment', pk=tarea.pk)
+    else:
+        form = AnswerForm()
+    return render_to_response('../templates/admin/answer_admin.html', {'form': form, 'usu':usu, 'tarea':tarea}, context_instance=RequestContext(request))    
+
+@login_required(login_url="/")
+def comment_remove_task_admin(request, pk):
+    comment = get_object_or_404(Answer, pk=pk)
+    tarea_id = comment.task.id
+    comment.delete()
+    return redirect('comment_admin', pk=tarea_id) 
