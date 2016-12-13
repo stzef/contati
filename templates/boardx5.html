@@ -147,7 +147,7 @@
                           <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban3 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
                                     {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}

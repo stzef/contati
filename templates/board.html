@@ -97,8 +97,8 @@
 
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
-                                    {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
+                                    {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="{% url 'edit_board_tasks' tarea.id %}" data-target="#MyModalEdit" title="edit tarea" data-tooltip> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
                                     
                                 </div>
                             {% endfor %}
@@ -108,7 +108,7 @@
                           <div id="2" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban2 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
                                     {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}
@@ -118,7 +118,7 @@
                           <div id="3" ondragover="over(event)" ondrop="drop(event)" ondragenter="enter(event)" style="height: 723px;">
                             {% for tarea in kanban3 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
+                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
                                     {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 </div>
                             {% endfor %}
@@ -143,7 +143,6 @@
                   <li class="active">
                     <a href="#date" data-toggle="tab">Tarea</a>
                   </li>
-                  <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
                 </ul>
                 <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
               </div>
@@ -158,22 +157,9 @@
   
     <div class="modal fade bd-example-modal-lg" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <ul class="nav nav-tabs pull-right">
-              <li class="active">
-                <a href="#date" data-toggle="tab">Tarea</a>
-              </li>
-              <li><a href="#relevance" data-toggle="tab">Respuesta</a></li>
-            </ul>
-            <h4 class="modal-title" id="myModalLabel">Agregar Tarea</h4>
-          </div>
-        <div class="modal-body">
+        
+            {% include "edit_board_tasks.html" %}
 
-
-          </div>
-        </div>
     </div>
     </div>
 

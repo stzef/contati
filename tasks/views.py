@@ -144,12 +144,21 @@ def save_task(request):
 @csrf_exempt
 def edit_board(request, pk):
     states_kanban = request.POST.get('pos')
+    project = request.POST.get('pro')
+    user = User.objects.get(id = request.user.id )
     tas = get_object_or_404(Tasks, pk=pk)
+    #import pdb; pdb.set_trace()
     if request.method == "POST":
-        tas.states_kanban_id = states_kanban
-        tas.save()
-        return redirect('board')
-    return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
+        form = TasksForm(request.POST, user=request.user, instance=tas)
+        if form.is_valid():
+                tas = form.save(commit=False)
+                tas.states_kanban_id = states_kanban
+                tas.responsible_id = user
+                tas.save()
+                return redirect('board', pk=tas.pk)
+    else:
+        form = TasksForm(user=request.user, instance=tas)
+    return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_boardx4(request):
@@ -234,8 +243,6 @@ class createTasks(CreateView):
         form_kwargs = super(createTasks, self).get_form_kwargs(**kwargs)
         form_kwargs["user"] = self.request.user
         return form_kwargs
-
-	
 
 class editTasks(UpdateView):
 	model = Tasks
