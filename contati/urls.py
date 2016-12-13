@@ -9,6 +9,8 @@ urlpatterns = [
 
 
 	url(r'^$', login_required(view_index), name='index'),
+    url(r'^index_admin$', index_admin, name='index_admin'),
+
 	url(r'^tareas_index/(?P<pk>\d+)/$',tareas_index, name='tareas_index'),
 	url(r'^board$', view_board, name='board'),
     url(r'^boardx4$', view_boardx4, name='boardx4'),
@@ -23,7 +25,9 @@ urlpatterns = [
 
     url(r'^tasks_project/(?P<pk>\d+)/$', tasks_project, name='tasks_project'),
 
-
+    url(r'^profile_admin$', profile_admin,  name='profile_admin'),
+    url('^change-password_admin$', change_password_admin, name='change-password_admin'),
+    url('^change-image_admin$', change_image_admin, name='change-image_admin'),
 
     url(r'^tasks-ad/add$', login_required(tasks_add.as_view()), name='tasks_add'),
     url(r'^tasks_list$', login_required(tasks_list.as_view()), name='tasks_list'),

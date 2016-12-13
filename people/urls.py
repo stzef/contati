@@ -37,6 +37,9 @@ urlpatterns = [
 	url(r'^customers/(?P<pk>\d+)/edit/$', login_required(views.editCustomers.as_view()), name="edit_customers"),
 	url(r'^customers/(?P<pk>\d+)/delete$', login_required(views.deleteCustomers.as_view()), name='delete_customers'),
 
+	url(r'^admin/(?P<pk>\d+)/comment/$', views.comment_task_admin, name='comment_admin'),
+	url(r'^admin/(?P<pk>\d+)/comment/add$', views.add_comment_task_admin, name='add_comment_admin'),
+	url(r'^admin_comment/(?P<pk>\d+)/remove/$', views.comment_remove_task_admin, name='comment_remove_admin'),
 
 
  ]

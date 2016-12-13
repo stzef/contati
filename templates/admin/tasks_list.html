@@ -24,7 +24,8 @@
                   <tbody>
 					<tr>
 					<td>{{ tasks.name_task }}</td>
-					<td><a class="btn btn-primary" href="{% url 'tasks_edit' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'tasks_delete' pk=tasks.pk %}">Borrar</a></td> 
+					<td><a class="btn btn-primary" href="{% url 'tasks_edit' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'tasks_delete' pk=tasks.pk %}">Borrar</a> 
+          <a class="btn btn-success" href="{% url 'comment_admin' pk=tasks.pk %}">Respuestas</a></td> 
                     </tr>
                   </tbody>
                   {% endfor %}

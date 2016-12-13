@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core import serializers
 from tasks.models import *
-from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm
+from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm, PrioritiesForm, AnswerForm
 from activities.models import Activities, Projects
 from activities.forms import ActivitiesForm, ProjectsForm
 from django.utils.datastructures import MultiValueDictKeyError
@@ -27,7 +27,24 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 # Create your views here. 
 #<---------------------- view register -----------------> 
+@login_required(login_url="/login")
+def index_admin(request):
+    p = 0
+    e = 0
+    t = 0
+    project = Projects.objects.filter()
+    user = User.objects.get( id = request.user.id )
+    tareas = Tasks.objects.filter()
+    tar = Tasks.objects.filter(responsible_id=user.id)
+    for i in tar:
+        if (i.states_kanban_id==1):
+            p=p+1
+        if (i.states_kanban_id==2):
+            e=e+1
+        if (i.states_kanban_id==3):
+            t=t+1
 
+    return render_to_response('../templates/admin/index_admin.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
 def view_register(request):
     return render_to_response('register.html', context_instance = RequestContext(request))
@@ -106,7 +123,7 @@ def logout(request):
 
 @login_required(login_url="/login")
 def profile(request):
-
+    project = Projects.objects.filter()
     user = User.objects.get( id = request.user.id )
     save = False
     if request.method == 'POST':
@@ -126,8 +143,32 @@ def profile(request):
         
         user_cont.save()
 
-    return render_to_response('profile.html', { "user": user }, context_instance = RequestContext(request))
-   
+    return render_to_response('profile.html', { "user": user, "project": project}, context_instance = RequestContext(request))
+
+@login_required(login_url="/login")
+def profile_admin(request):
+    project = Projects.objects.filter()
+    user = User.objects.get( id = request.user.id )
+    save = False
+    if request.method == 'POST':
+      
+        # Aqui realizar la respectiva validacion
+        # Actulizar datos de usuario
+    
+        us = User.objects.get( id = request.user.id )
+        us.first_name  = request.POST['first_name']
+        us.username  = request.POST['username']
+        us.last_name  = request.POST['last_name']
+        us.email  = request.POST['email']
+        us.save()
+
+        user_cont = Contributors(user=user)
+        user_cont.role = request.POST['role']
+        
+        user_cont.save()
+
+    return render_to_response('profile_admin.html', { "user": user, "project": project}, context_instance = RequestContext(request)) 
+
 @login_required(login_url="/login")
 def change_image(request):
     try:
@@ -140,6 +181,26 @@ def change_image(request):
             profile.image_2  = request.FILES['image']
             profile.save()
         return render_to_response('profile.html', { "user": user}, context_instance = RequestContext(request))
+    except MultiValueDictKeyError:
+         return HttpResponse("Favor seleccionar una imagen, antes de dar click en Actualizar Imagen."
+           )
+
+    except NameError:
+        return HttpResponse("Favor seleccionar una imagen, antes de dar click en Actualizar Imagen."
+        )
+
+@login_required(login_url="/login")
+def change_image_admin(request):
+    try:
+        user = User.objects.get( id = request.user.id )
+        save = False
+        if request.method == 'POST':
+            
+            us = User.objects.get( id = request.user.id )
+            profile = Contributors.objects.get( user= us)
+            profile.image_2  = request.FILES['image']
+            profile.save()
+        return render_to_response('profile_admin.html', { "user": user}, context_instance = RequestContext(request))
     except MultiValueDictKeyError:
          return HttpResponse("Favor seleccionar una imagen, antes de dar click en Actualizar Imagen."
            )
@@ -170,7 +231,27 @@ def change_password(request):
    
     return render_to_response('profile.html',{}, context_instance = RequestContext(request))
 
+@login_required(login_url="/login")
+def change_password_admin(request):    
+    """view del profile
+    """
+    error = False
+    if request.method == 'POST':
+        validator = FormChangePasswordValidator(request.POST)
+        validator.required = ['password1']
 
+        if validator.is_valid():
+            us = User.objects.get( id = request.user.id )
+              
+            us.password = make_password(request.POST['password1'])
+            us.save()
+
+
+            return render_to_response('profile_admin.html', {'success': True  } , context_instance = RequestContext(request))
+        else:
+            return render_to_response('profile_admin.html', {'error': validator.getMessage() } , context_instance = RequestContext(request))
+   
+    return render_to_response('profile_admin.html',{}, context_instance = RequestContext(request))
 
 #<------------ view Customers --------------->  
 
@@ -676,11 +757,41 @@ class Projects_edit(UpdateView):
         context['project'] = Projects.objects.all()
         return context
 
+@login_required(login_url="/")
 def configuration(request):   
     project = Projects.objects.filter()
     return render_to_response('../templates/admin/configuration.html', {'project': project}, context_instance=RequestContext(request))  
 
+@login_required(login_url="/")
 def reports(request):
     project = Projects.objects.filter()
     #activi = Activities.objects.filter()
     return render_to_response('../templates/admin/reports.html', {'project': project}, context_instance=RequestContext(request))  
+
+@login_required(login_url="/")
+def comment_task_admin(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    return render_to_response('../templates/admin/answer_template_admin.html', {'tarea':tarea}, context_instance=RequestContext(request))  
+
+@login_required(login_url="/")
+def add_comment_task_admin(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    usu = request.user
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user_id = usu.id
+            comment.task_id = tarea.id
+            comment.save()
+            return redirect('comment', pk=tarea.pk)
+    else:
+        form = AnswerForm()
+    return render_to_response('../templates/admin/answer_admin.html', {'form': form, 'usu':usu, 'tarea':tarea}, context_instance=RequestContext(request))    
+
+@login_required(login_url="/")
+def comment_remove_task_admin(request, pk):
+    comment = get_object_or_404(Answer, pk=pk)
+    tarea_id = comment.task.id
+    comment.delete()
+    return redirect('comment_admin', pk=tarea_id) 
