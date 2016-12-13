@@ -139,7 +139,7 @@ def save_task(request):
     	tas.total_time = request.POST['total_time']
 
     	tas.save()
-    	return redirect('board')
+        return redirect('board')
 
 @csrf_exempt
 def edit_board(request, pk):
@@ -236,7 +236,7 @@ class createTasks(CreateView):
     def get_context_data(self, **kwargs):
 		context = super(createTasks, self).get_context_data(**kwargs)
 		context['project'] = Projects.objects.all()
-		
+
 		return context
 
     def get_form_kwargs(self, **kwargs):
@@ -431,7 +431,7 @@ class deleteColor(DeleteView):
 @login_required(login_url="/")
 def comment_task(request, pk):
 	tarea = get_object_or_404(Tasks, pk=pk)
-	return render_to_response('../templates/answer_template.html', {'tarea':tarea}, context_instance=RequestContext(request))  
+	return render_to_response('../templates/answer_template.html', {'tarea':tarea}, context_instance=RequestContext(request))
 
 @login_required(login_url="/")
 def add_comment_task(request, pk):
@@ -447,14 +447,14 @@ def add_comment_task(request, pk):
             return redirect('comment', pk=tarea.pk)
     else:
         form = AnswerForm()
-    return render_to_response('../templates/answer.html', {'form': form, 'usu':usu, 'tarea':tarea}, context_instance=RequestContext(request))    
+    return render_to_response('../templates/answer.html', {'form': form, 'usu':usu, 'tarea':tarea}, context_instance=RequestContext(request))
 
 @login_required(login_url="/")
 def comment_remove_task(request, pk):
     comment = get_object_or_404(Answer, pk=pk)
     tarea_id = comment.task.id
     comment.delete()
-    return redirect('comment', pk=tarea_id) 
+    return redirect('comment', pk=tarea_id)
 
 # <--------------------
 
@@ -463,4 +463,3 @@ def generaActividad(request, pk):
     actividad= Activities.objects.filter(project_id=id)
     data = serializers.serialize('json', actividad)
     return HttpResponse( data , content_type ='application/json' )
-

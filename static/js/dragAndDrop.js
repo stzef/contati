@@ -1,25 +1,12 @@
-//function myFunction() {
-  //  debugger
-    //  var padre = document.getElementById('date.states_kanban1');
-      //var hijo = document.createElement("input");
-//      padre.appendChild(hijo);
-  //    hijo.setAttribute("type", "hidden");
-    //  hijo.setAttribute("name","states_kanban" );
-      //hijo.setAttribute("value",3);
 
-  //    console.log(padre);
-  //  }
     function myFunction(entra) {
       var w = document.getElementById("proyecto").selectedIndex;
-      console.log(w);
+      var x = document.getElementById("id_error1");
+      console.log(x);
       if (w==0) {
-        $("#id_error1").append("<p>*Selecione un proyecto</p>");
-        var error = false
-        return error;
-
+          document.getElementById("id_error1").innerHTML = "*Selecione un proyecto";
       }else {
         ActividesProducto()
-        var error = true
         if (entra==1){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -28,7 +15,7 @@
           hijo.setAttribute("value",1);
           pa.appendChild(hijo);
           console.log(pa);
-          return error;}
+          }
         if (entra==2){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -37,7 +24,7 @@
           hijo.setAttribute("value",2);
           pa.appendChild(hijo);
           console.log(pa);
-          return error;}
+          }
         if (entra==3){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -46,7 +33,7 @@
           hijo.setAttribute("value",3);
           pa.appendChild(hijo);
           console.log(pa);
-          return error;}
+          }
       }
 }
 function edit_Kanban(des, pk) {
@@ -96,6 +83,7 @@ ev.dataTransfer.clearData("text");
 }
 
 function actividad1(pro) {
+  $('#id_error1').empty();   //limpio id_error *seleccione proyecto
   var pk = pro.value;
   console.log(pk);
   $.ajax({
@@ -168,28 +156,25 @@ function ActividesProducto() {
 };
 
 function validacion() {
-  activi = document.getElementById('id_actividad').selectedIndex;
-  console.log('activi',activi);
+  var activi = document.getElementById('id_actividad').selectedIndex;
   if (activi==" ") {
     // Si no se cumple la condicion...
-    $("#id_error").append("<p>*Debe selecionar una actividad</p>");
+    document.getElementById("id_sinactivi").innerHTML = "*Selecione una actividad";
     return false;
 
   }else {
-    $('#form_task').submit(function() {
-     // Enviamos el formulario usando AJAX
-     debugger
-           $.ajax({
-               type: 'POST',
-               url: $(this).attr('action'),
-               data: $(this).serialize(),
-               // Mostramos un mensaje con la respuesta de PHP
-               success: function(data) {
-                   alert("guardo tarea")
-               }
-           })
-           return false;
-       });
-
-  }
-};
+    $(document).ready(function() {
+     $('#form_task').submit(function() { // catch the form's submit event
+         $.ajax({ // create an AJAX call...
+             data: $(this).serialize(), // get the form data
+             type: $(this).attr('method'), // GET or POST
+             url: $(this).attr(action), // the file to call
+             success: function() { // on success..
+                alert("guardo tarea")
+             }
+         });
+         return false;
+     });
+ });
+  };
+}

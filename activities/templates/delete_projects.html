@@ -13,14 +13,14 @@
 <div class="panel">
     <div class="panel-body">
         <form>
-            {% csrf_token %} 
+            {% csrf_token %}
             <div class="form-group col-md-12">
                 <label class="section-title-p ">Eliminar Producto: </label> <br/>
                 <label class="section-title-p "><strong> {{produ.project}} </strong></label>
-                <input type="hidden"  id="pk" value={{produ.id}} /> 
+                <input type="hidden"  id="pk" value={{produ.id}} />
             </div>
             <br /><br /><br />
-            <div class="col-md-12">         
+            <div class="col-md-12">
                 <button class="btn btn-danger" type="submit">Eliminar</button>
                 <a class="btn btn-default" href="{% url 'list_projects' %}">Cancelar</a>
             </div>
@@ -34,7 +34,7 @@
 <script>
 
   $("form").submit(function(event){
-         
+
          console.log( "entrando ajax");
          //console.log(pk);
          event.preventDefault()
@@ -43,16 +43,16 @@
         $.ajax({
             type: 'DELETE',
             url: '/projects/'+pk,
-            
+
             success: function() {
 
-           
+
                 //alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });
 
-  })          
+  })
 
 </script>
 </div>

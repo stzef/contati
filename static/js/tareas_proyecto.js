@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 function seleccionTareas(pro) {
   var pk = pro.value;
   console.log(pk);
@@ -20,6 +22,7 @@ function seleccionTareas(pro) {
    });
  }
 
+>>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62
 
 function tareasPorProyecto(pro) {
   var pk = pro.value;
@@ -58,7 +61,7 @@ function tareasPorProyecto(pro) {
          var template2 = ""
          data.terminado.forEach(task => {
            template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)">'+
-               
+
               '::descripcionTarea::'+
            '</div>'
 
@@ -70,4 +73,7 @@ function tareasPorProyecto(pro) {
 });
   return error;
 };
+<<<<<<< HEAD
+=======
 
+>>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62

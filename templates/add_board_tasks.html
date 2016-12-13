@@ -2,12 +2,12 @@
     <div class="tab-content">
         <div class="tab-pane active" id="date">
             <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-            <form  id="form_task" name="contact-form" method="POST" onsubmit="return validacion()" action= save_task/ >
+            <form  id="form_task" name="contact-form" method="POST" onsubmit="return validacion()" action="save_task/" >
             {% csrf_token %}
 
                 <div class="form-group has-error"  >
                     <strong>{{ form.name_task.label }} *</strong>{{ form.name_task  }}</div><label class="control-label" for="inputError" >{{ form.name_task.errors }}</label>  <br>
-                <p id="id_error1" style="color: red"></p>
+
                 <div class="form-group has-error" >
                     <strong >{{ form.description.label }} *</strong> <div style="overflow-y: auto;height:100px;width:430px;"> {{ form.description }}</div>
                     <label class="control-label" for="inputError">{{ form.description.errors }}</label> <br/>
@@ -37,13 +37,13 @@
 
                     <div class="col col-md-6 form-group">
                       <label>Actividad</label>
-                      <select name="actividad" id="id_actividad" class="form-control" >
-                        <option value="0"  >-- Seleccina una actividad --</option>
+                      <select name="actividad" id="id_actividad" class="form-control">
+                        <option value="0">-- Seleccina una actividad --</option>
                           {% for activi in actividad %}
                             <option  value="{{ activi.id }}" >{{ activi.nombre }}</option>
                           {% endfor %}
                       </select>
-                      <p id="id_error" style="color: red"></p>
+                      <p id="id_sinactivi" style="color: red"></p>
                     </div>
 
                     <div class="col col-md-6 form-group">
