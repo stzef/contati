@@ -46,7 +46,7 @@
                         <a href="#"><i class="fa fa-cog"></i> Administración</a>
                     </li>
                     <li>
-                        <select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
+                        <select id="proyecto" title="Se necesita un nombre" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" required>
 
                         <option value="0" >Proyecto</option>
                         <br>
@@ -59,6 +59,7 @@
 
                       </select>
                       <p id="id_error1" style="color: red"></p>
+                      
                     </li>
                 </ul>
             </div>
@@ -69,7 +70,7 @@
 
     <!-- Page Content -->
     <div class="container" onload="mi_funcion()">
-
+        <input type="hidden" id="id_error" value=true>
         <div class="panel">
             <div class="panel-body">
             <div class="table-responsive">
@@ -99,7 +100,7 @@
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
                                     <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% "alt="foto">
                                     {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    
+
                                 </div>
                             {% endfor %}
                             </div>
@@ -155,7 +156,8 @@
             </div>
            </div>
         </div>
-  
+
+
     <div class="modal fade bd-example-modal-lg" id="MyModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">

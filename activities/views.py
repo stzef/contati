@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
 from.models import *
 from tasks.models import *
+from people.models import *
 from forms import ActivitiesForm, ProjectsForm
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
@@ -92,15 +93,52 @@ def list_config(request):
 
 def list_reportes(request):
 	totalh=0
-	tareas = Tasks.objects.filter(responsible_id=request.user.id)
-	for t in tareas:
-		print("actividad",t.activity_id)
-		print(t.description)
-		print(t.total_time)
-		totalh=totalh+t.total_time
-	print (totalh)
 
-	return render_to_response('../templates/reportes.html', {'tareas':tareas}, context_instance=RequestContext(request))
+	user = User.objects.get(id = request.user.id )
+	project = Projects.objects.all()
+	actividades =  Activities.objects.all()
+	tareas = Tasks.objects.filter(activity__in = actividades, responsible_id = user.id).order_by('activity_id')
+	activi_id=[]
+	sin_repetir=[]
+	suma = {}
+	total= 0
+	conta = 0
+	pri, pri1, pri2, pri3, pri4, pri5 = 0,0,0,0,0,0
+	for f in tareas:
+		activi_id.append(f.activity_id)
+	#sin_repetir=set(activi_id)
+	lista_nueva = []
+ 	for i in activi_id:
+		if i not in sin_repetir:
+			sin_repetir.append(i)
+	sin_repetir1=len(sin_repetir)
+	for t in tareas:
+		if t.activity_id==sin_repetir[0]:
+			pri+=t.total_time
+		if t.activity_id==sin_repetir[1]:
+			pri1+=t.total_time
+		if t.activity_id==sin_repetir[2]:
+			pri2+=t.total_time
+		if t.activity_id==sin_repetir[3]:
+			pri3+=t.total_time
+		if t.activity_id==sin_repetir[4]:
+			pri4+=t.total_time
+		if t.activity_id==sin_repetir[5]:
+			pri5+=t.total_time
+	#suma.append(pri)
+	#suma.append(pri1)
+	#suma.append(pri2)
+	#suma.append(pri3)
+	#suma.append(pri4)
+	#suma.append(pri5)
+	#print("-----------------------------",suma)
+	#for t in tareas:
+	#	suma=suma+((tareas.values('total_time'))[conta].values())
+	#	conta+=1
+	#for i in range(len(suma)):
+	#	total += suma[i]
+	activi = Activities.objects.filter()
+	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi,'suma':suma}, context_instance=RequestContext(request))
 
 class editProjects(UpdateView):
 	model = Projects
