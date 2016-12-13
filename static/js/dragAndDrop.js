@@ -2,7 +2,6 @@
     function myFunction(entra) {
       var w = document.getElementById("proyecto").selectedIndex;
       var x = document.getElementById("id_error1");
-      console.log(x);
       if (w==0) {
           document.getElementById("id_error1").innerHTML = "*Selecione un proyecto";
       }else {
@@ -14,7 +13,6 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",1);
           pa.appendChild(hijo);
-          console.log(pa);
           }
         if (entra==2){
           var pa = document.getElementById("id_kanban")
@@ -23,7 +21,6 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",2);
           pa.appendChild(hijo);
-          console.log(pa);
           }
         if (entra==3){
           var pa = document.getElementById("id_kanban")
@@ -32,14 +29,30 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",3);
           pa.appendChild(hijo);
-          console.log(pa);
           }
       }
 }
+//funcion deriva de mifuntion aqui pinta las actividades dependiendo del producto seleccionado
+function ActividesProducto() {
+  $('#id_actividad').empty();     //limpio select actividades para que no se sumen con las nuevas
+  $('#id_actividad').append('<option value="0">-- Seleccina una actividad --</option>')
+  var pk = document.getElementById("proyecto").value;
+  $.ajax({
+       url: '/generaActividad/'+pk,
+       type: 'GET',
+       success : function(data){
+                    $("#id_actividad").append("option value='0'>-- Indica actividad --</option>");
+                    for ( var i =0; i < data.length; i++){
+                      $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
+                    }
+       }
+});
+};
+//funcion cambia en la base de datos el estado kamban cuando la tarea cambia de sitio en el tablero
 function edit_Kanban(des, pk) {
+  debugger
   states_kanban = des;
-  id = pk;
-  //url = '/projects/'+id;
+  id = pk;  
   console.log("states_kanban"+states_kanban);
   console.log("id"+id);
   //document.location.href = url;
@@ -53,20 +66,22 @@ function edit_Kanban(des, pk) {
           });
 }
 
+
+// funcion para objetos arrastrables
 function star(ev) {
   ev.dataTransfer.effectAllowed = 'move';
   ev.dataTransfer.setData("text",ev.target.id);
   ev.dataTransfer.setDragImage(ev.target,80,80);
 }
-
+// funcion para objetos arrastrables
 function enter(ev) {
   return true;
 }
-
+// funcion para objetos arrastrables
 function over(ev) {
   ev.preventDefault();
 }
-
+// funcion para objetos arrastrables
 function drop(ev) {
   ev.preventDefault();
   var datos=ev.dataTransfer.getData("text");
@@ -77,16 +92,15 @@ function drop(ev) {
   edit_Kanban(destino, datos)
   ev.stopPropagation();
 }
-
+// funcion para objetos arrastrables
 function end(ev) {
 ev.dataTransfer.clearData("text");
 }
-
+// funcion
 function actividad1(pro) {
   $('#id_error1').empty();   //limpio id_error *seleccione proyecto
-  var pk = pro.value;
-  console.log(pk);
-  $.ajax({
+  var pk = pro.value;       //id proyecto seleccionado guardo en pk
+  $.ajax({                                        //ajax pintar tareas del proyecto seleccionado
        url: '/view_task_board/'+pk,
        type: 'get',
        success : function(data){
@@ -94,8 +108,6 @@ function actividad1(pro) {
          var template = ""
          var color = data.col.fields.hexadecimal
          var avatar = data.imagen.fields.image_2
-         //var error = true
-         console.log(avatar);
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
          	    '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+
@@ -103,7 +115,7 @@ function actividad1(pro) {
          	    '::descripcionTarea::'+
          	'</div>'
 
-         	template = template.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
+         	template = template.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
          	html += template
          })
          $("#1").html(html)
@@ -116,7 +128,7 @@ function actividad1(pro) {
                '::descripcionTarea::'+
            '</div>'
 
-           template1 = template1.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
+           template1 = template1.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
            html1 += template1
          })
          $("#2").html(html1)
@@ -129,32 +141,14 @@ function actividad1(pro) {
                '::descripcionTarea::'+
            '</div>'
 
-           template2 = template2.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
+           template2 = template2.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
            html2 += template2
          })
          $("#3").html(html2)
        }
 });
-  //return error;
 };
-function ActividesProducto() {
-
-  var pk = document.getElementById("proyecto").value;
-  //var pk1 = pk.value
-  console.log(pk);
-  $.ajax({
-       url: '/generaActividad/'+pk,
-       type: 'GET',
-       success : function(data){
-                    console.info(data)
-                    $("#id_actividad").append("option value='0'>-- Indica actividad --</option>");
-                    for ( var i =0; i < data.length; i++){
-                      $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
-                    }
-       }
-});
-};
-
+//funcion valida si es seleccionada una actividad antes de guardar una tarea
 function validacion() {
   var activi = document.getElementById('id_actividad').selectedIndex;
   if (activi==" ") {
@@ -164,12 +158,12 @@ function validacion() {
 
   }else {
     $(document).ready(function() {
-     $('#form_task').submit(function() { // catch the form's submit event
+     $('#form_task').submit(function() { // toma el formulario para enviarlo por ajax
          $.ajax({ // create an AJAX call...
-             data: $(this).serialize(), // get the form data
-             type: $(this).attr('method'), // GET or POST
-             url: $(this).attr(action), // the file to call
-             success: function() { // on success..
+             data: $(this).serialize(), // serializa el formulario
+             type: $(this).attr('method'), // toma el metodo que tiene el formulario en add_board
+             url: $(this).attr(action), // toma la url que tiene el formulario en add_board en action
+             success: function() {
                 alert("guardo tarea")
              }
          });
@@ -177,4 +171,7 @@ function validacion() {
      });
  });
   };
+}
+function aviso_valida(){
+  $('#id_sinactivi').empty();   //limpio id_error *seleccione actividad
 }

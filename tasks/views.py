@@ -143,6 +143,7 @@ def save_task(request):
 
 @csrf_exempt
 def edit_board(request, pk):
+    import pdb; pdb.set_trace()
     states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
     if request.method == "POST":

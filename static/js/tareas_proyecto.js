@@ -1,28 +1,4 @@
-<<<<<<< HEAD
-=======
-function seleccionTareas(pro) {
-  var pk = pro.value;
-  console.log(pk);
-  $.ajax({
-       url: '/tareas_index/'+pk,
-       type: 'get',
-       success : function(data){
 
-         var tar = data.tareas.fields
-         console.log("-----------",tar);
-         data,tareas.forEach(fields => {
-          template = '<div type="text" name="pintar" id="::idTareas::">'+
-          '</div>'
-
-          template = template.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.description).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
-          html += template
-       })
-       $("#3").html(html2)
-     }
-   });
- }
-
->>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62
 
 function tareasPorProyecto(pro) {
   var pk = pro.value;
@@ -73,7 +49,3 @@ function tareasPorProyecto(pro) {
 });
   return error;
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> db797eec2dbc19373c51e80cad9fa93948521b62
