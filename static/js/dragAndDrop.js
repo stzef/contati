@@ -82,7 +82,7 @@ function drop(ev) {
 function end(ev) {
 ev.dataTransfer.clearData("text");
 }
-// funcion
+// funcion pinta solo las tareas del proyecto seleccionado
 function actividad1(pro) {
   $('#id_error1').empty();   //limpio id_error *seleccione proyecto
   var pk = pro.value;       //id proyecto seleccionado guardo en pk

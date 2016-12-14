@@ -156,18 +156,18 @@ def edit_states_kanban(request, pk):
 def edit_board(request, pk):
     states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
-    #if request.method == "POST":
-    #    form = TasksForm(request.POST, user=request.user, instance=tas)
-    #    if form.is_valid():
-    #            tas = form.save(commit=False)
-    #            tas.states_kanban_id = states_kanban
-    #            tas.activity.project_id = project
-    #            tas.responsible_id = user
-    #            tas.save()
-    #            return redirect('board', pk=tas.pk)
-    #else:
-    #    form = TasksForm(user=request.user, instance=tas)
-    #return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
+    if request.method == "POST":
+        form = TasksForm(request.POST, user=request.user, instance=tas)
+        if form.is_valid():
+                tas = form.save(commit=False)
+                tas.states_kanban_id = states_kanban
+                tas.activity.project_id = project
+                tas.responsible_id = user
+                tas.save()
+                return redirect('board', pk=tas.pk)
+    else:
+        form = TasksForm(user=request.user, instance=tas)
+    return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
 
 
 @login_required(login_url="/login")
