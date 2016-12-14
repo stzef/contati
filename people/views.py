@@ -259,20 +259,6 @@ def change_password_admin(request):
 
 
 @login_required(login_url="/login")
-def add_Customers(request):
-    project = Projects.objects.filter ()
-    if request.method == "POST":
-        form = CustomersForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('list_customers') 
-    else:
-        form = CustomersForm()
-    
-
-    return render_to_response('../templates/add_customers.html', {'project': project, 'form': form}, context_instance=RequestContext(request))              
-
-@login_required(login_url="/login")
 def list_Customers(request):
     project = Projects.objects.filter ()
     customers = Customers.objects.all().order_by('name')

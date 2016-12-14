@@ -100,8 +100,8 @@ function actividad1(pro) {
          var avatar = data.imagen.fields.image_2
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
-         	    '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+
-         	    '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+         	    '<img class="avatar border-gray" src="/media/::fotoImagen:: " width="7%" height="7%  alt="foto"> ' +
+         	    '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>' +
          	    '::descripcionTarea::'+
          	'</div>'
 
@@ -113,7 +113,7 @@ function actividad1(pro) {
          var template1 = ""
          data.en_proceso.forEach(task => {
            template1 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
-               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+
+               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto"> '+
                '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '::descripcionTarea::'+
            '</div>'
@@ -126,7 +126,7 @@ function actividad1(pro) {
          var template2 = ""
          data.terminado.forEach(task => {
            template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)"  style="background-color: #::hexadecimal::">'+
-               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto">'+
+               '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto"> '+
                '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '::descripcionTarea::'+
            '</div>'
