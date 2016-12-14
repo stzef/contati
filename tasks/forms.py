@@ -88,7 +88,7 @@ class TasksForm(forms.ModelForm):
         widgets = {
                 'name_task': forms.TextInput(attrs={'class':'form-control'}),
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
-                'description' : forms.Textarea(attrs={'class':'form-control', 'id':'demos', 'name':'description'}),
+                'description' : forms.Textarea(attrs={'class':'form-control', 'id':'description', 'name':'description', 'filas':'4', 'cols':'50'}),
                 
                 'department' : forms.Select(attrs={'class':'form-control', 'name':'department'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control', 'name':'prioritie'}) ,

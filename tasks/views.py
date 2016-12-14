@@ -155,20 +155,23 @@ def edit_states_kanban(request, pk):
 
 @csrf_exempt
 def edit_board(request, pk):
-    states_kanban = request.POST.get('pos')
-    tas = get_object_or_404(Tasks, pk=pk)
+    # tas = get_object_or_404(Tasks, pk=pk)
+    tas = Tasks.objects.filter(pk=pk)
+    # import pdb; pdb.set_trace()
     if request.method == "POST":
-        form = TasksForm(request.POST, user=request.user, instance=tas)
+        form = TasksForm(request.POST, user=request.user.id, instance=tas)
         if form.is_valid():
                 tas = form.save(commit=False)
-                tas.states_kanban_id = states_kanban
                 tas.activity.project_id = project
                 tas.responsible_id = user
                 tas.save()
                 return redirect('board', pk=tas.pk)
     else:
-        form = TasksForm(user=request.user, instance=tas)
-    return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
+        # form = TasksForm(user=request.user.id, instance=tas)
+        tas = json.loads(serializers.serialize('json', tas))[0]
+        return JsonResponse({ 'tas':tas })
+
+    return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas }, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_boardx4(request):

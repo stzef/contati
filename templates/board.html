@@ -99,7 +99,7 @@
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
                                     <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
-                                    {{tarea.name_task }} <a class="pull-right" data-toggle="modal" href="{% url 'edit_board_tasks' tarea.id %}" data-target="#MyModalEdit" title="edit tarea" data-tooltip> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                    {{tarea.name_task }} <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
 
                                 </div>
                             {% endfor %}

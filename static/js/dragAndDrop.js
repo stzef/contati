@@ -57,6 +57,25 @@ function edit_Kanban(des, pk) {
             }
           });
 }
+
+function edit_table(tarea){
+  // debugger
+  var pk = tarea;
+  console.log(pk);
+  // $('#edit_tablero').empty();
+    $.ajax({
+      type: 'GET',
+            url: 'board/'+pk+'/edit/',
+            success: function(data) {
+              var descrip = data.tas.fields.description
+              console.log(descrip)
+              $("#description").html(descrip)
+              // $('#prueba').append("<p>hol</p>")
+            }
+    })
+
+};
+
 // funcion para objetos arrastrables
 function star(ev) {
   ev.dataTransfer.effectAllowed = 'move';
