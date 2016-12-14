@@ -1,11 +1,29 @@
+//function myFunction() {
+  //  debugger
+    //  var padre = document.getElementById('date.states_kanban1');
+      //var hijo = document.createElement("input");
+//      padre.appendChild(hijo);
+  //    hijo.setAttribute("type", "hidden");
+    //  hijo.setAttribute("name","states_kanban" );
+      //hijo.setAttribute("value",3);
 
+  //    console.log(padre);
+  //  }
     function myFunction(entra) {
       var w = document.getElementById("proyecto").selectedIndex;
+<<<<<<< HEAD
+      console.log(w);
+=======
       var x = document.getElementById("id_error1");
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
       if (w==0) {
-          document.getElementById("id_error1").innerHTML = "*Selecione un proyecto";
+        $("#id_error1").append("<p>*Selecione un proyecto</p>");
+        var error = false
+        return error;
+
       }else {
         ActividesProducto()
+        var error = true
         if (entra==1){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -13,7 +31,12 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",1);
           pa.appendChild(hijo);
+<<<<<<< HEAD
+          console.log(pa);
+          return error;}
+=======
           }
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
         if (entra==2){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -21,7 +44,12 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",2);
           pa.appendChild(hijo);
+<<<<<<< HEAD
+          console.log(pa);
+          return error;}
+=======
           }
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
         if (entra==3){
           var pa = document.getElementById("id_kanban")
           var hijo = document.createElement("input");
@@ -29,7 +57,12 @@
           hijo.setAttribute("name","states_kanban" );
           hijo.setAttribute("value",3);
           pa.appendChild(hijo);
+<<<<<<< HEAD
+          console.log(pa);
+          return error;}
+=======
           }
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
       }
 }
 //funcion deriva de mifuntion aqui pinta las actividades dependiendo del producto seleccionado
@@ -97,9 +130,15 @@ ev.dataTransfer.clearData("text");
 }
 // funcion
 function actividad1(pro) {
+<<<<<<< HEAD
+  var pk = pro.value;
+  console.log(pk);
+  $.ajax({
+=======
   $('#id_error1').empty();   //limpio id_error *seleccione proyecto
   var pk = pro.value;       //id proyecto seleccionado guardo en pk
   $.ajax({                                        //ajax pintar tareas del proyecto seleccionado
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
        url: '/view_task_board/'+pk,
        type: 'get',
        success : function(data){
@@ -149,13 +188,33 @@ function actividad1(pro) {
 };
 //funcion valida si es seleccionada una actividad antes de guardar una tarea
 function validacion() {
-  var activi = document.getElementById('id_actividad').selectedIndex;
+  activi = document.getElementById('id_actividad').selectedIndex;
+  console.log('activi',activi);
   if (activi==" ") {
     // Si no se cumple la condicion...
-    document.getElementById("id_sinactivi").innerHTML = "*Selecione una actividad";
+    $("#id_error").append("<p>*Debe selecionar una actividad</p>");
     return false;
 
   }else {
+<<<<<<< HEAD
+    $('#form_task').submit(function() {
+     // Enviamos el formulario usando AJAX
+     debugger
+           $.ajax({
+               type: 'POST',
+               url: $(this).attr('action'),
+               data: $(this).serialize(),
+               // Mostramos un mensaje con la respuesta de PHP
+               success: function(data) {
+                   alert("guardo tarea")
+               }
+           })
+           return false;
+       });
+
+  }
+};
+=======
     $(document).ready(function() {
      $('#form_task').submit(function() { // toma el formulario para enviarlo por ajax
          $.ajax({ // create an AJAX call...
@@ -174,3 +233,4 @@ function validacion() {
 function aviso_valida(){
   $('#id_sinactivi').empty();   //limpio id_error *seleccione actividad
 }
+>>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
