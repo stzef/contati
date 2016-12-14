@@ -168,10 +168,6 @@ def edit_board(request, pk):
     else:
         form = TasksForm(user=request.user, instance=tas)
     return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
-<<<<<<< HEAD
-=======
-
->>>>>>> d5f327582e43260d49e3fc170218e5547826d62f
 
 @login_required(login_url="/login")
 def view_boardx4(request):

@@ -45,24 +45,39 @@ def add_activity(request):
 	return render(request, '../templates/activity_form.html', {'project': project,'form':form}, context_instance=RequestContext(request))
 
 
-@csrf_exempt
-def action_activity(request, pk):
+# @csrf_exempt
+# def action_activity(request, pk):
 
 
-  	print (request)
-  	project = Projects.objects.filter()
-  	activi = get_object_or_404(Activities, pk=pk)
+#   	print (request)
+#   	project = Projects.objects.filter()
+#   	activi = get_object_or_404(Activities, pk=pk)
 
-  	if request.method == 'PUT':
-   		form = Activitiesform(request.PUT, instance=activi)
-		if form.is_valid():
-		    form.save()
-		return redirect('list_activities', pk=activi.pk)
+#   	if request.method == 'PUT':
+#    		form = Activitiesform(request.PUT, instance=activi)
+# 		if form.is_valid():
+# 		    form.save()
+# 		return redirect('list_activities', pk=activi.pk)
 
-	elif request.method == 'DELETE':
-		Activities.objects.get(pk=pk).delete()
-		return HttpResponse('../templates/activities.html')
-  	return render_to_response('../templates/delete_activity.html', {'project': project,'activi': activi}, context_instance=RequestContext(request))
+# 	elif request.method == 'DELETE':
+# 		Activities.objects.get(pk=pk).delete()
+# 		return HttpResponse('../templates/activities.html')
+#   	return render_to_response('../templates/delete_activity.html', {'project': project,'activi': activi}, context_instance=RequestContext(request))
+
+
+
+class delete_activity(DeleteView):
+    model = Activities
+    form_class = ActivitiesForm
+    template_name = '../templates/delete_activity.html'
+    success_url=reverse_lazy('list_activities') 
+
+
+    def get_context_data(self, **kwargs):
+        context = super(delete_activity, self).get_context_data(**kwargs)
+        context['project'] = Projects.objects.all()
+        return context 
+
 
 def list_projects(request):
 	project = Projects.objects.filter()
