@@ -1,7 +1,7 @@
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from people.views import *
-from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index, tasks_project
+from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index, tasks_project, edit_states_kanban
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^boardx4$', view_boardx4, name='boardx4'),
     url(r'^boardx5$', view_boardx5, name='boardx5'),
 	url(r'^board/(?P<pk>\d+)/edit/$', edit_board , name='edit_board_tasks'),
+	url(r'^board/(?P<pk>\d+)/kanban/$', edit_states_kanban , name='edit_states_kanban'),
 
 	url(r'^administrator$', login_required(view_administrator.as_view()), name='administrator'),
     url(r'^administrator$', login_required(proyect.as_view()), name='proyect'),

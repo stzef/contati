@@ -1,88 +1,44 @@
-//function myFunction() {
-  //  debugger
-    //  var padre = document.getElementById('date.states_kanban1');
-      //var hijo = document.createElement("input");
-//      padre.appendChild(hijo);
-  //    hijo.setAttribute("type", "hidden");
-    //  hijo.setAttribute("name","states_kanban" );
-      //hijo.setAttribute("value",3);
+function myFunction(entra) {
+  var w = document.getElementById("proyecto").selectedIndex;
+  if (w==0) {
+    $("#id_error1").append("<p>*Selecione un proyecto</p>");
+    var error = false
+    return error;
 
-  //    console.log(padre);
-  //  }
-    function myFunction(entra) {
-      var w = document.getElementById("proyecto").selectedIndex;
-<<<<<<< HEAD
-      console.log(w);
-=======
-      var x = document.getElementById("id_error1");
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
-      if (w==0) {
-        $("#id_error1").append("<p>*Selecione un proyecto</p>");
-        var error = false
-        return error;
+  }else {
+    ActividesProducto()
+    var error = true
+    if (entra==1){
+      var pa = document.getElementById("id_kanban")
+      var hijo = document.createElement("input");
+      hijo.setAttribute("type", "hidden");
+      hijo.setAttribute("name","states_kanban" );
+      hijo.setAttribute("value",1);
+      pa.appendChild(hijo);
+      }
+    if (entra==2){
+      var pa = document.getElementById("id_kanban")
+      var hijo = document.createElement("input");
+      hijo.setAttribute("type", "hidden");
+      hijo.setAttribute("name","states_kanban" );
+      hijo.setAttribute("value",2);
+      pa.appendChild(hijo);
+      }
 
-      }else {
-        ActividesProducto()
-        var error = true
-        if (entra==1){
-          var pa = document.getElementById("id_kanban")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",1);
-          pa.appendChild(hijo);
-<<<<<<< HEAD
-          console.log(pa);
-          return error;}
-=======
-          }
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
-        if (entra==2){
-          var pa = document.getElementById("id_kanban")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",2);
-          pa.appendChild(hijo);
-<<<<<<< HEAD
-          console.log(pa);
-          return error;}
-=======
-          }
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
-        if (entra==3){
-          var pa = document.getElementById("id_kanban")
-          var hijo = document.createElement("input");
-          hijo.setAttribute("type", "hidden");
-          hijo.setAttribute("name","states_kanban" );
-          hijo.setAttribute("value",3);
-          pa.appendChild(hijo);
-<<<<<<< HEAD
-          console.log(pa);
-          return error;}
-=======
-          }
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
+    if (entra==3){
+      var pa = document.getElementById("id_kanban")
+      var hijo = document.createElement("input");
+      hijo.setAttribute("type", "hidden");
+      hijo.setAttribute("name","states_kanban" );
+      hijo.setAttribute("value",3);
+      pa.appendChild(hijo);
       }
 }
-//funcion deriva de mifuntion aqui pinta las actividades dependiendo del producto seleccionado
-function ActividesProducto() {
-  $('#id_actividad').empty();     //limpio select actividades para que no se sumen con las nuevas
-  $('#id_actividad').append('<option value="0">-- Seleccina una actividad --</option>')
-  var pk = document.getElementById("proyecto").value;
-  $.ajax({
-       url: '/generaActividad/'+pk,
-       type: 'GET',
-       success : function(data){
-                    $("#id_actividad").append("option value='0'>-- Indica actividad --</option>");
-                    for ( var i =0; i < data.length; i++){
-                      $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
-                    }
-       }
-});
-};
+}
+
 //funcion cambia en la base de datos el estado kamban cuando la tarea cambia de sitio en el tablero
 function edit_Kanban(des, pk) {
+
   states_kanban = des;
   id = pk;
   console.log("states_kanban"+states_kanban);
@@ -90,15 +46,13 @@ function edit_Kanban(des, pk) {
   //document.location.href = url;
         $.ajax({
             type: 'POST',
-            url: 'board/'+pk+'/edit/',
+            url: 'board/'+pk+'/kanban/',
             data : { pos : des },
             success: function() {
 
             }
           });
 }
-
-
 // funcion para objetos arrastrables
 function star(ev) {
   ev.dataTransfer.effectAllowed = 'move';
@@ -130,15 +84,9 @@ ev.dataTransfer.clearData("text");
 }
 // funcion
 function actividad1(pro) {
-<<<<<<< HEAD
-  var pk = pro.value;
-  console.log(pk);
-  $.ajax({
-=======
   $('#id_error1').empty();   //limpio id_error *seleccione proyecto
   var pk = pro.value;       //id proyecto seleccionado guardo en pk
   $.ajax({                                        //ajax pintar tareas del proyecto seleccionado
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
        url: '/view_task_board/'+pk,
        type: 'get',
        success : function(data){
@@ -192,29 +140,11 @@ function validacion() {
   console.log('activi',activi);
   if (activi==" ") {
     // Si no se cumple la condicion...
-    $("#id_error").append("<p>*Debe selecionar una actividad</p>");
+    $("#id_sinactivi").append("<p>*Debe selecionar una actividad</p>");
     return false;
 
   }else {
-<<<<<<< HEAD
-    $('#form_task').submit(function() {
-     // Enviamos el formulario usando AJAX
-     debugger
-           $.ajax({
-               type: 'POST',
-               url: $(this).attr('action'),
-               data: $(this).serialize(),
-               // Mostramos un mensaje con la respuesta de PHP
-               success: function(data) {
-                   alert("guardo tarea")
-               }
-           })
-           return false;
-       });
 
-  }
-};
-=======
     $(document).ready(function() {
      $('#form_task').submit(function() { // toma el formulario para enviarlo por ajax
          $.ajax({ // create an AJAX call...
@@ -233,4 +163,20 @@ function validacion() {
 function aviso_valida(){
   $('#id_sinactivi').empty();   //limpio id_error *seleccione actividad
 }
->>>>>>> a99ba8e3e119aef2abebeab05a4705536217c025
+
+//funcion deriva de mifuntion aqui pinta las actividades dependiendo del producto seleccionado
+function ActividesProducto() {
+  $('#id_actividad').empty();     //limpio select actividades para que no se sumen con las nuevas
+  $('#id_actividad').append('<option value="0">-- Seleccina una actividad --</option>')
+  var pk = document.getElementById("proyecto").value;
+  $.ajax({
+       url: '/generaActividad/'+pk,
+       type: 'GET',
+       success : function(data){
+                    $("#id_actividad").append("option value='0'>-- Indica actividad --</option>");
+                    for ( var i =0; i < data.length; i++){
+                      $("#id_actividad").append("<option value='"+ data[i].pk +"'>"+data[i].fields.activity+"</option>");
+                    }
+       }
+});
+};
