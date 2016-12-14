@@ -85,7 +85,7 @@ editar
 
             </form>
         </div>
-        
+
     </div>
 </div>
 
@@ -93,10 +93,10 @@ editar
 </div>
 
 <script src="../static/js/dragAndDrop.js" type="text/javascript"></script>
-<script>
+<!--<script>
 
-  $("form").submit(function(event){ 
-         
+  $("form").submit(function(event){
+
          console.log( "entrando ajax");
          //console.log(pk);
          event.preventDefault()
@@ -105,15 +105,15 @@ editar
         $.ajax({
             type: 'PUT',
             url: '/projects/'+pk,
-            
+
             success: function() {
 
-           
+
                 //alert('Object deleted!')
             },
             //headers: { 'X_METHODOVERRIDE': 'DELETE' }
         });
 
-  })          
+  })
 
-</script>
+</script>-->

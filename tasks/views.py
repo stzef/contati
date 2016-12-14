@@ -142,6 +142,17 @@ def save_task(request):
         return redirect('board')
 
 @csrf_exempt
+def edit_states_kanban(request, pk):
+	states_kanban = request.POST.get('pos')
+	tas = get_object_or_404(Tasks, pk=pk)
+	if request.method == "POST":
+	    tas.states_kanban_id = states_kanban
+	    tas.save()
+	    return redirect('board', pk=tas.pk)
+	return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
+
+
+@csrf_exempt
 def edit_board(request, pk):
     states_kanban = request.POST.get('pos')
     tas = get_object_or_404(Tasks, pk=pk)
@@ -157,6 +168,10 @@ def edit_board(request, pk):
     else:
         form = TasksForm(user=request.user, instance=tas)
     return render_to_response('../templates/edit_board_tasks.html', { 'form':form, 'tas': tas }, context_instance=RequestContext(request) )
+<<<<<<< HEAD
+=======
+
+>>>>>>> d5f327582e43260d49e3fc170218e5547826d62f
 
 @login_required(login_url="/login")
 def view_boardx4(request):
