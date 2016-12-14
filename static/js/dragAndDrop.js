@@ -62,12 +62,15 @@ function edit_table(tarea){
   // debugger
   var pk = tarea;
   console.log(pk);
-  $('#edit_tablero').empty();
+  // $('#edit_tablero').empty();
     $.ajax({
       type: 'GET',
             url: 'board/'+pk+'/edit/',
-            success: function() {
-              alert("bien")
+            success: function(data) {
+              var descrip = data.tas.fields.description
+              console.log(descrip)
+              $("#description").html(descrip)
+              // $('#prueba').append("<p>hol</p>")
             }
     })
 
