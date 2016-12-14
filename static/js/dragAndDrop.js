@@ -1,14 +1,17 @@
 function myFunction(entra) {
+  debugger
   var w = document.getElementById("proyecto").selectedIndex;
   if (w==0) {
     $('#id_error1').empty();   //limpio id_error *seleccione proyecto
     $("#id_error1").append("<p>*Selecione un proyecto</p>");
-    var error = false
-    return error;
+    modal = document.getElementById("ocultar");
+          modal.style.display = "none";
+
 
   }else {
     ActividesProducto()
-    var error = true
+    modal1 = document.getElementById("ocultar");
+    modal1.style.display = "";
     if (entra==1){
       var pa = document.getElementById("id_kanban")
       var hijo = document.createElement("input");
