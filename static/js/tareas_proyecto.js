@@ -6,7 +6,9 @@ function seleccionTareas(seleccion) {
   $.ajax({
        url: '/tareas_index/'+pk,
        type: 'get',
-       success : function(){
+       success : function(data){
+          var tare = data.tareas
+          console.log(tare);
          alert("retorna json")
 }
 });
