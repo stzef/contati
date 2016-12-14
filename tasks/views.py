@@ -59,6 +59,7 @@ def view_index(request):
 
     return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
+@csrf_exempt
 def tareas_index(request, pk):
     #import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
