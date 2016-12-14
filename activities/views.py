@@ -70,13 +70,13 @@ class delete_activity(DeleteView):
     model = Activities
     form_class = ActivitiesForm
     template_name = '../templates/delete_activity.html'
-    success_url=reverse_lazy('list_activities') 
+    success_url=reverse_lazy('list_activities')
 
 
     def get_context_data(self, **kwargs):
         context = super(delete_activity, self).get_context_data(**kwargs)
         context['project'] = Projects.objects.all()
-        return context 
+        return context
 
 
 def list_projects(request):
@@ -107,53 +107,19 @@ def list_config(request):
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
 def list_reportes(request):
-	import pdb; pdb.set_trace()
-	totalh=0
-	user = User.objects.get(id = request.user.id )
 	project = Projects.objects.all()
-	actividades =  Activities.objects.all()
-	tareas = Tasks.objects.filter(activity__in = actividades, responsible_id = user.id).order_by('activity_id')
-	activi_id=[]
-	sin_repetir=[]
-	suma = {}
-	total= 0
-	conta = 0
-	pri, pri1, pri2, pri3, pri4, pri5 = 0,0,0,0,0,0
-	for f in tareas:
-		activi_id.append(f.activity_id)
-	#sin_repetir=set(activi_id)
-	lista_nueva = []
- 	for i in activi_id:
-		if i not in sin_repetir:
-			sin_repetir.append(i)
-	sin_repetir1=len(sin_repetir)
-	for t in tareas:
-		if t.activity_id==sin_repetir[0]:
-			pri+=t.total_time
-		if t.activity_id==sin_repetir[1]:
-			pri1+=t.total_time
-		if t.activity_id==sin_repetir[2]:
-			pri2+=t.total_time
-		if t.activity_id==sin_repetir[3]:
-			pri3+=t.total_time
-		if t.activity_id==sin_repetir[4]:
-			pri4+=t.total_time
-		if t.activity_id==sin_repetir[5]:
-			pri5+=t.total_time
-	#suma.append(pri)
-	#suma.append(pri1)
-	#suma.append(pri2)
-	#suma.append(pri3)
-	#suma.append(pri4)
-	#suma.append(pri5)
-	#print("-----------------------------",suma)
-	#for t in tareas:
-	#	suma=suma+((tareas.values('total_time'))[conta].values())
-	#	conta+=1
-	#for i in range(len(suma)):
-	#	total += suma[i]
-	activi = Activities.objects.filter()
-	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi,'suma':suma}, context_instance=RequestContext(request))
+	user = User.objects.get(id = request.user.id )
+	suma = 0
+	lista = []
+	for p in project:
+		activi =  Activities.objects.filter(project=p.id)
+		tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+		suma = 0
+		for t in tareas:
+			suma = suma+t.total_time
+		lista.append(suma)
+	print("-----------",lista)
+	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
 
 
 class editProjects(UpdateView):
