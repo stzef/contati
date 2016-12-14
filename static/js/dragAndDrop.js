@@ -1,6 +1,7 @@
 function myFunction(entra) {
   var w = document.getElementById("proyecto").selectedIndex;
   if (w==0) {
+    $('#id_error1').empty();   //limpio id_error *seleccione proyecto
     $("#id_error1").append("<p>*Selecione un proyecto</p>");
     var error = false
     return error;
@@ -140,6 +141,7 @@ function validacion() {
   console.log('activi',activi);
   if (activi==" ") {
     // Si no se cumple la condicion...
+    $('#id_sinactivi').empty();   //limpio id_error *seleccione actividad
     $("#id_sinactivi").append("<p>*Debe selecionar una actividad</p>");
     return false;
 
