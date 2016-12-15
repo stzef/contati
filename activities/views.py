@@ -107,7 +107,7 @@ def list_config(request):
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
 def list_reportes(request):
-	import pdb; pdb.set_trace()
+	#import pdb; pdb.set_trace()
 	totalh=0
 	user = User.objects.get(id = request.user.id )
 	project = Projects.objects.all()
