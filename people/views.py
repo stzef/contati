@@ -312,31 +312,12 @@ class view_administrator(ListView):
         context['project'] = Projects.objects.all()
         return context
 
-# @login_required(login_url="/login")
-# def administrator(request):
-#     selected_option = request.POST.get('row.proje', None)
-#     print (selected_option)
-#     project = Projects.objects.filter()
-#     state1 = Tasks.objects.filter()
-#     contributors = Contributors.objects.all().order_by('name')
-#     return render_to_response('../templates/admin/administrator.html', {'contributors':contributors, 'state1': state1, 'project': project}, context_instance=RequestContext(request))
-
-class proyect(FormView):
-    model = Activities
-    template_name = '../templates/admin/administrator.html'
-    success_url=reverse_lazy('administrator') 
-
-    def get_context_data(self, **kwargs):
-        context = super(proyect, self).get_context_data(**kwargs)
-        context['project'] = Projects.objects.all()
-        return context
-
-
-def tasks(request): 
+@login_required(login_url="/login")
+def tasks_ad(request, pk): 
+    actividades =  Activities.objects.filter(project=pk)
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
-    tareas = request.POST['responsible']
-    usuario = request.POST['first_name']
+    tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     user.save()
     return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas, 'project':project }, context_instance=RequestContext(request))           
 
