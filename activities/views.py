@@ -27,11 +27,7 @@ def add_projects(request):
 	return render_to_response('../templates/projects_fo.html', {'project': project,
 		'form':form}, context_instance=RequestContext(request))
 
-@csrf_exempt
-def list_activities(request):
-	project = Projects.objects.filter()
-	activi = Activities.objects.filter()
-	return render_to_response('../templates/activities.html', {'project': project, 'activi': activi}, context_instance=RequestContext(request))
+
 
 def add_activity(request):
 	project = Projects.objects.filter ()
@@ -63,8 +59,22 @@ def add_activity(request):
 # 		Activities.objects.get(pk=pk).delete()
 # 		return HttpResponse('../templates/activities.html')
 #   	return render_to_response('../templates/delete_activity.html', {'project': project,'activi': activi}, context_instance=RequestContext(request))
+@csrf_exempt
+def list_activities(request):
+	project = Projects.objects.filter()
+	activi = Activities.objects.filter()
+	return render_to_response('../templates/activities.html', {'project': project, 'activi': activi}, context_instance=RequestContext(request))
 
+class editActivity(UpdateView):
+	model = Activities
+	form_class = ActivitiesForm
+	template_name = '../templates/edit_activity.html'
+	success_url=reverse_lazy('list_activities')
 
+	def get_context_data(self, **kwargs):
+		context = super(editActivity, self).get_context_data(**kwargs)
+		context['project'] = Projects.objects.all()
+		return context
 
 class delete_activity(DeleteView):
     model = Activities
@@ -83,24 +93,17 @@ def list_projects(request):
 	project = Projects.objects.filter()
 	return render_to_response('../templates/projects.html', {'project': project}, context_instance=RequestContext(request))
 
+class editProjects(UpdateView):
+	model = Projects
+	form_class = ProjectsForm
+	template_name = '../templates/edit_projects.html'
+	success_url=reverse_lazy('list_projects')
 
-@csrf_exempt
-def action_projects(request, pk):
-
-	project = Projects.objects.filter()
-    	print ("fucion action")
-  	produ = get_object_or_404(Projects, pk=pk)
-  	if request.method == 'PUT':
-   		form = Projectsform(request.PUT, instance=produ)
-		if form.is_valid():
-		   	form.save()
-		return redirect('list_projects', pk=produ.pk)
-
-	elif request.method == 'DELETE':
-		print "dentro delete projects"
-		Projects.objects.get(pk=pk).delete()
-		return HttpResponse('../templates/proyects.html')
-	return render_to_response('../templates/delete_projects.html', {'project': project, 'produ': produ}, context_instance=RequestContext(request))
+class delete_projects(DeleteView):
+    model = Projects
+    form_class = ProjectsForm
+    template_name = '../templates/delete_projects.html'
+    success_url=reverse_lazy('list_projects')
 
 def list_config(request):
 	project = Projects.objects.filter()
@@ -125,19 +128,6 @@ def list_reportes(request):
 	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
 
 
-class editProjects(UpdateView):
-	model = Projects
-	form_class = ProjectsForm
-	template_name = '../templates/edit_projects.html'
-	success_url=reverse_lazy('list_projects')
 
-class editActivity(UpdateView):
-	model = Activities
-	form_class = ActivitiesForm
-	template_name = '../templates/edit_activity.html'
-	success_url=reverse_lazy('list_activities')
 
-	def get_context_data(self, **kwargs):
-		context = super(editActivity, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-		return context
+
