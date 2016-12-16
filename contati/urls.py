@@ -21,7 +21,7 @@ urlpatterns = [
 	url(r'^admin$', login_required(view_administrator.as_view()), name='administrator'),
     url(r'^admin/', admin.site.urls),
 
-    url(r'^admin/tasks-ad/$', tasks_ad, name='tasks_ad'),
+    url(r'^admin/tasks-ad/(?P<pk>\d+)/$', tasks_ad, name='tasks_ad'),
 
     url(r'^admin/tasks_project/(?P<pk>\d+)/$', tasks_project, name='tasks_project'),
 

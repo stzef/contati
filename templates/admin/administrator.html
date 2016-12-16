@@ -17,7 +17,7 @@
                             
                             <ul>
 						        {% for publisher in object_list %}
-                            	<a href="{% url 'tasks_ad' %}" data-remote="false" data-toggle="modal" data-target="#myModal">
+                            	<a href="{% url 'tasks_ad' pk=publisher.pk %}" data-remote="false" data-toggle="modal" data-target="#myModal">
 						            <li>{{ publisher.user}}  <img class="avatar border-gray" src="{{publisher.photo}}" alt="foto"> </li>
 						            
                             	</a> 
@@ -30,6 +30,8 @@
                         </div>
                    </div>		                
 		        </div>
+		
+
 		        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		        <div class="modal-dialog">
 		        <div class="modal-content">
@@ -50,10 +52,6 @@
 </div>
 </div>
  	
-   	<script>
-   	$("#myModal").on("show.bs.modal", function(e) {
-    var link = $(e.relatedTarget);
-    $(this).find("modal").load(link.attr("href"));
-});
+</div>
 
 {% endblock %}

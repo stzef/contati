@@ -314,11 +314,10 @@ class view_administrator(ListView):
 
 @login_required(login_url="/login")
 def tasks_ad(request, pk): 
-    actividades =  Activities.objects.filter(project=pk)
     project = Projects.objects.filter ()
     user = User.objects.get(id = request.user.id )
-    tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
-    user.save()
+    tareas = Tasks.objects.filter(responsible_id=user.id)
+    
     return render_to_response('../templates/admin/tasks.html', {'user': user, 'tareas':tareas, 'project':project }, context_instance=RequestContext(request))           
 
 
