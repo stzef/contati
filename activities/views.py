@@ -114,13 +114,7 @@ def list_reportes(request):
 	#import pdb; pdb.set_trace()
 	totalh=0
 	user = User.objects.get(id = request.user.id )
-<<<<<<< HEAD
-	p = 12
-	e = 4
-	t = 6
-=======
 	project = Projects.objects.all()
->>>>>>> ba1b1d32249624f9768a0444bf4e6c54af94a1e0
 	suma = 0
 	lista = []
 	for p in project:
@@ -131,9 +125,4 @@ def list_reportes(request):
 			suma = suma+t.total_time
 		lista.append(suma)
 	print("-----------",lista)
-	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista, "p":p, "e":e, "t":t}, context_instance=RequestContext(request))
-
-
-
-
-
+	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
