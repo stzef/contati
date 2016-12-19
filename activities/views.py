@@ -126,8 +126,3 @@ def list_reportes(request):
 		lista.append(suma)
 	print("-----------",lista)
 	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
-
-
-
-
-
