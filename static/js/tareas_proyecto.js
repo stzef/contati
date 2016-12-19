@@ -46,7 +46,7 @@ function seleccionTareas(seleccion) {
 //         var template = ""
 //         data.tareas.forEach(fields =>{
 //           template = 
-//           '<table class="table" id="table">'+
+//           '<table type="text" name="seleccion" onchange="seleccionresponsable(seleccion)" class="table" id="table">'+
 //           '<tbody>'+
 //           '<h3>tareas</h3>'+'<td><label class="checkbox"><input type="checkbox" value="" data-toggle="checkbox"></label>'+
 //           '</td>'+
@@ -67,7 +67,7 @@ function seleccionTareas(seleccion) {
 
 //           })
 
-//         $("#table").html(html)
+//         $("#tabla").html(html)
 // }
 // });
 // };  
