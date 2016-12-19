@@ -29,7 +29,7 @@ function seleccionTareas(seleccion) {
 
         var html1 = ""
         var template1 = ""
-        data.tarea.forEach(fields =>{
+        data.tareas.forEach(fields =>{
           template1 = 
           '<label class="<div class="panel">' +
           '<div class="panel-body">' +
