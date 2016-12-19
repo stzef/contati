@@ -31,29 +31,18 @@ function seleccionTareas(seleccion) {
         var template1 = ""
         data.tareas.forEach(fields =>{
           template1 = 
-          '<label class="<div class="panel">' +
-          '<div class="panel-body">' +
-          '<div class="table-responsive">'+
+    
+    
           '<table class="table table-bordered table-hover table-striped">'+
           '<thead>'+
-          '<tr>'+
-          '<th>LISTA DE TAREAS</th>'+
-          '<th>FUNCIONES</th>'+
-          '</tr>'+  
+          '<th>LISTA DE TAREAS</th><th>FUNCIONES</th>'+  
           '</thead>'+
-          '<tbody>'+
-          '<tr>'+
           '<td>::nombreTarea::</td>'+
           '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
           '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
           '<a class="btn btn-success" href="/tasks/::idTareas::/comment/">Respuestas</a></td>'+ 
-          '</tr>'+
-          '</tbody>'+
-          '</table>'+
-          '</div>'+
-          '</div>'+         
-          '</div>'+
-          '</div>'       
+          '</table>'
+             
 
           template1 = template1.replace("::nombreTarea::",fields.fields.name_task)
           .replace(/\:\:idTareas\:\:/g,fields.pk)
