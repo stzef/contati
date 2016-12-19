@@ -109,6 +109,9 @@ def list_config(request):
 def list_reportes(request):
 	project = Projects.objects.all()
 	user = User.objects.get(id = request.user.id )
+	p = 12
+	e = 4
+	t = 6
 	suma = 0
 	lista = []
 	for p in project:
@@ -119,7 +122,7 @@ def list_reportes(request):
 			suma = suma+t.total_time
 		lista.append(suma)
 	print("-----------",lista)
-	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista, "p":p, "e":e, "t":t}, context_instance=RequestContext(request))
 
 
 class editProjects(UpdateView):
