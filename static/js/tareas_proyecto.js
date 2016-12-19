@@ -1,5 +1,4 @@
 
-
 function seleccionTareas(seleccion) {
   var pk = seleccion.value;
   console.log(pk);
@@ -23,17 +22,53 @@ function seleccionTareas(seleccion) {
           '</div>'                
 
           template = template.replace("::nombreTareas::",fields.fields.name_task)
-          .replace(/\:\:idTarea\:\:/g,fields.pk)
-          console.warn(template)
+          .replace(/\:\:idTarea\:\:/g,fields.pk)          
          	html += template
+          })
+       	$("#id_tabla").html(html)
+
+        var html1 = ""
+        var template1 = ""
+        data.tarea.forEach(fields =>{
+          template1 = 
+          '<label class="<div class="panel">' +
+          '<div class="panel-body">' +
+          '<div class="table-responsive">'+
+          '<table class="table table-bordered table-hover table-striped">'+
+          '<thead>'+
+          '<tr>'+
+          '<th>LISTA DE TAREAS</th>'+
+          '<th>FUNCIONES</th>'+
+          '</tr>'+  
+          '</thead>'+
+          '<tbody>'+
+          '<tr>'+
+          '<td>::nombreTarea::</td>'+
+          '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
+          '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
+          '<a class="btn btn-success" href="/tasks/::idTareas::/comment/">Respuestas</a></td>'+ 
+          '</tr>'+
+          '</tbody>'+
+          '</table>'+
+          '</div>'+
+          '</div>'+         
+          '</div>'+
+          '</div>'       
+
+          template1 = template1.replace("::nombreTarea::",fields.fields.name_task)
+          .replace(/\:\:idTareas\:\:/g,fields.pk)
+          html1 += template1
 
 
           })
 
-       	$("#id_tabla").html(html)
+        $("#tarea").html(html1)
 }
 });
 };  
+
+
+
 
 // function seleccionresponsable(seleccion) {
 //   var pk = seleccion.value;
