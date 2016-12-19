@@ -12,7 +12,7 @@ class ActivitiesForm(forms.ModelForm):
         ]
         labels = {
         'activity': 'activity',
-        'project': 'projects',
+        'project': 'project',
         }
         widgets = {
         'activity': forms.TextInput(attrs={'class':'form-control'}),
@@ -28,7 +28,7 @@ class ProjectsForm(forms.ModelForm):
         'project', 'color'
         ]
         labels = {
-        'project': 'projects',
+        'project': 'project',
         'color': 'Color',
         }
         widgets = {

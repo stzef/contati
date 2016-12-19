@@ -312,6 +312,17 @@ class view_administrator(ListView):
         context['project'] = Projects.objects.all()
         return context
 
+@csrf_exempt
+def tasks_responsible(request, pk):
+    #import pdb; pdb.set_trace()
+    user = User.objects.get(id = request.user.id )
+    actividades =  Activities.objects.filter(project=pk)
+    tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
+    tareas = json.loads(serializers.serialize('json', tareas))
+ 
+
+    return JsonResponse( {"tareas":tareas} )
+
 @login_required(login_url="/login")
 def tasks_ad(request, pk): 
     project = Projects.objects.filter ()
