@@ -145,8 +145,8 @@
 								<form method="post">  
            					   		{% csrf_token %}          					   		
            					   	                 
-										<select id="proyecto" name="pro" onchange="actividad1(proyecto)"  type="text" class="form-control" >
-
+										<select id="proy" name="seleccion" onchange="seleccionTareas(seleccion)"  type="text" class="form-control" id="project">
+										
 											 <option value="0" >Proyecto</option>
 				                        <br>       					   	     
 				                        {% for row in project %}
