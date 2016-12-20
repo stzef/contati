@@ -45,6 +45,27 @@ function seleccionTareas(seleccion) {
           })
 
         $("#tarea").html(template + html1)
+
+        var html2 = ""
+        var template2 = ""
+        var template = '<table class="table table-bordered table-hover table-striped"><thead><th>LISTA DE TAREAS</th><th>FUNCIONES</th></thead>'
+        data.actividades.forEach(fields =>{
+          template2 = 
+          '<tr>'+
+          '<td>::nombreactividad::</td>'+
+          '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
+          '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
+          '</tr>'+
+          '</table>'
+             
+          template2 = template2.replace("::nombreactividad::",fields.fields.activity)
+          .replace(/\:\:idTareas\:\:/g,fields.pk)
+          html2 += template2
+
+          })
+
+        $("#activity").html(template + html2)
+
 }
 });
 };  
