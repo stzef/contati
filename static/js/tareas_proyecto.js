@@ -29,28 +29,22 @@ function seleccionTareas(seleccion) {
 
         var html1 = ""
         var template1 = ""
+        var template = '<table class="table table-bordered table-hover table-striped"><thead><th>LISTA DE TAREAS</th><th>FUNCIONES</th></thead>'
         data.tareas.forEach(fields =>{
           template1 = 
-    
-    
-          '<table class="table table-bordered table-hover table-striped">'+
-          '<thead>'+
-          '<th>LISTA DE TAREAS</th><th>FUNCIONES</th></thead>'+
           '<td>::nombreTarea::</td>'+
           '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
           '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
           '<a class="btn btn-success" href="/tasks/::idTareas::/comment/">Respuestas</a></td>'+ 
           '</table>'
              
-
           template1 = template1.replace("::nombreTarea::",fields.fields.name_task)
           .replace(/\:\:idTareas\:\:/g,fields.pk)
           html1 += template1
 
-
           })
 
-        $("#tarea").html(html1)
+        $("#tarea").html(template + html1)
 }
 });
 };  
