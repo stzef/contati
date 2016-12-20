@@ -66,9 +66,9 @@ def tareas_index(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
-    a = pk
+    actividades = json.loads(serializers.serialize('json', actividades))
 
-    return JsonResponse( {"tareas":tareas} )
+    return JsonResponse( {"tareas":tareas, "actividades":actividades} )
 
 @login_required(login_url="/login")
 def view_board(request):
