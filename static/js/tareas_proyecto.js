@@ -35,8 +35,7 @@ function seleccionTareas(seleccion) {
     
           '<table class="table table-bordered table-hover table-striped">'+
           '<thead>'+
-          '<th>LISTA DE TAREAS</th><th>FUNCIONES</th>'+  
-          '</thead>'+
+          '<th>LISTA DE TAREAS</th><th>FUNCIONES</th></thead>'+
           '<td>::nombreTarea::</td>'+
           '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
           '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
