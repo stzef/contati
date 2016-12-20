@@ -155,7 +155,6 @@ def edit_states_kanban(request, pk):
 
 @csrf_exempt
 def edit_board(request, pk):
-    # tas = get_object_or_404(Tasks, pk=pk)
     tas = Tasks.objects.filter(pk=pk)
     # import pdb; pdb.set_trace()
     if request.method == "POST":
@@ -171,7 +170,7 @@ def edit_board(request, pk):
         tas = json.loads(serializers.serialize('json', tas))[0]
         return JsonResponse({ 'tas':tas })
 
-    return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas }, context_instance=RequestContext(request) )
+    # return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas }, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_boardx4(request):
