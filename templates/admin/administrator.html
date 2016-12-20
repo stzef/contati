@@ -11,26 +11,45 @@
                         <h4 class="title">colaboradores</h4>
                     
                     </div>
-                    <div class="content">
+                    <!-- <div class="content">
                         <div class="table-full-width">
                             <table class="table">
                             
                             <ul>
+
 						        {% for publisher in object_list %}
-                            	<a href="{% url 'tasks_ad' pk=publisher.pk %}" data-remote="false" data-toggle="modal" data-target="#myModal">
-						            <li>{{ publisher.user}}  <img class="avatar border-gray" src="{{publisher.photo}}" alt="foto"> </li>
-						            
-                            	</a> 
-                            	                        	                                  
+                            <li>
+                            <a id="id_user" onclick="seleccionresponsable()" data-toggle="modal" href=""> 
+						     {{ publisher.user}}  <img class="avatar border-gray" src="{{publisher.photo}}" alt="foto" value="{{ publisher.user.id }}"></a>                                       
+                            </li>                        	                                  
 						        {% endfor %}
-						        
-						    </ul>
 						
+						    </ul>
+                					
                           	</table>
                         </div>
                    </div>		                
-		        </div>
+		        </div> -->
+             
 
+             <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                            
+                            <ul>
+
+                                {% for c in contributors %}
+                            <li>                            
+                             {{ c.user }}  <a id="id_user" onclick="seleccionresponsable()" value="{{ c.id }}"></a> <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >                                      
+                            </li>                                                             
+                                {% endfor %}
+                        
+                            </ul>
+                                    
+                            </table>
+                        </div>
+                   </div>                       
+                </div>
 		        <div class="content">
                         <div class="table-full-width">
                             <table class="table" id="tabla">
@@ -47,7 +66,8 @@
 
                                         <td>{{tarea.name_task}}</td>
                                         <td class="td-actions text-right">
-                                            <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
+                                            <a href="{% url 'edit_tasks' 
+                                            pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <a href="{% url 'delete_tasks' pk=tarea.pk %}" class="btn btn-danger btn-simple btn-xs">

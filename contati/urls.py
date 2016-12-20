@@ -18,7 +18,8 @@ urlpatterns = [
 	url(r'^board/(?P<pk>\d+)/edit/$', edit_board , name='edit_board_tasks'),
 	url(r'^board/(?P<pk>\d+)/kanban/$', edit_states_kanban , name='edit_states_kanban'),
 
-	url(r'^admin$', login_required(view_administrator.as_view()), name='administrator'),
+    url(r'^admin/$', view_administrator, name='administrator'),
+    #url(r'^admin$', login_required(view_administrator.as_view()), name='administrator'),
     url(r'^admin/tasks_responsible/(?P<pk>\d+)/$', tasks_responsible, name='tasks_responsible'),
     url(r'^admin/', admin.site.urls),
 
