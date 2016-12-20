@@ -66,11 +66,20 @@ function edit_table(tarea){
     $.ajax({
       type: 'GET',
             url: 'board/'+pk+'/edit/',
+            dataType: 'json',
             success: function(data) {
+              var name = data.tas.fields.name_task
+              console.log(name)
+              var des1 = '<input class="form-control" name="name_task" value="::name::" />'
+              des1 = des1.replace("::name::", name)
+              $("#nam").html(des1)
+
               var descrip = data.tas.fields.description
               console.log(descrip)
-              $("#description").html(descrip)
-              // $('#prueba').append("<p>hol</p>")
+              var des = '::descrip::'
+              des = des.replace("::descrip::", descrip)
+              $("#di").html(des)
+
             }
     })
 
