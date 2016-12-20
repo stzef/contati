@@ -1,6 +1,10 @@
  google.charts.load("current", {packages:["corechart"]});
  google.charts.setOnLoadCallback(drawChart);
  function drawChart() {
+   var proyec = document.getElementById("id_proye")
+   console.log(proyec);
+   var lista = document.getElementById("id_lista")
+   console.log(lista);
    var data = google.visualization.arrayToDataTable([
      ["Element", "Horas por mes", { role: "style" } ],
      ["Copper", 8, "#3542FF"],
