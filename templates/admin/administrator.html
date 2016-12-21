@@ -40,8 +40,9 @@
 
                                 {% for c in contributors %}
                             <li>                            
-                             {{ c.user }}  <a id="id_user" onclick="seleccionresponsable()" value="{{ c.id }}"></a> <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >                                      
-                            </li>                                                             
+                               <a id="usuario" onclick="seleccionresponsable()" value="{{ c.user.id }}" href=""> {{ c.user }} <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >                                      
+                            </li>
+                            </a>                                                              
                                 {% endfor %}
                         
                             </ul>
@@ -52,7 +53,7 @@
                 </div>
 		        <div class="content">
                         <div class="table-full-width">
-                            <table class="table" id="tabla">
+                            <table class="table" id="users">
                                 <tbody>
 
 

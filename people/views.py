@@ -316,7 +316,7 @@ def view_administrator(request):
     #import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
     contributors = Contributors.objects.filter()
-    tareas = Tasks.objects.filter(responsible_id=user.id)
+    tareas = Tasks.objects.filter()
 
     return render_to_response('../templates/admin/administrator.html', {'user': user, 'tareas':tareas, 'contributors':contributors }, context_instance=RequestContext(request))           
     
@@ -324,13 +324,14 @@ def view_administrator(request):
 @csrf_exempt
 def tasks_responsible(request, pk):
     #import pdb; pdb.set_trace()
-    user = User.objects.get(id = pk )
+    user = User.objects.get(id = request.user.id )
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
- 
+    contributors = Contributors.objects.filter()
+    contributors = json.loads(serializers.serialize('json', contributors))
 
-    return JsonResponse( {"tareas":tareas} )
+    return JsonResponse( {"tareas":tareas, "contributors":contributors} )
 
 @login_required(login_url="/login")
 def tasks_ad(request, pk): 

@@ -74,15 +74,35 @@ function seleccionTareas(seleccion) {
   
 
 function seleccionresponsable() {
-  debugger
-  var user = document.getElementById('id_user');
+
+  var user = document.getElementById('usuario');
   var pk = user;
   console.log(user);
   $.ajax({
-       //url: '/tasks_ad/'+pk,
        url: '/tasks_responsible/'+pk,
        type: 'get',
        success : function(data){
+        var html = ""
+        var template = ""
+        data.tareas.forEach(fields =>{
+          template =
+          '<div class="table-full-width">'+
+          '<table class="table" id="users"><tbody><tr><td>'+
+          '<label class="checkbox"><span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>'+
+          '<input type="checkbox" value="" data-toggle="checkbox"><label>'+
+          '</td>'+
+          '<td>::usuarioTareas::</td><td class="td-actions text-right">'+
+          '<a href="/tasks/::idTarea::/edit/" class="btn btn-info btn-simple btn-xs"> <i class="fa fa-edit"></i></a>'+
+          '<a href="/tasks/::idTarea::/delete/" class="btn btn-danger btn-simple btn-xs"> <i class="fa fa-times"></i></a>'+
+          '</td></tr></div></tbody></table>'+
+          '</div>'
+
+          template = template.replace("::usuarioTareas::",fields.fields.name_task)
+          .replace(/\:\:idTarea\:\:/g,fields.pk)
+          html += template
+          })
+        $("#users").html(html)
+
     
 }
 });
