@@ -80,20 +80,33 @@ function edit_table(tarea){
               des = des.replace("::descrip::", descrip)
               $("#di").html(des)
 
-              var responsi = data.us.fields.username
-              console.log(responsi)
-              var des2 = '<select id="responsi" name="responsible" type="text" class="form-control">'+
-                            '<option value="0" >User</option>'+
-                            '<br>'+
-                            '{% for row in tas %}'+
-                              '<option value="{{ row.responsible.id }}" > ::responsi::'+
-                              '</option>'+
-                            '{% endfor %}'+
-                      '</select>'
-              des2 = des2.replace("::responsi::", responsi)
-              $("#respon").html(des2)
+              var estime = data.tas.fields.estimated_time
+              console.log(estime)
+              var des2 = '<input class="form-control" name="name_task" value="::estime::" />'
+              des2 = des2.replace("::estime::", estime)
+              $("#estimate").html(des2)
 
-            }
+              var totalt = data.tas.fields.total_time
+              console.log(totalt)
+              var des3 = '<input class="form-control" name="name_task" value="::totalt::" />'
+              des3 = des3.replace("::totalt::", totalt)
+              $("#totaltime").html(des3)
+
+              var user = "<h1> user </h1>";
+                // recorremos cada usuario
+                $.forEach(data.tas.fields.responsible, function(key, value) {
+                    user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
+                    // recorremos los valores de cada usuario
+                    $.forEach(value, function(userkey, uservalue) {
+                        user += '<ul>';
+                        user += '<li>' + userkey + ': ' + uservalue + "</li>";
+                        user += '</ul>';
+                    })
+                // Actualizamos el HTML del elemento con id="#respon"
+                $("#respon").html(user);
+
+            })
+          }
     })
 
 };
