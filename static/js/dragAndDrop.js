@@ -80,6 +80,19 @@ function edit_table(tarea){
               des = des.replace("::descrip::", descrip)
               $("#di").html(des)
 
+              var responsi = data.us.fields.username
+              console.log(responsi)
+              var des2 = '<select id="responsi" name="responsible" type="text" class="form-control">'+
+                            '<option value="0" >User</option>'+
+                            '<br>'+
+                            '{% for row in tas %}'+
+                              '<option value="{{ row.responsible.id }}" > ::responsi::'+
+                              '</option>'+
+                            '{% endfor %}'+
+                      '</select>'
+              des2 = des2.replace("::responsi::", responsi)
+              $("#respon").html(des2)
+
             }
     })
 

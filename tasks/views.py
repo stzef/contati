@@ -155,22 +155,24 @@ def edit_states_kanban(request, pk):
 
 @csrf_exempt
 def edit_board(request, pk):
-    tas = Tasks.objects.filter(pk=pk)
+	tas = Tasks.objects.filter(pk=pk)
+	us = User.objects.get(id = request.user.id )
     # import pdb; pdb.set_trace()
-    if request.method == "POST":
-        form = TasksForm(request.POST, user=request.user.id, instance=tas)
-        if form.is_valid():
-                tas = form.save(commit=False)
-                tas.activity.project_id = project
-                tas.responsible_id = user
-                tas.save()
-                return redirect('board', pk=tas.pk)
-    else:
-        # form = TasksForm(user=request.user.id, instance=tas)
-        tas = json.loads(serializers.serialize('json', tas))[0]
-        return JsonResponse({ 'tas':tas })
+	if request.method == "POST":
+		form = TasksForm(request.POST, user=request.user.id, instance=tas)
+		if form.is_valid():
+			tas = form.save(commit=False)
+			tas.activity.project_id = project
+			tas.responsible_id = user
+			tas.save()
+			return redirect('board', pk=tas.pk)
+	else:
+		# form = TasksForm(user=request.user.id, instance=tas)
+		tas = json.loads(serializers.serialize('json', tas))[0]
+		us = json.loads(serializers.serialize('json', us))[0]
+		return JsonResponse({ 'tas':tas, 'us': us })
 
-    # return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas }, context_instance=RequestContext(request) )
+	return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas, 'us': us }, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_boardx4(request):

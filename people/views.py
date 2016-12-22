@@ -299,18 +299,27 @@ class deleteCustomers(DeleteView):
         return context 
 
 
-class view_administrator(ListView):
+# class view_administrator(ListView):
 
-    model = Contributors
-    template_name = '../templates/admin/administrator.html'
+#     model = Contributors
+#     template_name = '../templates/admin/administrator.html'
 
-    def get_queryset(self):
-        return super(view_administrator, self).get_queryset().order_by('user__first_name')
+#     def get_queryset(self):
+#         return super(view_administrator, self).get_queryset().order_by('user__first_name')
 
-    def get_context_data(self, **kwargs):
-        context = super(view_administrator, self).get_context_data(**kwargs)
-        context['project'] = Projects.objects.all()
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super(view_administrator, self).get_context_data(**kwargs)
+#         context['project'] = Projects.objects.all()
+#         return context
+
+def view_administrator(request):
+    #import pdb; pdb.set_trace()
+    user = User.objects.get(id = request.user.id )
+    contributors = Contributors.objects.filter()
+    tareas = Tasks.objects.filter()
+
+    return render_to_response('../templates/admin/administrator.html', {'user': user, 'tareas':tareas, 'contributors':contributors }, context_instance=RequestContext(request))           
+    
 
 @csrf_exempt
 def tasks_responsible(request, pk):
@@ -319,9 +328,10 @@ def tasks_responsible(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
- 
+    contributors = Contributors.objects.filter()
+    contributors = json.loads(serializers.serialize('json', contributors))
 
-    return JsonResponse( {"tareas":tareas} )
+    return JsonResponse( {"tareas":tareas, "contributors":contributors} )
 
 @login_required(login_url="/login")
 def tasks_ad(request, pk): 
