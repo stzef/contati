@@ -71,13 +71,10 @@ function seleccionTareas(seleccion) {
 });
 };
 
-  
-
-function seleccionresponsable() {
-
-  var user = document.getElementById('usuario');
-  var pk = user;
-  console.log(user);
+function seleccionresponsable(seleccion) {
+  //var user = document.getElementById('usuario');
+  var pk = seleccion.value;
+  console.log(pk);
   $.ajax({
        url: '/tasks_responsible/'+pk,
        type: 'get',
@@ -96,6 +93,7 @@ function seleccionresponsable() {
           '<a href="/tasks/::idTarea::/delete/" class="btn btn-danger btn-simple btn-xs"> <i class="fa fa-times"></i></a>'+
           '</td></tr></div></tbody></table>'+
           '</div>'
+
 
           template = template.replace("::usuarioTareas::",fields.fields.name_task)
           .replace(/\:\:idTarea\:\:/g,fields.pk)

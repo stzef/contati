@@ -318,8 +318,8 @@ def view_administrator(request):
     contributors = Contributors.objects.filter()
     tareas = Tasks.objects.filter()
 
-    return render_to_response('../templates/admin/administrator.html', {'user': user, 'tareas':tareas, 'contributors':contributors }, context_instance=RequestContext(request))           
-    
+
+    return render_to_response('../templates/admin/administrator.html', {'user': user, 'tareas':tareas, 'contributors':contributors }, context_instance=RequestContext(request))   
 
 @csrf_exempt
 def tasks_responsible(request, pk):
@@ -331,7 +331,7 @@ def tasks_responsible(request, pk):
     contributors = Contributors.objects.filter()
     contributors = json.loads(serializers.serialize('json', contributors))
 
-    return JsonResponse( {"tareas":tareas, "contributors":contributors} )
+    return JsonResponse({"tareas":tareas, "contributors":contributors} )
 
 @login_required(login_url="/login")
 def tasks_ad(request, pk): 
