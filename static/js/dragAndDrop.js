@@ -80,8 +80,38 @@ function edit_table(tarea){
               des = des.replace("::descrip::", descrip)
               $("#di").html(des)
 
+<<<<<<< HEAD
 
             }
+=======
+              var estime = data.tas.fields.estimated_time
+              console.log(estime)
+              var des2 = '<input class="form-control" name="name_task" value="::estime::" />'
+              des2 = des2.replace("::estime::", estime)
+              $("#estimate").html(des2)
+
+              var totalt = data.tas.fields.total_time
+              console.log(totalt)
+              var des3 = '<input class="form-control" name="name_task" value="::totalt::" />'
+              des3 = des3.replace("::totalt::", totalt)
+              $("#totaltime").html(des3)
+
+              var user = "<h1> user </h1>";
+                // recorremos cada usuario
+                $.forEach(data.tas.fields.responsible, function(key, value) {
+                    user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
+                    // recorremos los valores de cada usuario
+                    $.forEach(value, function(userkey, uservalue) {
+                        user += '<ul>';
+                        user += '<li>' + userkey + ': ' + uservalue + "</li>";
+                        user += '</ul>';
+                    })
+                // Actualizamos el HTML del elemento con id="#respon"
+                $("#respon").html(user);
+
+            })
+          }
+>>>>>>> d7c40ba4623f37a13a3c0dc86568dc0240cc22a7
     })
 
 };

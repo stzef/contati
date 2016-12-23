@@ -22,24 +22,29 @@
                     <strong>Nombre Tarea *</strong>
                     <br>
                     <div id="nam"></div>
-                </div> 
+                </div>
 
                 <div class="form-group has-error"  >
-          
+
                 <strong>Descripción *</strong> <div style="overflow-y: auto;height:100px;width:428px;"> <textarea class="form-control" name="description" id="di" cols="40" rows="50"></textarea> </div>
                 <br/>
-                </div> 
-                
+                </div>
+
                 <div class="col col-md-12" id="states_kanban1">
-                    
+
 
                 </div>
 
                 <div class="col col-md-12">
                     <div class="col col-md-12 form-group">
-                        <strong>Responsable:</strong> 
+                        <strong>Responsable:</strong>
                         <br/>
-                        <div id="respon"></div>
+                        <select name="responsible" type="text" class="form-control">
+                        {% for row in tas %}
+
+                      {% endfor %}
+                </select>
+                <div id="respon"></div>
                     </div>
                 </div>
 
@@ -61,15 +66,27 @@
 
                 <div class="col col-md-12">
                     <div class="col col-md-6 form-group">
+                            <strong>Departamento: </strong><br>
+
+                        </div>
+                    <div class="col col-md-6 form-group">
+                      <strong>Cliente: </strong><br/>
+
+                    </div>
+                </div>
+
+                <div class="col col-md-12">
+                    <div class="col col-md-6 form-group">
                         <strong>{{ form.states.label }}</strong><br/>
                     </div>
                     <div class="col col-md-3 form-group">
-                        <div class="col col-md-12"><strong>{{ form.estimated_time.label }}</strong></div> <div class="col col-md-6"> </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
+                        <div class="col col-md-12"><strong>Tiempo Estimado</strong></div> <div class="col col-md-6"> <div id="estimate"></div> </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
                     </div>
                     <div class="col col-md-3 form-group">
-                      <div class="col col-md-12"><strong>{{ form.total_time.label }}</strong></div> <div class="col col-md-6">  </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
+                      <div class="col col-md-12"><strong>Tiempo Total</strong></div> <div class="col col-md-6"> <div id="totaltime"></div>  </div><p style="margin-top: 30px; margin-bottom: 0px;">H</p> <br/>
                     </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>
@@ -80,17 +97,8 @@
             {% csrf_token %}
 
                 <div class="col col-md-12">
-                    <div class="col col-md-6 form-group">
-                            <strong>{{ form.department.label }}</strong>{{ form.department }}
-                        </div>
-                    <div class="col col-md-6 form-group">
-                      <strong>{{ form.Customers.label }}</strong> {{ form.Customers }} <br/>
-                    </div>
-                </div>
-
-                <div class="col col-md-12">
                     <div class="form-group">
-                        <strong>{{ form.answer.label }}</strong> {{ form.answer }} <br/>
+                        <strong>Respuestas: </strong> {{ form.answer }} <br/>
                     </div>
                 </div>
 
@@ -98,8 +106,8 @@
 
             </form>
         </div>
+      </div>
 
-    </div>
 </div>
 
 </div>
