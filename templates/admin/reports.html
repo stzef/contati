@@ -3,89 +3,68 @@
 
 {% block content %}
 
-<div class="container">
-	<div class="row">
-		<div class='col-sm-6'>
-			<div class="form-group">
-				<div class='input-group date' id='datetimepicker1'>
-					<input type='text' class="form-control" />
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</span>
-				</div>
-			</div>
-		</div>
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                 <h3>TIEMPO ESTIMADO
 
-	</div>
+            </div>
+            </div>
+
+            <div class="panel">
+							<div class="col-lg-6 col-sm-6">
+                  <h4 class="title">Reportes</h4>
+                  <div class="content">
+                  <div id="barchart_values" style="width: 100%; height: 100%;"></div>
+                  <input type="hidden" id="id_proye" name="" value="{{ project }}">
+                  <input type="hidden" id="id_lista" name="" value="{{ lista }}">
+                  </div>
+            </div>
+							<div class="col-lg-6 col-sm-6">
+                  <h4 class="title">Horas por proyecto</h4>
+									<div class="col-lg-6 col-sm-6">
+											<div class="table-responsive">
+											<table class="table table-bordered table-hover table-striped">
+													<thead>
+															<tr>
+																	<th>Actividades</th>
+															</tr>
+													</thead>
+													<tbody>{% for p in project %}
+															<tr>
+																	<td>{{ p.project }}</td>
+																	{% endfor %}
+															</tr>
+													</tbody>
+											</table>
+											</div>
+								  </div>
+									<div class="col-lg-6 col-sm-6">
+											<div class="table-responsive">
+											<table class="table table-bordered table-hover table-striped">
+													<thead>
+															<tr>
+																	<th>Horas</th>
+															</tr>
+													</thead>
+													<tbody>{% for l in lista %}
+															<tr>
+																	<td>{{ l }}</td>
+																	{% endfor %}
+															</tr>
+													</tbody>
+											</table>
+											</div>
+									</div>
+							</div>
+
+
+
 </div>
-	<input type="hidden" name="invi" value="{{ 1 }}" id="hidden" >
-	<input type="hidden" name="invi" value="{{ 2 }}" id="hidden1" >
-	<input type="hidden" name="invi" value="{{ 3 }}" id="hidden2">
-
-
-	<div id="Barchart" style="width: 100%; height: 600px;"></div>
-</div>
-
 
 {% endblock %}
-
 {% block javascript %}
-
-
-
-
-	<!--Load the AJAX API-->
-	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
-	<script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
-	<script type="text/javascript">
-	 var data;
-	 var chart;
-
-	  // Load the Visualization API and the piechart package.
-	  google.charts.load('current', {'packages':['corechart']});
-
-	  // Set a callback to run when the Google Visualization API is loaded.
-	  google.charts.setOnLoadCallback(drawChart);
-
-	  // Callback that creates and populates a data table,
-	  // instantiates the pie chart, passes in the data and
-	  // draws it.
-	  function drawChart() {
-
-		// Create our data table.
-		data = new google.visualization.DataTable();
-		data.addColumn('string', 'Topping');
-		data.addColumn('number', 'Slices');
-		data.addRows([
-		  ['infa', 3],
-		  ['Siacol web', 1],
-		  ['Paginas web', 1],
-		  ['Pruebas Tic', 1],
-		  ['otros', 2]
-		]);
-
-		// Set chart options
-		var options = {'title':'Reporte general de horas trabajadas por proyecto',
-					   'width':400,
-					   'height':300};
-
-		// Instantiate and draw our chart, passing in some options.
-		chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-		google.visualization.events.addListener(chart, 'select', selectHandler);
-		chart.draw(data, options);
-	  }
-
-	  function selectHandler() {
-		var selectedItem = chart.getSelection()[0];
-		var value = data.getValue(selectedItem.row, 0);
-		alert('The user selected ' + value);
-	  }
-
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-			<script type="text/javascript" src="../static/js/barras.js"></script>
-			<script type="text/javascript">drawChart()</script>
-			<div id="Barchart" style="width: 100%; height: 100%;"></div>
-
-	</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
+<script type="text/javascript" src="../static/js/barra.js"></script>
 
 {% endblock %}

@@ -74,7 +74,7 @@ urlpatterns = [
 
     url(r'^admin/reports$',login_required(reports), name='reports'),
     url(r'^admin/configuration$',login_required(configuration), name='configuration'),
-
+    
     url(r'', include('people.urls')),
     url(r'', include('tasks.urls')),
 	url(r'', include('activities.urls')),

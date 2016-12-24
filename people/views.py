@@ -752,8 +752,19 @@ def configuration(request):
 @login_required(login_url="/")
 def reports(request):
     project = Projects.objects.filter()
-    #activi = Activities.objects.filter()
-    return render_to_response('../templates/admin/reports.html', {'project': project}, context_instance=RequestContext(request))  
+    user = User.objects.get(id = request.user.id )
+    project = Projects.objects.all()
+    suma = 0
+    lista = []
+    for p in project:
+        activi =  Activities.objects.filter(project=p.id)
+        tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+        suma = 0
+        for t in tareas:
+            suma = suma+t.total_time
+        lista.append(suma)
+    print("-----------",lista)        
+    return render_to_response('../templates/admin/reports.html', {'project': project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))  
 
 @login_required(login_url="/")
 def comment_task_admin(request, pk):
