@@ -34,19 +34,23 @@
 
              <div class="content">
                         <div class="table-full-width">
-                            <table class="table">
-                            
-                            <ul>
+                            <table class="table">                     
+                             
+                                <form method="post">
+                                    {% csrf_token %}
 
-                                {% for c in contributors %}
-                            <li>                            
-                               <a id="usuario" onclick="seleccionresponsable()" value="{{ c.user.id }}" href=""> {{ c.user }} <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >                                      
-                            </li>
-                            </a>                                                              
-                                {% endfor %}
-                        
-                            </ul>
-                                    
+                                        <select  name="seleccion" onchange="seleccionresponsable(seleccion) "  type="text" class="form-control" >
+
+                                            <option value="0" >Responsable</option>
+                                            <br>
+
+                                             {% for c in contributors %}
+                                                <option value="{{ c.user }}">{{ c.user }}
+                                                <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                 </form>
                             </table>
                         </div>
                    </div>                       

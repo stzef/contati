@@ -40,25 +40,6 @@ def add_activity(request):
 		form =	ActivitiesForm()
 	return render(request, '../templates/activity_form.html', {'project': project,'form':form}, context_instance=RequestContext(request))
 
-
-# @csrf_exempt
-# def action_activity(request, pk):
-
-
-#   	print (request)
-#   	project = Projects.objects.filter()
-#   	activi = get_object_or_404(Activities, pk=pk)
-
-#   	if request.method == 'PUT':
-#    		form = Activitiesform(request.PUT, instance=activi)
-# 		if form.is_valid():
-# 		    form.save()
-# 		return redirect('list_activities', pk=activi.pk)
-
-# 	elif request.method == 'DELETE':
-# 		Activities.objects.get(pk=pk).delete()
-# 		return HttpResponse('../templates/activities.html')
-#   	return render_to_response('../templates/delete_activity.html', {'project': project,'activi': activi}, context_instance=RequestContext(request))
 @csrf_exempt
 def list_activities(request):
 	project = Projects.objects.filter()
