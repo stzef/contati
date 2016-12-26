@@ -1,0 +1,43 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <ul class="nav nav-tabs pull-right">
+            <li class="active"><a href="#respuesta" data-toggle="tab">Respuesta</a></li>
+        </ul>
+        <h4 class="modal-title" id="myModalLabel">Editar Tarea</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="tab-content">
+                <div class="tab-pane active" id="respuesta">
+
+                        <div class="col col-md-12">
+                                <form id="answer_tablero" method="post" action="#">{% csrf_token %}
+                                  <p><strong>Usuario:</strong> {{ user }}</p>
+                                    <br>
+                                          <textarea class="form-control" name="answer" id="answer" cols="40" rows="5"></textarea>
+                                        <button type="submit" class="save btn btn-default">Enviar</button>
+
+                                </form>
+                        </div>
+
+                        <br>
+                        {% for comment in tar.comments.all %}
+
+                                <br />
+
+                                <p><strong>{{ comment.user }} <a class="btn btn-danger pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a></strong>: {{ comment.description|linebreaks }} </p>
+                                <hr>
+
+                            {% empty %}
+                            <br>
+                            <div class="text-center">
+                                <p>No hay comentarios registrados.</p>
+                                <p><strong style="font-size: 20px;">¡Realiza un comentario ahora!</strong></p>
+                            </div>
+                        {% endfor %}
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

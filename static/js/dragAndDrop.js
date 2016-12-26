@@ -92,24 +92,43 @@ function edit_table(tarea){
               des3 = des3.replace("::totalt::", totalt)
               $("#totaltime").html(des3)
 
-              var user = "<h1> user </h1>";
-                // recorremos cada usuario
-                $.forEach(data.tas.fields.responsible, function(key, value) {
-                    user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
-                    // recorremos los valores de cada usuario
-                    $.forEach(value, function(userkey, uservalue) {
-                        user += '<ul>';
-                        user += '<li>' + userkey + ': ' + uservalue + "</li>";
-                        user += '</ul>';
-                    })
-                // Actualizamos el HTML del elemento con id="#respon"
-                $("#respon").html(user);
-
-            })
+            //   var user = "<h1> user </h1>";
+            //     // recorremos cada usuario
+            //     $.forEach(data.tas.fields.responsible, function(key, value) {
+            //         user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
+            //         // recorremos los valores de cada usuario
+            //         $.forEach(value, function(userkey, uservalue) {
+            //             user += '<ul>';
+            //             user += '<li>' + userkey + ': ' + uservalue + "</li>";
+            //             user += '</ul>';
+            //         })
+            //     // Actualizamos el HTML del elemento con id="#respon"
+            //     $("#respon").html(user);
+            //
+            // })
           }
     })
 
 };
+
+function answer_table(tarea){
+  // debugger
+  var pk = tarea;
+  console.log(pk);
+  $('#answer_tablero').submit(function() {
+    $.ajax({
+            url: 'board/'+pk+'/comment/add',
+            data: $(this).serialize(),
+            type: $(this).attr('method'),
+            success: function() {
+              alert("guardo respuesta")
+
+          }
+    })
+    return false;
+ })
+};
+
 
 // funcion para objetos arrastrables
 function star(ev) {
