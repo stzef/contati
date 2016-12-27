@@ -14,8 +14,12 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from django.core.urlresolvers import reverse, reverse_lazy
+from StringIO import StringIO
+from xhtml2pdf import pisa
 import xhtml2pdf.pisa as pisa
 from StringIO import StringIO
+from django.template.loader import render_to_string
+from contati.settings import STATICFILES_DIRS
 
 def add_projects(request):
 	project = Projects.objects.filter()
@@ -110,11 +114,28 @@ def list_reportes(request):
 	print("-----------",lista)
 	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
 
-def salidaPdf(request):
-	 import pdb; pdb.set_trace()
-	 def funcion( * args, ** kwargs):
-		 html = f ( * args, ** kwargs)
-         result = StringIO() #creamos una instancia del un objeto StringIO para
-         pdf = pisa.pisaDocument( html , result) # convertimos en pdf la template
-         return HttpResponse(result.getvalue(), content_type='application/pdf')
-	 return funcion
+
+
+
+def salidaPdf(f):
+    def funcion(*args, **kwargs):
+        html = f(*args, **kwargs)
+        result = StringIO() #creamos una instancia del un objeto StringIO para
+        pdf = pisa.pisaDocument( html , result) # convertimos en pdf la template
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return funcion
+
+@salidaPdf
+def reporte(request):
+	user = User.objects.get(id = request.user.id )
+	project = Projects.objects.all()
+	suma = 0
+	lista = []
+	for p in project:
+		activi =  Activities.objects.filter(project=p.id)
+		tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+		suma = 0
+		for t in tareas:
+			suma = suma+t.total_time
+		lista.append(suma)
+	return render_to_string('../templates/reporte.html', {'project':project, 'activi':activi, 'lista':lista})
