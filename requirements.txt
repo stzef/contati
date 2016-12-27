@@ -21,3 +21,4 @@ html5lib==0.9999999
 xhtml2pdf==0.0.6
 reportlab==3.3.0
 pisa==3.0.33
+html5lib==1.0b8

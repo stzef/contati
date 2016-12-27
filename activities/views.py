@@ -14,13 +14,11 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from django.core.urlresolvers import reverse, reverse_lazy
-<<<<<<< HEAD
+
 from StringIO import StringIO
 from xhtml2pdf import pisa
 import xhtml2pdf.pisa as pisa
-=======
-#import xhtml2pdf.pisa as pisa
->>>>>>> 42f624404432cd15ad189e84243498c522f9e0f8
+
 from StringIO import StringIO
 from django.template.loader import render_to_string
 from contati.settings import STATICFILES_DIRS
@@ -134,6 +132,7 @@ def reporte(request):
 	user = User.objects.get(id = request.user.id )
 	project = Projects.objects.all()
 	suma = 0
+	indice = 0
 	lista = []
 	for p in project:
 		activi =  Activities.objects.filter(project=p.id)
@@ -142,4 +141,4 @@ def reporte(request):
 		for t in tareas:
 			suma = suma+t.total_time
 		lista.append(suma)
-	return render_to_string('../templates/reporte.html', {'project':project, 'activi':activi, 'lista':lista})
+	return render_to_string('../templates/reporte.html', {'project':project, 'activi':activi, 'lista':lista, 'indice':indice})
