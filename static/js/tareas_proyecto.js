@@ -1,5 +1,6 @@
 
 function seleccionTareas(seleccion) {
+  debugger
   var pk = seleccion.value;
   console.log(pk);
   $.ajax({

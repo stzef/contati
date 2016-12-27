@@ -45,7 +45,7 @@
                                             <br>
 
                                              {% for c in contributors %}
-                                                <option value="{{ c.user }}">{{ c.user }}
+                                                <option value="{{ c.user.id }}">{{ c.user }}
                                                 <img class="avatar border-gray" src="{{c.photo}}" alt="foto" >
                                                 </option>
                                             {% endfor %}
