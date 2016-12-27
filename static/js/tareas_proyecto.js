@@ -77,7 +77,7 @@ function seleccionresponsable(seleccion) {
   var pk = seleccion.value;
   console.log(pk);
   $.ajax({
-       url: 'admin/tasks_responsible/'+pk,
+       url: '/tasks_responsible/'+pk,
        type: 'get',
        success : function(data){
         var html = ""
