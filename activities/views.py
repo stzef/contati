@@ -14,6 +14,8 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from django.core.urlresolvers import reverse, reverse_lazy
+import xhtml2pdf.pisa as pisa
+from StringIO import StringIO
 
 def add_projects(request):
 	project = Projects.objects.filter()
@@ -126,3 +128,12 @@ def list_reportes(request):
 		lista.append(suma)
 	print("-----------",lista)
 	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+
+def salidaPdf(request):
+	 import pdb; pdb.set_trace()
+	 def funcion( * args, ** kwargs):
+		 html = f ( * args, ** kwargs)
+         result = StringIO() #creamos una instancia del un objeto StringIO para
+         pdf = pisa.pisaDocument( html , result) # convertimos en pdf la template
+         return HttpResponse(result.getvalue(), content_type='application/pdf')
+	 return funcion
