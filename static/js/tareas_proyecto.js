@@ -1,5 +1,6 @@
 
 function seleccionTareas(seleccion) {
+  debugger
   var pk = seleccion.value;
   console.log(pk);
   $.ajax({
@@ -76,7 +77,7 @@ function seleccionresponsable(seleccion) {
   var pk = seleccion.value;
   console.log(pk);
   $.ajax({
-       url: '/tasks_responsible/'+pk,
+       url: 'admin/tasks_responsible/'+pk,
        type: 'get',
        success : function(data){
         var html = ""
