@@ -1,7 +1,7 @@
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from people.views import *
-from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index, tasks_project, edit_states_kanban
+from tasks.views import view_index, view_board, view_boardx4, view_boardx5, edit_board, tareas_index, tasks_project, edit_states_kanban, add_comment_table
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
 
@@ -16,9 +16,12 @@ urlpatterns = [
     url(r'^boardx4$', view_boardx4, name='boardx4'),
     url(r'^boardx5$', view_boardx5, name='boardx5'),
 	url(r'^board/(?P<pk>\d+)/edit/$', edit_board , name='edit_board_tasks'),
+	url(r'^board/(?P<pk>\d+)/comment/add$', add_comment_table, name='add_comment_table'),
 	url(r'^board/(?P<pk>\d+)/kanban/$', edit_states_kanban , name='edit_states_kanban'),
 
-	url(r'^admin$', login_required(view_administrator.as_view()), name='administrator'),
+    url(r'^admin/$', view_administrator, name='administrator'),
+    #url(r'^admin$', login_required(view_administrator.as_view()), name='administrator'),
+    url(r'^admin/tasks_responsible/(?P<pk>\d+)/$', tasks_responsible, name='tasks_responsible'),
     url(r'^admin/', admin.site.urls),
 
     url(r'^admin/tasks-ad/(?P<pk>\d+)/$', tasks_ad, name='tasks_ad'),

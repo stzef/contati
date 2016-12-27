@@ -66,15 +66,69 @@ function edit_table(tarea){
     $.ajax({
       type: 'GET',
             url: 'board/'+pk+'/edit/',
+            dataType: 'json',
             success: function(data) {
+              var name = data.tas.fields.name_task
+              console.log(name)
+              var des1 = '<input class="form-control" name="name_task" value="::name::" />'
+              des1 = des1.replace("::name::", name)
+              $("#nam").html(des1)
+
               var descrip = data.tas.fields.description
               console.log(descrip)
-              $("#description").html(descrip)
-              // $('#prueba').append("<p>hol</p>")
-            }
+              var des = '::descrip::'
+              des = des.replace("::descrip::", descrip)
+              $("#di").html(des)
+
+              var estime = data.tas.fields.estimated_time
+              console.log(estime)
+              var des2 = '<input class="form-control" name="name_task" value="::estime::" />'
+              des2 = des2.replace("::estime::", estime)
+              $("#estimate").html(des2)
+
+              var totalt = data.tas.fields.total_time
+              console.log(totalt)
+              var des3 = '<input class="form-control" name="name_task" value="::totalt::" />'
+              des3 = des3.replace("::totalt::", totalt)
+              $("#totaltime").html(des3)
+
+            //   var user = "<h1> user </h1>";
+            //     // recorremos cada usuario
+            //     $.forEach(data.tas.fields.responsible, function(key, value) {
+            //         user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
+            //         // recorremos los valores de cada usuario
+            //         $.forEach(value, function(userkey, uservalue) {
+            //             user += '<ul>';
+            //             user += '<li>' + userkey + ': ' + uservalue + "</li>";
+            //             user += '</ul>';
+            //         })
+            //     // Actualizamos el HTML del elemento con id="#respon"
+            //     $("#respon").html(user);
+            //
+            // })
+          }
     })
 
 };
+
+function answer_table(tarea){
+  // debugger
+  var pk = tarea;
+  console.log(pk);
+  $('#answer_tablero').submit(function() {
+    $.ajax({
+            url: 'board/'+pk+'/comment/add',
+            data: $(this).serialize(),
+            type: $(this).attr('method'),
+            success: function() {
+              alert("guardo respuesta")
+
+          }
+    })
+    return false;
+ })
+};
+
 
 // funcion para objetos arrastrables
 function star(ev) {

@@ -15,31 +15,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-class AjaxableResponseMixin(object):
-    """
-    Mixin to add AJAX support to a form.
-    Must be used with an object-based FormView (e.g. CreateView)
-    """
-    def form_invalid(self, form):
-        response = super(AjaxableResponseMixin, self).form_invalid(form)
-        if self.request.is_ajax():
-            return JsonResponse(form.errors, status=400)
-        else:
-            return response
-
-    def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
-        response = super(AjaxableResponseMixin, self).form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'pk': self.object.pk,
-            }
-            return JsonResponse(data)
-        else:
-            return response
-
 @login_required(login_url="/login")
 def view_index(request):
     p = 0
@@ -66,9 +41,9 @@ def tareas_index(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
-    a = pk
+    actividades = json.loads(serializers.serialize('json', actividades))
 
-    return JsonResponse( {"tareas":tareas} )
+    return JsonResponse( {"tareas":tareas, "actividades":actividades} )
 
 @login_required(login_url="/login")
 def view_board(request):
@@ -79,7 +54,8 @@ def view_board(request):
     kanban2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
     kanban3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
     form = TasksForm(user=request.user)
-    return render_to_response('../templates/board.html', {'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3,'error':error}, context_instance=RequestContext(request) )
+    tare = Tasks.objects.filter()
+    return render_to_response('../templates/board.html', { 'tare':tare, 'user':user, 'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3,'error':error}, context_instance=RequestContext(request) )
 
 @login_required(login_url="/login")
 def view_task_board(request, pk):
@@ -150,28 +126,38 @@ def edit_states_kanban(request, pk):
 	    tas.states_kanban_id = states_kanban
 	    tas.save()
 	    return redirect('board', pk=tas.pk)
-	return render_to_response('../templates/edit_board_task.html', { 'form': form, 'tas': tas }, context_instance=RequestContext(request) )
-
 
 @csrf_exempt
 def edit_board(request, pk):
-    # tas = get_object_or_404(Tasks, pk=pk)
-    tas = Tasks.objects.filter(pk=pk)
+	tas = Tasks.objects.filter(pk=pk)
     # import pdb; pdb.set_trace()
-    if request.method == "POST":
-        form = TasksForm(request.POST, user=request.user.id, instance=tas)
-        if form.is_valid():
-                tas = form.save(commit=False)
-                tas.activity.project_id = project
-                tas.responsible_id = user
-                tas.save()
-                return redirect('board', pk=tas.pk)
-    else:
-        # form = TasksForm(user=request.user.id, instance=tas)
-        tas = json.loads(serializers.serialize('json', tas))[0]
-        return JsonResponse({ 'tas':tas })
+	if request.method == "POST":
+		form = TasksForm(request.POST, user=request.user.id, instance=tas)
+		if form.is_valid():
+			tas = form.save(commit=False)
+			tas.activity.project_id = project
+			tas.responsible_id = user
+			tas.save()
+			return redirect('board', pk=tas.pk)
+	else:
+		# form = TasksForm(user=request.user.id, instance=tas)
+		tas = json.loads(serializers.serialize('json', tas))[0]
+		return JsonResponse({ 'tas':tas })
 
-    return render_to_response('../templates/edit_board_tasks.html', { 'tas': tas }, context_instance=RequestContext(request) )
+@login_required(login_url="/")
+def add_comment_table(request, pk):
+    tarea = get_object_or_404(Tasks, pk=pk)
+    usu = request.user
+    if request.method == "POST":
+        comment = Answer()
+        comment.description = request.POST['answer']
+        comment.user_id = usu.id
+        comment.task_id = tarea.id
+        comment.save()
+        return redirect('comment', pk=tarea.pk)
+
+    return render_to_response('../templates/answer_board.html', { 'tarea':tar }, context_instance=RequestContext(request) )
+
 
 @login_required(login_url="/login")
 def view_boardx4(request):
