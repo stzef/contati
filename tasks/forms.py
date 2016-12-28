@@ -19,7 +19,7 @@ class StatesKanbanForm(forms.ModelForm):
         widgets = {'name_states': forms.TextInput(attrs={'class':'form-control'})}
 
 class ColorForm(forms.ModelForm):
-    
+
     class Meta:
         model = Color
         fields = ['name_color', 'hexadecimal']
@@ -60,7 +60,7 @@ class TasksForm(forms.ModelForm):
         fields = {
                 'name_task',
                 'description',
-                
+
                 'responsible',
                 'department',
                 'prioritie',
@@ -74,13 +74,13 @@ class TasksForm(forms.ModelForm):
         labels = {
                 'name_task': 'Nombre de la Tarea',
                 'description' : 'Descripcion',
-                
+
                 'responsible' : 'Responsable' ,
                 'department' : 'Departamento' ,
                 'prioritie' : 'Prioridad' ,
                 'states' : 'Estado',
                 'estimated_time' : 'Hora Estimada',
-                'total_time' : 'Hora Total',
+                'total_time' : 'Hora Real',
                 'states_kanban' : 'Estado Kanban',
                 'activity' : 'Actividad',
                 'Customers' : 'Cliente',
@@ -89,7 +89,7 @@ class TasksForm(forms.ModelForm):
                 'name_task': forms.TextInput(attrs={'class':'form-control'}),
                 'responsible' : forms.Select(attrs={'class':'form-control', 'value': '{{ object.responsible }}', 'name':'responsible' }) ,
                 'description' : forms.Textarea(attrs={'class':'form-control', 'id':'description', 'name':'description', 'filas':'4', 'cols':'50'}),
-                
+
                 'department' : forms.Select(attrs={'class':'form-control', 'name':'department'}) ,
                 'prioritie' : forms.Select(attrs={'class':'form-control', 'name':'prioritie'}) ,
                 'states' : forms.Select(attrs={'class':'form-control', 'name':'states'}),
