@@ -7,7 +7,7 @@
                 <div class="card ">
                     <div class="header">
                         <h4 class="title"><i class="fa fa-user" aria-hidden="true"></i> <strong>Bienvenid@, {{ user.first_name }} {{ user.last_name }}</strong></h4>
-                        <p class="category">Email, lo más reciente</p>
+                        <p class="category">Email, acceso rápido</p>
                     </div>
                     <div class="content">
                                           <div><p><a href="https://mail.google.com/mail/#inbox">Gmail</a></p></div>
@@ -15,7 +15,7 @@
                                           <div class="footer">
                                               <hr>
                                               <div class="stats">
-                                                  <i class="fa fa-check"></i> Gmail Conectado
+                                                  <i class="fa fa-check"></i>
                                               </div>
                                           </div>
                                       </div>
@@ -62,7 +62,7 @@
                                 <tbody>
 
 
-                            {% for tarea in user.contributors.tasks_set.all %}
+                            {% for tarea in tarea3|dictsortreversed:"id"|slice:":5" %}
                             <tr>
                                         <td>
                                             <label class="checkbox">
@@ -82,6 +82,26 @@
                                     </tr>
                                     </div>
                                 {% endfor %}
+                                {% for tarea in tarea2|dictsortreversed:"id"|slice:":5" %}
+                                <tr>
+                                            <td>
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="" data-toggle="checkbox">
+                                                </label>
+                                            </td>
+
+                                            <td>{{tarea.name_task}}</td>
+                                            <td class="td-actions text-right">
+                                                <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="{% url 'delete_tasks' pk=tarea.pk %}" class="btn btn-danger btn-simple btn-xs">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </div>
+                                    {% endfor %}
 
 
                                 </tbody>

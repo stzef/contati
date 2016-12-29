@@ -32,7 +32,10 @@ def view_index(request):
         if (i.states_kanban_id==3):
             t=t+1
 
-    return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
+    us = Contributors.objects.filter(user=user)
+    tarea2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+    tarea3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+    return render_to_response('../templates/index.html', { "user": user, "project": project, "tareas":tareas, "tarea2":tarea2, "tarea3":tarea3, "p":p, "e":e, "t":t}, context_instance = RequestContext(request))
 
 @csrf_exempt
 def tareas_index(request, pk):
@@ -218,11 +221,15 @@ def view_boardx5(request):
  #Listar Estados
 @login_required(login_url="/login")
 def list_tasks(request):
-	selected_option = request.POST.get('row.proje', None)
-	print (selected_option)
-	project = Projects.objects.filter()
-	state1 = Tasks.objects.filter()
-	return render_to_response('../templates/list_tasks.html', {'state1': state1, 'project': project}, context_instance=RequestContext(request))
+    selected_option = request.POST.get('row.proje', None)
+    project = Projects.objects.filter()
+
+    user = User.objects.get(id = request.user.id )
+    us = Contributors.objects.filter(user=user)
+    hecho = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
+    tarea2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+    tarea3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+    return render_to_response('../templates/list_tasks.html', {'tarea1': hecho, 'tarea2': tarea2, 'tarea3': tarea3, 'project': project}, context_instance=RequestContext(request))
 
 from django.core import serializers
 class createTasks(CreateView):

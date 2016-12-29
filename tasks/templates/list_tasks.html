@@ -1,7 +1,7 @@
 {% extends 'base_templates.html' %}
 
 {% block content %}
-    
+
     <div class="row">
             <div class="col-lg-12 col-sm-12">
                <h3>TAREAS
@@ -11,27 +11,51 @@
 
         <div class="panel" >
         	<div class="panel-body">
+
             <div class="table-responsive">
         	<table class="table table-bordered table-hover table-striped" id="tarea">
                 <thead>
                 <tr>
                   <th>LISTA DE TAREAS</th>
                   <th>FUNCIONES</th>
-                </tr>  
-                </thead>  	
-               
-                  {% for tasks in user.contributors.tasks_set.all %}
+                  <th>HECHO</th>
+                </tr>
+                </thead>
+
+                  {% for tasks in tarea2 %}
                   <tbody>
 					<tr>
 					<td>{{ tasks.name_task }}</td>
 					<td><a class="btn btn-primary" href="{% url 'edit_tasks' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_tasks' pk=tasks.pk %}">Borrar</a>
-          <a class="btn btn-success" href="{% url 'comment' pk=tasks.pk %}">Respuestas</a></td> 
+          <a class="btn btn-success" href="{% url 'comment' pk=tasks.pk %}">Respuestas</a></td>
+          <td></td>
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+                  {% for tasks in tarea3 %}
+                  <tbody>
+					<tr>
+					<td>{{ tasks.name_task }}</td>
+					<td><a class="btn btn-primary" href="{% url 'edit_tasks' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_tasks' pk=tasks.pk %}">Borrar</a>
+          <a class="btn btn-success" href="{% url 'comment' pk=tasks.pk %}">Respuestas</a></td>
+          <td></td>
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+                  {% for tasks in tarea1 %}
+                  <tbody>
+					<tr>
+					<td>{{ tasks.name_task }}</td>
+					<td><a class="btn btn-primary" href="{% url 'edit_tasks' pk=tasks.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_tasks' pk=tasks.pk %}">Borrar</a>
+          <a class="btn btn-success" href="{% url 'comment' pk=tasks.pk %}">Respuestas</a></td>
+          <td><p class="text-center" style="font-size: 21px;"> <i class="fa fa-check" aria-hidden="true"></i> </p></td>
                     </tr>
                   </tbody>
                   {% endfor %}
             </table>
             </div>
-            </div>	       
-        </div>        
+
+            </div>
+        </div>
 </div>
 {% endblock content %}
