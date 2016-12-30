@@ -12,12 +12,6 @@
                     <div class="content">
                                           <div><p><a href="https://mail.google.com/mail/#inbox">Gmail</a></p></div>
 
-                                          <div class="footer">
-                                              <hr>
-                                              <div class="stats">
-                                                  <i class="fa fa-check"></i>
-                                              </div>
-                                          </div>
                                       </div>
                                   </div>
                               </div>
@@ -62,12 +56,6 @@
                                 <tbody>
                             {% for tarea in tarea3|dictsortreversed:"id"|slice:":5" %}
                             <tr>
-                                        <td>
-                                            <label class="checkbox">
-                                                <input type="checkbox" value="" data-toggle="checkbox">
-                                            </label>
-                                        </td>
-
                                         <td>{{tarea.name_task}}</td>
                                         <td class="td-actions text-right">
                                             <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
@@ -85,8 +73,8 @@
                         </div>
                                 <div class="footer">
                                     <hr>
-                                    <div class="states">
-                                        <i class="fa fa-history"></i> Actualizado hace 3 minutos
+                                    <div class="stats">
+                                        <i class="fa fa-check"></i>
                                     </div>
                                 </div>
                             </div>
@@ -105,12 +93,6 @@
                                                 <tbody>
                                                 {% for tarea in tarea2|dictsortreversed:"id"|slice:":5" %}
                                                 <tr>
-                                                            <td>
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" value="" data-toggle="checkbox">
-                                                                </label>
-                                                            </td>
-
                                                             <td>{{tarea.name_task}}</td>
                                                             <td class="td-actions text-right">
                                                                 <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
@@ -128,8 +110,8 @@
                                         </div>
                                                 <div class="footer">
                                                     <hr>
-                                                    <div class="states">
-                                                        <i class="fa fa-history"></i> Actualizado hace 3 minutos
+                                                    <div class="stats">
+                                                        <i class="fa fa-check"></i>
                                                     </div>
                                                 </div>
                                             </div>
