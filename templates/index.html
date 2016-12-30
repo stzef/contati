@@ -50,18 +50,16 @@
                                   </div>
                               </div>
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">Tareas</h4>
-                        <p class="category">Tareas en Proceso</p>
+                        <h4 class="title">Pendientes</h4>
+                        <p class="category">Tareas por hacer</p>
                     </div>
                     <div class="content">
                         <div class="table-full-width">
                             <table class="table" id="id_tabla">
                                 <tbody>
-
-
                             {% for tarea in tarea3|dictsortreversed:"id"|slice:":5" %}
                             <tr>
                                         <td>
@@ -82,28 +80,6 @@
                                     </tr>
                                     </div>
                                 {% endfor %}
-                                {% for tarea in tarea2|dictsortreversed:"id"|slice:":5" %}
-                                <tr>
-                                            <td>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="" data-toggle="checkbox">
-                                                </label>
-                                            </td>
-
-                                            <td>{{tarea.name_task}}</td>
-                                            <td class="td-actions text-right">
-                                                <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <a href="{% url 'delete_tasks' pk=tarea.pk %}" class="btn btn-danger btn-simple btn-xs">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        </div>
-                                    {% endfor %}
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -114,7 +90,51 @@
                                     </div>
                                 </div>
                             </div>
+                      </div>
+                      </div>
+
+                            <div class="col-md-3">
+                                <div class="card ">
+                                    <div class="header">
+                                        <h4 class="title">En Proceso</h4>
+                                        <p class="category">Tareas en Proceso</p>
+                                    </div>
+                                    <div class="content">
+                                        <div class="table-full-width">
+                                            <table class="table" id="id_tabla">
+                                                <tbody>
+                                                {% for tarea in tarea2|dictsortreversed:"id"|slice:":5" %}
+                                                <tr>
+                                                            <td>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" value="" data-toggle="checkbox">
+                                                                </label>
+                                                            </td>
+
+                                                            <td>{{tarea.name_task}}</td>
+                                                            <td class="td-actions text-right">
+                                                                <a href="{% url 'edit_tasks' pk=tarea.pk %}" class="btn btn-info btn-simple btn-xs">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>
+                                                                <a href="{% url 'delete_tasks' pk=tarea.pk %}" class="btn btn-danger btn-simple btn-xs">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        </div>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                                <div class="footer">
+                                                    <hr>
+                                                    <div class="states">
+                                                        <i class="fa fa-history"></i> Actualizado hace 3 minutos
+                                                    </div>
+                                                </div>
+                                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
