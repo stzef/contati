@@ -23,8 +23,8 @@ from tasks.forms import TasksForm, DepartmentsForm, StatesKanbanForm, StatesForm
 from activities.models import Activities, Projects
 from activities.forms import ActivitiesForm, ProjectsForm
 from django.utils.datastructures import MultiValueDictKeyError
-
-
+import json
+from django.http import JsonResponse
 # Create your views here. 
 #<---------------------- view register -----------------> 
 @login_required(login_url="/login")

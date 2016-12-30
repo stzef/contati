@@ -74,6 +74,7 @@ function seleccionTareas(seleccion) {
 
 function seleccionresponsable(seleccion) {
   //var user = document.getElementById('usuario');
+  debugger
   var pk = seleccion.value;
   console.log(pk);
   $.ajax({
