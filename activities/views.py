@@ -14,13 +14,8 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import UpdateView, DeleteView, ListView, CreateView
 from django.core.urlresolvers import reverse, reverse_lazy
-
-from StringIO import StringIO
 from xhtml2pdf import pisa
 import xhtml2pdf.pisa as pisa
-
-from StringIO import StringIO
-from django.template.loader import render_to_string
 from contati.settings import STATICFILES_DIRS
 
 def add_projects(request):
