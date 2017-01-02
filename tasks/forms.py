@@ -51,7 +51,7 @@ class TasksForm(forms.ModelForm):
     def __init__(self,user=None, *args, **kwargs):
         super(TasksForm, self).__init__(*args, **kwargs)
         self.fields['responsible'].initial = Contributors.objects.get( user = user )
-        self.fields['prioritie'].initial = Priorities.objects.get(name_prioritie= "Media")
+        self.fields['prioritie'].initial = Priorities.objects.get(name_prioritie= "Baja")
         self.fields['states'].initial = States.objects.get(name_states= "Activo")
         self.fields['states_kanban'].initial = States_kanban.objects.get(name_states= "Por hacer")
 
@@ -60,7 +60,6 @@ class TasksForm(forms.ModelForm):
         fields = {
                 'name_task',
                 'description',
-
                 'responsible',
                 'department',
                 'prioritie',
