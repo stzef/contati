@@ -99,12 +99,12 @@
 
                             {% for tarea in kanban1 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
-                                    <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
-                                    {{tarea.name_task }}
-                                    <a onclick="answer_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip> &nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> </a>
-
-                                    <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip><i class="fa fa-pencil" aria-hidden="true"></i> </a>
-
+                                    <!-- <div id="context1"> -->
+                                      <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
+                                      {{tarea.name_task }}
+                                      <a onclick="answer_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip> &nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> </a>
+                                      <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip><i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                    <!-- </div> -->
                                 </div>
                             {% endfor %}
                             </div>
@@ -114,7 +114,9 @@
                             {% for tarea in kanban2 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
                                     <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
-                                    {{tarea.name_task }} <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                    {{tarea.name_task }}
+                                    <a onclick="answer_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip> &nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> </a>
+                                    <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip><i class="fa fa-pencil" aria-hidden="true"></i> </a>
                                 </div>
                             {% endfor %}
                           </div>
@@ -124,7 +126,9 @@
                             {% for tarea in kanban3 %}
                                 <div type="text" name="pintar" id="{{tarea.id}}" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" ondragend="end(event)" style="background-color: #{{ tarea.activity.project.color.hexadecimal }}" >
                                     <img class="avatar border-gray" src="{{ user.contributors.photo }}" width="7%" height="7% " alt="foto">
-                                    {{tarea.name_task }} <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                    {{tarea.name_task }}
+                                    <a onclick="answer_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip> &nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> </a>
+                                    <a onclick="edit_table({{tarea.id}})" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip><i class="fa fa-pencil" aria-hidden="true"></i> </a>
                                 </div>
                             {% endfor %}
                           </div>
@@ -202,7 +206,7 @@
 
     <script type="text/javascript">
 
-        $('#1').contextMenu('myMenu1', {
+        $('#context1').contextMenu('myMenu1', {
           bindings: {
 
             'Abrir': function(t) {
@@ -210,7 +214,7 @@
             },
 
             'Editar': function(t) {
-              alert('Trigger was '+t.id+'\nAction was Email');
+              edit_table(t);
             },
 
             'Mover': function(t) {

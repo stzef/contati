@@ -1,43 +1,74 @@
-<div class="col-lg-6 col-sm-6">
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Reporte</title>
+        <meta http-equiv = "Content-Type" content = "text/html; charset = iso-8859-1" />
+        <style >
+        @page {
 
-  <h4 class="title">Horas por proyecto</h4>
+             margin: 0px;
+             padding: 15px;
+         }
+         .text {
+             text-align: left;
+             font-size: 14px;
+              padding: 5px;
+              width: 200px;
+         }
+         .titulo{
+             text-align: center;
+             font-style: italic;
+             font-size: 14px;
+              padding: 5px;
+         }
+         .logo{
+             width: 20px;
+         }
+         .di {
+           float: right;
+           width: 200px;
+         }
+         table {
+             font-family: Verdana;
+             width: 200px;
+         }
+         td {
+           padding: 3px;
+         }
+        </style>
+    </head>
+    <body>
 
-    <div class="col-lg-6 col-sm-6">
-        <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped">
-
-            <thead>
-                <tr>
-                    <th align="left">PROYECTOS</th>
-                    <th align="left">Horas</th>
-                </tr>
-            </thead>
-            <tbody>{% for p in project %}
-                <tr>
-                    <td>{{ p }}</td>
-                    <td>{{ lista.1 }}</td>
-
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-    <div class="col-lg-6 col-sm-6">
-        <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>Horas</th>
-                </tr>
-            </thead>
-            <tbody>{% for l in lista %}
-                <tr>
-                    <td>{{ l }}</td>
-                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-  </div>
+<h4 class="titulo" >Horas por proyecto</h4>
+<div class="di">
+  <table border="0.2px" >
+      <thead>
+          <tr>
+              <th class="text" align="center">PROYECTOS</th>
+          </tr>
+      </thead>
+      <tbody>{% for p in project %}
+          <tr>
+              <td>{{ p }}</td>
+              {% endfor %}
+          </tr>
+      </tbody>
+  </table>
+</div>
+<div class="di">
+  <table border="0.2px" >
+      <thead>
+          <tr>
+              <th class="text" align="center" >Horas</th>
+          </tr>
+      </thead>
+      <tbody>{% for l in lista %}
+          <tr>
+              <td align="center">{{ l }}</td>
+              {% endfor %}
+          </tr>
+      </tbody>
+  </table>
+</div>
+</body>
+</html>
