@@ -95,21 +95,25 @@ def list_config(request):
 
 def list_reportes(request):
 
-	#import pdb; pdb.set_trace()
-	totalh=0
-	user = User.objects.get(id = request.user.id )
-	project = Projects.objects.all()
-	suma = 0
-	lista = []
-	for p in project:
-		activi =  Activities.objects.filter(project=p.id)
-		tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+	import pdb; pdb.set_trace()
+	if request.method == 'POST':
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		project = Projects.objects.all()
 		suma = 0
-		for t in tareas:
-			suma = suma+t.total_time
-		lista.append(suma)
-	print("-----------",lista)
-	return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+		lista = []
+		for p in project:
+			activi =  Activities.objects.filter(project=p.id)
+			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			lista.append(suma)
+		print("-----------",lista)
+		return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 
 
