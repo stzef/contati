@@ -95,7 +95,7 @@ def list_config(request):
 
 def list_reportes(request):
 
-	import pdb; pdb.set_trace()
+	#import pdb; pdb.set_trace()
 	if request.method == 'POST':
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
