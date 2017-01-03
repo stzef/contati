@@ -94,9 +94,8 @@ def list_config(request):
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
 def list_reportes(request):
-
-	#import pdb; pdb.set_trace()
 	if request.method == 'POST':
+		import pdb; pdb.set_trace()
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
 		totalh=0
@@ -106,7 +105,7 @@ def list_reportes(request):
 		lista = []
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
-			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
