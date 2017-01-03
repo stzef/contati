@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from.models import *
+from .models import *
 from tasks.models import *
 from people.models import *
 from forms import ActivitiesForm, ProjectsForm
@@ -115,7 +115,26 @@ def list_reportes(request):
 		return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
+def list_clientes(request):
 
+	#import pdb; pdb.set_trace()
+	if request.method == 'POST':
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		client = Customers.objects.all()
+		suma = 0
+		lista = []
+		for p in client:
+			tareas = Tasks.objects.filter(responsible_id=user.id, customers__in = p.id)
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			lista.append(suma)
+		print("-----------",lista)
+		return render_to_response('../templates/reporte-cliente.html', {'client':client, 'lista':lista}, context_instance=RequestContext(request))
+	return render_to_response('../templates/reporte-cliente.html', context_instance=RequestContext(request))
 
 
 def salidaPdf(f):
