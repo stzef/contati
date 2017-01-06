@@ -45,8 +45,13 @@ def tareas_index(request, pk):
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
     actividades = json.loads(serializers.serialize('json', actividades))
+    tarea2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
+    tarea3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
+    tarea2 = json.loads(serializers.serialize('json', tarea2))
+    tarea3 = json.loads(serializers.serialize('json', tarea3))
 
-    return JsonResponse( {"tareas":tareas, "actividades":actividades} )
+    
+    return JsonResponse( {"tareas":tareas, "actividades":actividades, "tarea2":tarea2, "tarea3":tarea3} )
 
 @login_required(login_url="/login")
 def view_board(request):
