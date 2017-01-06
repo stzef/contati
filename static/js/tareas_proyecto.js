@@ -28,10 +28,10 @@ function seleccionTareas(seleccion) {
           })
        	$("#id_tabla").html(html)
 
-        var html = ""
-        var template = ""
+        var html3 = ""
+        var template3 = ""
         data.tarea2.forEach(fields =>{
-          template =
+          template3 =
           '<div class="table-full-width">'+
           '<table class="table" id="tabla"><tbody><tr><td>'+
           '<label class="checkbox"><span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>'+
@@ -43,11 +43,11 @@ function seleccionTareas(seleccion) {
           '</td></tr></div></tbody></table>'+
           '</div>'
 
-          template = template.replace("::nombreTareas::",fields.fields.name_task)
+          template3 = template3.replace("::nombreTareas::",fields.fields.name_task)
           .replace(/\:\:idTarea\:\:/g,fields.pk)
-          html += template
+          html3 += template3
           })
-        $("#tabla").html(html)
+        $("#tabla").html(html3)
 
         var html1 = ""
         var template1 = ""
