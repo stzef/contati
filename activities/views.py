@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect, RequestContext, get_object_or_404
-from.models import *
+from .models import *
 from tasks.models import *
 from people.models import *
 from forms import ActivitiesForm, ProjectsForm
@@ -98,9 +98,10 @@ def list_config(request):
 @csrf_exempt
 def list_reportes(request):
 	if request.method == 'POST':
-		import pdb; pdb.set_trace()
-		desde = request.POST.get('inicio')
-		hasta = request.POST.get('fin')
+
+		# import pdb; pdb.set_trace()
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
 		totalh=0
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
@@ -121,10 +122,28 @@ def list_reportes(request):
 
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
-
-
+def list_clientes(request):
+	# import pdb; pdb.set_trace()
+	if request.method == 'POST':
+		ini = request.POST['inicio']
+		fi = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		client = Customers.objects.filter()
+		suma = 0
+		lista = []
+		for c in client:
+			tareas = Tasks.objects.filter(responsible_id=user.id, Customers_id = c.id , date_time__range = (ini, fi))
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			lista.append(suma)
+		print("-----------",lista)
+		return render_to_response('../templates/reporte-cliente.html', {'client':client, 'lista':lista}, context_instance=RequestContext(request))
+	return render_to_response('../templates/reporte-cliente.html', context_instance=RequestContext(request))
 
 def salidaPdf(f):
+
     def funcion(*args, **kwargs):
         html = f(*args, **kwargs)
         result = StringIO() #creamos una instancia del un objeto StringIO para

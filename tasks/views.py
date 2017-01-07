@@ -15,6 +15,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+# <-------------------- Index ---------------------->
 @login_required(login_url="/login")
 def view_index(request):
     p = 0
@@ -48,6 +49,7 @@ def tareas_index(request, pk):
 
     return JsonResponse( {"tareas":tareas, "actividades":actividades} )
 
+# <----------------------- Tablero Kanban ----------------------------------------->
 @login_required(login_url="/login")
 def view_board(request):
     error = False
@@ -60,6 +62,7 @@ def view_board(request):
     tare = Tasks.objects.filter()
     return render_to_response('../templates/board.html', { 'tare':tare, 'user':user, 'project':project, 'form':form, 'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3,'error':error}, context_instance=RequestContext(request) )
 
+# Funciones board
 @login_required(login_url="/login")
 def view_task_board(request, pk):
     actividades =  Activities.objects.filter(project=pk)
@@ -98,12 +101,10 @@ def tasks_project(request, pk):
 
 	return JsonResponse( {"por_hacer":kanban1,"en_proceso":kanban2,"terminado":kanban3 } )
 
+# Función Guardar
 @csrf_exempt
 def save_task(request):
-    #import pdb; pdb.set_trace()
     if request.method == "POST":
-        #data = request.POST
-        #data = json.loads(serializers.serialize('json', data))
     	tas = Tasks()
     	tas.name_task = request.POST['name_task']
     	tas.responsible_id = request.POST['responsible']
@@ -113,14 +114,13 @@ def save_task(request):
     	tas.prioritie_id = request.POST['prioritie']
     	tas.department_id = request.POST.get('department')
     	tas.Customers_id = request.POST.get('customers')
-
     	tas.description = request.POST['description']
     	tas.estimated_time = request.POST['estimated_time']
     	tas.total_time = request.POST['total_time']
-
     	tas.save()
         return redirect('board')
 
+# Función Editar Estados Kanban
 @csrf_exempt
 def edit_states_kanban(request, pk):
 	states_kanban = request.POST.get('pos')
@@ -130,6 +130,7 @@ def edit_states_kanban(request, pk):
 	    tas.save()
 	    return redirect('board', pk=tas.pk)
 
+# Función Editar
 @csrf_exempt
 def edit_board(request, pk):
 	tas = Tasks.objects.filter(pk=pk)
@@ -147,6 +148,7 @@ def edit_board(request, pk):
 		tas = json.loads(serializers.serialize('json', tas))[0]
 		return JsonResponse({ 'tas':tas })
 
+# Función agregar comentarios
 @login_required(login_url="/")
 def add_comment_table(request, pk):
     tarea = get_object_or_404(Tasks, pk=pk)
@@ -160,7 +162,6 @@ def add_comment_table(request, pk):
         return redirect('comment', pk=tarea.pk)
 
     return render_to_response('../templates/answer_board.html', { 'tarea':tar }, context_instance=RequestContext(request) )
-
 
 @login_required(login_url="/login")
 def view_boardx4(request):
@@ -181,7 +182,6 @@ def view_boardx4(request):
 		tas.prioritie_id = request.POST['prioritie']
 		tas.department_id = request.POST.get('department')
 		tas.Customers_id = request.POST.get('customers')
-
 		tas.description = request.POST['description']
 		tas.estimated_time = request.POST['estimated_time']
 		tas.total_time = request.POST['total_time']
@@ -209,7 +209,6 @@ def view_boardx5(request):
 		tas.prioritie_id = request.POST['prioritie']
 		tas.department_id = request.POST.get('department')
 		tas.Customers_id = request.POST.get('customers')
-
 		tas.description = request.POST['description']
 		tas.estimated_time = request.POST['estimated_time']
 		tas.total_time = request.POST['total_time']
@@ -218,12 +217,12 @@ def view_boardx5(request):
 		return redirect('board')
 	return render_to_response('../templates/boardx5.html', { 'form': form,'kanban1':kanban1, 'kanban2':kanban2, 'kanban3':kanban3, 'project':project, 'us2': us }, context_instance=RequestContext(request) )
 
- #Listar Estados
+# <------------------------ Tareas ------------------------>
+ #Listar Tareas
 @login_required(login_url="/login")
 def list_tasks(request):
     selected_option = request.POST.get('row.proje', None)
     project = Projects.objects.filter()
-
     user = User.objects.get(id = request.user.id )
     us = Contributors.objects.filter(user=user)
     hecho = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=3)
@@ -231,27 +230,24 @@ def list_tasks(request):
     tarea3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
     return render_to_response('../templates/list_tasks.html', {'tarea1': hecho, 'tarea2': tarea2, 'tarea3': tarea3, 'project': project}, context_instance=RequestContext(request))
 
-from django.core import serializers
+# Función Crear Tarea
 class createTasks(CreateView):
+    model = Tasks # Importa el modelo
+    form_class = TasksForm # Importa el form del modelo
+    template_name = '../templates/add_tasks.html' # Importa el template
+    success_url=reverse_lazy('list_tasks') # como se va a retornar
 
-    model = Tasks
-    form_class = TasksForm
-    template_name = '../templates/add_tasks.html'
-    success_url=reverse_lazy('list_tasks')
-
-    def get_context_data(self, **kwargs):
-		context = super(createTasks, self).get_context_data(**kwargs)
-		context['project'] = Projects.objects.all()
-
+    def get_context_data(self, **kwargs): # Función para agregar variables Externas
+		context = super(createTasks, self).get_context_data(**kwargs) # Llama a la clase principal, siempre debe ir
+		context['project'] = Projects.objects.all() # La variable 'project' toma los valores de Projects
 		return context
 
-    def get_form_kwargs(self, **kwargs):
-        form_kwargs = super(createTasks, self).get_form_kwargs(**kwargs)
+    def get_form_kwargs(self, **kwargs): # Función para agregar variables Externas al form
+        form_kwargs = super(createTasks, self).get_form_kwargs(**kwargs) # Llama a la clase principal, siempre debe ir
         form_kwargs["user"] = self.request.user
         return form_kwargs
 
-
-
+# Función Editar
 class editTasks(UpdateView):
 	model = Tasks
 	form_class = TasksForm
@@ -268,6 +264,7 @@ class editTasks(UpdateView):
 		context['project'] = Projects.objects.all()
 		return context
 
+# Función Eliminar
 class deleteTasks(DeleteView):
 	model = Tasks
 	form_class = TasksForm
@@ -282,7 +279,6 @@ class deleteTasks(DeleteView):
 # <----------- View States ------------------>
 
 #Agregar un nuevo Estado
-
 @login_required(login_url="/login")
 def add_states(request):
 	if request.method == "POST":
