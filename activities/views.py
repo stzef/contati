@@ -17,6 +17,8 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from xhtml2pdf import pisa
 import xhtml2pdf.pisa as pisa
 from contati.settings import STATICFILES_DIRS
+from django.http import JsonResponse
+import json
 
 def add_projects(request):
 	project = Projects.objects.filter()
@@ -93,25 +95,30 @@ def list_config(request):
 	project = Projects.objects.filter()
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
+@csrf_exempt
 def list_reportes(request):
 	if request.method == 'POST':
 		import pdb; pdb.set_trace()
-		desde = request.POST['inicio']
-		hasta = request.POST['fin']
+		desde = request.POST.get('inicio')
+		hasta = request.POST.get('fin')
 		totalh=0
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
 		suma = 0
-		lista = []
+		lista = {}
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
-			lista.append(suma)
+			lista[p.project]=suma
 		print("-----------",lista)
-		return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+		#project = json.loads(serializers.serialize('json', project))
+		#lista = json.loads(serializers.serialize('json', lista))[0]
+		lista = json.dumps(lista)
+		return JsonResponse({ 'lista':lista })
+
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 

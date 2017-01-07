@@ -1,19 +1,20 @@
-function imprime_pdf(){
-  debugger
-  var doc = new jsPDF();
-  var elementHandler = {
-    '#content': function (element, renderer) {
-      return true;
-    }
-  };
-  var source = window.document.getElementsByTagName("body")[0];
-  doc.fromHTML(
-      source,
-      15,
-      15,
-      {
-        'width': 180,'elementHandlers': elementHandler
-      });
+function pdf(){
+      debugger
+   	 	var doc = new jsPDF();
+   	 	var imgHeight=140 ;
+	    var imgWidth=140 ;
+	    var positionY=20;
+	    var positionX=20;
 
-  doc.output("dataurlnewwindow");
-  };
+   	 	doc.setFontSize(15);
+   	    doc.text(15, 15, "Hola JSPDF y html2canvas");
+
+   	 	html2canvas($("#content"), {
+            onrendered: function(canvas) {
+				var img = canvas.toDataURL("image/jpeg");
+				doc.addImage(img, 'JPEG', positionX ,  positionY, 140, imgWidth);
+				doc.save('MyPdf.pdf');
+				}
+        });
+
+   	 	};
