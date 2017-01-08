@@ -106,19 +106,25 @@ def list_reportes(request):
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
 		suma = 0
-		lista = {}
+		lista = []
+		proye = []
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
+			pro = p.project
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
-			lista[p.project]=suma
+			lista.append(suma)
+			proye.append(pro)
 		print("-----------",lista)
+		print("-----------",proye)
 		#project = json.loads(serializers.serialize('json', project))
 		#lista = json.loads(serializers.serialize('json', lista))[0]
 		lista = json.dumps(lista)
-		return JsonResponse({ 'lista':lista })
+		proye = json.dumps(proye)
+		return JsonResponse({ 'lista':lista, 'proye':proye })
+		#return render_to_response('../templates/reportes.html',{'proye':proye, 'lista':lista}, context_instance=RequestContext(request))
 
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
@@ -153,6 +159,7 @@ def salidaPdf(f):
 
 @salidaPdf
 def reporte(request):
+	import pdb; pdb.set_trace()
 	user = User.objects.get(id = request.user.id )
 	project = Projects.objects.all()
 	suma = 0

@@ -8,9 +8,29 @@ function rango_fecha(inicio, fin){
           url: '/reportes/',
           data : { inicio : ini, fin : fi },
           success: function(data) {
-              console.log(data);
+              var lista = data.lista
+              lis= JSON.parse(lista);
+              var proy = data.proye
+              pro = JSON.parse(proy);
+              console.log("jsonnnnnnproyecto",pro);
+              var html = ""
+              var template = ""
+                    for (var i = 0; i < lis.length; i++) {
+                      template =
+                      '<div class="table-full-width">'+
+                      '<table class="table" id="id_tabla"><tbody><tr>'+
+                      '<td>::HORAS::</td>'+
+                      '<td>::PROYECTO::</td>'+
+                      '</td></tr></div></tbody></table>'+
+                      '</div>'
+                      template = template.replace("::HORAS::",pro[i]).replace("::PROYECTO::",lis[i])
+                      //.replace(/\:\:idTarea\:\:/g,fields.pk)
+                      html += template
+                    $("#tabla_repo").html(html)
+                    }
+              }
           }
-        });
+        );
 
 }
 
