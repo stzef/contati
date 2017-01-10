@@ -10,7 +10,7 @@
 
                      <h3>TIEMPO ESTIMADO
                       <small><a href="{% url 'reporte' %}" target="_blank" style="color: #fb404b;"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> pdf</a></small>
-                      <button class="btn btn-primary" type="submit">pdf</button>
+                      <button  type="submit"  class="fa fa-file-pdf-o">pdf</button>
                      </h3>
                      <a class="btn btn-primary" href="{% url 'list_clientes' %}" >clientes</a>
             </div>
@@ -25,13 +25,14 @@
                         <h5>Hasta:</h5>
                         <input class="form-control" type="date" id="fin" name="fin"  step="1" min="1980-01-01" max="2030-12-31" value="2016-12-01">
                     </div>
+                    </form>
                     <div class="col-lg-6 col-sm-6">
                       <h5>&nbsp;&nbsp;&nbsp;</h5>
                       <button class="btn btn-primary"  onclick="rango_fecha(inicio.value, fin.value)" type="submit">Buscar</button>
                     </div>
                   </div>
                 </div>
-                </form>
+
             <div id="panel" class="panel">
               <div class="panel-body">
     							<div class="col-lg-6 col-sm-6">
@@ -71,7 +72,6 @@
 {% block javascript %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="{% static 'js/charts.loader.js' %}"></script>
-<script type="text/javascript" src="../static/js/barra.js"></script>
 <script type="text/javascript" src="../static/js/reportes.js"></script>
 <script type="text/javascript" src="../static/js/pdf.js"></script>
 <script type="text/javascript" src="../static/js/jspdf.js"></script>

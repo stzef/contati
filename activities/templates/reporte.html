@@ -43,24 +43,18 @@
       <thead class="di">
           <tr>
               <th class="text di" align="center">PROYECTOS</th>
-              <th style="text-align: center;">HORAS HECHAS</th>
+              <th class="text di" align="center">HORAS HECHAS</th>
           </tr>
-      </thead>    
-  </table>
-</div>
-<div class="di">
-  <table border="0.2px" >
-      <thead>
-          <tr>
-              <th class="text" align="center" >Horas</th>
-          </tr>
-      </thead>
-      <tbody>{% for l in lista %}
-          <tr>
-              <td align="center">{{ l }}</td>
+          <tbody>
+            {% for p in data %}
+              <tr>
+                  <td align="center">{{ p.0 }}</td>
+                  <td align="center">{{ p.1 }}</td>
+
+              </tr>
               {% endfor %}
-          </tr>
-      </tbody>
+          </tbody>
+      </thead>
   </table>
 </div>
 </body>
