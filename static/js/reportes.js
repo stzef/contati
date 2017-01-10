@@ -1,6 +1,6 @@
 function rango_fecha(inicio, fin){
   var ini = inicio;
-  var fi = fin;
+  var fi = fin;  
   console.log(ini);
   console.log(fi);
       $.ajax({
@@ -12,7 +12,6 @@ function rango_fecha(inicio, fin){
               lis= JSON.parse(lista);
               var proy = data.proye
               pro = JSON.parse(proy);
-              console.log("jsonnnnnnproyecto",pro);
               var html = ""
               var template = ""
                     for (var i = 0; i < lis.length; i++) {
@@ -27,6 +26,7 @@ function rango_fecha(inicio, fin){
                       //.replace(/\:\:idTarea\:\:/g,fields.pk)
                       html += template
                     $("#tabla_repo").html(html)
+
                     }
               }
           }
@@ -34,19 +34,38 @@ function rango_fecha(inicio, fin){
 
 }
 
-function edit_Kanban(des, pk) {
+google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+  debugger
+  var proyec = document.getElementById("id_proye")
+  console.log(proyec);
+  var lista = document.getElementById("id_lista")
+  console.log(lista);
+  encabezado =  ["Element", "Horas por mes", { role: "style" } ]
+  lista = [
 
-  states_kanban = des;
-  id = pk;
-  console.log("states_kanban"+states_kanban);
-  console.log("id"+id);
-  //document.location.href = url;
-        $.ajax({
-            type: 'POST',
-            url: 'board/'+pk+'/kanban/',
-            data : { pos : des },
-            success: function() {
 
-            }
-          });
+  ]
+  var data = google.visualization.arrayToDataTable(
+    lista
+  );
+
+  var view = new google.visualization.DataView(data);
+  view.setColumns([0, 1,
+                   { calc: "stringify",
+                     sourceColumn: 1,
+                     type: "string",
+                     role: "annotation" },
+                   2]);
+
+  var options = {
+    title: "Informe de gestion",
+    width: 400,
+    height: 300,
+    bar: {groupWidth: "95%"},
+    legend: { position: "none" },
+  };
+  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+  chart.draw(view, options);
 }

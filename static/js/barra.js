@@ -5,13 +5,14 @@
    console.log(proyec);
    var lista = document.getElementById("id_lista")
    console.log(lista);
-   var data = google.visualization.arrayToDataTable([
-     ["Element", "Horas por mes", { role: "style" } ],
-     ["Copper", 8, "#3542FF"],
-     ["Silver", 10.49, "silver"],
-     ["Gold", 19.30, "gold"],
-     ["Platinum", 21.45, "color: #e5e4e2"]
-   ]);
+   encabezado =  ["Element", "Horas por mes", { role: "style" } ]
+   lista = [
+
+
+   ]
+   var data = google.visualization.arrayToDataTable(
+     lista
+   );
 
    var view = new google.visualization.DataView(data);
    view.setColumns([0, 1,
