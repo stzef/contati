@@ -174,8 +174,13 @@ function actividad1(pro) {
          data.por_hacer.forEach(task => {
          	template = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
          	    '<img class="avatar border-gray" src="/media/::fotoImagen:: " width="7%" height="7%  alt="foto"> ' +
-         	    '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>' +
          	    '::descripcionTarea::'+
+              '<a onclick="answer_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip>'+
+              '&nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> '+
+              '</a>'+
+              '<a onclick="edit_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip>'+
+              '<i class="fa fa-pencil" aria-hidden="true"></i> '+
+              '</a>'+
          	'</div>'
 
          	template = template.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
@@ -187,8 +192,13 @@ function actividad1(pro) {
          data.en_proceso.forEach(task => {
            template1 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)" style="background-color: #::hexadecimal::">'+
                '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto"> '+
-               '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '::descripcionTarea::'+
+               '<a onclick="answer_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip>'+
+               '&nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> '+
+               '</a>'+
+               '<a onclick="edit_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip>'+
+               '<i class="fa fa-pencil" aria-hidden="true"></i> '+
+               '</a>'+
            '</div>'
 
            template1 = template1.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)
@@ -200,8 +210,13 @@ function actividad1(pro) {
          data.terminado.forEach(task => {
            template2 = '<div type="text" name="pintar" id="::idTareas::" class="formasCss" draggable="true" ondragstart="star(event)" ondragend="end(event)"  style="background-color: #::hexadecimal::">'+
                '<img class="avatar border-gray" src="/media/::fotoImagen::" width="7%" height="7% alt="foto"> '+
-               '<a class="pull-right" data-toggle="modal" href="#MyModalEdit"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                '::descripcionTarea::'+
+               '<a onclick="answer_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalAnswer" title="respuesta" data-tooltip>'+
+               '&nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i> '+
+               '</a>'+
+               '<a onclick="edit_table(::idTareas::)" class="pull-right" data-toggle="modal" href="#" data-target="#MyModalEdit" title="edit tarea" data-tooltip>'+
+               '<i class="fa fa-pencil" aria-hidden="true"></i> '+
+               '</a>'+
            '</div>'
 
            template2 = template2.replace("::idTareas::",task.pk).replace("::descripcionTarea::",task.fields.name_task).replace("::fotoImagen::",avatar).replace("::hexadecimal::",color)

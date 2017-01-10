@@ -12,10 +12,7 @@ function seleccionTareas(seleccion) {
         data.tareas.forEach(fields =>{
         	template =
           '<div class="table-full-width">'+
-          '<table class="table" id="id_tabla"><tbody><tr><td>'+
-          '<label class="checkbox"><span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>'+
-          '<input type="checkbox" value="" data-toggle="checkbox"><label>'+
-          '</td>'+
+          '<table class="table" id="id_tabla"><tbody><tr>'+
           '<td>::nombreTareas::</td><td class="td-actions text-right">'+
           '<a href="/tasks/::idTarea::/edit/" class="btn btn-info btn-simple btn-xs"> <i class="fa fa-edit"></i></a>'+
           '<a href="/tasks/::idTarea::/delete/" class="btn btn-danger btn-simple btn-xs"> <i class="fa fa-times"></i></a>'+
@@ -54,7 +51,7 @@ function seleccionTareas(seleccion) {
         var template = '<table class="table table-bordered table-hover table-striped"><thead><th>LISTA DE TAREAS</th><th>FUNCIONES</th><th>HECHO</th></thead>'
         data.tarea3.forEach(fields =>{
 
-          template1 = 
+          template1 =
           '<td>::nombreTarea::</td>'+
           '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
           '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
@@ -62,7 +59,7 @@ function seleccionTareas(seleccion) {
           '<td>'+'<p class="text-center" style="font-size: 21px;"> <i class="fa fa-check" aria-hidden="true"></i> </p></td>'+
           '</table>'+
           '</tr>'+'</tbody>'
-                 
+
 
           template1 = template1.replace("::nombreTarea::",fields.fields.name_task)
           .replace(/\:\:idTareas\:\:/g,fields.pk)
@@ -76,14 +73,14 @@ function seleccionTareas(seleccion) {
         var template2 = ""
         var template = '<table class="table table-bordered table-hover table-striped"><thead><th>LISTA DE TAREAS</th><th>FUNCIONES</th></thead>'
         data.actividades.forEach(fields =>{
-          template2 = 
+          template2 =
           '<tr>'+
           '<td>::nombreactividad::</td>'+
           '<td><a class="btn btn-primary" href="/tasks/::idTareas::/edit/">Editar</a>'+
           '<a class="btn btn-danger" href="/tasks/::idTareas::/delete/">Borrar</a>'+
           '</tr>'+
           '</table>'
-             
+
 
           template2 = template2.replace("::nombreactividad::",fields.fields.activity)
           .replace(/\:\:idTareas\:\:/g,fields.pk)
@@ -127,10 +124,7 @@ function seleccionresponsable(seleccion) {
           })
         $("#users").html(html)
 
-    
+
 }
 });
-};  
-
-
-
+};

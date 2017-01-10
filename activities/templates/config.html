@@ -12,64 +12,56 @@
 <div class="panel">
       <div class="panel-body">
             <div class="table-responsive">
-      
-                  
+
+
             <div class="row">
 
                   <div class="col-md-6">
-                  <i class="pe-7s-note fa-2x"></i>                  
-                  <a class="btn btn-primary"  href="{% url 'list_activities' %}">Actividades</a>
+                  <a href="{% url 'list_activities' %}"><i class="pe-7s-note fa-2x"></i>Actividades</a>
+                  <hr />
                   </div>
-                  
 
                   <div class="col-md-6">
-                   <i class="pe-7s-folder fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_projects' %}">Proyecto</a>
+                   <a href="{% url 'list_projects' %}"><i class="pe-7s-folder fa-2x"></i>Proyecto</a>
+                   <hr />
                   </div>
-                  
 
                   <div class="col-md-6">
-                   <i class="pe-7s-check fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_priorities' %}">Prioridades</a>
+                   <a href="{% url 'list_priorities' %}"> <i class="pe-7s-check fa-2x"></i>Prioridades</a>
+                   <hr />
                   </div>
-                  
-                  
+
                   <div class="col-md-6">
-                   <i class="pe-7s-ticket fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_states' %}">Estados </a>
+                   <a href="{% url 'list_states' %}"><i class="pe-7s-ticket fa-2x"></i> Estados </a>
+                   <hr />
                   </div>
-                  
+
                   <div class="col-md-6">
-                   <i class="pe-7s-global fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_departments'%}">Departamentos </a>
+                   <a href="{% url 'list_departments'%}"><i class="pe-7s-global fa-2x"></i>Departamentos </a>
+                   <hr />
                   </div>
-                  
-                  
-                 
+
                   <div class="col-md-6">
-                   <i class="pe-7s-notebook fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_customers' %}">Clientes</a>
+                   <a href="{% url 'list_customers' %}"><i class="pe-7s-notebook fa-2x"></i>Clientes</a>
+                   <hr />
                   </div>
-                  
 
                    <div class="col-md-6">
-                   <i class="pe-7s-ticket fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_states_kanban' %}">Estados Kanban </a>
+                   <a href="{% url 'list_states_kanban' %}"><i class="pe-7s-ticket fa-2x"></i>Estados Kanban </a>
+                   <hr />
                   </div>
-                                    
-                  
+
                   <div class="col-md-6">
-                   <i class="pe-7s-paint fa-2x"></i>
-                   <a class="btn btn-primary"  href="{% url 'list_color' %}">Color </a>
+                   <a href="{% url 'list_color' %}"><i class="pe-7s-paint fa-2x"></i>Color </a>
+                   <hr />
                   </div>
-                  
-            </div>  
 
             </div>
-      </div>        
+
+            </div>
+      </div>
 </div>
 
-<a href="https://mail.google.com/mail/#inbox">Gmail</a> 
-</div>      
+</div>
 
 {% endblock %}
