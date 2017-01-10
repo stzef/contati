@@ -159,8 +159,8 @@ def salidaPdf(f):
 
 @salidaPdf
 def reporte(request):
-    import pdb; pdb.set_trace()
-	if request.method == 'POST':	
+	if request.method == 'POST':
+		import pdb; pdb.set_trace()
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
 		totalh=0
