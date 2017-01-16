@@ -48,12 +48,13 @@ function edit_Kanban(des, pk) {
   console.log("states_kanban"+states_kanban);
   console.log("id"+id);
   //document.location.href = url;
+  debugger
         $.ajax({
             type: 'POST',
             url: 'board/'+pk+'/kanban/',
             data : { pos : des },
             success: function() {
-
+              window.location = 'edit_board_task.html'
             }
           });
 }
@@ -148,7 +149,7 @@ function over(ev) {
 function drop(ev) {
   ev.preventDefault();
   var datos=ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById( datos));
+  ev.target.appendChild(document.getElementById( datos));E
   var destino = ev.target.id
   console.log("destino: "+destino);
   console.log("objeto: "+datos);
