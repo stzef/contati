@@ -60,7 +60,7 @@ function edit_Kanban(des, pk) {
 }
 
 function edit_table(tarea){
-  // debugger
+
   var pk = tarea;
   console.log(pk);
   // $('#edit_tablero').empty();
@@ -149,7 +149,7 @@ function over(ev) {
 function drop(ev) {
   ev.preventDefault();
   var datos=ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById( datos));E
+  ev.target.appendChild(document.getElementById( datos));
   var destino = ev.target.id
   console.log("destino: "+destino);
   console.log("objeto: "+datos);
