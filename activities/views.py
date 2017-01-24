@@ -172,7 +172,7 @@ def reporte_actividad(request):
 			for t in tareas:
 				suma = suma+t.total_time
 			horas.append([suma])
-		return render_to_response('../templates/reporte_actividad.html', {'activi': activi, 'project':project, 'horas':horas}, context_instance=RequestContext(request))
+		return render_to_response('../templates/reporte_actividad.html', {'activi': activi, 'proyectos':proyectos, 'horas':horas}, context_instance=RequestContext(request))
 		#return render_to_string('../templates/reporte_actividad.html', { 'data' : data})
 	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
 
