@@ -120,11 +120,6 @@ def list_reportes(request):
 			lista.append(suma)
 			proye.append(pro)
 			todos.append([pro,suma])
-			#todos.append([pro,suma,color])
-		print("-----------",lista)
-		print("-----------",proye)
-		#project = json.loads(serializers.serialize('json', project))
-		#lista = json.loads(serializers.serialize('json', lista))[0]
 		lista = json.dumps(lista)
 		proye = json.dumps(proye)
 		todos = json.dumps(todos)
@@ -134,7 +129,6 @@ def list_reportes(request):
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 def list_clientes(request):
-	# import pdb; pdb.set_trace()
 	if request.method == 'POST':
 		ini = request.POST['inicio']
 		fi = request.POST['fin']
@@ -152,6 +146,35 @@ def list_clientes(request):
 		print("-----------",lista)
 		return render_to_response('../templates/reporte-cliente.html', {'client':client, 'lista':lista}, context_instance=RequestContext(request))
 	return render_to_response('../templates/reporte-cliente.html', context_instance=RequestContext(request))
+
+@csrf_exempt
+def reporte_actividad(request):
+	#import pdb; pdb.set_trace()
+	if request.method == 'POST':
+		import pdb; pdb.set_trace()
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		project = Projects.objects.filter()
+		activi = Activities.objects.filter()
+		suma = 0
+		data = []
+		horas = []
+		proyectos = []
+		actividad = 0
+		for i in range(len(activi)):
+			actividad_id = activi[i].id
+			proyecto = activi[i].project
+			proyectos.append([proyecto])
+			tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			horas.append([suma])
+		return render_to_response('../templates/reporte_actividad.html', {'activi': activi, 'project':project, 'horas':horas}, context_instance=RequestContext(request))
+		#return render_to_string('../templates/reporte_actividad.html', { 'data' : data})
+	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
 
 def salidaPdf(f):
 
@@ -171,7 +194,7 @@ def reporte(request):
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
 		suma = 0
-		data = []		
+		data = []
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))

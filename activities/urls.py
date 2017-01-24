@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^config/$',login_required(views.list_config), name='list_config'),#GET
     url(r'^reportes/$',login_required(views.list_reportes), name='list_reportes'),#GEt
     url(r'^reportes/clientes/$',login_required(views.list_clientes), name='list_clientes'),#GEt
+    url(r'^reportes/actividad/$',login_required(views.reporte_actividad), name='reporte_actividad'),#GEt
     url(r'^salidaPdf/$',login_required(views.salidaPdf), name='salidaPdf'),#GEt
     url(r'^reporte/$',login_required(views.reporte), name='reporte'),#GEt
 ]
