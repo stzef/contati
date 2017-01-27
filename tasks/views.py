@@ -46,12 +46,12 @@ def tareas_index(request, pk):
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
-    actividades = json.loads(serializers.serialize('json', actividades))
     tarea3 = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id, states_kanban_id=2)
     tarea2 = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id, states_kanban_id=1)
-    tarea3 = json.loads(serializers.serialize('json', tarea2))
-    tarea2 = json.loads(serializers.serialize('json', tarea1))
+    tarea3 = json.loads(serializers.serialize('json', tarea3))
+    tarea2 = json.loads(serializers.serialize('json', tarea2))
 
+    actividades = json.loads(serializers.serialize('json', actividades))
     
     return JsonResponse( {"tareas":tareas, "actividades":actividades, "tarea2":tarea2, "tarea3":tarea3} )
 
