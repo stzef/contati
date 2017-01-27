@@ -1,17 +1,20 @@
  google.charts.load("current", {packages:["corechart"]});
  google.charts.setOnLoadCallback(drawChart);
- function drawChart() {
+ function drawChart()) {
    var proyec = document.getElementById("id_proye")
    console.log(proyec);
    var lista = document.getElementById("id_lista")
    console.log(lista);
    encabezado =  ["Element", "Horas por mes", { role: "style" } ]
-   lista = [
 
-
-   ]
    var data = google.visualization.arrayToDataTable(
-     lista
+     [
+          ['Element', 'Density', { role: 'style' }],
+          ['Copper', 8.94, '#b87333'],            // RGB value
+          ['Silver', 10.49, 'silver'],            // English color name
+          ['Gold', 19.30, 'gold'],
+          ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+       ]
    );
 
    var view = new google.visualization.DataView(data);

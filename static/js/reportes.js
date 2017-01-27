@@ -1,6 +1,7 @@
 function rango_fecha(inicio, fin){
+  debugger
   var ini = inicio;
-  var fi = fin;  
+  var fi = fin;
   console.log(ini);
   console.log(fi);
       $.ajax({
@@ -28,44 +29,78 @@ function rango_fecha(inicio, fin){
                     $("#tabla_repo").html(html)
 
                     }
+                    console.info(data)
+                    drawMaterial(eval(data.todos))
               }
           }
         );
 
 }
 
-google.charts.load("current", {packages:["corechart"]});
-google.charts.setOnLoadCallback(drawChart);
-function drawChart() {
+function rango_fecha_actividad(inicio, fin){
   debugger
-  var proyec = document.getElementById("id_proye")
-  console.log(proyec);
-  var lista = document.getElementById("id_lista")
-  console.log(lista);
-  encabezado =  ["Element", "Horas por mes", { role: "style" } ]
-  lista = [
+  var ini = inicio;
+  var fi = fin;
+  console.log(ini);
+  console.log(fi);
+      $.ajax({
+          type: 'POST',
+          url: '/reportes/actividad/',
+          data : { inicio : ini, fin : fi },
+          success: function(data) {
+              var lista = data.lista
+              lis= JSON.parse(lista);
+              var proy = data.proye
+              pro = JSON.parse(proy);
+              var html = ""
+              var template = ""
+                    for (var i = 0; i < lis.length; i++) {
+                      template =
+                      '<div class="table-full-width">'+
+                      '<table class="table" id="id_tabla"><tbody><tr>'+
+                      '<td>::HORAS::</td>'+
+                      '<td>::PROYECTO::</td>'+
+                      '</td></tr></div></tbody></table>'+
+                      '</div>'
+                      template = template.replace("::HORAS::",pro[i]).replace("::PROYECTO::",lis[i])
+                      //.replace(/\:\:idTarea\:\:/g,fields.pk)
+                      html += template
+                    $("#tabla_repo").html(html)
 
+                    }
+                    console.info(data)
+                    drawMaterial(eval(data.todos))
+              }
+          }
+        );
 
-  ]
-  var data = google.visualization.arrayToDataTable(
-    lista
-  );
-
-  var view = new google.visualization.DataView(data);
-  view.setColumns([0, 1,
-                   { calc: "stringify",
-                     sourceColumn: 1,
-                     type: "string",
-                     role: "annotation" },
-                   2]);
-
-  var options = {
-    title: "Informe de gestion",
-    width: 400,
-    height: 300,
-    bar: {groupWidth: "95%"},
-    legend: { position: "none" },
-  };
-  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
-  chart.draw(view, options);
 }
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+/*google.charts.setOnLoadCallback(drawMaterial);*/
+
+function drawMaterial(rows) {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Proyecto');
+      data.addColumn('number', 'Horas');
+
+      data.addRows(rows);
+
+      var options = {
+        title: 'Motivation and Energy Level Throughout the Day',
+        hAxis: {
+          title: 'Time of Day',
+          format: 'number',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Rating (scale of 1-10)'
+        }
+      };
+
+      var material = new google.charts.Bar(document.getElementById('barchart_values'));
+      material.draw(data, options);
+    }

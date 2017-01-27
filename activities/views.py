@@ -99,13 +99,15 @@ def list_config(request):
 def list_reportes(request):
 	if request.method == 'POST':
 
-		# import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
 		totalh=0
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
 		suma = 0
+		color = "527ED0"
+		todos = []
 		lista = []
 		proye = []
 		for p in project:
@@ -117,19 +119,16 @@ def list_reportes(request):
 				suma = suma+t.total_time
 			lista.append(suma)
 			proye.append(pro)
-		print("-----------",lista)
-		print("-----------",proye)
-		#project = json.loads(serializers.serialize('json', project))
-		#lista = json.loads(serializers.serialize('json', lista))[0]
+			todos.append([pro,suma])
 		lista = json.dumps(lista)
 		proye = json.dumps(proye)
-		return JsonResponse({ 'lista':lista, 'proye':proye })
+		todos = json.dumps(todos)
+		return JsonResponse({ 'lista':lista, 'proye':proye, 'todos':todos })
 		#return render_to_response('../templates/reportes.html',{'proye':proye, 'lista':lista}, context_instance=RequestContext(request))
 
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 def list_clientes(request):
-	# import pdb; pdb.set_trace()
 	if request.method == 'POST':
 		ini = request.POST['inicio']
 		fi = request.POST['fin']
@@ -148,6 +147,34 @@ def list_clientes(request):
 		return render_to_response('../templates/reporte-cliente.html', {'client':client, 'lista':lista}, context_instance=RequestContext(request))
 	return render_to_response('../templates/reporte-cliente.html', context_instance=RequestContext(request))
 
+@csrf_exempt
+def reporte_actividad(request):
+	#import pdb; pdb.set_trace()
+	if request.method == 'POST':
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		project = Projects.objects.filter()
+		activi = Activities.objects.filter()
+		suma = 0
+		data = []
+		horas = []
+		proyectos = []
+		actividad = 0
+		for i in range(len(activi)):
+			actividad_id = activi[i].id
+			proyecto = activi[i].project
+			proyectos.append([proyecto])
+			tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			horas.append([suma])
+		return render_to_response('../templates/reporte_actividad.html', {'activi': activi, 'proyectos':proyectos, 'horas':horas}, context_instance=RequestContext(request))
+		#return render_to_string('../templates/reporte_actividad.html', { 'data' : data})
+	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
+
 def salidaPdf(f):
 
     def funcion(*args, **kwargs):
@@ -160,15 +187,13 @@ def salidaPdf(f):
 @salidaPdf
 def reporte(request):
 	if request.method == 'POST':
-		import pdb; pdb.set_trace()
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
 		totalh=0
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.all()
 		suma = 0
-		lista = []
-		proye = []
+		data = []
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
@@ -176,30 +201,6 @@ def reporte(request):
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
-			lista.append(suma)
-			proye.append(pro)
-		print("-----------",lista)
-		print("-----------",proye)
-		#project = json.loads(serializers.serialize('json', project))
-		#lista = json.loads(serializers.serialize('json', lista))[0]
-		#lista = json.dumps(lista)
-		#proye = json.dumps(proye)
-		return JsonResponse({ 'lista':lista, 'proye':proye })
-		return render_to_response('../templates/reporte.html',{ 'lista':lista, 'proye':proye }, context_instance=RequestContext(request))
+			data.append([pro,suma])
 
-
-	#import pdb; pdb.set_trace()
-	#user = User.objects.get(id = request.user.id )
-	#project = Projects.objects.all()
-	#suma = 0
-	#indice = 0
-	#lista = []
-	#for p in project:
-	#	activi =  Activities.objects.filter(project=p.id)
-	#	tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
-	#	suma = 0
-	#	for t in tareas:
-	#		suma = suma+t.total_time
-	#	lista.append(suma)
-	#
-	return render_to_string('../templates/reporte.html', {'project':project, 'activi':activi, 'lista':lista, 'indice':indice})
+		return render_to_string('../templates/reporte.html', { 'data' : data})

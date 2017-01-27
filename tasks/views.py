@@ -41,7 +41,7 @@ def view_index(request):
 
 @csrf_exempt
 def tareas_index(request, pk):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
@@ -129,30 +129,31 @@ def save_task(request):
 # Función Editar Estados Kanban
 @csrf_exempt
 def edit_states_kanban(request, pk):
-	states_kanban = request.POST.get('pos')
-	tas = get_object_or_404(Tasks, pk=pk)
-	if request.method == "POST":
-	    tas.states_kanban_id = states_kanban
-	    tas.save()
-	    return redirect('board', pk=tas.pk)
+
+    states_kanban = request.POST.get('pos')
+    tas = get_object_or_404(Tasks, pk=pk)
+    if request.method == "POST":
+        #import pdb; pdb.set_trace()
+        tas.states_kanban_id = states_kanban
+        tas.save()
+        return render_to_response('../templates/edit_board_tasks.html', context_instance=RequestContext(request) )
 
 # Función Editar
 @csrf_exempt
 def edit_board(request, pk):
-	tas = Tasks.objects.filter(pk=pk)
-    # import pdb; pdb.set_trace()
-	if request.method == "POST":
-		form = TasksForm(request.POST, user=request.user.id, instance=tas)
-		if form.is_valid():
-			tas = form.save(commit=False)
-			tas.activity.project_id = project
-			tas.responsible_id = user
-			tas.save()
-			return redirect('board', pk=tas.pk)
-	else:
-		# form = TasksForm(user=request.user.id, instance=tas)
-		tas = json.loads(serializers.serialize('json', tas))[0]
-		return JsonResponse({ 'tas':tas })
+    tas = Tasks.objects.filter(pk=pk)
+    if request.method == "POST":
+    	form = TasksForm(request.POST, user=request.user.id, instance=tas)
+    	if form.is_valid():
+    		tas = form.save(commit=False)
+    		tas.activity.project_id = project
+    		tas.responsible_id = user
+    		tas.save()
+    		return redirect('board', pk=tas.pk)
+    else:
+    	# form = TasksForm(user=request.user.id, instance=tas)
+    	tas = json.loads(serializers.serialize('json', tas))[0]
+    	return JsonResponse({ 'tas':tas })
 
 # Función agregar comentarios
 @login_required(login_url="/")

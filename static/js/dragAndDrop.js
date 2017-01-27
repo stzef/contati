@@ -48,18 +48,21 @@ function edit_Kanban(des, pk) {
   console.log("states_kanban"+states_kanban);
   console.log("id"+id);
   //document.location.href = url;
+  debugger
         $.ajax({
             type: 'POST',
             url: 'board/'+pk+'/kanban/',
             data : { pos : des },
             success: function() {
+              //alert("bienbenido")
+              $("#MyModal").modal('show');
 
             }
           });
 }
 
 function edit_table(tarea){
-  // debugger
+
   var pk = tarea;
   console.log(pk);
   // $('#edit_tablero').empty();
@@ -92,20 +95,7 @@ function edit_table(tarea){
               des3 = des3.replace("::totalt::", totalt)
               $("#totaltime").html(des3)
 
-            //   var user = "<h1> user </h1>";
-            //     // recorremos cada usuario
-            //     $.forEach(data.tas.fields.responsible, function(key, value) {
-            //         user += "<h2>Detalles del usuario " + value['ID'] + "</h2>";
-            //         // recorremos los valores de cada usuario
-            //         $.forEach(value, function(userkey, uservalue) {
-            //             user += '<ul>';
-            //             user += '<li>' + userkey + ': ' + uservalue + "</li>";
-            //             user += '</ul>';
-            //         })
-            //     // Actualizamos el HTML del elemento con id="#respon"
-            //     $("#respon").html(user);
-            //
-            // })
+
           }
     })
 
