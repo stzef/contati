@@ -5,11 +5,11 @@
     <div id="content" class="">
         <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <form class="" action="{% url 'reporte' %}" method="POST">
+                <form class="" target="_blank" action="{% url 'reporte' %}" method="POST">
                     {% csrf_token %}
 
                      <h3>TIEMPO ESTIMADO
-                      <button  type="submit" target="_blank" class="fa fa-file-pdf-o">pdf</button>
+                      <button  type="submit"  class="fa fa-file-pdf-o">pdf</button>
                      </h3>
                      <a class="btn btn-primary" href="{% url 'list_clientes' %}" >Clientes</a>
                      <a class="btn btn-primary" href="{% url 'reporte_actividad' %}" >Actividades</a>
