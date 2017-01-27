@@ -15,6 +15,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+
 # <-------------------- Index ---------------------->
 @login_required(login_url="/login")
 def view_index(request):
@@ -40,16 +41,16 @@ def view_index(request):
 
 @csrf_exempt
 def tareas_index(request, pk):
-    #import pdb; pdb.set_trace()
+    import pdb; pdb.set_trace()
     user = User.objects.get(id = request.user.id )
     actividades =  Activities.objects.filter(project=pk)
     tareas = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id)
     tareas = json.loads(serializers.serialize('json', tareas))
     actividades = json.loads(serializers.serialize('json', actividades))
-    tarea2 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=2)
-    tarea3 = Tasks.objects.filter(responsible_id=user.id, states_kanban_id=1)
-    tarea2 = json.loads(serializers.serialize('json', tarea2))
-    tarea3 = json.loads(serializers.serialize('json', tarea3))
+    tarea3 = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id, states_kanban_id=2)
+    tarea2 = Tasks.objects.filter(activity__in = actividades, responsible_id=user.id, states_kanban_id=1)
+    tarea3 = json.loads(serializers.serialize('json', tarea2))
+    tarea2 = json.loads(serializers.serialize('json', tarea1))
 
     
     return JsonResponse( {"tareas":tareas, "actividades":actividades, "tarea2":tarea2, "tarea3":tarea3} )

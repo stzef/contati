@@ -17,6 +17,8 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from xhtml2pdf import pisa
 import xhtml2pdf.pisa as pisa
 from contati.settings import STATICFILES_DIRS
+from django.http import JsonResponse
+import json
 
 def add_projects(request):
 	project = Projects.objects.filter()
@@ -93,8 +95,10 @@ def list_config(request):
 	project = Projects.objects.filter()
 	return render_to_response('../templates/config.html', {'project': project}, context_instance=RequestContext(request))
 
+@csrf_exempt
 def list_reportes(request):
 	if request.method == 'POST':
+
 		# import pdb; pdb.set_trace()
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
@@ -103,15 +107,25 @@ def list_reportes(request):
 		project = Projects.objects.all()
 		suma = 0
 		lista = []
+		proye = []
 		for p in project:
 			activi =  Activities.objects.filter(project=p.id)
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
+			pro = p.project
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
 			lista.append(suma)
+			proye.append(pro)
 		print("-----------",lista)
-		return render_to_response('../templates/reportes.html', {'project':project, 'activi':activi, 'lista':lista}, context_instance=RequestContext(request))
+		print("-----------",proye)
+		#project = json.loads(serializers.serialize('json', project))
+		#lista = json.loads(serializers.serialize('json', lista))[0]
+		lista = json.dumps(lista)
+		proye = json.dumps(proye)
+		return JsonResponse({ 'lista':lista, 'proye':proye })
+		#return render_to_response('../templates/reportes.html',{'proye':proye, 'lista':lista}, context_instance=RequestContext(request))
+
 	return render_to_response('../templates/reportes.html', context_instance=RequestContext(request))
 
 def list_clientes(request):
@@ -145,16 +159,47 @@ def salidaPdf(f):
 
 @salidaPdf
 def reporte(request):
-	user = User.objects.get(id = request.user.id )
-	project = Projects.objects.all()
-	suma = 0
-	indice = 0
-	lista = []
-	for p in project:
-		activi =  Activities.objects.filter(project=p.id)
-		tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+	if request.method == 'POST':
+		import pdb; pdb.set_trace()
+		desde = request.POST['inicio']
+		hasta = request.POST['fin']
+		totalh=0
+		user = User.objects.get(id = request.user.id )
+		project = Projects.objects.all()
 		suma = 0
-		for t in tareas:
-			suma = suma+t.total_time
-		lista.append(suma)
+		lista = []
+		proye = []
+		for p in project:
+			activi =  Activities.objects.filter(project=p.id)
+			tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi, date_time__range = (desde, hasta))
+			pro = p.project
+			suma = 0
+			for t in tareas:
+				suma = suma+t.total_time
+			lista.append(suma)
+			proye.append(pro)
+		print("-----------",lista)
+		print("-----------",proye)
+		#project = json.loads(serializers.serialize('json', project))
+		#lista = json.loads(serializers.serialize('json', lista))[0]
+		#lista = json.dumps(lista)
+		#proye = json.dumps(proye)
+		return JsonResponse({ 'lista':lista, 'proye':proye })
+		return render_to_response('../templates/reporte.html',{ 'lista':lista, 'proye':proye }, context_instance=RequestContext(request))
+
+
+	#import pdb; pdb.set_trace()
+	#user = User.objects.get(id = request.user.id )
+	#project = Projects.objects.all()
+	#suma = 0
+	#indice = 0
+	#lista = []
+	#for p in project:
+	#	activi =  Activities.objects.filter(project=p.id)
+	#	tareas = Tasks.objects.filter(responsible_id=user.id, activity__in = activi)
+	#	suma = 0
+	#	for t in tareas:
+	#		suma = suma+t.total_time
+	#	lista.append(suma)
+	#
 	return render_to_string('../templates/reporte.html', {'project':project, 'activi':activi, 'lista':lista, 'indice':indice})

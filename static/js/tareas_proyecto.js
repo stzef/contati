@@ -9,7 +9,7 @@ function seleccionTareas(seleccion) {
        success : function(data){
 		var html = ""
         var template = ""
-        data.tareas.forEach(fields =>{
+        data.tarea3.forEach(fields =>{
         	template =
           '<div class="table-full-width">'+
           '<table class="table" id="id_tabla"><tbody><tr>'+
@@ -49,7 +49,7 @@ function seleccionTareas(seleccion) {
         var html1 = ""
         var template1 = ""
         var template = '<table class="table table-bordered table-hover table-striped"><thead><th>LISTA DE TAREAS</th><th>FUNCIONES</th><th>HECHO</th></thead>'
-        data.tarea3.forEach(fields =>{
+        data.tareas.forEach(fields =>{
 
           template1 =
           '<td>::nombreTarea::</td>'+
