@@ -3,12 +3,12 @@
 {% block content %}
 
           <div class="row">
-            <div class="col-lg-12 col-sm-12">                    
+            <div class="col-lg-12 col-sm-12">
                  <h3>ACTIVIDADES
                  <a class="btn btn-primary pull-right" href="{% url 'add_activity'  %}"><i class="fa fa-plus" aria-hidden="true"></i><br>Agregar</a></h3>
 
             </div>
-            </div>            
+            </div>
 
             <div class="panel">
                         <div class="panel-body">
@@ -19,24 +19,24 @@
                                 <tr>
                                     <th>Lista de Actividades</th>
                                     <th>funciones</th>
-                                </tr>  
+                                </tr>
 
-                            </thead>  
-                                                                
-                            <tbody>   {% for activity in activi %} 
-   
-                                <tr>                                    
-                                    <td>{{ activity.activity }} | {{ activity.project }}</td> 
+                            </thead>
 
-                                    <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}">Borrar</a></td> 
+                            <tbody>   {% for activity in activi %}
+
+                                <tr>
+                                    <td>{{ activity.activity }} | {{ activity.project }}</td>
+
+                                    <td><a class="btn btn-primary" href="{% url 'edit_activity' pk=activity.pk %}">Editar</a> <a class="btn btn-danger" href="{% url 'delete_activity' pk=activity.pk %}">Borrar</a></td>
 
                                 </tr>
                             </tbody>    {% endfor %}
-                        </table> 
+                        </table>
 
                         </div>
-                        </div>        
+                        </div>
             </div>
-            
-</div>              
+
+</div>
 {% endblock %}

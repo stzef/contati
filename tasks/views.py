@@ -52,7 +52,7 @@ def tareas_index(request, pk):
     tarea2 = json.loads(serializers.serialize('json', tarea2))
 
     actividades = json.loads(serializers.serialize('json', actividades))
-    
+
     return JsonResponse( {"tareas":tareas, "actividades":actividades, "tarea2":tarea2, "tarea3":tarea3} )
 
 # <----------------------- Tablero Kanban ----------------------------------------->
