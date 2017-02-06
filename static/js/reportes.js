@@ -1,9 +1,6 @@
 function rango_fecha(inicio, fin){
-  debugger
   var ini = inicio;
   var fi = fin;
-  console.log(ini);
-  console.log(fi);
       $.ajax({
           type: 'POST',
           url: '/reportes/',
@@ -104,3 +101,30 @@ function drawMaterial(rows) {
       var material = new google.charts.Bar(document.getElementById('barchart_values'));
       material.draw(data, options);
     }
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic(rows) {
+
+          var data = google.visualization.arrayToDataTable([
+            data.addColumn('string', 'Proyecto');
+            data.addColumn('number', 'Horas');
+          ]);
+
+          var options = {
+            title: 'Population of Largest U.S. Cities',
+            chartArea: {width: '50%'},
+            hAxis: {
+              title: 'Total Population',
+              minValue: 0
+            },
+            vAxis: {
+              title: 'City'
+            }
+          };
+
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+          chart.draw(data, options);
+        }
