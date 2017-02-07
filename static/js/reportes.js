@@ -42,31 +42,35 @@ function rango_fecha_actividad(inicio, fin){
   console.log(fi);
       $.ajax({
           type: 'POST',
-          url: '/reportes/actividad/',
+          url: '/actividad/reporte/',
           data : { inicio : ini, fin : fi },
           success: function(data) {
-              var lista = data.lista
-              lis= JSON.parse(lista);
-              var proy = data.proye
-              pro = JSON.parse(proy);
-              var html = ""
-              var template = ""
-                    for (var i = 0; i < lis.length; i++) {
-                      template =
+              var activity = data.activity
+              acti= JSON.parse(activity);
+              var proyectos = data.proyectos
+              proye = JSON.parse(proyectos);
+              var horas = data.horas
+              hor = JSON.parse(horas);
+              //pro = JSON.parse(proy);
+              var html1 = ""
+              var template1 = ""
+                    for (var i = 0; i < acti.length; i++) {
+                      template1 =
                       '<div class="table-full-width">'+
                       '<table class="table" id="id_tabla"><tbody><tr>'+
+                      '<td>::ACTIVIDADES::</td>'+
                       '<td>::HORAS::</td>'+
                       '<td>::PROYECTO::</td>'+
                       '</td></tr></div></tbody></table>'+
                       '</div>'
-                      template = template.replace("::HORAS::",pro[i]).replace("::PROYECTO::",lis[i])
+                      template1 = template.replace("::HORAS::",hor[i]).replace("::PROYECTO::",proye[i])
                       //.replace(/\:\:idTarea\:\:/g,fields.pk)
-                      html += template
-                    $("#tabla_repo").html(html)
+                      html1 += template1
+                    $("#tabla_activiti").html(html1)
 
                     }
-                    console.info(data)
-                    drawMaterial(eval(data.todos))
+                    //console.info(data)
+                  //  drawMaterial(eval(data.todos))*/
               }
           }
         );

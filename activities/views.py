@@ -148,7 +148,7 @@ def list_clientes(request):
 	return render_to_response('../templates/reporte-cliente.html', context_instance=RequestContext(request))
 
 @csrf_exempt
-def reporte_actividad(request):
+def actividad_reporte(request):
 	if request.method == 'POST':
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
@@ -160,18 +160,25 @@ def reporte_actividad(request):
 		data = []
 		horas = []
 		proyectos = []
+		activity = []
 		actividad = 0
 		for i in range(len(activi)):
 			actividad_id = activi[i].id
 			proyecto = activi[i].project
-			proyectos.append([proyecto])
+			acti = activi[i].activity
+			activity.append([acti])
+			proyectos.append([proyecto.project])
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
 			horas.append([suma])
-		return render_to_response('../templates/reporte_actividad.html', {'activi': activi, 'proyectos':proyectos, 'horas':horas}, context_instance=RequestContext(request))
-		#return render_to_string('../templates/reporte_actividad.html', { 'data' : data})
+		#for p in project:
+		#	pro = p.project
+		horas = json.dumps(horas)
+		activity = json.dumps(activity)
+		proyectos = json.dumps(proyectos)
+		return JsonResponse({ 'proyectos':proyectos, 'activity':activity, 'horas':horas })
 	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
 
 def salidaPdf(f):
@@ -203,3 +210,36 @@ def reporte(request):
 			data.append([pro,suma])
 
 		return render_to_string('../templates/reporte.html', { 'data' : data})
+
+@salidaPdf
+def reporteActividades(request):
+
+		if request.method == 'POST':
+			desde = request.POST['inicio']
+			hasta = request.POST['fin']
+			totalh=0
+			#import pdb; pdb.set_trace()
+			user = User.objects.get(id = request.user.id )
+			project = Projects.objects.filter()
+			activi = Activities.objects.filter()
+			suma = 0
+			data = []
+			horas = []
+			proyectos = []
+			activity = []
+			actividad = 0
+			for i in range(len(activi)):
+				actividad_id = activi[i].id
+				proyecto = activi[i].project
+				pro = proyecto.project
+				acti = activi[i].activity
+				activity.append([acti])
+				proyectos.append([proyecto.project])
+				tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))
+				suma = 0
+				for t in tareas:
+					suma = suma+t.total_time
+				horas.append([suma])
+				data.append([pro,acti,suma])
+
+			return render_to_string('../templates/reporte_pdf_actividad.html', { 'data' : data, 'user':user, 'desde':desde, 'hasta':hasta})

@@ -30,7 +30,7 @@
          table {
              font-family: Verdana;
              text-align: center;
-             width: 200px;             
+             width: 200px;
          }
          td {
            padding: 3px;
@@ -39,11 +39,19 @@
     </head>
     <body>
 <h4 class="titulo" >Horas por proyecto</h4>
+<div class="col-lg-12 col-sm-4"  align="center">
+          <img src="../static/img/sistematizar.jpg" width="10%" style="margin: 0%; padding: 0%">
+</div>
+<div class="">
+    <h5>Informe de gestion presentado por:  {{user}} fecha desde: {{desde}} al {{hasta}}</h5>
+
+</div>
 <div class="di">
   <table border="0.8px" class="tabla" >
       <thead class="di">
           <tr>
               <th class="text di" align="center">PROYECTOS</th>
+              <th class="text di" align="center">ACTIVIDADES</th>
               <th class="text di" align="center">HORAS HECHAS</th>
           </tr>
           <tbody>
@@ -51,6 +59,7 @@
               <tr>
                   <td align="center">{{ p.0 }}</td>
                   <td align="center">{{ p.1 }}</td>
+                  <td align="center">{{ p.2 }}</td>
 
               </tr>
               {% endfor %}
