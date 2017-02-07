@@ -20,8 +20,15 @@
              font-size: 14px;
               padding: 5px;
          }
+         .pendiente{
+             text-align: center;
+             font-style: italic;
+             font-size: 14px;
+              padding: 5px;
+         }
          .logo{
-             width: 20px;
+             width: 140px;
+
          }
          .di {
            float: right;
@@ -39,15 +46,15 @@
     </head>
     <body>
 <h4 class="titulo" >Horas por proyecto</h4>
-<div class="col-lg-12 col-sm-4"  align="center">
-          <img src="../static/img/sistematizar.jpg" width="10%" style="margin: 0%; padding: 0%">
+<div class="logo" aling="right">
+          <img src="../static/img/logo sistematizaref.png" >
 </div>
 <div class="">
-    <h5>Informe de gestion presentado por:  {{user}} fecha desde: {{desde}} al {{hasta}}</h5>
+    <h5>Informe de gestion presentado por:  {{user.first_name}} {{user.last_name}} fecha desde: {{desde}} al {{hasta}}</h5>
 
 </div>
-<div class="di">
-  <table border="0.8px" class="tabla" >
+<div class="ta" aling="right">
+  <table border="0.8px" class="tabla"  >
       <thead class="di">
           <tr>
               <th class="text di" align="center">PROYECTOS</th>
@@ -63,9 +70,39 @@
 
               </tr>
               {% endfor %}
+              &nbsp; &nbsp;
+              <tr>
+                <td align="center"></td>
+                <td align="center">TOTAL HORAS</td>
+                <td align="center">{{totalh}}</td>
+              </tr>
           </tbody>
       </thead>
   </table>
 </div>
+&nbsp; &nbsp; &nbsp;
+
+<div class="pendientes">
+  <table border="0.8px" class="tabla" >
+      <thead class="pendiente">
+          <tr>
+              <th class="text di" align="center">TAREAS</th>
+              <th class="text di" align="center">CANTIDAD</th>
+          </tr>
+          <tbody>
+              <tr>
+                  <td align="center">Pendientes</td><td>{{por}}</td>
+              </tr>
+              <tr>
+                  <td align="center">En proceso</td><td>{{en}}</td>
+              </tr>
+              <tr>
+                  <td align="center">Terminadas</td><td>{{ter}}</td>
+              </tr>
+          </tbody>
+      </thead>
+  </table>
+</div>
+
 </body>
 </html>

@@ -172,13 +172,14 @@ def actividad_reporte(request):
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
+				totalh = totalh+suma
 			horas.append([suma])
 		#for p in project:
 		#	pro = p.project
 		horas = json.dumps(horas)
 		activity = json.dumps(activity)
 		proyectos = json.dumps(proyectos)
-		return JsonResponse({ 'proyectos':proyectos, 'activity':activity, 'horas':horas })
+		return JsonResponse({ 'proyectos':proyectos, 'activity':activity, 'horas':horas, 'totalh':totalh })
 	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
 
 def salidaPdf(f):
@@ -228,6 +229,9 @@ def reporteActividades(request):
 			proyectos = []
 			activity = []
 			actividad = 0
+			por = 0
+			en = 0
+			ter = 0
 			for i in range(len(activi)):
 				actividad_id = activi[i].id
 				proyecto = activi[i].project
@@ -239,7 +243,14 @@ def reporteActividades(request):
 				suma = 0
 				for t in tareas:
 					suma = suma+t.total_time
+					if t.states_kanban.id == 1:
+						por += 1
+					if t.states_kanban.id == 2:
+						en += 1
+					if t.states_kanban.id == 3:
+						ter += 1
+				totalh = totalh+suma
 				horas.append([suma])
 				data.append([pro,acti,suma])
 
-			return render_to_string('../templates/reporte_pdf_actividad.html', { 'data' : data, 'user':user, 'desde':desde, 'hasta':hasta})
+			return render_to_string('../templates/reporte_pdf_actividad.html', { 'data' : data, 'user':user, 'desde':desde, 'hasta':hasta, 'totalh':totalh, 'por':por, 'en':en, 'ter':ter})
