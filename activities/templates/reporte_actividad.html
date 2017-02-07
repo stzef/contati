@@ -24,12 +24,12 @@
                         <h5>Hasta:</h5>
                         <input class="form-control" type="date" id="fin" name="fin"  step="1" min="1980-01-01" max="2030-12-31" value="2016-12-01">
                     </div>
-
+                  </form>
                     <div class="col-lg-6 col-sm-6">
                       <h5>&nbsp;&nbsp;&nbsp;</h5>
                       <button class="btn btn-primary" onclick="rango_fecha_actividad(inicio.value, fin.value)" type="submit">Buscar</button>
                     </div>
-                </form>
+
                   </div>
                 </div>
 
@@ -46,9 +46,16 @@
     							<div class="col-lg-6 col-sm-6">
 
                     <h4 class="title">Horas por Actividad</h4>
-                    <div class="col-lg-4 col-sm-4" style="padding-right: 0px; padding-left: 0px;">
+                    <div class="col-lg-8 col-sm-8" style="padding-right: 0px; padding-left: 0px;">
                         <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped" id="tabla_activiti">
+                          <thead>
+                            <tr>
+                                <th class="text di" align="center">PROYECTOS</th>
+                                <th class="text di" align="center">ACTIVIDADES</th>
+                                <th class="text di" align="center">HORAS HECHAS</th>
+                            </tr>
+                          </thead>
 
                         </table>
                         </div>

@@ -35,14 +35,13 @@ function rango_fecha(inicio, fin){
 }
 
 function rango_fecha_actividad(inicio, fin){
-  debugger
   var ini = inicio;
   var fi = fin;
   console.log(ini);
   console.log(fi);
       $.ajax({
           type: 'POST',
-          url: '/actividad/reporte/',
+          url: '/actividad_reporte/',
           data : { inicio : ini, fin : fi },
           success: function(data) {
               var activity = data.activity
@@ -58,19 +57,19 @@ function rango_fecha_actividad(inicio, fin){
                       template1 =
                       '<div class="table-full-width">'+
                       '<table class="table" id="id_tabla"><tbody><tr>'+
+                      '<td>::PROYECTO::</td>'+
                       '<td>::ACTIVIDADES::</td>'+
                       '<td>::HORAS::</td>'+
-                      '<td>::PROYECTO::</td>'+
                       '</td></tr></div></tbody></table>'+
                       '</div>'
-                      template1 = template.replace("::HORAS::",hor[i]).replace("::PROYECTO::",proye[i])
+                      template1 = template1.replace("::HORAS::",hor[i]).replace("::PROYECTO::",proye[i]).replace("::ACTIVIDADES::",acti[i])
                       //.replace(/\:\:idTarea\:\:/g,fields.pk)
                       html1 += template1
                     $("#tabla_activiti").html(html1)
 
                     }
-                    //console.info(data)
-                  //  drawMaterial(eval(data.todos))*/
+                    console.info(data)
+                    drawBasic(eval(data.totalh))
               }
           }
         );
@@ -102,6 +101,33 @@ function drawMaterial(rows) {
         }
       };
 
-      var material = new google.charts.Bar(document.getElementById('barchart_values'));
+      var material = new google.charts.Bar(document.getElementById('chart_div'));
       material.draw(data, options);
     }
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    /*google.charts.setOnLoadCallback(drawBasic);*/
+    function drawBasic(rows) {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Actividad');
+          data.addColumn('number', 'Horas');
+
+          data.addRows(rows);
+
+          var options = {
+            title: 'Actividades por proyecto',
+            chartArea: {width: '50%'},
+            hAxis: {
+              title: 'Total horas ',
+              minValue: 0
+            },
+            vAxis: {
+              title: 'actividades'
+            }
+          };
+
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+          chart.draw(data, options);
+        }

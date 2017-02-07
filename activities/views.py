@@ -152,7 +152,7 @@ def actividad_reporte(request):
 	if request.method == 'POST':
 		desde = request.POST['inicio']
 		hasta = request.POST['fin']
-		totalh=0
+		totalh=[]
 		user = User.objects.get(id = request.user.id )
 		project = Projects.objects.filter()
 		activi = Activities.objects.filter()
@@ -164,21 +164,23 @@ def actividad_reporte(request):
 		actividad = 0
 		for i in range(len(activi)):
 			actividad_id = activi[i].id
-			proyecto = activi[i].project
+			proyecto = activi[i].project.project
 			acti = activi[i].activity
+			actiProyec = proyecto+acti
 			activity.append([acti])
-			proyectos.append([proyecto.project])
+			proyectos.append([proyecto])
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))
 			suma = 0
 			for t in tareas:
 				suma = suma+t.total_time
-				totalh = totalh+suma
 			horas.append([suma])
+			totalh.append([actiProyec,suma])
 		#for p in project:
 		#	pro = p.project
 		horas = json.dumps(horas)
 		activity = json.dumps(activity)
 		proyectos = json.dumps(proyectos)
+		totalh = json.dumps(totalh)
 		return JsonResponse({ 'proyectos':proyectos, 'activity':activity, 'horas':horas, 'totalh':totalh })
 	return render_to_response('../templates/reporte_actividad.html', context_instance=RequestContext(request))
 
