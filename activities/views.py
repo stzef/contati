@@ -166,7 +166,7 @@ def actividad_reporte(request):
 			actividad_id = activi[i].id
 			proyecto = activi[i].project.project
 			acti = activi[i].activity
-			actiProyec = proyecto+acti
+			actiProyec = proyecto+" "+acti
 			activity.append([acti])
 			proyectos.append([proyecto])
 			tareas = Tasks.objects.filter(responsible_id=user.id, activity = actividad_id, date_time__range = (desde, hasta))

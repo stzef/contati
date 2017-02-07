@@ -35,7 +35,6 @@ function rango_fecha(inicio, fin){
 }
 
 function rango_fecha_actividad(inicio, fin){
-  
   var ini = inicio;
   var fi = fin;
   console.log(ini);
@@ -102,7 +101,7 @@ function drawMaterial(rows) {
         }
       };
 
-      var material = new google.charts.Bar(document.getElementById('chart_div'));
+      var material = new google.charts.Bar(document.getElementById('barchart_values'));
       material.draw(data, options);
     }
 
@@ -117,10 +116,10 @@ function drawMaterial(rows) {
           data.addRows(rows);
 
           var options = {
-            title: 'Actividades por proyecto',
+            title: 'Actividades por programa',
             chartArea: {width: '50%'},
             hAxis: {
-              title: 'Total horas ',
+              title: 'Total horas',
               minValue: 0
             },
             vAxis: {
