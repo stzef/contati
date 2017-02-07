@@ -35,6 +35,7 @@ function rango_fecha(inicio, fin){
 }
 
 function rango_fecha_actividad(inicio, fin){
+  
   var ini = inicio;
   var fi = fin;
   console.log(ini);
